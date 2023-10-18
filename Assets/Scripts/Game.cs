@@ -14,6 +14,8 @@ public class Game : MonoBehaviour
     public Player Player2 { get; set; }
     public Board Board {get; set;}
 
+    public CommandManager CommandManager { get; set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,6 +23,7 @@ public class Game : MonoBehaviour
             Instance = this;
             // create a new board but board is mono behaviour
             Board = new GameObject("Board").AddComponent<Board>();
+            CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
             DontDestroyOnLoad(gameObject);
         }
         else

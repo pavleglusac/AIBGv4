@@ -16,6 +16,19 @@ public class Pillar : MonoBehaviour
     // keep track of original color
     List<Color> originalColors = new List<Color>();
 
+    private int GetDirection(Pillar prev, Pillar current)
+    {
+        if (prev.X == current.X)
+        {
+            return prev.Z > current.Z ? 0 : 2;
+        }
+        else if (prev.Z == current.Z)
+        {
+            return prev.X > current.X ? 1 : 3;
+        }
+        return -1;
+    }
+
     void OnMouseDown()
     {
         if (path == null || path.Count == 0)
@@ -30,96 +43,45 @@ public class Pillar : MonoBehaviour
 
         for (int i = 1; i < path.Count; i++)
         {
-            Pillar pillar = path[i];
-            // print prev and pillar
-            Debug.Log(prev.X + " " + prev.Z + " ---- " + pillar.X + " " + pillar.Z);
-            Debug.Log(direction + " " + count);
-            if (prev.X == pillar.X)
+            Pillar currentPillar = path[i];
+            int newDirection = GetDirection(prev, currentPillar);
+            
+            if (direction == newDirection)
             {
-                if (prev.Z > pillar.Z)
-                {
-                    if (direction == 0)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        if (direction != -1)
-                        {
-                            directions.Add((direction, count));
-                        }
-                        count = 1;
-                        direction = 0;
-                    }
-                }
-                else if (prev.Z < pillar.Z)
-                {
-                    if (direction == 2)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        if (direction != -1)
-                        {
-                            directions.Add((direction, count));
-                        }
-                        count = 1;
-                        direction = 2;
-                    }
-                }
+                count++;
             }
-            else if (prev.Z == pillar.Z)
+            else
             {
-                if (prev.X > pillar.X)
+                if (direction != -1)
                 {
-                    if (direction == 1)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        if (direction != -1)
-                        {
-                            directions.Add((direction, count));
-                        }
-                        count = 1;
-                        direction = 1;
-                    }
+                    directions.Add((direction, count));
                 }
-                else if (prev.X < pillar.X)
-                {
-                    if (direction == 3)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        if (direction != -1)
-                        {
-                            directions.Add((direction, count));
-                        }
-                        count = 1;
-                        direction = 3;
-                    }
-                }
+                count = 1;
+                direction = newDirection;
             }
-            prev = pillar;
+
+            prev = currentPillar;
         }
 
         directions.Add((direction, count));
 
         // attach movementmanager to player if it doesn't exist
+        // Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+        // if (player.PlayerObject.GetComponent<MovementManager>() == null)
+        // {
+        //     player.PlayerObject.AddComponent<MovementManager>();
+        //     player.PlayerObject.GetComponent<MovementManager>().player = player.PlayerObject;
+        // }
         Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-        if (player.PlayerObject.GetComponent<MovementManager>() == null)
-        {
-            player.PlayerObject.AddComponent<MovementManager>();
-            player.PlayerObject.GetComponent<MovementManager>().player = player.PlayerObject;
-        }
         for (int i = 0; i < directions.Count; i++)
         {
-            (int, int) dir = directions[i];
-            player.PlayerObject.GetComponent<MovementManager>().AddMovement(dir.Item1, dir.Item2);
+            // create commands
+            GameObject commandObject = new GameObject("MoveCommandObject");
+            MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
+            moveCommandInstance.Initialize(player, directions[i].Item1, directions[i].Item2);
+            Game.Instance.CommandManager.AddCommand(moveCommandInstance);
+            // (int, int) dir = directions[i];
+            // player.PlayerObject.GetComponent<MovementManager>().AddMovement(dir.Item1, dir.Item2);
         }
 
         // swap player turn
