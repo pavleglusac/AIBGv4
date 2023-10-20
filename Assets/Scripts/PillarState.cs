@@ -7,6 +7,7 @@ public enum PillarState
     Empty,
     Player1,
     Player2,
-    Wall
+    Wall, 
+    Tree
 }
 
