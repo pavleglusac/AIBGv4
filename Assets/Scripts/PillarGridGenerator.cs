@@ -10,9 +10,10 @@ public class PillarGridGenerator : MonoBehaviour
 {
 
     public Game game;
-    public GameObject pillarPrefab;
 
+    public GameObject pillarPrefab;
     public GameObject treePrefab;
+    public GameObject rockPrefab;
 
     public GameObject player1;
     public GameObject player2;
@@ -26,6 +27,7 @@ public class PillarGridGenerator : MonoBehaviour
     public float animationDelay = 0.01f;
 
     public float totalForestCount = 2;
+    public float totalRockCount = 3;
 
 
     void Start()
@@ -33,8 +35,10 @@ public class PillarGridGenerator : MonoBehaviour
         game = Game.Instance;
         game.Board.Pillars = new Pillar[rows, columns];
         game.Board.Trees = new Tree[12];
+        game.Board.Rocks = new Rock[12];
         GenerateGrid();
         GenerateTrees();
+        GenerateRocks();
         game.Board.Pillars[11, 0].PillarState = PillarState.Player1;
         game.Board.Pillars[0, 11].PillarState = PillarState.Player2;
         StartCoroutine(StartAnimations());
@@ -53,6 +57,125 @@ public class PillarGridGenerator : MonoBehaviour
 
        
 
+    }
+
+    void GenerateRocks()
+    {
+        // make array of tuples cordinates
+        Tuple<int, int>[] rockCoordinates = new Tuple<int, int>[int.Parse(totalRockCount.ToString()) - 1];
+        List<Tuple<int, int>> rocksCordinates = new List<Tuple<int, int>>();
+        Debug.Log("Generating " + rockCoordinates.Count() + " rocks");
+        for (int i = 0; i < rockCoordinates.Length; i++)
+        {
+
+            int x = Random.Range(0, rows);
+            int z = Random.Range(0, columns);
+
+            if ((x == 11 && z == 0) || (x == 0 && z == 11) || x == z)
+            {
+                i--;
+                continue;
+            }
+
+            rockCoordinates[i] = new Tuple<int, int>(x, z);
+            for (int j = 0; j < i; j++)
+            {
+                if ((rockCoordinates[j].Item1 == x && rockCoordinates[j].Item2 == z) || (rockCoordinates[j].Item1 == z && rockCoordinates[j].Item2 == x))
+                {
+                    i--;
+                    break;
+                }
+            }
+            rocksCordinates.AddRange(GenerateRockGroup(x, z, rocksCordinates));
+        }
+
+        Debug.Log("Generating " + rocksCordinates.Count + " rocks");
+        // for all cordinates
+        int generatedRocks = 0;
+        for (int i = 0; i < rocksCordinates.Count; i++)
+        {
+            int x = rocksCordinates[i].Item1;
+            int z = rocksCordinates[i].Item2;
+            if (game.Board.Pillars[x, z].PillarState == PillarState.Empty && game.Board.Pillars[z, x].PillarState == PillarState.Empty)
+            {
+                MakeRock(x, z, generatedRocks);
+                generatedRocks++;
+                MakeRock(z, x, generatedRocks);
+                generatedRocks++;
+            }
+        }
+
+    }
+
+    void MakeRock(int x, int z, int rockCount)
+    {
+        game.Board.Pillars[x, z].PillarState = PillarState.Rock;
+        GameObject rockObject = Instantiate(rockPrefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
+        rockObject.AddComponent<Rock>();
+        rockObject.GetComponent<Rock>().RockObject = rockObject;
+        game.Board.Rocks[rockCount] = rockObject.GetComponent<Rock>();
+        game.Board.Rocks[rockCount].X = x;
+        game.Board.Rocks[rockCount].Z = z;
+        // set tree enabled to false
+        // game.Board.Trees[treeCount].TreeObject.SetActive(false);
+
+        Animator animator = rockObject.GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
+
+        // log 
+        Debug.Log("Rock " + rockCount + " at " + x + ", " + z);
+    }
+
+    List<Tuple<int, int>> GenerateRockGroup(int x, int z, List<Tuple<int, int>> rocks)
+    {
+        Debug.Log("Generating rocks for " + x + ", " + z);
+        List<Tuple<int, int>> rocksCoordinates = new List<Tuple<int, int>>();
+        // make 2 or 3 trees but stay in bounds and do not overlap with other trees
+        for (int i = 0; i < 2; i++)
+        {
+            // generate random x and z up down left or right
+            int xCoordinate = x;
+            int zCoordinate = z;
+
+            if (i != 0)
+            {
+                int direction = Random.Range(0, 4);
+                switch (direction)
+                {
+                    case 0:
+                        xCoordinate++;
+                        break;
+                    case 1:
+                        xCoordinate--;
+                        break;
+                    case 2:
+                        zCoordinate++;
+                        break;
+                    case 3:
+                        zCoordinate--;
+                        break;
+                }
+            }
+
+            if(xCoordinate < 0 || xCoordinate >= rows || zCoordinate < 0 || zCoordinate >= columns || (xCoordinate == 11 && zCoordinate == 0) || (xCoordinate == 0 && zCoordinate == 11) || xCoordinate == zCoordinate || rocks.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || rocksCoordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
+            {
+                i--;
+                continue;
+            }
+
+            if (game.Board.Pillars[xCoordinate, zCoordinate].PillarState == PillarState.Empty)
+            {
+                rocksCoordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
+                Debug.Log("Rock in group at " + xCoordinate + ", " + zCoordinate);
+            }
+
+        }
+
+        return rocksCoordinates;
     }
 
     void GenerateTrees()
@@ -262,6 +385,22 @@ public class PillarGridGenerator : MonoBehaviour
                     animator.SetTrigger("TreeGrowingTrigger");
                 }
                 Debug.Log("Animating tree " + i);
+            }
+        }
+
+        for (int i = 0; i < game.Board.Rocks.Length; i++)
+        {
+            Debug.Log("rock " + game.Board.Rocks[i]);
+            if (game.Board.Rocks[i] != null)
+            {
+                Animator animator = game.Board.Rocks[i].RockObject.GetComponent<Animator>();
+                if (animator != null)
+                {
+                    animator.enabled = true;
+                    animator.speed = 1.0f;
+                    animator.SetTrigger("RockGrowingTrigger");
+                }
+                Debug.Log("Animating rock " + i);
             }
         }
 

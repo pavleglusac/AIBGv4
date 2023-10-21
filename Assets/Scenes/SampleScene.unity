@@ -5708,6 +5708,7 @@ MonoBehaviour:
   game: {fileID: 0}
   pillarPrefab: {fileID: 163180044096257501, guid: 36d2d3c7d9ea7af439c938dd66f1f6aa, type: 3}
   treePrefab: {fileID: 393359065255881670, guid: f3fc2bc2c79343949a0464ca9639c4b6, type: 3}
+  rockPrefab: {fileID: 569270016318610311, guid: 00da7a5815daa9842b795a594d282468, type: 3}
   player1: {fileID: 1819542324}
   player2: {fileID: 2074453896}
   cameraTransform: {fileID: 963194228}
@@ -5716,6 +5717,7 @@ MonoBehaviour:
   spacing: 1.1
   animationDelay: 0.1
   totalForestCount: 3
+  totalRockCount: 3
 --- !u!4 &1108012866
 Transform:
   m_ObjectHideFlags: 0
