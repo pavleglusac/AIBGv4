@@ -5711,6 +5711,8 @@ MonoBehaviour:
   rockPrefab: {fileID: 569270016318610311, guid: 00da7a5815daa9842b795a594d282468, type: 3}
   player1: {fileID: 1819542324}
   player2: {fileID: 2074453896}
+  basePlayer1: {fileID: 7782940742131509612, guid: 4ea4282266737c548848a6cd1b2f0d3e, type: 3}
+  basePlayer2: {fileID: 4136474663737259870, guid: 6118d062e375a574f88950d171ac16c9, type: 3}
   cameraTransform: {fileID: 963194228}
   rows: 12
   columns: 12
@@ -5796,7 +5798,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 278c595fb86573d4c95eebcc00ab1989, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 14aed1907d13cc644a66d78fc32f5e87, type: 2}
+      objectReference: {fileID: 2100000, guid: a3f6b5e9cb69f624f8522768126e94c8, type: 2}
     - target: {fileID: 919132149155446097, guid: 278c595fb86573d4c95eebcc00ab1989, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -5861,7 +5863,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.179009, g: 0.9811321, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 50

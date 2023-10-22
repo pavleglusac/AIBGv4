@@ -9,6 +9,8 @@ public enum PillarState
     Player2,
     Wall, 
     Tree, 
-    Rock
+    Rock,
+    BasePlayer1,
+    BasePlayer2
 }
 

@@ -12,6 +12,10 @@ public class Game : MonoBehaviour
 
     public Player Player1 { get; set; }
     public Player Player2 { get; set; }
+
+    public Base BasePlayer1 { get; set; }
+    public Base BasePlayer2 { get; set; }
+    
     public Board Board {get; set;}
 
     public CommandManager CommandManager { get; set; }
