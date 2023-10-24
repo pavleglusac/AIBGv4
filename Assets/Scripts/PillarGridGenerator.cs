@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[DefaultExecutionOrder(1)]
 public class PillarGridGenerator : MonoBehaviour
 {
 
@@ -31,6 +32,8 @@ public class PillarGridGenerator : MonoBehaviour
 
     public float totalForestCount = 2;
     public float totalRockCount = 3;
+
+    public static System.Random random = new System.Random();
 
 
     void Start()
@@ -63,22 +66,56 @@ public class PillarGridGenerator : MonoBehaviour
 
     }
 
+    public static Tuple<int, int> GenerateCoordinates(bool up)
+    {
+        int x, z;
+        if (up)
+        {    
+            do
+            {
+                x = random.Next(1, 8);
+                z = random.Next(1, 5); 
+                Debug.Log("x: " + x + " z: " + z);
+            } while (!(x > z)); 
+        }
+        else
+        {
+            do
+            {
+                x = random.Next(7, 12);
+                z = random.Next(4, 11); 
+            } while (!(x > z));
+        }
+        return new Tuple<int, int>(x, z);
+
+    }
+
+    bool CheckIfCoordinatesAreValid(int x, int z)
+    {
+        Debug.Log("x: " + x + " z: " + z);
+        if (8 <= x && x <= 11 && 0 <= z && z <= 3)
+        {
+            return false;
+        }
+        if (x < 0 || x >= rows || z < 0 || z >= columns)
+        {
+            return false;
+        }
+        return true;
+    }
+
     void GenerateRocks()
     {
         Tuple<int, int>[] rockCoordinates = new Tuple<int, int>[int.Parse(totalRockCount.ToString()) - 1];
         List<Tuple<int, int>> rocksCordinates = new List<Tuple<int, int>>();
-        Debug.Log("Generating " + rockCoordinates.Count() + " rocks");
+        Boolean up = true;
         for (int i = 0; i < rockCoordinates.Length; i++)
         {
 
-            int x = Random.Range(0, rows);
-            int z = Random.Range(0, columns);
-
-            if ((x == 11 && z == 0) || (x == 0 && z == 11) || x == z)
-            {
-                i--;
-                continue;
-            }
+            Tuple<int, int> coordinates = GenerateCoordinates(up);
+            int x = coordinates.Item1;
+            int z = coordinates.Item2;
+            up = !up;
 
             rockCoordinates[i] = new Tuple<int, int>(x, z);
             for (int j = 0; j < i; j++)
@@ -92,8 +129,6 @@ public class PillarGridGenerator : MonoBehaviour
             rocksCordinates.AddRange(GenerateRockGroup(x, z, rocksCordinates));
         }
 
-        Debug.Log("Generating " + rocksCordinates.Count + " rocks");
-        // for all cordinates
         int generatedRocks = 0;
         for (int i = 0; i < rocksCordinates.Count; i++)
         {
@@ -114,12 +149,9 @@ public class PillarGridGenerator : MonoBehaviour
 
     List<Tuple<int, int>> GenerateRockGroup(int x, int z, List<Tuple<int, int>> rocks)
     {
-        Debug.Log("Generating rocks for " + x + ", " + z);
         List<Tuple<int, int>> rocksCoordinates = new List<Tuple<int, int>>();
-        // make 2 or 3 trees but stay in bounds and do not overlap with other trees
         for (int i = 0; i < 2; i++)
         {
-            // generate random x and z up down left or right
             int xCoordinate = x;
             int zCoordinate = z;
 
@@ -143,7 +175,7 @@ public class PillarGridGenerator : MonoBehaviour
                 }
             }
 
-            if(xCoordinate < 0 || xCoordinate >= rows || zCoordinate < 0 || zCoordinate >= columns || (xCoordinate == 11 && zCoordinate == 0) || (xCoordinate == 0 && zCoordinate == 11) || xCoordinate == zCoordinate || rocks.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || rocksCoordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
+            if(!CheckIfCoordinatesAreValid(xCoordinate, zCoordinate) || rocks.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || rocksCoordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
             {
                 i--;
                 continue;
@@ -152,7 +184,6 @@ public class PillarGridGenerator : MonoBehaviour
             if (game.Board.Pillars[xCoordinate, zCoordinate].PillarState == PillarState.Empty)
             {
                 rocksCoordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
-                Debug.Log("Rock in group at " + xCoordinate + ", " + zCoordinate);
             }
 
         }
@@ -180,8 +211,6 @@ public class PillarGridGenerator : MonoBehaviour
             animator.enabled = false;
         }
 
-        // log 
-        Debug.Log("Rock " + rockCount + " at " + x + ", " + z);
     }
 
     void GenerateTrees()
@@ -189,20 +218,14 @@ public class PillarGridGenerator : MonoBehaviour
         // make array of tuples cordinates
         Tuple<int, int>[] forestCoordinates = new Tuple<int, int>[int.Parse(totalForestCount.ToString()) - 1];
         List<Tuple<int, int>> treesCordinates = new List<Tuple<int, int>>();
-        Debug.Log("Generating " + forestCoordinates.Count() + " forests");
+        Boolean up = true;
         for(int i = 0; i < forestCoordinates.Length; i++)
         {
 
-            int x = Random.Range(0, rows);
-            int z = Random.Range(0, columns);
-
-            if ((x == 11 && z == 0) || (x == 0 && z == 11) || x == z)
-            {
-                i--;
-                continue;
-            }
-
-
+            Tuple<int, int> coordinates = GenerateCoordinates(up);
+            int x = coordinates.Item1;
+            int z = coordinates.Item2;
+            up = !up;
 
             forestCoordinates[i] = new Tuple<int, int>(x, z);
             for (int j = 0; j < i; j++)
@@ -218,7 +241,6 @@ public class PillarGridGenerator : MonoBehaviour
 
         }
 
-        Debug.Log("Generating " + treesCordinates.Count + " trees");
         // for all cordinates
         int generatedTrees = 0;
         for (int i = 0; i < treesCordinates.Count; i++)
@@ -240,7 +262,6 @@ public class PillarGridGenerator : MonoBehaviour
 
     List<Tuple<int, int>> GenerateForest(int x, int z, List<Tuple<int, int>> trees)
     {
-        Debug.Log("Generating forest for " + x + ", " + z);
         List<Tuple<int, int>> treesCoordinates = new List<Tuple<int, int>>();
         // make 2 or 3 trees but stay in bounds and do not overlap with other trees
         for (int i = 0; i < 3; i++)
@@ -270,7 +291,7 @@ public class PillarGridGenerator : MonoBehaviour
             }
 
 
-            if (xCoordinate < 0 || xCoordinate >= rows || zCoordinate < 0 || zCoordinate >= columns || (xCoordinate == 11 && zCoordinate == 0) || (xCoordinate == 0 && zCoordinate == 11) || xCoordinate == zCoordinate || trees.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || treesCoordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
+            if (!CheckIfCoordinatesAreValid(xCoordinate, zCoordinate) || trees.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || treesCoordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
             {
                 i--;
                 continue;
@@ -279,7 +300,6 @@ public class PillarGridGenerator : MonoBehaviour
             if (game.Board.Pillars[xCoordinate, zCoordinate].PillarState == PillarState.Empty)
             {
                 treesCoordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
-                Debug.Log("Forest tree at " + xCoordinate + ", " + zCoordinate);
             }
         }
 
@@ -304,9 +324,6 @@ public class PillarGridGenerator : MonoBehaviour
         {
             animator.enabled = false;
         }
-
-        // log 
-        Debug.Log("Tree " + treeCount + " at " + x + ", " + z);
     }
 
     void MakeBase()
@@ -419,7 +436,6 @@ public class PillarGridGenerator : MonoBehaviour
 
         for (int i = 0; i < game.Board.Trees.Length; i++)
         {
-            Debug.Log("tree " + game.Board.Trees[i]);
             if (game.Board.Trees[i] != null)
             {
                 Animator animator = game.Board.Trees[i].TreeObject.GetComponent<Animator>();
@@ -429,13 +445,11 @@ public class PillarGridGenerator : MonoBehaviour
                     animator.speed = 1.0f;
                     animator.SetTrigger("TreeGrowingTrigger");
                 }
-                Debug.Log("Animating tree " + i);
             }
         }
 
         for (int i = 0; i < game.Board.Rocks.Length; i++)
         {
-            Debug.Log("rock " + game.Board.Rocks[i]);
             if (game.Board.Rocks[i] != null)
             {
                 Animator animator = game.Board.Rocks[i].RockObject.GetComponent<Animator>();
@@ -445,13 +459,11 @@ public class PillarGridGenerator : MonoBehaviour
                     animator.speed = 1.0f;
                     animator.SetTrigger("RockGrowingTrigger");
                 }
-                Debug.Log("Animating rock " + i);
             }
         }
 
         for (int i = 0; i < game.Board.Bases.Length; i++)
         {
-            Debug.Log("base " + game.Board.Bases[i]);
             if (game.Board.Bases[i] != null)
             {
                 Animator animator = game.Board.Bases[i].BaseObject.GetComponent<Animator>();
@@ -461,7 +473,6 @@ public class PillarGridGenerator : MonoBehaviour
                     animator.speed = 1.0f;
                     animator.SetTrigger("Base" + (i + 1).ToString() + "BuildingTrigger");
                 }
-                Debug.Log("Animating base " + i);
             }
         }
 
