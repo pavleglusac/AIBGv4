@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,14 +25,13 @@ public class PillarGridGenerator : MonoBehaviour
     
     public Transform cameraTransform;
 
-    public int rows = 12;
-    public int columns = 12;
-    public float spacing = 2.0f;
-
-    public float animationDelay = 0.01f;
-
-    public float totalForestCount = 2;
-    public float totalRockCount = 3;
+    public int rows;
+    public int columns;
+    public float spacing;
+    public float animationDelay;
+    public float totalForestCount;
+    public float totalRockCount;
+    public int baseAreaLength;
 
     public static System.Random random = new System.Random();
 
@@ -39,17 +39,25 @@ public class PillarGridGenerator : MonoBehaviour
     void Start()
     {
         game = Game.Instance;
+        rows = game.rows;
+        columns = game.columns;
+        spacing = game.spacing;
+        animationDelay = game.animationDelay;
+        totalForestCount = rows / 5;
+        totalRockCount = columns / 5;
+        baseAreaLength = rows / 3;
+        // print all these 5 variables
+        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalForestCount: " + totalForestCount + " totalRockCount: " + totalRockCount + " baseAreaLength: " + baseAreaLength);
         game.Board.Pillars = new Pillar[rows, columns];
-        game.Board.Trees = new Tree[12];
-        game.Board.Rocks = new Rock[12];
+        game.Board.Trees = new Tree[(int)(totalForestCount * 3 * 2)];
+        game.Board.Rocks = new Rock[(int)(totalRockCount * 2 * 2)];
         game.Board.Bases = new Base[2];
         GenerateGrid();
         GenerateTrees();
         GenerateRocks();
         MakeBase();
-        game.Board.Pillars[11, 0].PillarState = PillarState.Player1;
-        game.Board.Pillars[0, 11].PillarState = PillarState.Player2;
-        StartCoroutine(StartAnimations());
+        game.Board.Pillars[rows - 1, 0].PillarState = PillarState.Player1;
+        game.Board.Pillars[0, columns - 1].PillarState = PillarState.Player2;
         // get first child of player 1 and player 2
         Player player1Object = player1.transform.GetChild(0).GetComponent<Player>();
         Player player2Object = player2.transform.GetChild(0).GetComponent<Player>();
@@ -59,22 +67,23 @@ public class PillarGridGenerator : MonoBehaviour
         game.Player2 = player2Object;
         game.Player2.PlayerObject = player2;
 
-        game.Player1.X = 11;
+        game.Player1.X = rows - 1;
         game.Player1.Z = 0;
         game.Player2.X = 0;
-        game.Player2.Z = 11;
+        game.Player2.Z = columns - 1;
 
+        StartCoroutine(StartAnimations());
     }
 
-    public static Tuple<int, int> GenerateCoordinates(bool up)
+    public Tuple<int, int> GenerateCoordinates(bool up)
     {
         int x, z;
         if (up)
         {    
             do
             {
-                x = random.Next(1, 8);
-                z = random.Next(1, 5); 
+                x = random.Next(1, rows - baseAreaLength);
+                z = random.Next(1, baseAreaLength + 1); 
                 Debug.Log("x: " + x + " z: " + z);
             } while (!(x > z)); 
         }
@@ -82,8 +91,8 @@ public class PillarGridGenerator : MonoBehaviour
         {
             do
             {
-                x = random.Next(7, 12);
-                z = random.Next(4, 11); 
+                x = random.Next(rows - baseAreaLength - 1, rows);
+                z = random.Next(baseAreaLength, columns - 1); 
             } while (!(x > z));
         }
         return new Tuple<int, int>(x, z);
@@ -93,11 +102,11 @@ public class PillarGridGenerator : MonoBehaviour
     bool CheckIfCoordinatesAreValid(int x, int z)
     {
         Debug.Log("x: " + x + " z: " + z);
-        if (8 <= x && x <= 11 && 0 <= z && z <= 3)
+        if (rows - baseAreaLength <= x && x <= rows - 1 && 0 <= z && z <= baseAreaLength - 1)
         {
             return false;
         }
-        if (x < 0 || x >= rows || z < 0 || z >= columns)
+        if (x < 0 || x >= rows || z < 0 || z >= columns || x == z)
         {
             return false;
         }
@@ -106,7 +115,7 @@ public class PillarGridGenerator : MonoBehaviour
 
     void GenerateRocks()
     {
-        Tuple<int, int>[] rockCoordinates = new Tuple<int, int>[int.Parse(totalRockCount.ToString()) - 1];
+        Tuple<int, int>[] rockCoordinates = new Tuple<int, int>[int.Parse(totalRockCount.ToString())];
         List<Tuple<int, int>> rocksCordinates = new List<Tuple<int, int>>();
         Boolean up = true;
         for (int i = 0; i < rockCoordinates.Length; i++)
@@ -216,7 +225,7 @@ public class PillarGridGenerator : MonoBehaviour
     void GenerateTrees()
     {
         // make array of tuples cordinates
-        Tuple<int, int>[] forestCoordinates = new Tuple<int, int>[int.Parse(totalForestCount.ToString()) - 1];
+        Tuple<int, int>[] forestCoordinates = new Tuple<int, int>[int.Parse(totalForestCount.ToString())];
         List<Tuple<int, int>> treesCordinates = new List<Tuple<int, int>>();
         Boolean up = true;
         for(int i = 0; i < forestCoordinates.Length; i++)
@@ -328,7 +337,7 @@ public class PillarGridGenerator : MonoBehaviour
 
     void MakeBase()
     {
-        int i = 11;
+        int i = rows - 1;
         int j = 0;
         game.Board.Pillars[i, j].PillarState = PillarState.BasePlayer1;
         GameObject baseObject = Instantiate(basePlayer1, new Vector3(i * spacing, -50, j * spacing), Quaternion.identity, this.transform);
@@ -346,7 +355,7 @@ public class PillarGridGenerator : MonoBehaviour
         }
 
         i = 0;
-        j = 11;
+        j = columns - 1;
         game.Board.Pillars[i, j].PillarState = PillarState.BasePlayer2;
         GameObject baseObject2 = Instantiate(basePlayer2, new Vector3(i * spacing, -50, j * spacing), Quaternion.identity, this.transform);
         baseObject2.AddComponent<Base>();

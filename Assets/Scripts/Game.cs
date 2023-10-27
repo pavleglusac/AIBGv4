@@ -18,6 +18,13 @@ public class Game : MonoBehaviour
     
     public Board Board {get; set;}
 
+    public int rows = 12;
+    public int columns = 12;
+    public float spacing = 1.1f;
+    public float animationDelay = 0.1f;
+    public float totalForestCount = 3;
+    public float totalRockCount = 3;
+
     public CommandManager CommandManager { get; set; }
 
     private void Awake()

@@ -5142,6 +5142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dc1ce0face6d14b97e2544df627454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rows: 25
+  columns: 25
+  spacing: 1.1
+  animationDelay: 0.1
+  totalForestCount: 2
+  totalRockCount: 2
 --- !u!4 &407366571
 Transform:
   m_ObjectHideFlags: 0
@@ -5271,15 +5277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5979adbec65c6ff4781d4b702655b256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 0}
-  treePrefab: {fileID: 393359065255881670, guid: f3fc2bc2c79343949a0464ca9639c4b6, type: 3}
-  rockPrefab: {fileID: 569270016318610311, guid: 00da7a5815daa9842b795a594d282468, type: 3}
-  rows: 12
-  columns: 12
-  spacing: 2
-  animationDelay: 0.01
-  totalForestCount: 2
-  totalRockCount: 3
 --- !u!4 &437951405
 Transform:
   m_ObjectHideFlags: 0
@@ -5773,6 +5770,7 @@ MonoBehaviour:
   animationDelay: 0.1
   totalForestCount: 3
   totalRockCount: 3
+  baseAreaLength: 0
 --- !u!4 &1108012866
 Transform:
   m_ObjectHideFlags: 0
