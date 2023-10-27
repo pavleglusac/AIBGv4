@@ -5142,8 +5142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dc1ce0face6d14b97e2544df627454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 12
-  columns: 12
+  rows: 20
+  columns: 20
   spacing: 1.1
   animationDelay: 0.1
   totalForestCount: 2
@@ -5189,9 +5189,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 437951403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5979adbec65c6ff4781d4b702655b256, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ff803447150c9946abf9d40f2d15d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game: {fileID: 0}
+  treePrefab: {fileID: 393359065255881670, guid: f3fc2bc2c79343949a0464ca9639c4b6, type: 3}
+  rockPrefab: {fileID: 569270016318610311, guid: 00da7a5815daa9842b795a594d282468, type: 3}
+  cameraTransform: {fileID: 0}
+  rows: 0
+  columns: 0
+  spacing: 0
+  animationDelay: 0
+  totalForestCount: 0
+  totalRockCount: 0
+  baseAreaLength: 0
 --- !u!4 &437951405
 Transform:
   m_ObjectHideFlags: 0
@@ -5514,8 +5525,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game: {fileID: 0}
   pillarPrefab: {fileID: 163180044096257501, guid: 36d2d3c7d9ea7af439c938dd66f1f6aa, type: 3}
-  treePrefab: {fileID: 393359065255881670, guid: f3fc2bc2c79343949a0464ca9639c4b6, type: 3}
-  rockPrefab: {fileID: 569270016318610311, guid: 00da7a5815daa9842b795a594d282468, type: 3}
   player1: {fileID: 3516734726966277635, guid: 30e9fa7d68c438144b941b5b9cf86949, type: 3}
   player2: {fileID: 6938244625838606387, guid: 5ace93a2a6c60694eb27bf6b70ec7189, type: 3}
   basePlayer1: {fileID: 7782940742131509612, guid: 4ea4282266737c548848a6cd1b2f0d3e, type: 3}

@@ -104,7 +104,7 @@ public class Pillar : MonoBehaviour
         else
         {
             from = Game.Instance.Board.Pillars[Game.Instance.Player2.X, Game.Instance.Player2.Z];
-            color = Color.green;
+            color = Color.red;
         }
 
         path = Algorithms.findPath(Game.Instance.Board, from, to);
