@@ -1,46 +1,119 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+[DefaultExecutionOrder(1)]
 public class PillarGridGenerator : MonoBehaviour
 {
 
     public Game game;
+
     public GameObject pillarPrefab;
 
     public GameObject player1;
     public GameObject player2;
+
+    public GameObject basePlayer1;
+    public GameObject basePlayer2;
     
     public Transform cameraTransform;
 
-    public int rows = 12;
-    public int columns = 12;
-    public float spacing = 2.0f;
+    public int rows;
+    public int columns;
+    public float spacing;
+    public float animationDelay;
+    public float totalForestCount;
+    public float totalRockCount;
+    public int baseAreaLength;
 
-    public float animationDelay = 0.01f;
+    public static System.Random random = new System.Random();
+
 
     void Start()
     {
         game = Game.Instance;
+        rows = game.rows;
+        columns = game.columns;
+        spacing = game.spacing;
+        animationDelay = game.animationDelay;
+        totalForestCount = rows / 5;
+        totalRockCount = columns / 5;
+        baseAreaLength = rows / 3;
+        // print all these 5 variables
+        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalForestCount: " + totalForestCount + " totalRockCount: " + totalRockCount + " baseAreaLength: " + baseAreaLength);
         game.Board.Pillars = new Pillar[rows, columns];
+        game.Board.Bases = new Base[2];
         GenerateGrid();
-        game.Board.Pillars[11, 0].PillarState = PillarState.Player1;
-        game.Board.Pillars[0, 11].PillarState = PillarState.Player2;
+        MakeBase();
+        MakePlayers();
+        game.Board.Pillars[rows - 1, 0].PillarState = PillarState.Player1;
+        game.Board.Pillars[0, columns - 1].PillarState = PillarState.Player2;
         StartCoroutine(StartAnimations());
-        // get first child of player 1 and player 2
-        Player player1Object = player1.transform.GetChild(0).GetComponent<Player>();
-        Player player2Object = player2.transform.GetChild(0).GetComponent<Player>();
-        game.Player1 = player1Object;
-        game.Player1.PlayerObject = player1;
-        game.Player2 = player2Object;
-        game.Player2.PlayerObject = player2;
-
-        game.Player1.X = 11;
-        game.Player1.Z = 0;
-        game.Player2.X = 0;
-        game.Player2.Z = 11;
-
     }
+
+    void MakeBase()
+    {
+        int i = rows - 1;
+        int j = 0;
+        game.Board.Pillars[i, j].PillarState = PillarState.BasePlayer1;
+        GameObject baseObject = Instantiate(basePlayer1, new Vector3(i * spacing, -50, j * spacing), Quaternion.identity, this.transform);
+        baseObject.AddComponent<Base>();
+        baseObject.GetComponent<Base>().BaseObject = baseObject;
+        game.Board.Bases[0] = baseObject.GetComponent<Base>();
+        game.Board.Bases[0].X = i;
+        game.Board.Bases[0].Z = j;
+
+        Animator animator = baseObject.GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
+
+        i = 0;
+        j = columns - 1;
+        game.Board.Pillars[i, j].PillarState = PillarState.BasePlayer2;
+        GameObject baseObject2 = Instantiate(basePlayer2, new Vector3(i * spacing, -50, j * spacing), Quaternion.identity, this.transform);
+        baseObject2.AddComponent<Base>();
+        baseObject2.GetComponent<Base>().BaseObject = baseObject2;
+        game.Board.Bases[1] = baseObject2.GetComponent<Base>();
+        game.Board.Bases[1].X = i;
+        game.Board.Bases[1].Z = j;
+
+        Animator animator2 = baseObject2.GetComponent<Animator>();
+
+        if (animator2 != null)
+        {
+            animator2.enabled = false;
+        }
+    }
+
+    void MakePlayers()
+    {
+        int i = rows - 1;
+        int j = 0;
+        GameObject playerObject1 = Instantiate(player1, new Vector3(i * spacing, 21, j * spacing), Quaternion.identity, this.transform);
+        playerObject1.AddComponent<Player>();
+        playerObject1.GetComponent<Player>().PlayerObject = playerObject1;
+        game.Player1 = playerObject1.GetComponent<Player>();
+        game.Player1.X = i;
+        game.Player1.Z = j;
+
+        i = 0;
+        j = columns - 1;
+        GameObject playerObject2 = Instantiate(player2, new Vector3(i * spacing, 21, j * spacing), Quaternion.identity, this.transform);
+        playerObject2.AddComponent<Player>();
+        playerObject2.GetComponent<Player>().PlayerObject = playerObject2;
+        game.Player2 = playerObject2.GetComponent<Player>();
+        game.Player2.X = i;
+        game.Player2.Z = j;
+    }
+
 
     void GenerateGrid()
     {
@@ -48,24 +121,31 @@ public class PillarGridGenerator : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                Vector3 position = new Vector3(i * spacing, 0, j * spacing);
-                GameObject pillarObject = Instantiate(pillarPrefab, position, Quaternion.identity, this.transform);
-                pillarObject.AddComponent<Pillar>();
-                pillarObject.GetComponent<Pillar>().PillarObject = pillarObject;
-                game.Board.Pillars[i, j] = pillarObject.GetComponent<Pillar>();
-                game.Board.Pillars[i, j].X = i;
-                game.Board.Pillars[i, j].Z = j;
-
-                Animator animator = pillarObject.GetComponent<Animator>();
-
-                if (animator != null)
-                {
-                    animator.enabled = false;
-                }
+                MakePillar(i, j);
             }
         }
 
     }
+
+    void MakePillar(int i, int j)
+    {
+        Vector3 position = new Vector3(i * spacing, 0, j * spacing);
+        GameObject pillarObject = Instantiate(pillarPrefab, position, Quaternion.identity, this.transform);
+        pillarObject.AddComponent<Pillar>();
+        pillarObject.GetComponent<Pillar>().PillarObject = pillarObject;
+        game.Board.Pillars[i, j] = pillarObject.GetComponent<Pillar>();
+        game.Board.Pillars[i, j].X = i;
+        game.Board.Pillars[i, j].Z = j;
+
+        Animator animator = pillarObject.GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
+    }
+
+    
 
     IEnumerator StartAnimations()
     {
@@ -96,6 +176,8 @@ public class PillarGridGenerator : MonoBehaviour
                 childCoordinates.Enqueue(new Vector2Int(coordinate.x + 1, coordinate.y + 1));
                 wasHere.Add(coordinate);
             }
+
+
             if (coordinates.Count == 0)
             {
                 coordinates = childCoordinates;
@@ -104,8 +186,35 @@ public class PillarGridGenerator : MonoBehaviour
             }
         }
 
-        // activate trigger on player 1
-        player1.GetComponent<Animator>().SetTrigger("UFO2LandingTrigger");
-        player2.GetComponent<Animator>().SetTrigger("UFO1LandingTrigger");
+        for (int i = 0; i < game.Board.Bases.Length; i++)
+        {
+            if (game.Board.Bases[i] != null)
+            {
+                Animator animator = game.Board.Bases[i].BaseObject.GetComponent<Animator>();
+                if (animator != null)
+                {
+                    animator.enabled = true;
+                    animator.speed = 1.0f;
+                    animator.SetTrigger("Base" + (i + 1).ToString() + "BuildingTrigger");
+                }
+            }
+        }
+
+        Animator animatorP1 = game.Player1.PlayerObject.GetComponent<Animator>();
+        if (animatorP1 != null)
+        {
+            animatorP1.enabled = true;
+            animatorP1.speed = 1.0f;
+            animatorP1.SetTrigger("UFO2LandingTrigger");
+        }
+
+        Animator animatorP2 = game.Player2.PlayerObject.GetComponent<Animator>();
+        if (animatorP2 != null)
+        {
+            animatorP2.enabled = true;
+            animatorP2.speed = 1.0f;
+            animatorP2.SetTrigger("UFO1LandingTrigger");
+        }        
     }
+
 }

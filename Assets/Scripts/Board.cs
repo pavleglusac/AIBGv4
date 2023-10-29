@@ -5,6 +5,10 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     public Pillar[,] Pillars {get; set;}
+    public Tree[] Trees {get; set;}
+    public Rock[] Rocks {get; set;}
+    public Base[] Bases {get; set;}
+    
 
     public List<Pillar> getNeighbours(Pillar pillar) 
     {
