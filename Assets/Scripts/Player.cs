@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,6 +10,7 @@ public class Player : MonoBehaviour
     public GameObject PlayerParentObject { get; set; }
     public GameObject PlayerObject { get; set; }
     public bool FirstPlayer { get; set; }
+    public Pillar Position { get; set; } 
     public int X { get; set; }
     public int Z { get; set; }
 
@@ -35,5 +38,13 @@ public class Player : MonoBehaviour
     void OnMouseDown()
     {
         // Debug.Log("Player clicked");
+    }
+
+    public void SetPosition(Pillar pillar)
+    {
+        this.Position = pillar;
+        this.X = this.Position.X;
+        this.Z = this.Position.Z;
+        Debug.Log("Player on pillar: (X,Z) = (" + pillar.X + ", " + pillar.Z + ")");
     }
 }

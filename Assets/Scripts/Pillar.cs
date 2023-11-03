@@ -89,8 +89,9 @@ public class Pillar : MonoBehaviour
 
         // swap player turn
         Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-        player.X = X;
-        player.Z = Z;
+        //player.X = X;
+        //player.Z = Z;
+        player.SetPosition(this);
     }
 
     void OnMouseEnter()
@@ -104,12 +105,14 @@ public class Pillar : MonoBehaviour
 
         if (Game.Instance.FirstPlayerTurn)
         {
-            from = Game.Instance.Board.Pillars[Game.Instance.Player1.X, Game.Instance.Player1.Z];
+            from = Game.Instance.Player1.Position;
+            //from = Game.Instance.Board.Pillars[Game.Instance.Player1.X, Game.Instance.Player1.Z];
             color = Color.blue;
         }
         else
         {
-            from = Game.Instance.Board.Pillars[Game.Instance.Player2.X, Game.Instance.Player2.Z];
+            from = Game.Instance.Player2.Position;
+            //from = Game.Instance.Board.Pillars[Game.Instance.Player2.X, Game.Instance.Player2.Z];
             color = Color.red;
         }
 

@@ -110,8 +110,9 @@ public class PillarGridGenerator : MonoBehaviour
         playerObject1.AddComponent<Player>();
         playerObject1.GetComponent<Player>().PlayerObject = playerObject1;
         game.Player1 = playerObject1.GetComponent<Player>();
-        game.Player1.X = i;
-        game.Player1.Z = j;
+        //game.Player1.X = i;
+        //game.Player1.Z = j;
+        game.Player1.SetPosition(game.Board.Pillars[i, j]);
 
         i = 0;
         j = columns - 1;
@@ -119,8 +120,9 @@ public class PillarGridGenerator : MonoBehaviour
         playerObject2.AddComponent<Player>();
         playerObject2.GetComponent<Player>().PlayerObject = playerObject2;
         game.Player2 = playerObject2.GetComponent<Player>();
-        game.Player2.X = i;
-        game.Player2.Z = j;
+        //game.Player2.X = i;
+        //game.Player2.Z = j;
+        game.Player2.SetPosition(game.Board.Pillars[i, j]);
 
         // TODO Jovan: Added now for hud logic, change later and refactor
         game.Player1.XP = 11;
