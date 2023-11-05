@@ -710,6 +710,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1110142363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4917777521005965125, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+  m_PrefabInstance: {fileID: 8355552291825324570}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1110142367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110142363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b201367889571dd45ac8fceeadcdae39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1224764302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,6 +1198,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 95117348}
     m_Modifications:
+    - target: {fileID: 2630596316920433188, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630596316920433188, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630596316920433188, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1110142367}
+    - target: {fileID: 2630596316920433188, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630596316920433188, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGamePlayerVsPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630596316920433188, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerVsPlayerButtonClick, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630596316920433188, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4917777521005965125, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
       propertyPath: m_Name
       value: Button (Legacy)
@@ -1284,7 +1329,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4917777521005965125, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1110142367}
   m_SourcePrefab: {fileID: 100100000, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
