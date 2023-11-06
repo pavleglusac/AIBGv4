@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 [DefaultExecutionOrder(1)]
@@ -20,7 +21,7 @@ public class PillarGridGenerator : MonoBehaviour
 
     public GameObject basePlayer1;
     public GameObject basePlayer2;
-    
+
     public Transform cameraTransform;
 
     public int rows;
@@ -30,6 +31,14 @@ public class PillarGridGenerator : MonoBehaviour
     public float totalForestCount;
     public float totalRockCount;
     public int baseAreaLength;
+    [SerializeField] public Text player1Name;
+    [SerializeField] public Text player2Name;
+    [SerializeField] public Text player1Coins;
+    [SerializeField] public Text player2Coins;
+    [SerializeField] public Text player1Energy;
+    [SerializeField] public Text player2Energy;
+    [SerializeField] public Text player1XP;
+    [SerializeField] public Text player2XP;
 
     public static System.Random random = new System.Random();
 
@@ -112,6 +121,30 @@ public class PillarGridGenerator : MonoBehaviour
         game.Player2 = playerObject2.GetComponent<Player>();
         game.Player2.X = i;
         game.Player2.Z = j;
+
+        // TODO Jovan: Added now for hud logic, change later and refactor
+        game.Player1.XP = 11;
+        game.Player1.Coins = 111;
+        game.Player1.Energy = 1111;
+        game.Player1.Name = "Najjaca firmetina";
+
+        game.Player2.XP = 22;
+        game.Player2.Coins = 222;
+        game.Player2.Energy = 2222;
+        game.Player2.Name = "PostExpress";
+
+        player1Name.text = game.Player1.Name.ToString();
+        player1Coins.text = game.Player1.Coins.ToString();
+        player1Energy.text = game.Player1.Energy.ToString();
+        player1XP.text = game.Player1.XP.ToString();
+
+        player2Name.text = game.Player2.Name.ToString();
+        player2Coins.text = game.Player2.Coins.ToString();
+        player2Energy.text = game.Player2.Energy.ToString();
+        player2XP.text = game.Player2.XP.ToString();
+
+
+
     }
 
 
@@ -145,7 +178,7 @@ public class PillarGridGenerator : MonoBehaviour
         }
     }
 
-    
+
 
     IEnumerator StartAnimations()
     {
@@ -153,7 +186,7 @@ public class PillarGridGenerator : MonoBehaviour
         Queue<Vector2Int> coordinates = new Queue<Vector2Int>();
         Queue<Vector2Int> childCoordinates = new Queue<Vector2Int>();
         coordinates.Enqueue(new Vector2Int(0, 0));
-        while(coordinates.Count > 0)
+        while (coordinates.Count > 0)
         {
             Vector2Int coordinate = coordinates.Dequeue();
             if (coordinate.x >= rows || coordinate.y >= columns)
@@ -214,7 +247,7 @@ public class PillarGridGenerator : MonoBehaviour
             animatorP2.enabled = true;
             animatorP2.speed = 1.0f;
             animatorP2.SetTrigger("UFO1LandingTrigger");
-        }        
+        }
     }
 
 }

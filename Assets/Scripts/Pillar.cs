@@ -31,6 +31,9 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (MenuNavigation.IsPaused)
+            return;
+
         if (path == null || path.Count == 0)
         {
             return;
@@ -45,7 +48,7 @@ public class Pillar : MonoBehaviour
         {
             Pillar currentPillar = path[i];
             int newDirection = GetDirection(prev, currentPillar);
-            
+
             if (direction == newDirection)
             {
                 count++;
@@ -92,6 +95,9 @@ public class Pillar : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (MenuNavigation.IsPaused)
+            return;
+
         Pillar to = this;
         Pillar from;
         Color color;
@@ -117,6 +123,8 @@ public class Pillar : MonoBehaviour
 
     void OnMouseExit()
     {
+        if (MenuNavigation.IsPaused)
+            return;
         if (path == null)
         {
             return;
