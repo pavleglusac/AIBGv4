@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 2
-  m_Text: PLAYER VS PLAYER
+  m_Text: DODAJ NOVI TEKST
 --- !u!1 &4917777521005965125
 GameObject:
   m_ObjectHideFlags: 0

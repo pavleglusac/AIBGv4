@@ -1161,8 +1161,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawImage: {fileID: 2116002636}
-  x: 0.1
-  y: 0.1
 --- !u!114 &2116002636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1313,6 +1311,10 @@ PrefabInstance:
     - target: {fileID: 6575937717740852787, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6849236146695148018, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
+      propertyPath: m_Text
+      value: player vs player
       objectReference: {fileID: 0}
     - target: {fileID: 6849236146695148018, guid: d99f4e75cfd2cdb45b11b127304cc3c1, type: 3}
       propertyPath: m_FontData.m_BestFit

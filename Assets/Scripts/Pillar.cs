@@ -123,6 +123,8 @@ public class Pillar : MonoBehaviour
 
     void OnMouseExit()
     {
+        if (MenuNavigation.IsPaused)
+            return;
         if (path == null)
         {
             return;

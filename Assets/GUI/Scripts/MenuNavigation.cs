@@ -8,6 +8,8 @@ public class MenuNavigation : MonoBehaviour
 
     public void PauseGame()
     {
+        if (IsPaused)
+            return;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
