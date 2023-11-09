@@ -33,7 +33,6 @@ public class Pillar : MonoBehaviour
     void OnMouseDown()
     {
 
-        Debug.Log("Pillar clicked: (X, Z): (" + X + ", " + Z + ")");
         if (MenuNavigation.IsPaused)
             return;
 
@@ -43,58 +42,19 @@ public class Pillar : MonoBehaviour
         }
 
         Pillar prev = path[0];
-        Debug.Log("Pillar clicked prev: (X, Z): (" + prev.X + ", " + prev.Z + ")");
-        int count = 1;
-        int direction = -1;
-        List<(int, int)> directions = new List<(int, int)>();
+        Pillar next = this;
+        int count = path.Count;
+        int direction = GetDirection(prev, next);
 
-        for (int i = 1; i < path.Count; i++)
-        {
-            Pillar currentPillar = path[i];
-            int newDirection = GetDirection(prev, currentPillar);
-
-            if (direction == newDirection)
-            {
-                count++;
-            }
-            else
-            {
-                if (direction != -1)
-                {
-                    directions.Add((direction, count));
-                }
-                count = 1;
-                direction = newDirection;
-            }
-
-            prev = currentPillar;
-        }
-
-        directions.Add((direction, count));
-
-        // attach movementmanager to player if it doesn't exist
-        // Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-        // if (player.PlayerObject.GetComponent<MovementManager>() == null)
-        // {
-        //     player.PlayerObject.AddComponent<MovementManager>();
-        //     player.PlayerObject.GetComponent<MovementManager>().player = player.PlayerObject;
-        // }
         Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-        for (int i = 0; i < directions.Count; i++)
-        {
-            // create commands
-            GameObject commandObject = new GameObject("MoveCommandObject");
-            MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
-            moveCommandInstance.Initialize(player, directions[i].Item1, directions[i].Item2);
-            Game.Instance.CommandManager.AddCommand(moveCommandInstance);
-            // (int, int) dir = directions[i];
-            // player.PlayerObject.GetComponent<MovementManager>().AddMovement(dir.Item1, dir.Item2);
-        }
+        // create commands
+        GameObject commandObject = new GameObject("MoveCommandObject");
+        MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
+        moveCommandInstance.Initialize(player, direction, count);
+        Game.Instance.CommandManager.AddCommand(moveCommandInstance);
 
         // swap player turn
         Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-        //player.X = X;
-        //player.Z = Z;
         player.SetPosition(this);
     }
 
@@ -110,13 +70,11 @@ public class Pillar : MonoBehaviour
         if (Game.Instance.FirstPlayerTurn)
         {
             from = Game.Instance.Player1.Position;
-            //from = Game.Instance.Board.Pillars[Game.Instance.Player1.X, Game.Instance.Player1.Z];
             color = Color.blue;
         }
         else
         {
             from = Game.Instance.Player2.Position;
-            //from = Game.Instance.Board.Pillars[Game.Instance.Player2.X, Game.Instance.Player2.Z];
             color = Color.red;
         }
 
