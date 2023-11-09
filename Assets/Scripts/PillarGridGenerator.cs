@@ -53,8 +53,6 @@ public class PillarGridGenerator : MonoBehaviour
         totalForestCount = rows / 5;
         totalRockCount = columns / 5;
         baseAreaLength = rows / 3;
-        // print all these 5 variables
-        //Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalForestCount: " + totalForestCount + " totalRockCount: " + totalRockCount + " baseAreaLength: " + baseAreaLength);
         game.Board.Pillars = new Pillar[rows, columns];
         game.Board.Bases = new Base[2];
         GenerateGrid();
@@ -120,8 +118,6 @@ public class PillarGridGenerator : MonoBehaviour
         playerObject2.AddComponent<Player>();
         playerObject2.GetComponent<Player>().PlayerObject = playerObject2;
         game.Player2 = playerObject2.GetComponent<Player>();
-        //game.Player2.X = i;
-        //game.Player2.Z = j;
         game.Player2.SetPosition(game.Board.Pillars[i, j]);
 
         // TODO Jovan: Added now for hud logic, change later and refactor

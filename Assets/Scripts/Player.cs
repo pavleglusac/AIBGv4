@@ -45,6 +45,5 @@ public class Player : MonoBehaviour
         this.Position = pillar;
         this.X = this.Position.X;
         this.Z = this.Position.Z;
-        Debug.Log("Player on pillar: (X,Z) = (" + pillar.X + ", " + pillar.Z + ")");
     }
 }

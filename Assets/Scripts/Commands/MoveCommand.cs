@@ -60,7 +60,6 @@ public class MoveCommand : MonoBehaviour, ICommand
             case 2: return new Vector3(0, 0, 1f);
             case 3: return new Vector3(1f, 0, 0f);
             default:
-                //Debug.LogError("Invalid direction: " + direction);
                 return Vector3.zero;
         }
     }
@@ -85,8 +84,6 @@ public class MoveCommand : MonoBehaviour, ICommand
             Player.PlayerObject.transform.position = targetPosition;
 
         }
-
-        Debug.Log("POSITION " + Player.PlayerObject.transform.position);
     }
 
     public override string ToString()
