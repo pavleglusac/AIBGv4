@@ -32,35 +32,52 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
-
         if (MenuNavigation.IsPaused)
             return;
 
-        if (path == null || path.Count == 0)
+        if (path == null)
         {
             return;
         }
 
-        Pillar prev = path[0];
-        Pillar next = this;
-        int count = path.Count;
-        int direction = GetDirection(prev, next);
-
         Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-        // create commands
-        GameObject commandObject = new GameObject("MoveCommandObject");
-        MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
-        moveCommandInstance.Initialize(player, direction, count);
-        Game.Instance.CommandManager.AddCommand(moveCommandInstance);
 
-        // swap player turn
-        Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-        player.SetPosition(this);
-        player.TakeEnergy(count);
+        if (CanStep())
+        {
+
+            Pillar prev = path[0];
+            Pillar next = this;
+            int count = path.Count;
+            int direction = GetDirection(prev, next);
+
+            // create commands
+            GameObject commandObject = new GameObject("MoveCommandObject");
+            MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
+            moveCommandInstance.Initialize(player, direction, count);
+            Game.Instance.CommandManager.AddCommand(moveCommandInstance);
+
+            // swap player turn
+            player.Position.PillarState = PillarState.Empty;
+            PillarState = Game.Instance.FirstPlayerTurn ? PillarState.BasePlayer1 : PillarState.Player2;
+            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            player.SetPosition(this);
+            player.TakeEnergy(count);
+        }
+        else if (CanAct(player)) {
+            // TODO add logic for non-empty pillars
+            Debug.Log("ACT");
+        }
+        
     }
 
     void OnMouseEnter()
     {
+        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+
+        if (!(CanStep() || CanAct(player))) {
+            return;
+        }
+
         if (MenuNavigation.IsPaused)
             return;
 
@@ -105,5 +122,28 @@ public class Pillar : MonoBehaviour
             pillar.PillarObject.GetComponent<Renderer>().material.color = originalColors[0];
             originalColors.RemoveAt(0);
         }
+    }
+    
+    public bool CanStep()
+    {
+        if (PillarState == PillarState.Empty) {
+            return true;
+        }
+        return false;
+    }
+    
+
+    bool CanAct(Player player) {
+        List<Pillar> neighbours = Game.Instance.Board.getNeighbours(this);
+        if (neighbours.Contains(player.Position)) {
+            return true;
+        }
+        return false;
+    }
+
+    public override bool Equals(object other)
+    {
+        Pillar pillar = (other as Pillar);   
+        return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
     }
 }

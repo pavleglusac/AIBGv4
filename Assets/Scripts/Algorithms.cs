@@ -36,6 +36,10 @@ public class Algorithms
         Pillar at = end;
         while (at.X != start.X || at.Z != start.Z)
         {
+            if (!at.CanStep()) {
+                path.Clear();
+                break;
+            }
             path.Add(at);
             at = cameFrom[at];
         }
