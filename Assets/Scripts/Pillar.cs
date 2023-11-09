@@ -120,6 +120,10 @@ public class Pillar : MonoBehaviour
             color = Color.red;
         }
 
+        if (to.X != from.X && to.Z != from.Z) {
+            return;
+        }
+
         path = Algorithms.findPath(Game.Instance.Board, from, to);
         foreach (Pillar pillar in path)
         {
