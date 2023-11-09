@@ -42,8 +42,13 @@ public class Player : MonoBehaviour
 
     public void SetPosition(Pillar pillar)
     {
-        this.Position = pillar;
-        this.X = this.Position.X;
-        this.Z = this.Position.Z;
+        Position = pillar;
+        X = Position.X;
+        Z = Position.Z;
+    }
+
+    public void TakeEnergy(int count)
+    {
+        Energy -= count;
     }
 }

@@ -56,6 +56,7 @@ public class Pillar : MonoBehaviour
         // swap player turn
         Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
         player.SetPosition(this);
+        player.TakeEnergy(count);
     }
 
     void OnMouseEnter()
