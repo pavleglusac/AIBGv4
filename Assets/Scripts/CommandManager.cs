@@ -38,7 +38,7 @@ public class CommandManager : MonoBehaviour
         {
             _currentCommand = _commands[_index];
             _currentCommand.Execute();
-            Debug.Log("Executing command: " + _currentCommand.ToString());
+            //Debug.Log("Executing command: " + _currentCommand.ToString());
         }
         else if (_currentCommand != null && _currentCommand.IsDone())
         {

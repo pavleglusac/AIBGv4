@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pillar : MonoBehaviour
@@ -31,6 +32,8 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
+
+        Debug.Log("Pillar clicked: (X, Z): (" + X + ", " + Z + ")");
         if (MenuNavigation.IsPaused)
             return;
 
@@ -40,6 +43,7 @@ public class Pillar : MonoBehaviour
         }
 
         Pillar prev = path[0];
+        Debug.Log("Pillar clicked prev: (X, Z): (" + prev.X + ", " + prev.Z + ")");
         int count = 1;
         int direction = -1;
         List<(int, int)> directions = new List<(int, int)>();

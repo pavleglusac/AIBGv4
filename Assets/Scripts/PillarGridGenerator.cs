@@ -54,7 +54,7 @@ public class PillarGridGenerator : MonoBehaviour
         totalRockCount = columns / 5;
         baseAreaLength = rows / 3;
         // print all these 5 variables
-        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalForestCount: " + totalForestCount + " totalRockCount: " + totalRockCount + " baseAreaLength: " + baseAreaLength);
+        //Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalForestCount: " + totalForestCount + " totalRockCount: " + totalRockCount + " baseAreaLength: " + baseAreaLength);
         game.Board.Pillars = new Pillar[rows, columns];
         game.Board.Bases = new Base[2];
         GenerateGrid();

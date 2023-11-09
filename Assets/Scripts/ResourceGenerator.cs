@@ -53,7 +53,7 @@ public class ResourceGenerator : MonoBehaviour
             {
                 x = random.Next(1, rows - baseAreaLength);
                 z = random.Next(1, baseAreaLength + 1); 
-                Debug.Log("x: " + x + " z: " + z);
+                //Debug.Log("x: " + x + " z: " + z);
             } while (!(x > z)); 
         }
         else
@@ -70,7 +70,7 @@ public class ResourceGenerator : MonoBehaviour
 
     bool CheckIfCoordinatesAreValid(int x, int z)
     {
-        Debug.Log("x: " + x + " z: " + z);
+        //Debug.Log("x: " + x + " z: " + z);
         if (rows - baseAreaLength <= x && x <= rows - 1 && 0 <= z && z <= baseAreaLength - 1)
         {
             return false;
