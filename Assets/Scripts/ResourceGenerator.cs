@@ -177,8 +177,7 @@ public class ResourceGenerator : MonoBehaviour
         rockObject.AddComponent<Rock>();
         rockObject.GetComponent<Rock>().RockObject = rockObject;
         game.Board.Rocks[rockCount] = rockObject.GetComponent<Rock>();
-        game.Board.Rocks[rockCount].X = x;
-        game.Board.Rocks[rockCount].Z = z;
+        game.Board.Rocks[rockCount].SetPosition(game.Board.Pillars[x, z]);
         // set tree enabled to false
         // game.Board.Trees[treeCount].TreeObject.SetActive(false);
 
@@ -291,8 +290,7 @@ public class ResourceGenerator : MonoBehaviour
         treeObject.AddComponent<Tree>();
         treeObject.GetComponent<Tree>().TreeObject = treeObject;
         game.Board.Trees[treeCount] = treeObject.GetComponent<Tree>();
-        game.Board.Trees[treeCount].X = x;
-        game.Board.Trees[treeCount].Z = z;
+        game.Board.Trees[treeCount].SetPosition(game.Board.Pillars[x, z]);
         // set tree enabled to false
         // game.Board.Trees[treeCount].TreeObject.SetActive(false);
 

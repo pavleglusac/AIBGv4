@@ -33,44 +33,7 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log(PillarState);
-        if (MenuNavigation.IsPaused)
-            return;
-
-        if (path == null)
-        {
-            return;
-        }
-
-        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-
-        if (CanStep())
-        {
-
-            //Pillar prev = path[0];
-            Pillar prev = player.Position;
-            Pillar next = this;
-            int count = path.Count;
-            int direction = GetDirection(prev, next);
-
-            // create commands
-            GameObject commandObject = new GameObject("MoveCommandObject");
-            MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
-            moveCommandInstance.Initialize(player, direction, count);
-            Game.Instance.CommandManager.AddCommand(moveCommandInstance);
-
-            // swap player turn
-            player.Position.PillarState = player.Position.LastState;
-            LastState = PillarState;
-            PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-            player.SetPosition(this);
-            player.TakeEnergy(count);
-        }
-        else if (CanAct(player)) {
-            // TODO add logic for non-empty pillars
-            Debug.Log("ACT");
-        }
+        Move();
         
     }
 
@@ -109,6 +72,48 @@ public class Pillar : MonoBehaviour
         {
             originalColors.Add(pillar.PillarObject.GetComponent<Renderer>().material.color);
             pillar.PillarObject.GetComponent<Renderer>().material.color = color;
+        }
+    }
+
+    public void Move()
+    {
+        if (MenuNavigation.IsPaused)
+            return;
+
+        if (path == null)
+        {
+            return;
+        }
+
+        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+
+        if (CanStep())
+        {
+
+            //Pillar prev = path[0];
+            Pillar prev = player.Position;
+            Pillar next = this;
+            int count = path.Count;
+            int direction = GetDirection(prev, next);
+
+            // create commands
+            GameObject commandObject = new GameObject("MoveCommandObject");
+            MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
+            moveCommandInstance.Initialize(player, direction, count);
+            Game.Instance.CommandManager.AddCommand(moveCommandInstance);
+
+            // swap player turn
+            player.Position.PillarState = player.Position.LastState;
+            LastState = PillarState;
+            PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
+            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            player.SetPosition(this);
+            player.TakeEnergy(count);
+        }
+        else if (CanAct(player))
+        {
+            // TODO add logic for non-empty pillars
+            Debug.Log("ACT");
         }
     }
 
