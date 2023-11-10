@@ -66,7 +66,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Glossiness: 0.5
-    - _InvFade: 0.4
+    - _InvFade: 0.01
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
