@@ -68,6 +68,7 @@ public class PillarGridGenerator : MonoBehaviour
         int i = rows - 1;
         int j = 0;
         game.Board.Pillars[i, j].PillarState = PillarState.BasePlayer1;
+        game.Board.Pillars[i, j].LastState = PillarState.BasePlayer1;
         GameObject baseObject = Instantiate(basePlayer1, new Vector3(i * spacing, -50, j * spacing), Quaternion.identity, this.transform);
         baseObject.AddComponent<Base>();
         baseObject.GetComponent<Base>().BaseObject = baseObject;
@@ -85,6 +86,7 @@ public class PillarGridGenerator : MonoBehaviour
         i = 0;
         j = columns - 1;
         game.Board.Pillars[i, j].PillarState = PillarState.BasePlayer2;
+        game.Board.Pillars[i, j].LastState = PillarState.BasePlayer2;
         GameObject baseObject2 = Instantiate(basePlayer2, new Vector3(i * spacing, -50, j * spacing), Quaternion.identity, this.transform);
         baseObject2.AddComponent<Base>();
         baseObject2.GetComponent<Base>().BaseObject = baseObject2;

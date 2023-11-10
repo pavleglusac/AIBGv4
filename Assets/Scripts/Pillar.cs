@@ -9,6 +9,7 @@ public class Pillar : MonoBehaviour
     public GameObject PillarObject { get; set; }
 
     public PillarState PillarState { get; set; } = PillarState.Empty;
+    public PillarState LastState { get; set; } = PillarState.Empty;
 
     public int X { get; set; }
     public int Z { get; set; }
@@ -32,6 +33,7 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
+        Debug.Log(PillarState);
         if (MenuNavigation.IsPaused)
             return;
 
@@ -45,7 +47,8 @@ public class Pillar : MonoBehaviour
         if (CanStep())
         {
 
-            Pillar prev = path[0];
+            //Pillar prev = path[0];
+            Pillar prev = player.Position;
             Pillar next = this;
             int count = path.Count;
             int direction = GetDirection(prev, next);
@@ -57,8 +60,9 @@ public class Pillar : MonoBehaviour
             Game.Instance.CommandManager.AddCommand(moveCommandInstance);
 
             // swap player turn
-            player.Position.PillarState = PillarState.Empty;
-            PillarState = Game.Instance.FirstPlayerTurn ? PillarState.BasePlayer1 : PillarState.Player2;
+            player.Position.PillarState = player.Position.LastState;
+            LastState = PillarState;
+            PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
             Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
             player.SetPosition(this);
             player.TakeEnergy(count);
@@ -127,6 +131,13 @@ public class Pillar : MonoBehaviour
     public bool CanStep()
     {
         if (PillarState == PillarState.Empty) {
+            return true;
+        }
+        else if (Game.Instance.FirstPlayerTurn && PillarState == PillarState.BasePlayer1) {
+            return true;
+        }
+        else if (!Game.Instance.FirstPlayerTurn && PillarState == PillarState.BasePlayer2)
+        {
             return true;
         }
         return false;
