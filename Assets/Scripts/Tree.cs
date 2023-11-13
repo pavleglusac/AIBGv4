@@ -28,6 +28,11 @@ public class Tree : MonoBehaviour
         Position.Move();
     }
 
+
+    private void OnMouseEnter()
+    {
+        Debug.Log("tree enter");
+    }
     public void SetPosition(Pillar pillar)
     {
         Position = pillar;

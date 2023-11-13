@@ -176,8 +176,10 @@ public class ResourceGenerator : MonoBehaviour
         GameObject rockObject = Instantiate(rockPrefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
         rockObject.AddComponent<Rock>();
         rockObject.GetComponent<Rock>().RockObject = rockObject;
+        Debug.Log("PILLAR " +  game.Board.Pillars[x, z]);
+        rockObject.GetComponent<Rock>().SetPosition(game.Board.Pillars[x, z]);
         game.Board.Rocks[rockCount] = rockObject.GetComponent<Rock>();
-        game.Board.Rocks[rockCount].SetPosition(game.Board.Pillars[x, z]);
+        Debug.Log("ROCK" + game.Board.Rocks[rockCount].Position);
         // set tree enabled to false
         // game.Board.Trees[treeCount].TreeObject.SetActive(false);
 

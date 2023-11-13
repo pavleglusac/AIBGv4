@@ -25,7 +25,14 @@ public class Rock : MonoBehaviour
     // Called when the player is clicked
     void OnMouseDown()
     {
+        Debug.Log(X + Z);
         Position.Move();
+    }
+
+
+    private void OnMouseEnter()
+    {
+        Debug.Log("rock enter");
     }
 
     public void SetPosition(Pillar pillar)
