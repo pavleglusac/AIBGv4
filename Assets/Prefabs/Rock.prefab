@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5902198761022824410}
   - component: {fileID: 3088054402329391117}
-  - component: {fileID: 3449981562232130654}
   - component: {fileID: 7808406142229446775}
   m_Layer: 0
   m_Name: Rock
@@ -56,18 +55,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3449981562232130654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569270016318610311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab03b0e6476c5042814f51721eb80cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7808406142229446775
 BoxCollider:
   m_ObjectHideFlags: 0
