@@ -121,7 +121,7 @@ public class Pillar : MonoBehaviour
     {
         if (MenuNavigation.IsPaused)
             return;
-        if (path == null)
+        if (path == null || path.Count == 0 || originalColors.Count == 0)
         {
             return;
         }
