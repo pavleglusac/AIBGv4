@@ -53,8 +53,6 @@ public class PillarGridGenerator : MonoBehaviour
         totalForestCount = rows / 5;
         totalRockCount = columns / 5;
         baseAreaLength = rows / 3;
-        // print all these 5 variables
-        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalForestCount: " + totalForestCount + " totalRockCount: " + totalRockCount + " baseAreaLength: " + baseAreaLength);
         game.Board.Pillars = new Pillar[rows, columns];
         game.Board.Bases = new Base[2];
         GenerateGrid();
@@ -70,6 +68,7 @@ public class PillarGridGenerator : MonoBehaviour
         int i = rows - 1;
         int j = 0;
         game.Board.Pillars[i, j].PillarState = PillarState.BasePlayer1;
+        game.Board.Pillars[i, j].LastState = PillarState.BasePlayer1;
         GameObject baseObject = Instantiate(basePlayer1, new Vector3(i * spacing, -50, j * spacing), Quaternion.identity, this.transform);
         baseObject.AddComponent<Base>();
         baseObject.GetComponent<Base>().BaseObject = baseObject;
@@ -87,6 +86,7 @@ public class PillarGridGenerator : MonoBehaviour
         i = 0;
         j = columns - 1;
         game.Board.Pillars[i, j].PillarState = PillarState.BasePlayer2;
+        game.Board.Pillars[i, j].LastState = PillarState.BasePlayer2;
         GameObject baseObject2 = Instantiate(basePlayer2, new Vector3(i * spacing, -50, j * spacing), Quaternion.identity, this.transform);
         baseObject2.AddComponent<Base>();
         baseObject2.GetComponent<Base>().BaseObject = baseObject2;
@@ -110,8 +110,9 @@ public class PillarGridGenerator : MonoBehaviour
         playerObject1.AddComponent<Player>();
         playerObject1.GetComponent<Player>().PlayerObject = playerObject1;
         game.Player1 = playerObject1.GetComponent<Player>();
-        game.Player1.X = i;
-        game.Player1.Z = j;
+        //game.Player1.X = i;
+        //game.Player1.Z = j;
+        game.Player1.SetPosition(game.Board.Pillars[i, j]);
 
         i = 0;
         j = columns - 1;
@@ -119,8 +120,7 @@ public class PillarGridGenerator : MonoBehaviour
         playerObject2.AddComponent<Player>();
         playerObject2.GetComponent<Player>().PlayerObject = playerObject2;
         game.Player2 = playerObject2.GetComponent<Player>();
-        game.Player2.X = i;
-        game.Player2.Z = j;
+        game.Player2.SetPosition(game.Board.Pillars[i, j]);
 
         // TODO Jovan: Added now for hud logic, change later and refactor
         game.Player1.XP = 11;
