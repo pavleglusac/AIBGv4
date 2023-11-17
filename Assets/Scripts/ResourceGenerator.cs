@@ -53,7 +53,7 @@ public class ResourceGenerator : MonoBehaviour
             {
                 x = random.Next(1, rows - baseAreaLength);
                 z = random.Next(1, baseAreaLength + 1); 
-                Debug.Log("x: " + x + " z: " + z);
+                //Debug.Log("x: " + x + " z: " + z);
             } while (!(x > z)); 
         }
         else
@@ -70,7 +70,7 @@ public class ResourceGenerator : MonoBehaviour
 
     bool CheckIfCoordinatesAreValid(int x, int z)
     {
-        Debug.Log("x: " + x + " z: " + z);
+        //Debug.Log("x: " + x + " z: " + z);
         if (rows - baseAreaLength <= x && x <= rows - 1 && 0 <= z && z <= baseAreaLength - 1)
         {
             return false;
@@ -176,9 +176,8 @@ public class ResourceGenerator : MonoBehaviour
         GameObject rockObject = Instantiate(rockPrefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
         rockObject.AddComponent<Rock>();
         rockObject.GetComponent<Rock>().RockObject = rockObject;
+        rockObject.GetComponent<Rock>().SetPosition(game.Board.Pillars[x, z]);
         game.Board.Rocks[rockCount] = rockObject.GetComponent<Rock>();
-        game.Board.Rocks[rockCount].X = x;
-        game.Board.Rocks[rockCount].Z = z;
         // set tree enabled to false
         // game.Board.Trees[treeCount].TreeObject.SetActive(false);
 
@@ -291,8 +290,7 @@ public class ResourceGenerator : MonoBehaviour
         treeObject.AddComponent<Tree>();
         treeObject.GetComponent<Tree>().TreeObject = treeObject;
         game.Board.Trees[treeCount] = treeObject.GetComponent<Tree>();
-        game.Board.Trees[treeCount].X = x;
-        game.Board.Trees[treeCount].Z = z;
+        game.Board.Trees[treeCount].SetPosition(game.Board.Pillars[x, z]);
         // set tree enabled to false
         // game.Board.Trees[treeCount].TreeObject.SetActive(false);
 

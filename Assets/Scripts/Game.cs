@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
 
     public int rows = 12;
     public int columns = 12;
-    public float spacing = 1.1f;
+    public float spacing = 1.3f;
     public float animationDelay = 0.1f;
     public float totalForestCount = 3;
     public float totalRockCount = 3;

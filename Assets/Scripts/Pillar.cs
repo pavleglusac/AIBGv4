@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pillar : MonoBehaviour
@@ -8,6 +9,7 @@ public class Pillar : MonoBehaviour
     public GameObject PillarObject { get; set; }
 
     public PillarState PillarState { get; set; } = PillarState.Empty;
+    public PillarState LastState { get; set; } = PillarState.Empty;
 
     public int X { get; set; }
     public int Z { get; set; }
@@ -31,70 +33,18 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (MenuNavigation.IsPaused)
-            return;
-
-        if (path == null || path.Count == 0)
-        {
-            return;
-        }
-
-        Pillar prev = path[0];
-        int count = 1;
-        int direction = -1;
-        List<(int, int)> directions = new List<(int, int)>();
-
-        for (int i = 1; i < path.Count; i++)
-        {
-            Pillar currentPillar = path[i];
-            int newDirection = GetDirection(prev, currentPillar);
-
-            if (direction == newDirection)
-            {
-                count++;
-            }
-            else
-            {
-                if (direction != -1)
-                {
-                    directions.Add((direction, count));
-                }
-                count = 1;
-                direction = newDirection;
-            }
-
-            prev = currentPillar;
-        }
-
-        directions.Add((direction, count));
-
-        // attach movementmanager to player if it doesn't exist
-        // Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-        // if (player.PlayerObject.GetComponent<MovementManager>() == null)
-        // {
-        //     player.PlayerObject.AddComponent<MovementManager>();
-        //     player.PlayerObject.GetComponent<MovementManager>().player = player.PlayerObject;
-        // }
-        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-        for (int i = 0; i < directions.Count; i++)
-        {
-            // create commands
-            GameObject commandObject = new GameObject("MoveCommandObject");
-            MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
-            moveCommandInstance.Initialize(player, directions[i].Item1, directions[i].Item2);
-            Game.Instance.CommandManager.AddCommand(moveCommandInstance);
-            // (int, int) dir = directions[i];
-            // player.PlayerObject.GetComponent<MovementManager>().AddMovement(dir.Item1, dir.Item2);
-        }
-
-        // swap player turn
-        Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-        player.X = X;
-        player.Z = Z;
+        Move();
+        
     }
 
     void OnMouseEnter()
     {
+        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+
+        if (!(CanStep() || CanAct(player))) {
+            return;
+        }
+
         if (MenuNavigation.IsPaused)
             return;
 
@@ -104,13 +54,17 @@ public class Pillar : MonoBehaviour
 
         if (Game.Instance.FirstPlayerTurn)
         {
-            from = Game.Instance.Board.Pillars[Game.Instance.Player1.X, Game.Instance.Player1.Z];
+            from = Game.Instance.Player1.Position;
             color = Color.blue;
         }
         else
         {
-            from = Game.Instance.Board.Pillars[Game.Instance.Player2.X, Game.Instance.Player2.Z];
+            from = Game.Instance.Player2.Position;
             color = Color.red;
+        }
+
+        if (to.X != from.X && to.Z != from.Z) {
+            return;
         }
 
         path = Algorithms.findPath(Game.Instance.Board, from, to);
@@ -121,11 +75,53 @@ public class Pillar : MonoBehaviour
         }
     }
 
+    public void Move()
+    {
+        if (MenuNavigation.IsPaused)
+            return;
+
+        if (path == null)
+        {
+            return;
+        }
+
+        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+
+        if (CanStep())
+        {
+
+            //Pillar prev = path[0];
+            Pillar prev = player.Position;
+            Pillar next = this;
+            int count = path.Count;
+            int direction = GetDirection(prev, next);
+
+            // create commands
+            GameObject commandObject = new GameObject("MoveCommandObject");
+            MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
+            moveCommandInstance.Initialize(player, direction, count);
+            Game.Instance.CommandManager.AddCommand(moveCommandInstance);
+
+            // swap player turn
+            player.Position.PillarState = player.Position.LastState;
+            LastState = PillarState;
+            PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
+            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            player.SetPosition(this);
+            player.TakeEnergy(count);
+        }
+        else if (CanAct(player))
+        {
+            // TODO add logic for non-empty pillars
+            Debug.Log("ACT");
+        }
+    }
+
     void OnMouseExit()
     {
         if (MenuNavigation.IsPaused)
             return;
-        if (path == null)
+        if (path == null || path.Count == 0 || originalColors.Count == 0)
         {
             return;
         }
@@ -135,5 +131,35 @@ public class Pillar : MonoBehaviour
             pillar.PillarObject.GetComponent<Renderer>().material.color = originalColors[0];
             originalColors.RemoveAt(0);
         }
+    }
+    
+    public bool CanStep()
+    {
+        if (PillarState == PillarState.Empty) {
+            return true;
+        }
+        else if (Game.Instance.FirstPlayerTurn && PillarState == PillarState.BasePlayer1) {
+            return true;
+        }
+        else if (!Game.Instance.FirstPlayerTurn && PillarState == PillarState.BasePlayer2)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+
+    bool CanAct(Player player) {
+        List<Pillar> neighbours = Game.Instance.Board.getNeighbours(this);
+        if (neighbours.Contains(player.Position)) {
+            return true;
+        }
+        return false;
+    }
+
+    public override bool Equals(object other)
+    {
+        Pillar pillar = (other as Pillar);   
+        return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
     }
 }
