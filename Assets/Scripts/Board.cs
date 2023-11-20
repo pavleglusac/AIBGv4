@@ -7,6 +7,7 @@ public class Board : MonoBehaviour
     public Pillar[,] Pillars {get; set;}
     public Tree[] Trees {get; set;}
     public Rock[] Rocks {get; set;}
+    public Crystal[] Crystals {get; set;}
     public Base[] Bases {get; set;}
     
 

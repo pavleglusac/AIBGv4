@@ -5542,8 +5542,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 0}
-  treePrefab: {fileID: 393359065255881670, guid: f3fc2bc2c79343949a0464ca9639c4b6, type: 3}
+  treePrefab: {fileID: 5833787885885669937, guid: f2610bbb1d47645439896f92c2ef3666, type: 3}
   rockPrefab: {fileID: 569270016318610311, guid: 00da7a5815daa9842b795a594d282468, type: 3}
+  crystalPrefab: {fileID: 4889444802909923926, guid: de9bff517c2d0bc4f808a0ef0fa3182a, type: 3}
   cameraTransform: {fileID: 0}
   rows: 0
   columns: 0
@@ -11830,7 +11831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 383.26898, y: 40.86261}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1485883716

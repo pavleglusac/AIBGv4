@@ -13,6 +13,7 @@ public class ResourceGenerator : MonoBehaviour
     public Game game;
     public GameObject treePrefab;
     public GameObject rockPrefab;
+    public GameObject crystalPrefab;
     public Transform cameraTransform;
     public int rows;
     public int columns;
@@ -37,6 +38,7 @@ public class ResourceGenerator : MonoBehaviour
         // print all these 5 variables
         Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalForestCount: " + totalForestCount + " totalRockCount: " + totalRockCount + " baseAreaLength: " + baseAreaLength);
         game.Board.Trees = new Tree[(int)(totalForestCount * 3 * 2)];
+        // game.Board.Crystals = new Crystal[(int)(totalRockCount * 3 * 2)];
         game.Board.Rocks = new Rock[(int)(totalRockCount * 2 * 2)];
         GenerateTrees();
         GenerateRocks();
@@ -286,13 +288,11 @@ public class ResourceGenerator : MonoBehaviour
     void MakeTree(int x, int z, int treeCount)
     {
         game.Board.Pillars[x, z].PillarState = PillarState.Tree;
-        GameObject treeObject = Instantiate(treePrefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
+        GameObject treeObject = Instantiate(treePrefab, new Vector3(x * spacing, 0, z * spacing), Quaternion.identity, this.transform);
         treeObject.AddComponent<Tree>();
         treeObject.GetComponent<Tree>().TreeObject = treeObject;
         game.Board.Trees[treeCount] = treeObject.GetComponent<Tree>();
         game.Board.Trees[treeCount].SetPosition(game.Board.Pillars[x, z]);
-        // set tree enabled to false
-        // game.Board.Trees[treeCount].TreeObject.SetActive(false);
 
         Animator animator = treeObject.GetComponent<Animator>();
 
@@ -300,6 +300,19 @@ public class ResourceGenerator : MonoBehaviour
         {
             animator.enabled = false;
         }
+
+        // GameObject crystalObject = Instantiate(crystalPrefab, new Vector3(x * spacing, 0, z * spacing), Quaternion.identity, this.transform);
+        // crystalObject.AddComponent<Crystal>();
+        // crystalObject.GetComponent<Crystal>().CrystalObject = crystalObject;
+        // game.Board.Crystals[treeCount] = crystalObject.GetComponent<Crystal>();
+        // game.Board.Crystals[treeCount].SetPosition(game.Board.Pillars[x, z]);
+
+        // Animator animator = crystalObject.GetComponent<Animator>();
+
+        // if (animator != null)
+        // {
+        //     animator.enabled = false;
+        // }
     }
 
     IEnumerator StartAnimations()
@@ -350,10 +363,27 @@ public class ResourceGenerator : MonoBehaviour
                 {
                     animator.enabled = true;
                     animator.speed = 1.0f;
+                    // animator.SetTrigger("CrystalGrowingTrigger");
                     animator.SetTrigger("TreeGrowingTrigger");
                 }
             }
         }
+
+        // for (int i = 0; i < game.Board.Crystals.Length; i++)
+        // {
+        //     if (game.Board.Crystals[i] != null)
+        //     {
+        //         Animator animator = game.Board.Crystals[i].CrystalObject.GetComponent<Animator>();
+        //         if(animator != null)
+        //         {
+        //             animator.enabled = true;
+        //             animator.speed = 1.0f;
+        //             animator.SetTrigger("CrystalGrowingTrigger");
+        //             //log 
+        //             Debug.Log("CrystalGrowingTrigger");
+        //         }
+        //     }
+        // }
 
         for (int i = 0; i < game.Board.Rocks.Length; i++)
         {
