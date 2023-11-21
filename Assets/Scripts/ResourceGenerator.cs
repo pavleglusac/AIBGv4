@@ -128,7 +128,7 @@ public class ResourceGenerator : MonoBehaviour
     List<Tuple<int, int>> GenerateCrystal2Group(int x, int z, List<Tuple<int, int>> rocks)
     {
         List<Tuple<int, int>> crystals2Coordinates = new List<Tuple<int, int>>();
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             int xCoordinate = x;
             int zCoordinate = z;
@@ -178,8 +178,7 @@ public class ResourceGenerator : MonoBehaviour
         crystal2Object.GetComponent<Crystal2>().Crystal2Object = crystal2Object;
         crystal2Object.GetComponent<Crystal2>().SetPosition(game.Board.Pillars[x, z]);
         game.Board.Crystals2[crystal2Count] = crystal2Object.GetComponent<Crystal2>();
-        // set tree enabled to false
-        // game.Board.Trees[treeCount].TreeObject.SetActive(false);
+
 
         Animator animator = crystal2Object.GetComponent<Animator>();
 
