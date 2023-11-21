@@ -11,16 +11,15 @@ using Random = UnityEngine.Random;
 public class ResourceGenerator : MonoBehaviour
 {
     public Game game;
-    public GameObject treePrefab;
-    public GameObject rockPrefab;
-    public GameObject crystalPrefab;
+    public GameObject crystal1Prefab;
+    public GameObject crystal2Prefab;
     public Transform cameraTransform;
     public int rows;
     public int columns;
     public float spacing;
     public float animationDelay;
-    public float totalForestCount;
-    public float totalRockCount;
+    public float totalCrystal1Count;
+    public float totalCrystal2Count;
     public int baseAreaLength;
     public static System.Random random = new System.Random();
     
@@ -32,16 +31,15 @@ public class ResourceGenerator : MonoBehaviour
         columns = game.columns;
         spacing = game.spacing;
         animationDelay = game.animationDelay;
-        totalForestCount = rows / 5;
-        totalRockCount = columns / 5;
-        baseAreaLength = rows / 3;
+        totalCrystal1Count = rows / 5;
+        totalCrystal2Count = columns / 5;
+        baseAreaLength = rows / 3 + 1;
         // print all these 5 variables
-        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalForestCount: " + totalForestCount + " totalRockCount: " + totalRockCount + " baseAreaLength: " + baseAreaLength);
-        game.Board.Trees = new Tree[(int)(totalForestCount * 3 * 2)];
-        // game.Board.Crystals = new Crystal[(int)(totalRockCount * 3 * 2)];
-        game.Board.Rocks = new Rock[(int)(totalRockCount * 2 * 2)];
-        GenerateTrees();
-        GenerateRocks();
+        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalCrystal1Count: " + totalCrystal1Count + " totalCrystal2Count: " + totalCrystal2Count + " baseAreaLength: " + baseAreaLength);
+        game.Board.Crystals1 = new Crystal1[(int)(totalCrystal1Count * 3 * 2)];
+        game.Board.Crystals2 = new Crystal2[(int)(totalCrystal2Count * 3 * 2)];
+        GenerateCrystals1();
+        GenerateCrystals2();
         StartCoroutine(StartAnimations());
 
     }
@@ -84,12 +82,12 @@ public class ResourceGenerator : MonoBehaviour
         return true;
     }
 
-    void GenerateRocks()
+    void GenerateCrystals2()
     {
-        Tuple<int, int>[] rockCoordinates = new Tuple<int, int>[int.Parse(totalRockCount.ToString())];
-        List<Tuple<int, int>> rocksCordinates = new List<Tuple<int, int>>();
+        Tuple<int, int>[] crystal2Coordinates = new Tuple<int, int>[int.Parse(totalCrystal2Count.ToString())];
+        List<Tuple<int, int>> crystals2Cordinates = new List<Tuple<int, int>>();
         Boolean up = true;
-        for (int i = 0; i < rockCoordinates.Length; i++)
+        for (int i = 0; i < crystal2Coordinates.Length; i++)
         {
 
             Tuple<int, int> coordinates = GenerateCoordinates(up);
@@ -97,29 +95,29 @@ public class ResourceGenerator : MonoBehaviour
             int z = coordinates.Item2;
             up = !up;
 
-            rockCoordinates[i] = new Tuple<int, int>(x, z);
+            crystal2Coordinates[i] = new Tuple<int, int>(x, z);
             for (int j = 0; j < i; j++)
             {
-                if ((rockCoordinates[j].Item1 == x && rockCoordinates[j].Item2 == z) || (rockCoordinates[j].Item1 == z && rockCoordinates[j].Item2 == x))
+                if ((crystal2Coordinates[j].Item1 == x && crystal2Coordinates[j].Item2 == z) || (crystal2Coordinates[j].Item1 == z && crystal2Coordinates[j].Item2 == x))
                 {
                     i--;
                     break;
                 }
             }
-            rocksCordinates.AddRange(GenerateRockGroup(x, z, rocksCordinates));
+            crystals2Cordinates.AddRange(GenerateCrystal2Group(x, z, crystals2Cordinates));
         }
 
-        int generatedRocks = 0;
-        for (int i = 0; i < rocksCordinates.Count; i++)
+        int generatedCrystals2 = 0;
+        for (int i = 0; i < crystals2Cordinates.Count; i++)
         {
-            int x = rocksCordinates[i].Item1;
-            int z = rocksCordinates[i].Item2;
+            int x = crystals2Cordinates[i].Item1;
+            int z = crystals2Cordinates[i].Item2;
             if (game.Board.Pillars[x, z].PillarState == PillarState.Empty && game.Board.Pillars[z, x].PillarState == PillarState.Empty)
             {
-                MakeRock(x, z, generatedRocks);
-                generatedRocks++;
-                MakeRock(z, x, generatedRocks);
-                generatedRocks++;
+                MakeCrystal2(x, z, generatedCrystals2);
+                generatedCrystals2++;
+                MakeCrystal2(z, x, generatedCrystals2);
+                generatedCrystals2++;
             }
         }
 
@@ -127,9 +125,9 @@ public class ResourceGenerator : MonoBehaviour
 
     
 
-    List<Tuple<int, int>> GenerateRockGroup(int x, int z, List<Tuple<int, int>> rocks)
+    List<Tuple<int, int>> GenerateCrystal2Group(int x, int z, List<Tuple<int, int>> rocks)
     {
-        List<Tuple<int, int>> rocksCoordinates = new List<Tuple<int, int>>();
+        List<Tuple<int, int>> crystals2Coordinates = new List<Tuple<int, int>>();
         for (int i = 0; i < 2; i++)
         {
             int xCoordinate = x;
@@ -155,7 +153,7 @@ public class ResourceGenerator : MonoBehaviour
                 }
             }
 
-            if(!CheckIfCoordinatesAreValid(xCoordinate, zCoordinate) || rocks.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || rocksCoordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
+            if(!CheckIfCoordinatesAreValid(xCoordinate, zCoordinate) || rocks.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || crystals2Coordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
             {
                 i--;
                 continue;
@@ -163,27 +161,27 @@ public class ResourceGenerator : MonoBehaviour
 
             if (game.Board.Pillars[xCoordinate, zCoordinate].PillarState == PillarState.Empty)
             {
-                rocksCoordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
+                crystals2Coordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
             }
 
         }
 
-        return rocksCoordinates;
+        return crystals2Coordinates;
     }
 
 
-    void MakeRock(int x, int z, int rockCount)
+    void MakeCrystal2(int x, int z, int crystal2Count)
     {
-        game.Board.Pillars[x, z].PillarState = PillarState.Rock;
-        GameObject rockObject = Instantiate(rockPrefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
-        rockObject.AddComponent<Rock>();
-        rockObject.GetComponent<Rock>().RockObject = rockObject;
-        rockObject.GetComponent<Rock>().SetPosition(game.Board.Pillars[x, z]);
-        game.Board.Rocks[rockCount] = rockObject.GetComponent<Rock>();
+        game.Board.Pillars[x, z].PillarState = PillarState.Crystal2;
+        GameObject crystal2Object = Instantiate(crystal2Prefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
+        crystal2Object.AddComponent<Crystal2>();
+        crystal2Object.GetComponent<Crystal2>().Crystal2Object = crystal2Object;
+        crystal2Object.GetComponent<Crystal2>().SetPosition(game.Board.Pillars[x, z]);
+        game.Board.Crystals2[crystal2Count] = crystal2Object.GetComponent<Crystal2>();
         // set tree enabled to false
         // game.Board.Trees[treeCount].TreeObject.SetActive(false);
 
-        Animator animator = rockObject.GetComponent<Animator>();
+        Animator animator = crystal2Object.GetComponent<Animator>();
 
         if (animator != null)
         {
@@ -192,13 +190,13 @@ public class ResourceGenerator : MonoBehaviour
 
     }
 
-    void GenerateTrees()
+    void GenerateCrystals1()
     {
         // make array of tuples cordinates
-        Tuple<int, int>[] forestCoordinates = new Tuple<int, int>[int.Parse(totalForestCount.ToString())];
-        List<Tuple<int, int>> treesCordinates = new List<Tuple<int, int>>();
+        Tuple<int, int>[] crystal1groupCoordinates = new Tuple<int, int>[int.Parse(totalCrystal1Count.ToString())];
+        List<Tuple<int, int>> crystal1Cordinates = new List<Tuple<int, int>>();
         Boolean up = true;
-        for(int i = 0; i < forestCoordinates.Length; i++)
+        for(int i = 0; i < crystal1groupCoordinates.Length; i++)
         {
 
             Tuple<int, int> coordinates = GenerateCoordinates(up);
@@ -206,32 +204,32 @@ public class ResourceGenerator : MonoBehaviour
             int z = coordinates.Item2;
             up = !up;
 
-            forestCoordinates[i] = new Tuple<int, int>(x, z);
+            crystal1groupCoordinates[i] = new Tuple<int, int>(x, z);
             for (int j = 0; j < i; j++)
             {
-                if ((forestCoordinates[j].Item1 == x && forestCoordinates[j].Item2 == z) || (forestCoordinates[j].Item1 == z && forestCoordinates[j].Item2 == x))
+                if ((crystal1groupCoordinates[j].Item1 == x && crystal1groupCoordinates[j].Item2 == z) || (crystal1groupCoordinates[j].Item1 == z && crystal1groupCoordinates[j].Item2 == x))
                 {
                     i--;
                     break;
                 }
             }
 
-            treesCordinates.AddRange(GenerateForest(x, z, treesCordinates));
+            crystal1Cordinates.AddRange(GenerateCrystal1Groups(x, z, crystal1Cordinates));
 
         }
 
         // for all cordinates
-        int generatedTrees = 0;
-        for (int i = 0; i < treesCordinates.Count; i++)
+        int generatedCrystals1 = 0;
+        for (int i = 0; i < crystal1Cordinates.Count; i++)
         {
-            int x = treesCordinates[i].Item1;
-            int z = treesCordinates[i].Item2;
+            int x = crystal1Cordinates[i].Item1;
+            int z = crystal1Cordinates[i].Item2;
             if (game.Board.Pillars[x, z].PillarState == PillarState.Empty && game.Board.Pillars[z, x].PillarState == PillarState.Empty)
             {
-                MakeTree(x, z, generatedTrees);
-                generatedTrees++;
-                MakeTree(z, x, generatedTrees);
-                generatedTrees++;
+                MakeCrystal1(x, z, generatedCrystals1);
+                generatedCrystals1++;
+                MakeCrystal1(z, x, generatedCrystals1);
+                generatedCrystals1++;
             }
         }
 
@@ -239,9 +237,9 @@ public class ResourceGenerator : MonoBehaviour
 
     }
 
-    List<Tuple<int, int>> GenerateForest(int x, int z, List<Tuple<int, int>> trees)
+    List<Tuple<int, int>> GenerateCrystal1Groups(int x, int z, List<Tuple<int, int>> crystals1)
     {
-        List<Tuple<int, int>> treesCoordinates = new List<Tuple<int, int>>();
+        List<Tuple<int, int>> crystals1Coordinates = new List<Tuple<int, int>>();
         // make 2 or 3 trees but stay in bounds and do not overlap with other trees
         for (int i = 0; i < 3; i++)
         {
@@ -270,7 +268,7 @@ public class ResourceGenerator : MonoBehaviour
             }
 
 
-            if (!CheckIfCoordinatesAreValid(xCoordinate, zCoordinate) || trees.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || treesCoordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
+            if (!CheckIfCoordinatesAreValid(xCoordinate, zCoordinate) || crystals1.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || crystals1Coordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
             {
                 i--;
                 continue;
@@ -278,41 +276,28 @@ public class ResourceGenerator : MonoBehaviour
 
             if (game.Board.Pillars[xCoordinate, zCoordinate].PillarState == PillarState.Empty)
             {
-                treesCoordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
+                crystals1Coordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
             }
         }
 
-        return treesCoordinates;
+        return crystals1Coordinates;
     }
 
-    void MakeTree(int x, int z, int treeCount)
+    void MakeCrystal1(int x, int z, int crystal1Count)
     {
-        game.Board.Pillars[x, z].PillarState = PillarState.Tree;
-        GameObject treeObject = Instantiate(treePrefab, new Vector3(x * spacing, 0, z * spacing), Quaternion.identity, this.transform);
-        treeObject.AddComponent<Tree>();
-        treeObject.GetComponent<Tree>().TreeObject = treeObject;
-        game.Board.Trees[treeCount] = treeObject.GetComponent<Tree>();
-        game.Board.Trees[treeCount].SetPosition(game.Board.Pillars[x, z]);
+        game.Board.Pillars[x, z].PillarState = PillarState.Crystal1;
+        GameObject crystal1Object = Instantiate(crystal1Prefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
+        crystal1Object.AddComponent<Crystal1>();
+        crystal1Object.GetComponent<Crystal1>().Crystal1Object = crystal1Object;
+        game.Board.Crystals1[crystal1Count] = crystal1Object.GetComponent<Crystal1>();
+        game.Board.Crystals1[crystal1Count].SetPosition(game.Board.Pillars[x, z]);
 
-        Animator animator = treeObject.GetComponent<Animator>();
+        Animator animator = crystal1Object.GetComponent<Animator>();
 
         if (animator != null)
         {
             animator.enabled = false;
         }
-
-        // GameObject crystalObject = Instantiate(crystalPrefab, new Vector3(x * spacing, 0, z * spacing), Quaternion.identity, this.transform);
-        // crystalObject.AddComponent<Crystal>();
-        // crystalObject.GetComponent<Crystal>().CrystalObject = crystalObject;
-        // game.Board.Crystals[treeCount] = crystalObject.GetComponent<Crystal>();
-        // game.Board.Crystals[treeCount].SetPosition(game.Board.Pillars[x, z]);
-
-        // Animator animator = crystalObject.GetComponent<Animator>();
-
-        // if (animator != null)
-        // {
-        //     animator.enabled = false;
-        // }
     }
 
     IEnumerator StartAnimations()
@@ -354,47 +339,30 @@ public class ResourceGenerator : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < game.Board.Trees.Length; i++)
+        for (int i = 0; i < game.Board.Crystals1.Length; i++)
         {
-            if (game.Board.Trees[i] != null)
+            if (game.Board.Crystals1[i] != null)
             {
-                Animator animator = game.Board.Trees[i].TreeObject.GetComponent<Animator>();
+                Animator animator = game.Board.Crystals1[i].Crystal1Object.GetComponent<Animator>();
                 if(animator != null)
                 {
                     animator.enabled = true;
                     animator.speed = 1.0f;
-                    // animator.SetTrigger("CrystalGrowingTrigger");
-                    animator.SetTrigger("TreeGrowingTrigger");
+                    animator.SetTrigger("Crystal1GrowingTrigger");
                 }
             }
         }
 
-        // for (int i = 0; i < game.Board.Crystals.Length; i++)
-        // {
-        //     if (game.Board.Crystals[i] != null)
-        //     {
-        //         Animator animator = game.Board.Crystals[i].CrystalObject.GetComponent<Animator>();
-        //         if(animator != null)
-        //         {
-        //             animator.enabled = true;
-        //             animator.speed = 1.0f;
-        //             animator.SetTrigger("CrystalGrowingTrigger");
-        //             //log 
-        //             Debug.Log("CrystalGrowingTrigger");
-        //         }
-        //     }
-        // }
-
-        for (int i = 0; i < game.Board.Rocks.Length; i++)
+        for (int i = 0; i < game.Board.Crystals2.Length; i++)
         {
-            if (game.Board.Rocks[i] != null)
+            if (game.Board.Crystals2[i] != null)
             {
-                Animator animator = game.Board.Rocks[i].RockObject.GetComponent<Animator>();
+                Animator animator = game.Board.Crystals2[i].Crystal2Object.GetComponent<Animator>();
                 if (animator != null)
                 {
                     animator.enabled = true;
                     animator.speed = 1.0f;
-                    animator.SetTrigger("RockGrowingTrigger");
+                    animator.SetTrigger("Crystal2GrowingTrigger");
                 }
             }
         }
