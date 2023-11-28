@@ -165,7 +165,7 @@ class Player:
         self.x = x
         self.y = y
 
-    def increase_energy(self, amount):
+    def change_energy(self, amount):
         global max_energy
         self.energy += amount
         if self.energy >= max_energy:
@@ -210,7 +210,7 @@ def print_stats_turns_and_board():
 
 def handle_resting():
     global resting_energy
-    get_current_player().increase_energy(resting_energy)
+    get_current_player().change_energy(resting_energy)
     print("Restin successful, energy increased for ", resting_energy, " points")
 
 
@@ -239,10 +239,13 @@ def handle_movement(user_input):
             if (current_player.x == x) != (current_player.y == y):
 
                 if not is_obstacle_on_path(current_player.x, current_player.y, x, y):
+                    steps = (abs(current_player.x - x) + abs(current_player.y - y))
+                    used_energy = steps  # When backpack is implemented
+                    current_player.change_energy(-used_energy)
                     current_player.x = x
                     current_player.y = y
                     update_board()
-                    print(f"Moving to position ({x}, {y})")
+                    print(f"Moving to position ({x}, {y}), took you ", used_energy, "energy points")
                 else:
                     print("Error: There is an obstacle on the way")
                     invalid_move_handling()
@@ -345,7 +348,7 @@ def main():
     setup_game()
     winner = ""
     while not game_finished:
-        turn()  ## player 2
+        turn()  ## player 1
         turn()  ## Player 2
         number_of_moves = number_of_moves + 1
         winner = check_if_game_is_finished()
