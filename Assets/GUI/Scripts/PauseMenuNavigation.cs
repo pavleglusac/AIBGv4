@@ -1,42 +1,41 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuNavigation : MonoBehaviour
+public class PauseMenuNavigation : MonoBehaviour
 {
-    public static bool IsPaused = false;
+
     public GameObject pauseMenu;
 
-    public void PauseGame()
+
+    public void OpenPauseMenu()
     {
-        if (IsPaused)
-            return;
+        Game.PauseGame();
         pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        IsPaused = true;
     }
-    public void ResumeGame()
+
+    public void ClosePauseMenu()
     {
+        Game.ResumeGame();
         pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        IsPaused = false;
     }
+
+
     public void GoToMainMenu()
     {
-        Time.timeScale = 1f;
+        Game.ResumeGame();
         SceneManager.LoadScene("Main menu");
-        IsPaused = false;
+
     }
     public void Restart()
     {
+        Game.ResumeGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1f;
-        IsPaused = false;
+
     }
     public void Quit()
     {
-        IsPaused = false;
+        Game.ResumeGame();
         Application.Quit();
     }
-
 
 }
