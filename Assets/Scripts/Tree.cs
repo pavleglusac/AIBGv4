@@ -25,6 +25,7 @@ public class Tree : MonoBehaviour
     // Called when the player is clicked
     void OnMouseDown()
     {
+        Debug.Log("tree");
         Position.Move();
     }
 
