@@ -6,6 +6,7 @@ import time
 import colorama
 from colorama import Fore, Style
 from dotenv import load_dotenv
+from inputimeout import inputimeout
 
 colorama.init(autoreset=True)
 
@@ -13,15 +14,15 @@ colorama.init(autoreset=True)
 board = []
 game_finished = False
 first_player_turn = True
-number_of_moves = 0
+number_of_turns = 0
 
 input_history = []
 board_size = 0
 resting_energy = 0
-time_to_move_duration = 0
+time_to_do_action_in_turn_duration = 0
 response_message_show_duration = 0
-max_number_of_moves = 0
-invalid_move_energy_penalty = 0
+max_number_of_turns = 0
+invalid_turn_energy_penalty = 0
 start_energy = 0
 max_energy = 0
 start_coins = 0
@@ -47,23 +48,33 @@ expensive_ore_symbol = ""
 refinement_facility_symbol = ""
 number_of_cheap_ores = 0
 number_of_expensive_ores = 0
+number_of_frozen_turns = 0
+freeze_cost = 0
+number_of_daze_turns = 0
+daze_cost = 0
+number_of_bigger_backpack_turns = 0
+bigger_backpack_cost = 0
+backpack_default_storage_capacity = 0
+increase_in_backpack_storage_capacity = 0
 
 
 def setup_env_variables():
     load_dotenv()
-    global board_size, time_to_move_duration, response_message_show_duration, max_number_of_moves
+    global board_size, time_to_do_action_in_turn_duration, response_message_show_duration, max_number_of_turns
     global start_energy, max_energy, start_coins, max_coins, start_xp, winning_xp
     global player1_name, player2_name, refinement_facility_cost, movement_cost, resting_energy
-    global unrefined_ore_weight, refined_ore_weight, unrefined_ore_cost, invalid_move_energy_penalty
+    global unrefined_ore_weight, refined_ore_weight, unrefined_ore_cost, invalid_turn_energy_penalty
     global refined_ore_cost, mining_energy_loss, player1_symbol, player2_symbol
     global player1_castle_symbol, player2_castle_symbol, empty_pillar_symbol, cheep_ore_symbol
     global expensive_ore_symbol, refinement_facility_symbol, number_of_cheap_ores, number_of_expensive_ores
+    global number_of_frozen_turns, freeze_cost, number_of_daze_turns, daze_cost, number_of_bigger_backpack_turns
+    global bigger_backpack_cost, backpack_default_storage_capacity, increase_in_backpack_storage_capacity
 
     board_size = int(os.getenv("board_size"))
     resting_energy = int(os.getenv("resting_energy"))
-    time_to_move_duration = int(os.getenv("time_to_move_duration"))
+    time_to_do_action_in_turn_duration = int(os.getenv("time_to_do_action_in_turn_duration"))
     response_message_show_duration = int(os.getenv("response_message_show_duration"))
-    max_number_of_moves = int(os.getenv("max_number_of_moves"))
+    max_number_of_turns = int(os.getenv("max_number_of_turns"))
     start_energy = int(os.getenv("start_energy"))
     max_energy = int(os.getenv("max_energy"))
     start_coins = int(os.getenv("start_coins"))
@@ -78,7 +89,7 @@ def setup_env_variables():
     refined_ore_weight = int(os.getenv("refined_ore_weight"))
     unrefined_ore_cost = int(os.getenv("unrefined_ore_cost"))
     refined_ore_cost = int(os.getenv("refined_ore_cost"))
-    invalid_move_energy_penalty = int(os.getenv("invalid_move_energy_penalty"))
+    invalid_turn_energy_penalty = int(os.getenv("invalid_turn_energy_penalty"))
     mining_energy_loss = int(os.getenv("mining_energy_loss"))
     player1_symbol = os.getenv("player1_symbol")
     player2_symbol = os.getenv("player2_symbol")
@@ -90,6 +101,14 @@ def setup_env_variables():
     refinement_facility_symbol = os.getenv("refinement_facility_symbol")
     number_of_cheap_ores = int(os.getenv("number_of_cheap_ores"))
     number_of_expensive_ores = int(os.getenv("number_of_expensive_ores"))
+    number_of_frozen_turns = int(os.getenv("number_of_frozen_turns"))
+    freeze_cost = int(os.getenv("freeze_cost"))
+    number_of_daze_turns = int(os.getenv("number_of_daze_turns"))
+    daze_cost = int(os.getenv("daze_cost"))
+    number_of_bigger_backpack_turns = int(os.getenv("number_of_bigger_backpack_turns"))
+    bigger_backpack_cost = int(os.getenv("bigger_backpack_cost"))
+    backpack_default_storage_capacity = int(os.getenv("backpack_default_storage_capacity"))
+    increase_in_backpack_storage_capacity = int(os.getenv("increase_in_backpack_storage_capacity"))
 
 
 def generate_board():
@@ -150,7 +169,7 @@ def print_with_color(symbol):
 
 def print_board():
     global board
-    max_cols = len(board[0])  # Assuming all rows have the same number of columns
+    max_cols = len(board[0])
     print("  " + "".join([f"{i:3}" for i in range(len(board))]))
 
     for col in range(max_cols):
@@ -166,12 +185,59 @@ class Player:
         self.coins = coins
         self.x = x
         self.y = y
+        self.frozen_turns = 0
+        self.daze_turns = 0
+        self.ores_in_backpack = 0
+        self.increased_backpack_turns = 0
+        self.backpack_storage_capacity = backpack_default_storage_capacity
 
     def change_energy(self, amount):
         global max_energy
         self.energy += amount
         if self.energy >= max_energy:
             self.energy = max_energy
+
+    def add_coins(self, c):
+        self.coins = self.coins + c
+        if self.coins > max_coins:
+            self.coins = max_coins
+
+    def decrease_coins(self, c):
+        self.coins = self.coins - c
+        if self.coins < 0:
+            self.coins = 0
+
+    def is_frozen(self):
+        return self.frozen_turns > 0
+
+    def add_frozen_turns(self):
+        self.frozen_turns = self.frozen_turns + number_of_frozen_turns
+
+    def decrease_frozen_turns(self):
+        if self.frozen_turns > 0:
+            self.frozen_turns = self.frozen_turns - 1
+
+    def is_dazed(self):
+        return self.daze_turns > 0
+
+    def decrease_daze_turns(self):
+        if self.daze_turns > 0:
+            self.daze_turns = self.daze_turns - 1
+
+    def add_daze_turns(self):
+        self.daze_turns = self.daze_turns + number_of_daze_turns
+
+    def add_increased_backpack_storage_turns(self):
+        self.increased_backpack_turns = self.increased_backpack_turns + number_of_bigger_backpack_turns
+        self.backpack_storage_capacity = backpack_default_storage_capacity + increase_in_backpack_storage_capacity
+
+    def decrease_increased_backpack_storage_turns(self):
+        if self.increased_backpack_turns > 0:
+            self.increased_backpack_turns = self.increased_backpack_turns - 1
+        else:
+            self.backpack_storage_capacity = backpack_default_storage_capacity
+            if self.ores_in_backpack > backpack_default_storage_capacity:
+                self.ores_in_backpack = backpack_default_storage_capacity
 
 
 player1 = Player(player2_name, start_energy, start_xp, start_coins, 0, board_size - 1)
@@ -184,14 +250,25 @@ def get_current_player():
     return player2
 
 
+def get_alternate_player():
+    if first_player_turn:
+        return player2
+    return player1
+
+
 def print_player_stats(player, color):
     print(
         f"{color}{player.name}{Style.RESET_ALL}\n"
         f"{Fore.GREEN}Energy: {player.energy}{Style.RESET_ALL} "
         f"{Fore.CYAN}XP: {player.xp}{Style.RESET_ALL} "
-        f"{Fore.LIGHTYELLOW_EX}Coins: {player.coins}{Style.RESET_ALL} "
-        f"{Fore.MAGENTA}Position: ({player.x},{player.y}){Style.RESET_ALL}"
+        f"{Fore.YELLOW}Coins: {player.coins}{Style.RESET_ALL} "
+        f"{Fore.MAGENTA}Position: ({player.x},{player.y}){Style.RESET_ALL}\n"
+        f"{Fore.LIGHTYELLOW_EX}Backpack capacity: {player.backpack_storage_capacity}{Style.RESET_ALL} "
+        f"{Fore.LIGHTGREEN_EX}Increased backpack capacity duration: {player.increased_backpack_turns}{Style.RESET_ALL} "
+        f"{Fore.LIGHTRED_EX}Daze turns: {player.daze_turns}{Style.RESET_ALL} "
+        f"{Fore.LIGHTCYAN_EX}Frozen turns: {player.frozen_turns}{Style.RESET_ALL} "
     )
+    print()
 
 
 def print_both_players():
@@ -201,13 +278,30 @@ def print_both_players():
     print_player_stats(player2, Fore.RED)
 
 
+def print_shop_info():
+    print("Daze cost (Duration:", number_of_daze_turns, "turns):", daze_cost)
+    print("Freeze cost (Duration:", number_of_frozen_turns, "turns):", freeze_cost)
+    print("Backpack increase cost (Duration:", number_of_bigger_backpack_turns,
+          "turns,", increase_in_backpack_storage_capacity, "added to capacity):", bigger_backpack_cost)
+    print()
+
+
 def print_stats_turns_and_board():
     print_both_players()
-    print("\n")
-    print("Turn number: ", number_of_moves)
-    print("Now playing: ", get_current_player().name)
-    print("\n")
+    print_shop_info()
     print_board()
+    print_turn_status()
+
+
+def print_turn_status():
+    print()
+    print("Turn number: ", number_of_turns)
+    color = Fore.BLUE
+    if first_player_turn:
+        color = Fore.BLUE
+    else:
+        color = Fore.RED
+    print(color + "Now playing: ", color + get_current_player().name)
 
 
 def handle_resting():
@@ -231,12 +325,16 @@ def update_board():
 def handle_movement(user_input):
     global board, board_size
 
-    match = re.match(r'^move (\d+) (\d+)$', user_input)
+    match = re.match(r'^move (-?\d+) (-?\d+)$', user_input)
     if match:
         x, y = int(match.group(1)), int(match.group(2))
         current_player = get_current_player()
+        if current_player.is_dazed():
+            step_x, step_y = abs(x - current_player.x), abs(y - current_player.y)
+            x = current_player.x - step_x if x > current_player.x else current_player.x + step_x
+            y = current_player.y - step_y if y > current_player.y else current_player.y + step_y
 
-        if 0 <= x < board_size and 0 <= y < board_size:
+        if 0 <= x < board_size or 0 <= y < board_size:
 
             if (current_player.x == x) != (current_player.y == y):
 
@@ -250,13 +348,13 @@ def handle_movement(user_input):
                     print(f"Moving to position ({x}, {y}), took you ", used_energy, "energy points")
                 else:
                     print("Error: There is an obstacle on the way")
-                    invalid_move_handling()
+                    invalid_turn_handling()
             else:
                 print("Error: Only moving horizontally or vertically is allowed")
-                invalid_move_handling()
+                invalid_turn_handling()
         else:
             print("Error: Move out of bounds!")
-            invalid_move_handling()
+            invalid_turn_handling()
 
 
 def is_obstacle_on_path(start_x, start_y, end_x, end_y):
@@ -271,29 +369,72 @@ def is_obstacle_on_path(start_x, start_y, end_x, end_y):
     return False
 
 
+def handle_freeze():
+    if get_current_player().coins < freeze_cost:
+        print("You do not have enough coins to buy this power")
+        invalid_turn_handling()
+        return
+    get_alternate_player().add_frozen_turns()
+    get_current_player().decrease_coins(freeze_cost)
+    print("Freeze purchased successfully")
+
+
+def handle_backpack():
+    if get_current_player().coins < bigger_backpack_cost:
+        print("You do not have enough coins to buy this power")
+        invalid_turn_handling()
+        return
+    get_current_player().add_increased_backpack_storage_turns()
+    get_current_player().decrease_coins(bigger_backpack_cost)
+    print("Increased backpack storage purchased successfully")
+
+
+def handle_daze():
+    if get_current_player().coins < daze_cost:
+        print("You do not have enough coins to buy this power")
+        invalid_turn_handling()
+        return
+    get_alternate_player().add_daze_turns()
+    get_current_player().decrease_coins(daze_cost)
+    print("Daze purchased successfully")
+
+
+def timeout_handling():
+    print("Sorry, time is up, you have ", time_to_do_action_in_turn_duration, "seconds to do an action")
+    invalid_turn_handling()
+    return
+
+
 def get_user_input():
-    print("\n")
-    user_input = input("Your input:\n")
-    global input_history
+    try:
+        global input_history
+        user_input = inputimeout(prompt='Your input: ', timeout=time_to_do_action_in_turn_duration)
+        user_input = user_input.strip()
+        input_history.append(user_input)  # For replay later
 
-    input_history.append(user_input)  ## Za replay kasnije
+        if re.match(r'^move (-?\d+) (-?\d+)$', user_input):
+            handle_movement(user_input)
 
-    if re.match(r'^move \d+ \d+$', user_input):
-        handle_movement(user_input)
+        elif re.match(r'^rest', user_input):
+            handle_resting()
 
-    elif re.match(r'^rest', user_input):
-        handle_resting()
+        elif re.match(r'^shop (freeze|backpack|daze)$', user_input):
+            choice = re.match(r'^shop (freeze|backpack|daze)$', user_input).group(1)
+            if choice == 'freeze':
+                handle_freeze()
+            elif choice == 'backpack':
+                handle_backpack()
+            elif choice == 'daze':
+                handle_daze()
+        else:
+            invalid_turn_handling()
+    except (Exception,):
+        timeout_handling()
 
-    elif re.match(r'^shop (freeze|backpack|daze)$', user_input):
-        print()
 
-    else:
-        invalid_move_handling()
-
-
-def invalid_move_handling():
-    print("Invalid move, penalty to energy: -", invalid_move_energy_penalty)
-    get_current_player().energy = get_current_player().energy - invalid_move_energy_penalty
+def invalid_turn_handling():
+    print("Invalid turn, penalty to energy: -", invalid_turn_energy_penalty)
+    get_current_player().energy = get_current_player().energy - invalid_turn_energy_penalty
 
 
 def check_if_game_is_finished():
@@ -323,7 +464,7 @@ def check_if_game_is_finished():
             return player1.name
         return player2.name
 
-    if number_of_moves == max_number_of_moves:
+    if number_of_turns == max_number_of_turns:
         game_finished = True
         if player1.xp == player1.xp:
             return "TIE"
@@ -335,8 +476,17 @@ def check_if_game_is_finished():
     return ""
 
 
+def decrease_player_statuses():
+    get_alternate_player().decrease_daze_turns()
+    get_alternate_player().decrease_frozen_turns()
+    get_current_player().decrease_increased_backpack_storage_turns()
+
+
 def turn():
     global first_player_turn
+    if get_current_player().is_frozen():
+        first_player_turn = not first_player_turn
+    decrease_player_statuses()
     print_stats_turns_and_board()
     get_user_input()
     time.sleep(response_message_show_duration)
@@ -346,13 +496,12 @@ def turn():
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    global number_of_moves
+    global number_of_turns
     setup_game()
     winner = ""
     while not game_finished:
-        turn()  ## player 1
-        turn()  ## Player 2
-        number_of_moves = number_of_moves + 1
+        turn()
+        number_of_turns = number_of_turns + 1
         winner = check_if_game_is_finished()
 
     os.system('cls' if os.name == 'nt' else 'clear')
