@@ -129,8 +129,8 @@ def setup_game():
 
 def setup_players():
     global player1, player2
-    player1 = Player(player2_name, start_energy, start_xp, start_coins, board_size - 1, 0)
-    player2 = Player(player1_name, start_energy, start_xp, start_coins, 0, board_size - 1)
+    player1 = Player(player2_name, start_energy, start_xp, start_coins, 0, board_size - 1)
+    player2 = Player(player1_name, start_energy, start_xp, start_coins, board_size - 1, 0)
 
 
 def print_with_color(symbol):
@@ -150,10 +150,12 @@ def print_with_color(symbol):
 
 def print_board():
     global board
+    max_cols = len(board[0])  # Assuming all rows have the same number of columns
     print("  " + "".join([f"{i:3}" for i in range(len(board))]))
-    for i, row in enumerate(board):
-        colored_row = [print_with_color(symbol) for symbol in row]
-        print(f"{i:3} {'  '.join(colored_row)}")
+
+    for col in range(max_cols):
+        colored_col = [print_with_color(board[row][col]) for row in range(len(board))]
+        print(f"{col:3} {'  '.join(colored_col)}")
 
 
 class Player:
@@ -172,8 +174,8 @@ class Player:
             self.energy = max_energy
 
 
-player1 = Player(player2_name, start_energy, start_xp, start_coins, board_size - 1, 0)
-player2 = Player(player1_name, start_energy, start_xp, start_coins, 0, board_size - 1)
+player1 = Player(player2_name, start_energy, start_xp, start_coins, 0, board_size - 1)
+player2 = Player(player1_name, start_energy, start_xp, start_coins, board_size - 1, 0)
 
 
 def get_current_player():
@@ -215,8 +217,8 @@ def handle_resting():
 
 
 def update_board():
-    board[board_size - 1][0] = player1_castle_symbol
-    board[0][board_size - 1] = player2_castle_symbol
+    board[0][board_size - 1] = player1_castle_symbol
+    board[board_size - 1][0] = player2_castle_symbol
     for i in range(board_size):
         for j in range(board_size):
             if board[i][j] == player1_symbol or board[i][j] == player2_symbol:
