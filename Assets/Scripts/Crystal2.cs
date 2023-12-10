@@ -24,9 +24,31 @@ public class Crystal2 : MonoBehaviour
     }
 
     // Called when the player is clicked
-    void OnMouseDown()
+     void OnMouseDown()
     {
+        if (!CanAnimate())
+        {
+            return;
+        }
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.enabled = true;
+            animator.speed = 4.0f;
+            animator.SetTrigger("ShakeCrystal2Trigger");
+        }
         Position.Move();
+    }
+
+
+    bool CanAnimate()
+    {
+        List<Pillar> neighbours = Game.Instance.Board.getNeighbours(Position);
+        if (neighbours.Contains(Game.Instance.GetCurrentPlayer().Position))
+        {
+            return true;
+        }
+        return false;
     }
 
 

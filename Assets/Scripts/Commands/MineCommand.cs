@@ -20,15 +20,16 @@ public class MineCommand : MonoBehaviour, ICommand
     public void Execute()
     {
         isMining = true;
-    }
-
-    public void Update()
-    {
         if (isMining && !isCoroutineRunning)
         {
             isCoroutineRunning = true;
             StartCoroutine(ProcessMining());
         }
+    }
+
+    public void Update()
+    {
+        
     }
 
     private IEnumerator ProcessMining()
@@ -38,6 +39,8 @@ public class MineCommand : MonoBehaviour, ICommand
         isMining = false;
         isCoroutineRunning = false;
         isDone = true;
+        Debug.Log(Player.Bag.ToString());
+
     }
 
     private IEnumerator Mine()
@@ -51,7 +54,7 @@ public class MineCommand : MonoBehaviour, ICommand
         {
             Player.Bag.AddCrystal2();
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.0f);
     }
 
     public bool IsDone()

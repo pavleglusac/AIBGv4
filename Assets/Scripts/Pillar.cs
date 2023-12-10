@@ -89,10 +89,11 @@ public class Pillar : MonoBehaviour
         }
 
         Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-
+        // log current player 
+        Debug.Log(player.Name);
         if (CanStep())
         {
-
+            Debug.Log("STEP");
             //Pillar prev = path[0];
             Pillar prev = player.Position;
             Pillar next = this;
@@ -116,22 +117,24 @@ public class Pillar : MonoBehaviour
         }
         else if (CanAct(player))
         {
-            // TODO add logic for non-empty pillars
+            Debug.Log(LastState + " " + PillarState);
             Debug.Log("ACT");
-            Debug.Log(PillarState);
-            GameObject commandObject = new GameObject("MineCommandObject");
-            MineCommand mineCommandInstance = commandObject.AddComponent<MineCommand>();
-            mineCommandInstance.Initialize(player, PillarState == PillarState.Crystal1);
-            Game.Instance.CommandManager.AddCommand(mineCommandInstance);
 
-            // swap player turn
-            player.Position.PillarState = player.Position.LastState;
-            LastState = PillarState;
-            PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-            player.TakeEnergy(5);
-            Debug.Log(player.Bag.ToString());
+            // TODO add logic for non-empty pillars
+            if(PillarState == PillarState.Crystal1 || PillarState == PillarState.Crystal2)
+            {
+                Debug.Log("MINE");
+                GameObject commandObject = new GameObject("MineCommandObject");
+                MineCommand mineCommandInstance = commandObject.AddComponent<MineCommand>();
+                mineCommandInstance.Initialize(player, PillarState == PillarState.Crystal1);
+                Game.Instance.CommandManager.AddCommand(mineCommandInstance);
 
+
+                // swap player turn
+                Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+                player.TakeEnergy(5);
+            }
+           
         }
     }
 

@@ -10,4 +10,9 @@ public class Crystal2Item : MonoBehaviour
     {
         return isProcessed ? 1 : 3;
     }
+
+    public int GetValue()
+    {
+        return isProcessed ? 10 : 5;
+    }
 }
