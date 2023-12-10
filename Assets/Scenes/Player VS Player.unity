@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.011617889, g: 0.010613231, b: 0.01005117, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -569,8 +569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dc1ce0face6d14b97e2544df627454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  columns: 10
+  rows: 12
+  columns: 12
   spacing: 1
   animationDelay: 0.1
   totalForestCount: 2
@@ -620,15 +620,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 0}
-  treePrefab: {fileID: 393359065255881670, guid: f3fc2bc2c79343949a0464ca9639c4b6, type: 3}
-  rockPrefab: {fileID: 569270016318610311, guid: 00da7a5815daa9842b795a594d282468, type: 3}
+  crystal1Prefab: {fileID: 5833787885885669937, guid: f2610bbb1d47645439896f92c2ef3666, type: 3}
+  crystal2Prefab: {fileID: 686287146241827117, guid: b52220d32918e8c4db61a97b9c152467, type: 3}
   cameraTransform: {fileID: 0}
   rows: 0
   columns: 0
   spacing: 0
   animationDelay: 0
-  totalForestCount: 0
-  totalRockCount: 0
+  totalCrystal1Count: 0
+  totalCrystal2Count: 0
   baseAreaLength: 0
 --- !u!4 &437951405
 Transform:
