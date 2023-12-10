@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Pillar Position { get; set; } 
     public int X { get; set; }
     public int Z { get; set; }
+    public Bag Bag { get; set; } = new Bag();
 
     // TODO Jovan: Added now for hud logic, change later 
     public int XP { get; set; }

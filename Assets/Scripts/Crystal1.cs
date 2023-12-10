@@ -35,4 +35,6 @@ public class Crystal1 : MonoBehaviour
         X = Position.X;
         Z = Position.Z;
     }
+
+    
 }

@@ -109,12 +109,27 @@ public class Pillar : MonoBehaviour
             PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
             Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
             player.SetPosition(this);
-            player.TakeEnergy(count);
+            player.TakeEnergy(count * (player.Bag.GetWeight() + 1));
+            Debug.Log(player.Bag.ToString());
         }
         else if (CanAct(player))
         {
             // TODO add logic for non-empty pillars
             Debug.Log("ACT");
+            Debug.Log(PillarState);
+            GameObject commandObject = new GameObject("MineCommandObject");
+            MineCommand mineCommandInstance = commandObject.AddComponent<MineCommand>();
+            mineCommandInstance.Initialize(player, PillarState == PillarState.Crystal1);
+            Game.Instance.CommandManager.AddCommand(mineCommandInstance);
+
+            // swap player turn
+            player.Position.PillarState = player.Position.LastState;
+            LastState = PillarState;
+            PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
+            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            player.TakeEnergy(5);
+            Debug.Log(player.Bag.ToString());
+
         }
     }
 

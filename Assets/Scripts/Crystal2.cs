@@ -10,6 +10,7 @@ public class Crystal2 : MonoBehaviour
     public Pillar Position { get; set; }
     public int X {get; set;}
     public int Z {get; set;}
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,6 @@ public class Crystal2 : MonoBehaviour
     // Called when the player is clicked
     void OnMouseDown()
     {
-        Debug.Log("rock");
         Position.Move();
     }
 
@@ -36,4 +36,6 @@ public class Crystal2 : MonoBehaviour
         X = Position.X;
         Z = Position.Z;
     }
+
+    
 }
