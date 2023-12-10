@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.01239417, g: 0.011603797, b: 0.010181715, a: 1}
+  m_IndirectSpecularColor: {r: 0.0055674333, g: 0.0053765634, b: 0.005455244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2323,6 +2323,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452865490}
   m_CullTransparentMesh: 1
+--- !u!1 &1457623365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1457623366}
+  - component: {fileID: 1457623367}
+  m_Layer: 0
+  m_Name: EnvConfig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1457623366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457623365}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.867962, y: 2.5436783, z: 6.264672}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1457623367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457623365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f82a000632ca34e9f2cb9027bdcb50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envFile: {fileID: 4900000, guid: 76023b2f577f6e24381ec9ea906b74a9, type: 3}
 --- !u!1 &1485883714
 GameObject:
   m_ObjectHideFlags: 0
@@ -3100,3 +3145,4 @@ SceneRoots:
   - {fileID: 838148555}
   - {fileID: 2036041976}
   - {fileID: 1828038490}
+  - {fileID: 1457623366}

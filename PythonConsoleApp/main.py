@@ -5,7 +5,7 @@ import time
 
 import colorama
 from colorama import Fore, Style
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 from inputimeout import inputimeout
 
 colorama.init(autoreset=True)
@@ -59,7 +59,7 @@ increase_in_backpack_storage_capacity = 0
 
 
 def setup_env_variables():
-    load_dotenv()
+    load_dotenv(dotenv_path='../env.txt')
     global board_size, time_to_do_action_in_turn_duration, response_message_show_duration, max_number_of_turns
     global start_energy, max_energy, start_coins, max_coins, start_xp, winning_xp
     global player1_name, player2_name, refinement_facility_cost, movement_cost, resting_energy
