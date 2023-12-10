@@ -91,6 +91,10 @@ public class Pillar : MonoBehaviour
         if (CanStep())
         {
 
+            if (!path.Contains(this)) {
+                return;
+            }
+
             //Pillar prev = path[0];
             Pillar prev = player.Position;
             Pillar next = this;
