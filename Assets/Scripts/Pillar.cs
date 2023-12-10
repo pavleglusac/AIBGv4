@@ -35,18 +35,19 @@ public class Pillar : MonoBehaviour
     {
         Debug.Log("pillar");
         Move();
-        
+
     }
 
     void OnMouseEnter()
     {
         Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
 
-        if (!(CanStep() || CanAct(player))) {
+        if (!(CanStep() || CanAct(player)))
+        {
             return;
         }
 
-        if (MenuNavigation.IsPaused)
+        if (Game.IsPaused)
             return;
 
         Pillar to = this;
@@ -64,7 +65,8 @@ public class Pillar : MonoBehaviour
             color = Color.red;
         }
 
-        if (to.X != from.X && to.Z != from.Z) {
+        if (to.X != from.X && to.Z != from.Z)
+        {
             return;
         }
 
@@ -78,7 +80,7 @@ public class Pillar : MonoBehaviour
 
     public void Move()
     {
-        if (MenuNavigation.IsPaused)
+        if (Game.IsPaused)
             return;
 
         if (path == null)
@@ -124,7 +126,7 @@ public class Pillar : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (MenuNavigation.IsPaused)
+        if (Game.IsPaused)
             return;
         if (path == null || path.Count == 0 || originalColors.Count == 0)
         {
@@ -137,13 +139,15 @@ public class Pillar : MonoBehaviour
             originalColors.RemoveAt(0);
         }
     }
-    
+
     public bool CanStep()
     {
-        if (PillarState == PillarState.Empty) {
+        if (PillarState == PillarState.Empty)
+        {
             return true;
         }
-        else if (Game.Instance.FirstPlayerTurn && PillarState == PillarState.BasePlayer1) {
+        else if (Game.Instance.FirstPlayerTurn && PillarState == PillarState.BasePlayer1)
+        {
             return true;
         }
         else if (!Game.Instance.FirstPlayerTurn && PillarState == PillarState.BasePlayer2)
@@ -152,11 +156,13 @@ public class Pillar : MonoBehaviour
         }
         return false;
     }
-    
 
-    bool CanAct(Player player) {
+
+    bool CanAct(Player player)
+    {
         List<Pillar> neighbours = Game.Instance.Board.getNeighbours(this);
-        if (neighbours.Contains(player.Position)) {
+        if (neighbours.Contains(player.Position))
+        {
             return true;
         }
         return false;
@@ -164,7 +170,7 @@ public class Pillar : MonoBehaviour
 
     public override bool Equals(object other)
     {
-        Pillar pillar = (other as Pillar);   
+        Pillar pillar = (other as Pillar);
         return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
     }
 }

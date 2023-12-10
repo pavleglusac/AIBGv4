@@ -31,14 +31,7 @@ public class PillarGridGenerator : MonoBehaviour
     public float totalForestCount;
     public float totalRockCount;
     public int baseAreaLength;
-    [SerializeField] public Text player1Name;
-    [SerializeField] public Text player2Name;
-    [SerializeField] public Text player1Coins;
-    [SerializeField] public Text player2Coins;
-    [SerializeField] public Text player1Energy;
-    [SerializeField] public Text player2Energy;
-    [SerializeField] public Text player1XP;
-    [SerializeField] public Text player2XP;
+
 
     public static System.Random random = new System.Random();
 
@@ -58,6 +51,7 @@ public class PillarGridGenerator : MonoBehaviour
         GenerateGrid();
         MakeBase();
         MakePlayers();
+
         game.Board.Pillars[rows - 1, 0].PillarState = PillarState.Player1;
         game.Board.Pillars[0, columns - 1].PillarState = PillarState.Player2;
         StartCoroutine(StartAnimations());
@@ -113,6 +107,7 @@ public class PillarGridGenerator : MonoBehaviour
         //game.Player1.X = i;
         //game.Player1.Z = j;
         game.Player1.SetPosition(game.Board.Pillars[i, j]);
+        game.Player1.SetupPlayer("Crni Cerak");
 
         i = 0;
         j = columns - 1;
@@ -121,30 +116,9 @@ public class PillarGridGenerator : MonoBehaviour
         playerObject2.GetComponent<Player>().PlayerObject = playerObject2;
         game.Player2 = playerObject2.GetComponent<Player>();
         game.Player2.SetPosition(game.Board.Pillars[i, j]);
+        game.Player2.SetupPlayer("Pupoljci");
 
-        // TODO Jovan: Added now for hud logic, change later and refactor
-        game.Player1.XP = 11;
-        game.Player1.Coins = 111;
-        game.Player1.Energy = 1111;
-        game.Player1.Name = "Najjaca firmetina";
-
-        game.Player2.XP = 22;
-        game.Player2.Coins = 222;
-        game.Player2.Energy = 2222;
-        game.Player2.Name = "PostExpress";
-
-        player1Name.text = game.Player1.Name.ToString();
-        player1Coins.text = game.Player1.Coins.ToString();
-        player1Energy.text = game.Player1.Energy.ToString();
-        player1XP.text = game.Player1.XP.ToString();
-
-        player2Name.text = game.Player2.Name.ToString();
-        player2Coins.text = game.Player2.Coins.ToString();
-        player2Energy.text = game.Player2.Energy.ToString();
-        player2XP.text = game.Player2.XP.ToString();
-
-
-
+        game.UpdateAllPlayerStats();
     }
 
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PulsatingText : MonoBehaviour
 {
     public Text text;
-    readonly float pulsateDuration = 4.0f;
+    readonly float pulsateDuration = 10.0f;
     private float startTime;
 
     void Start()
