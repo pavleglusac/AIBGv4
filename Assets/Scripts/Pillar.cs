@@ -33,6 +33,7 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
+        Debug.Log("pillar");
         Move();
 
     }
