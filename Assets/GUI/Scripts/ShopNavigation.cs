@@ -9,16 +9,14 @@ public class ShopNavigation : MonoBehaviour
     public GameObject shopMenu;
     public void OpenShopMenu()
     {
-        if (MenuNavigation.IsPaused)
+        if (Game.IsPaused)
             return;
         shopMenu.SetActive(true);
-        Time.timeScale = 0f;
-        MenuNavigation.IsPaused = true;
+        Game.PauseGame();
     }
     public void CloseShopMenu()
     {
         shopMenu.SetActive(false);
-        Time.timeScale = 1f;
-        MenuNavigation.IsPaused = false;
+        Game.ResumeGame();
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class BackgroundMovement : MonoBehaviour
 {
     [SerializeField] private RawImage rawImage;
-    private readonly float x = 0.1f;
-    private readonly float y = 0.2f;
+    private readonly float x = 0.05f;
+    private readonly float y = 0.1f;
 
     void Update()
     {

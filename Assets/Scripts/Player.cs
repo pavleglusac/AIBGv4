@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour
     public GameObject PlayerParentObject { get; set; }
     public GameObject PlayerObject { get; set; }
     public bool FirstPlayer { get; set; }
-    public Pillar Position { get; set; } 
+    public Pillar Position { get; set; }
     public int X { get; set; }
     public int Z { get; set; }
 
@@ -20,7 +21,13 @@ public class Player : MonoBehaviour
     public int Energy { get; set; }
     public string Name { get; set; }
 
-
+    public void SetupPlayer(string name)
+    {
+        XP = 0;
+        Coins = 1000;
+        Energy = 100;
+        Name = name;
+    }
 
 
     void Start()
