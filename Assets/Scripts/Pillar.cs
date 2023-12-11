@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -80,18 +81,29 @@ public class Pillar : MonoBehaviour
 
     public void Move()
     {
+
+        int penalty = Int32.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
         if (Game.IsPaused)
             return;
 
+        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+
         if (path == null)
         {
+            player.TakeEnergy(penalty);
+            Debug.Log(player.Energy);
             return;
         }
 
-        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-
         if (CanStep())
         {
+
+            if (!path.Contains(this))
+            {
+                player.TakeEnergy(penalty);
+                Debug.Log(player.Energy);
+                return;
+            }
 
             //Pillar prev = path[0];
             Pillar prev = player.Position;
@@ -117,6 +129,10 @@ public class Pillar : MonoBehaviour
         {
             // TODO add logic for non-empty pillars
             Debug.Log("ACT");
+        }
+        else {
+            player.TakeEnergy(penalty);
+            Debug.Log(player.Energy);
         }
     }
 
