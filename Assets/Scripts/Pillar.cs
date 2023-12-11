@@ -90,7 +90,7 @@ public class Pillar : MonoBehaviour
 
         if (path == null)
         {
-            player.Energy -= penalty;
+            player.TakeEnergy(penalty);
             Debug.Log(player.Energy);
             return;
         }
@@ -100,7 +100,7 @@ public class Pillar : MonoBehaviour
 
             if (!path.Contains(this))
             {
-                player.Energy -= penalty;
+                player.TakeEnergy(penalty);
                 Debug.Log(player.Energy);
                 return;
             }
@@ -131,7 +131,7 @@ public class Pillar : MonoBehaviour
             Debug.Log("ACT");
         }
         else {
-            player.Energy -= penalty;
+            player.TakeEnergy(penalty);
             Debug.Log(player.Energy);
         }
     }
