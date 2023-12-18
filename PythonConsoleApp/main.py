@@ -5,7 +5,7 @@ from game import Game
 def main():
     Constants.load_from_env()
     game = Game()
-    game.start()
+    game.play_game()
     pass
 
 

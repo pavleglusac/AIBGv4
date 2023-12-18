@@ -13,7 +13,6 @@ class Player:
         self.y = y
         self.frozen_turns = 0
         self.daze_turns = 0
-        self.ores_in_backpack = 0
         self.increased_backpack_turns = 0
         self.backpack_storage_capacity = Constants.backpack_default_storage_capacity
         self.crystals = []
@@ -68,8 +67,45 @@ class Player:
             self.increased_backpack_turns -= 1
         else:
             self.backpack_storage_capacity = Constants.backpack_default_storage_capacity
-            if self.ores_in_backpack > Constants.backpack_default_storage_capacity:  # TODO ovde kad dodas listu proveru
-                self.ores_in_backpack = Constants.backpack_default_storage_capacity
+            if self.get_total_weight() > Constants.backpack_default_storage_capacity:
+                while self.get_total_weight() > Constants.backpack_default_storage_capacity:
+                    self.crystals.pop()
+
+    def add_to_backpack_storage_(self, crystal) -> bool:
+        if self.get_total_weight() + crystal.get_weight() <= self.backpack_storage_capacity:
+            self.crystals.append(crystal)
+            return True
+        return False
+
+    def get_total_weight(self):
+        return sum(crystal.get_weight() for crystal in self.crystals)
+
+    def get_total_weight_expensive_processed(self):
+        return sum(crystal.get_weight() for crystal in self.crystals if crystal.is_expensive and crystal.is_processed)
+
+    def get_total_weight_expensive_raw(self):
+        return sum(
+            crystal.get_weight() for crystal in self.crystals if crystal.is_expensive and not crystal.is_processed)
+
+    def get_total_weight_cheap_processed(self):
+        return sum(
+            crystal.get_weight() for crystal in self.crystals if not crystal.is_expensive and crystal.is_processed)
+
+    def get_total_weight_cheap_raw(self):
+        return sum(
+            crystal.get_weight() for crystal in self.crystals if not crystal.is_expensive and not crystal.is_processed)
+
+    def get_count_expensive_processed(self):
+        return sum(1 for crystal in self.crystals if crystal.is_expensive and crystal.is_processed)
+
+    def get_count_expensive_raw(self):
+        return sum(1 for crystal in self.crystals if crystal.is_expensive and not crystal.is_processed)
+
+    def get_count_cheap_processed(self):
+        return sum(1 for crystal in self.crystals if not crystal.is_expensive and crystal.is_processed)
+
+    def get_count_cheap_raw(self):
+        return sum(1 for crystal in self.crystals if not crystal.is_expensive and not crystal.is_processed)
 
     def print_player_stats(self, color):
         print(
@@ -78,8 +114,12 @@ class Player:
             f"{Fore.CYAN}XP: {self.xp}{Style.RESET_ALL} "
             f"{Fore.YELLOW}Coins: {self.coins}{Style.RESET_ALL} "
             f"{Fore.MAGENTA}Position: ({self.x},{self.y}){Style.RESET_ALL}\n"
-            f"{Fore.LIGHTYELLOW_EX}Backpack capacity: {self.backpack_storage_capacity}{Style.RESET_ALL} "
             f"{Fore.LIGHTGREEN_EX}Increased backpack capacity duration: {self.increased_backpack_turns}{Style.RESET_ALL} "
             f"{Fore.LIGHTRED_EX}Daze turns: {self.daze_turns}{Style.RESET_ALL} "
             f"{Fore.LIGHTCYAN_EX}Frozen turns: {self.frozen_turns}{Style.RESET_ALL} "
+            f"{Fore.LIGHTYELLOW_EX}Backpack capacity: {self.get_total_weight()}/{self.backpack_storage_capacity}{Style.RESET_ALL}\n"
+            f"{Fore.YELLOW}Raw cheap crystal -> Weight: {self.get_total_weight_cheap_raw()}, Count: {self.get_count_cheap_raw()} || "
+            f"{Fore.YELLOW}Processed cheap crystal -> Weight: {self.get_total_weight_cheap_processed()}, Count: {self.get_count_cheap_processed()}{Style.RESET_ALL}\n"
+            f"{Fore.LIGHTMAGENTA_EX}Raw expensive crystal -> Weight: {self.get_total_weight_expensive_raw()}, Count: {self.get_count_expensive_raw()} || "
+            f"{Fore.LIGHTMAGENTA_EX}Processed expensive crystal -> Weight: {self.get_total_weight_expensive_processed()}, Count: {self.get_count_expensive_processed()}{Style.RESET_ALL}\n"
         )
