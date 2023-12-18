@@ -5,8 +5,8 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     public Pillar[,] Pillars {get; set;}
-    public Crystal1[] Crystals1 {get; set;}
-    public Crystal2[] Crystals2 {get; set;}
+    public CheapCrystal[] CheapCrystals {get; set;}
+    public ExpensiveCrystal[] ExpensiveCrystals {get; set;}
     public Base[] Bases {get; set;}
     
 

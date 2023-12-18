@@ -14,12 +14,12 @@ public class ResourceGenerator : MonoBehaviour
     public GameObject crystal1Prefab;
     public GameObject crystal2Prefab;
     public Transform cameraTransform;
-    public int rows;
-    public int columns;
-    public float spacing;
-    public float animationDelay;
-    public float totalCrystal1Count;
-    public float totalCrystal2Count;
+    [HideInInspector] public int rows;
+    [HideInInspector] public int columns;
+    [HideInInspector] public float spacing;
+    [HideInInspector] public float animationDelay;
+    [HideInInspector] public int totalCheapCrystalCount;
+    [HideInInspector] public int totalExpensiveCrystalCount;
     public int baseAreaLength;
     public static System.Random random = new System.Random();
     
@@ -31,13 +31,15 @@ public class ResourceGenerator : MonoBehaviour
         columns = game.columns;
         spacing = game.spacing;
         animationDelay = game.animationDelay;
-        totalCrystal1Count = rows / 5;
-        totalCrystal2Count = columns / 5;
+        totalCheapCrystalCount = game.totalCheapCrystalCount;
+        totalExpensiveCrystalCount = game.totalExpensiveCrystalCount;
+        totalCheapCrystalCount = rows / 5;
+        totalExpensiveCrystalCount = columns / 5;
         baseAreaLength = rows / 3 + 1;
         // print all these 5 variables
-        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalCrystal1Count: " + totalCrystal1Count + " totalCrystal2Count: " + totalCrystal2Count + " baseAreaLength: " + baseAreaLength);
-        game.Board.Crystals1 = new Crystal1[(int)(totalCrystal1Count * 3 * 2)];
-        game.Board.Crystals2 = new Crystal2[(int)(totalCrystal2Count * 3 * 2)];
+        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalCrystal1Count: " + totalCheapCrystalCount + " totalCrystal2Count: " + totalExpensiveCrystalCount + " baseAreaLength: " + baseAreaLength);
+        game.Board.CheapCrystals = new CheapCrystal[(int)(totalCheapCrystalCount * 3 * 2)];
+        game.Board.ExpensiveCrystals = new ExpensiveCrystal[(int)(totalExpensiveCrystalCount * 3 * 2)];
         GenerateCrystals1();
         GenerateCrystals2();
         StartCoroutine(StartAnimations());
@@ -84,9 +86,9 @@ public class ResourceGenerator : MonoBehaviour
 
     void GenerateCrystals2()
     {
-        Tuple<int, int>[] crystal2Coordinates = new Tuple<int, int>[int.Parse(totalCrystal2Count.ToString())];
+        Tuple<int, int>[] crystal2Coordinates = new Tuple<int, int>[int.Parse(totalExpensiveCrystalCount.ToString())];
         List<Tuple<int, int>> crystals2Cordinates = new List<Tuple<int, int>>();
-        Boolean up = true;
+        bool up = true;
         for (int i = 0; i < crystal2Coordinates.Length; i++)
         {
 
@@ -172,12 +174,12 @@ public class ResourceGenerator : MonoBehaviour
 
     void MakeCrystal2(int x, int z, int crystal2Count)
     {
-        game.Board.Pillars[x, z].PillarState = PillarState.Crystal2;
+        game.Board.Pillars[x, z].PillarState = PillarState.ExpensiveCrystal;
         GameObject crystal2Object = Instantiate(crystal2Prefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
-        crystal2Object.AddComponent<Crystal2>();
-        crystal2Object.GetComponent<Crystal2>().Crystal2Object = crystal2Object;
-        crystal2Object.GetComponent<Crystal2>().SetPosition(game.Board.Pillars[x, z]);
-        game.Board.Crystals2[crystal2Count] = crystal2Object.GetComponent<Crystal2>();
+        crystal2Object.AddComponent<ExpensiveCrystal>();
+        crystal2Object.GetComponent<ExpensiveCrystal>().Crystal2Object = crystal2Object;
+        crystal2Object.GetComponent<ExpensiveCrystal>().SetPosition(game.Board.Pillars[x, z]);
+        game.Board.ExpensiveCrystals[crystal2Count] = crystal2Object.GetComponent<ExpensiveCrystal>();
 
 
         Animator animator = crystal2Object.GetComponent<Animator>();
@@ -192,9 +194,9 @@ public class ResourceGenerator : MonoBehaviour
     void GenerateCrystals1()
     {
         // make array of tuples cordinates
-        Tuple<int, int>[] crystal1groupCoordinates = new Tuple<int, int>[int.Parse(totalCrystal1Count.ToString())];
+        Tuple<int, int>[] crystal1groupCoordinates = new Tuple<int, int>[int.Parse(totalCheapCrystalCount.ToString())];
         List<Tuple<int, int>> crystal1Cordinates = new List<Tuple<int, int>>();
-        Boolean up = true;
+        bool up = true;
         for(int i = 0; i < crystal1groupCoordinates.Length; i++)
         {
 
@@ -284,12 +286,12 @@ public class ResourceGenerator : MonoBehaviour
 
     void MakeCrystal1(int x, int z, int crystal1Count)
     {
-        game.Board.Pillars[x, z].PillarState = PillarState.Crystal1;
+        game.Board.Pillars[x, z].PillarState = PillarState.CheapCrystal;
         GameObject crystal1Object = Instantiate(crystal1Prefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
-        crystal1Object.AddComponent<Crystal1>();
-        crystal1Object.GetComponent<Crystal1>().Crystal1Object = crystal1Object;
-        game.Board.Crystals1[crystal1Count] = crystal1Object.GetComponent<Crystal1>();
-        game.Board.Crystals1[crystal1Count].SetPosition(game.Board.Pillars[x, z]);
+        crystal1Object.AddComponent<CheapCrystal>();
+        crystal1Object.GetComponent<CheapCrystal>().Crystal1Object = crystal1Object;
+        game.Board.CheapCrystals[crystal1Count] = crystal1Object.GetComponent<CheapCrystal>();
+        game.Board.CheapCrystals[crystal1Count].SetPosition(game.Board.Pillars[x, z]);
 
         Animator animator = crystal1Object.GetComponent<Animator>();
 
@@ -338,11 +340,11 @@ public class ResourceGenerator : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < game.Board.Crystals1.Length; i++)
+        for (int i = 0; i < game.Board.CheapCrystals.Length; i++)
         {
-            if (game.Board.Crystals1[i] != null)
+            if (game.Board.CheapCrystals[i] != null)
             {
-                Animator animator = game.Board.Crystals1[i].Crystal1Object.GetComponent<Animator>();
+                Animator animator = game.Board.CheapCrystals[i].Crystal1Object.GetComponent<Animator>();
                 if(animator != null)
                 {
                     animator.enabled = true;
@@ -352,11 +354,11 @@ public class ResourceGenerator : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < game.Board.Crystals2.Length; i++)
+        for (int i = 0; i < game.Board.ExpensiveCrystals.Length; i++)
         {
-            if (game.Board.Crystals2[i] != null)
+            if (game.Board.ExpensiveCrystals[i] != null)
             {
-                Animator animator = game.Board.Crystals2[i].Crystal2Object.GetComponent<Animator>();
+                Animator animator = game.Board.ExpensiveCrystals[i].Crystal2Object.GetComponent<Animator>();
                 if (animator != null)
                 {
                     animator.enabled = true;
