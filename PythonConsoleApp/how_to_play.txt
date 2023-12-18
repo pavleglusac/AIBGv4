@@ -1,0 +1,35 @@
+movement:
+	move x y
+	x and y are postions on board, integers, can be negative numbers (used for daze)
+example:
+	move 1 2
+	move -3 2
+	if there are no obstacles , player is moved to that position on the board
+can not move to the position where you are currently on
+
+for that you use rest
+command for rest is rest
+example
+	rest
+
+shops:
+	shop x
+	what can be bought in shop (freeze, backpack, daze)
+example: 
+	shop daze
+	shop freeze
+	shop backpack
+
+freeze disables opponent for some number of moves
+daze makes oponent move in oposite direction
+example
+	position of dazed player is (3,5)
+	entered movement (3,8)
+	dazed movement (3,2)
+	
+	can work with negative numbers
+	position of dazed player is (3,1)
+	entered movement (3,-2)
+	dazed movement (3,4)
+
+backpack increases number of slots in backpack
