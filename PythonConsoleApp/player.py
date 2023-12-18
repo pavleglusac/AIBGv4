@@ -107,7 +107,7 @@ class Player:
     def get_count_cheap_raw(self):
         return sum(1 for crystal in self.crystals if not crystal.is_expensive and not crystal.is_processed)
 
-    def print_player_stats(self, color):
+    def print_stats(self, color):
         print(
             f"{color}{self.name}{Style.RESET_ALL}\n"
             f"{Fore.GREEN}Energy: {self.energy}{Style.RESET_ALL} "

@@ -57,8 +57,8 @@ class Game:
         self.print_turn_status()
 
     def print_both_players(self):
-        self.player1.print_player_stats(Fore.BLUE)
-        self.player2.print_player_stats(Fore.RED)
+        self.player1.print_stats(Fore.BLUE)
+        self.player2.print_stats(Fore.RED)
 
     def print_turn_status(self):
         print()
@@ -128,7 +128,6 @@ class Game:
 
     def get_user_input(self):
         try:
-
             user_input = inputimeout(prompt='Your input: ', timeout=Constants.time_to_do_action_in_turn_duration)
             user_input = user_input.strip()
             self.input_history.append(user_input)  # For replay later
@@ -159,39 +158,6 @@ class Game:
     def invalid_turn_handling(self):
         print("Invalid turn, penalty to energy: -", Constants.invalid_turn_energy_penalty, "!")
         self.get_current_player().decrease_energy(Constants.invalid_turn_energy_penalty)
-
-    def handle_movement(self, user_input):
-
-        match = re.match(r'^move (-?\d+) (-?\d+)$', user_input)
-        if match:
-            x, y = int(match.group(1)), int(match.group(2))
-            current_player = self.get_current_player()
-            if current_player.is_dazed():
-                step_x, step_y = abs(x - current_player.x), abs(y - current_player.y)
-                x = current_player.x - step_x if x > current_player.x else current_player.x + step_x
-                y = current_player.y - step_y if y > current_player.y else current_player.y + step_y
-            if 0 <= x < Constants.board_size or 0 <= y < Constants.board_size:
-                if (current_player.x == x) != (current_player.y == y):
-                    if not self.board.is_obstacle_on_path(current_player.x, current_player.y, x, y):
-                        steps = (abs(current_player.x - x) + abs(current_player.y - y))
-                        used_energy = steps * (current_player.get_total_weight() + 1)
-                        current_player.decrease_energy(used_energy)
-                        if current_player.energy <= 0:
-                            print("Error: Not enough energy for this move!")
-                            self.invalid_turn_handling()
-                        else:
-                            current_player.x = x
-                            current_player.y = y
-                            print(f"Moving to position ({x}, {y}), took you ", used_energy, "energy points!")
-                    else:
-                        print("Error: There is an obstacle on the way!")
-                        self.invalid_turn_handling()
-                else:
-                    print("Error: Only moving horizontally or vertically is allowed!")
-                    self.invalid_turn_handling()
-            else:
-                print("Error: Move out of bounds!")
-                self.invalid_turn_handling()
 
     def handle_resting(self):
         self.get_current_player().increase_energy(Constants.resting_energy)
@@ -224,21 +190,66 @@ class Game:
         self.get_current_player().remove_coins(Constants.daze_cost)
         print("Daze purchased successfully!")
 
+    def handle_movement(self, user_input):
+        match = re.match(r'^move (-?\d+) (-?\d+)$', user_input)
+        if not match:
+            return
+        x, y = int(match.group(1)), int(match.group(2))
+        current_player = self.get_current_player()
+        if current_player.is_dazed():
+            step_x, step_y = abs(x - current_player.x), abs(y - current_player.y)
+            x = current_player.x - step_x if x > current_player.x else current_player.x + step_x
+            y = current_player.y - step_y if y > current_player.y else current_player.y + step_y
+        if (0 > x or x >= Constants.board_size) and (0 > y or y >= Constants.board_size):
+            print("Error: Move out of bounds!")
+            self.invalid_turn_handling()
+        else:
+            if (current_player.x == x) == (current_player.y == y):
+                print("Error: Only moving horizontally or vertically is allowed!")
+                self.invalid_turn_handling()
+            else:
+                if self.board.is_obstacle_on_path(current_player.x, current_player.y, x, y):
+                    print("Error: There is an obstacle on the way!")
+                    self.invalid_turn_handling()
+                else:
+                    steps = (abs(current_player.x - x) + abs(current_player.y - y))
+                    used_energy = steps * (current_player.get_total_weight() + 1)
+                    current_player.decrease_energy(used_energy)
+                    if current_player.energy > 0:
+                        current_player.x = x
+                        current_player.y = y
+                        print(f"Moving to position ({x}, {y}), took you ", used_energy, "energy points!")
+                    else:
+                        print("Error: Not enough energy for this move!")
+                        self.invalid_turn_handling()
+
     def handle_mine(self, user_input):
         match = re.match(r'^mine (-?\d+) (-?\d+)$', user_input)
-        if match:
-            x, y = int(match.group(1)), int(match.group(2))
-            current_player = self.get_current_player()
-            if 0 <= x < Constants.board_size or 0 <= y < Constants.board_size:
-                if are_neighbours(current_player.x, current_player.y, x, y):
-                    if self.board.board_cells[x][y].print_symbol == Constants.cheep_crystal_symbol:
+        if not match:
+            return
+        x, y = int(match.group(1)), int(match.group(2))
+        current_player = self.get_current_player()
+        if (0 > x or x >= Constants.board_size) and (0 > y or y >= Constants.board_size):
+            print("Error: Mine out of bounds!")
+            self.invalid_turn_handling()
+        else:
+            if not are_neighbours(current_player.x, current_player.y, x, y):
+                print("Error: Can not mine something that is not your neighbor!")
+                self.invalid_turn_handling()
+            else:
+                if self.board.board_cells[x][y].print_symbol == Constants.cheep_crystal_symbol:
+                    if self.board.board_cells[x][y].mine():
                         if current_player.add_to_backpack_storage_(Crystal(False)):
                             print("Cheep crystal added to your backpack!")
                             current_player.decrease_energy(Constants.mining_energy_cheap_crystal_loss)
                         else:
                             print("Backpack full!")
                             self.invalid_turn_handling()
-                    elif self.board.board_cells[x][y].print_symbol == Constants.expensive_crystal_symbol:
+                    else:
+                        print("You can not mine a mine that is not replenished!")
+                        self.invalid_turn_handling()
+                elif self.board.board_cells[x][y].print_symbol == Constants.expensive_crystal_symbol:
+                    if self.board.board_cells[x][y].mine():
                         if current_player.add_to_backpack_storage_(Crystal(True)):
                             print("Expensive crystal added to your backpack!")
                             current_player.decrease_energy(Constants.mining_energy_expensive_crystal_loss)
@@ -246,9 +257,8 @@ class Game:
                             print("Backpack full!")
                             self.invalid_turn_handling()
                     else:
-                        print("Error: Can not mine something that is not crystal!")
+                        print("You can not mine a mine that is not replenished!")
                         self.invalid_turn_handling()
                 else:
-                    print("Error: Can not mine something that is not your neighbor!")
-            else:
-                print("Error: Mine out of bounds!")
+                    print("Error: Can not mine something that is not crystal!")
+                    self.invalid_turn_handling()

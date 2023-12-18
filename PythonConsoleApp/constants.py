@@ -48,11 +48,19 @@ class Constants:
     bigger_backpack_cost = 0
     backpack_default_storage_capacity = 0
     increase_in_backpack_storage_capacity = 0
+    cheap_crystal_mine_hits = 0
+    expensive_crystal_mine_hits = 0
+    cheap_crystal_replenish_turns = 0
+    expensive_crystal_replenish_turns = 0
 
     @staticmethod
     def load_from_env():
         load_dotenv(dotenv_path='../env.txt')
         Constants.resting_energy = int(os.getenv("resting_energy"))
+        Constants.cheap_crystal_mine_hits = int(os.getenv("cheap_crystal_mine_hits"))
+        Constants.expensive_crystal_mine_hits = int(os.getenv("expensive_crystal_mine_hits"))
+        Constants.cheap_crystal_replenish_turns = int(os.getenv("cheap_crystal_replenish_turns"))
+        Constants.expensive_crystal_replenish_turns = int(os.getenv("expensive_crystal_replenish_turns"))
         Constants.board_size = int(os.getenv("board_size"))
         Constants.time_to_do_action_in_turn_duration = int(os.getenv("time_to_do_action_in_turn_duration"))
         Constants.response_message_show_duration = int(os.getenv("response_message_show_duration"))

@@ -34,14 +34,15 @@ class Board:
                     or (x1 == Constants.board_size - 1 and y1 == 0)
             ):
                 x1, y1 = random.randint(0, Constants.board_size - 1), random.randint(0, Constants.board_size - 1)
-            self.board_cells[x1][y1].print_symbol = ore_symbol
-            self.board_cells[y1][x1].print_symbol = ore_symbol
+            self.board_cells[x1][y1] = BoardCell(ore_symbol)
+            self.board_cells[y1][x1] = BoardCell(ore_symbol)
 
     def update_board(self, player1, player2):
         self.board_cells[0][Constants.board_size - 1].print_symbol = Constants.player1_castle_symbol
         self.board_cells[Constants.board_size - 1][0].print_symbol = Constants.player2_castle_symbol
         for i in range(Constants.board_size):
             for j in range(Constants.board_size):
+                self.board_cells[i][j].replenish()
                 if (self.board_cells[i][j].print_symbol == Constants.player1_symbol
                         or self.board_cells[i][j].print_symbol
                         == Constants.player2_symbol):
@@ -51,14 +52,11 @@ class Board:
         self.board_cells[player2.x][player2.y].print_symbol = Constants.player2_symbol
 
     def draw_board(self):
-        max_cols = len(self.board_cells[0])
         print("  " + "".join([f"{i:3}" for i in range(len(self.board_cells))]))
-
-        for col in range(max_cols):
+        for col in range(len(self.board_cells[0])):
             colored_col = [print_with_color(self.board_cells[row][col].print_symbol) for row in
                            range(len(self.board_cells))]
             print(f"{col:3} {'  '.join(colored_col)} {col:3} ")
-
         print("  " + "".join([f"{i:3}" for i in range(len(self.board_cells))]))
 
     def is_obstacle_on_path(self, start_x, start_y, end_x, end_y):
