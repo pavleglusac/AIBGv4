@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Pillar : MonoBehaviour
 {
-
     public GameObject PillarObject { get; set; }
 
     public PillarState PillarState { get; set; } = PillarState.Empty;
@@ -15,26 +14,14 @@ public class Pillar : MonoBehaviour
     public int X { get; set; }
     public int Z { get; set; }
 
-    List<Pillar> path;
+    public List<Pillar> path;
     // keep track of original color
     List<Color> originalColors = new List<Color>();
 
-    private int GetDirection(Pillar prev, Pillar current)
-    {
-        if (prev.X == current.X)
-        {
-            return prev.Z > current.Z ? 0 : 2;
-        }
-        else if (prev.Z == current.Z)
-        {
-            return prev.X > current.X ? 1 : 3;
-        }
-        return -1;
-    }
+
 
     void OnMouseDown()
     {
-        Debug.Log("pillar");
         Move();
 
     }
@@ -81,8 +68,7 @@ public class Pillar : MonoBehaviour
 
     public void Move()
     {
-
-        int penalty = Int32.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
+        int penalty = int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
         if (Game.IsPaused)
             return;
 
@@ -91,69 +77,28 @@ public class Pillar : MonoBehaviour
         if (path == null)
         {
             player.TakeEnergy(penalty);
-            Debug.Log(player.Energy);
             return;
         }
 
-        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-        // log current player 
-        Debug.Log(player.Name);
         if (CanStep())
         {
-
-            if (!path.Contains(this))
-            {
-                player.TakeEnergy(penalty);
-                Debug.Log(player.Energy);
-                return;
-            }
-
-            //Pillar prev = path[0];
-            Pillar prev = player.Position;
-            Pillar next = this;
-            int count = path.Count;
-            int direction = GetDirection(prev, next);
-
-            // create commands
-            GameObject commandObject = new GameObject("MoveCommandObject");
-            MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
-            moveCommandInstance.Initialize(player, direction, count);
-            Game.Instance.CommandManager.AddCommand(moveCommandInstance);
-
-            // swap player turn
-            player.Position.PillarState = player.Position.LastState;
-            LastState = PillarState;
-            PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-            player.SetPosition(this);
-            player.TakeEnergy(count * (player.Bag.GetWeight() + 1));
-            Debug.Log(player.Bag.ToString());
+            Actions.Move(this, player);
         }
         else if (CanAct(player))
         {
-            Debug.Log(LastState + " " + PillarState);
-            Debug.Log("ACT");
 
             // TODO add logic for non-empty pillars
-            if(PillarState == PillarState.Crystal1 || PillarState == PillarState.Crystal2)
+            if(PillarState == PillarState.CheapCrystal || PillarState == PillarState.ExpensiveCrystal)
             {
-                Debug.Log("MINE");
-                GameObject commandObject = new GameObject("MineCommandObject");
-                MineCommand mineCommandInstance = commandObject.AddComponent<MineCommand>();
-                mineCommandInstance.Initialize(player, PillarState == PillarState.Crystal1);
-                Game.Instance.CommandManager.AddCommand(mineCommandInstance);
-
-
-                // swap player turn
-                Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-                player.TakeEnergy(5);
+                Actions.Mine(this, player);
             }
-           
+            
         }
         else {
             player.TakeEnergy(penalty);
-            Debug.Log(player.Energy);
         }
+        Game.Instance.TurnCount++;
+        Game.Instance.UpdateAllPlayerStats();
     }
 
     void OnMouseExit()
@@ -205,4 +150,6 @@ public class Pillar : MonoBehaviour
         Pillar pillar = (other as Pillar);
         return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
     }
+
+
 }

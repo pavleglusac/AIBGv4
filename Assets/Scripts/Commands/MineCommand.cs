@@ -39,20 +39,18 @@ public class MineCommand : MonoBehaviour, ICommand
         isMining = false;
         isCoroutineRunning = false;
         isDone = true;
-        Debug.Log(Player.Bag.ToString());
 
     }
 
     private IEnumerator Mine()
     {
-        Debug.Log("Mining");
         if(isCrystal1)
         {
-            Player.Bag.AddCrystal1();
+            Player.Bag.AddCheapCrystal();
         }
         else
         {
-            Player.Bag.AddCrystal2();
+            Player.Bag.AddExpensiveCrystal();
         }
         yield return new WaitForSeconds(0.0f);
     }

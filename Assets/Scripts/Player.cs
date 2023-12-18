@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public Pillar Position { get; set; }
     public int X { get; set; }
     public int Z { get; set; }
-    public Bag Bag { get; set; } = new Bag();
+    public Bag Bag { get; set; }
 
     // TODO Jovan: Added now for hud logic, change later 
     public int XP { get; set; }
@@ -24,16 +24,15 @@ public class Player : MonoBehaviour
 
     public void SetupPlayer(string name)
     {
-        XP = 0;
-        Coins = 1000;
-        Energy = 100;
+        XP = int.Parse(PlayerPrefs.GetString("start_xp"));
+        Coins = int.Parse(PlayerPrefs.GetString("start_coins"));
+        Energy = int.Parse(PlayerPrefs.GetString("start_energy"));
         Name = name;
     }
 
-
     void Start()
     {
-
+        Bag = gameObject.AddComponent<Bag>();
     }
 
 

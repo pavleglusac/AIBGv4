@@ -1,39 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Bag : MonoBehaviour
 {
-    public List<Crystal1Item> Crystal1s { get; set; } = new List<Crystal1Item>();
-    public List<Crystal2Item> Crystal2s { get; set; } = new List<Crystal2Item>();
-    public int Capacity { get; set; } = 15;
+    public List<CheapCrystalItem> CheapCrystals { get; set; } = new List<CheapCrystalItem>();
+    public List<ExpensiveCrystalItem> ExpensiveCrystals { get; set; } = new List<ExpensiveCrystalItem>();
+    // private int Capacity  = int.Parse(PlayerPrefs.GetString("backpack_default_storage_capacity"));
+    private int Capacity;
 
-    public Bag()
+    // public Bag()
+    // {
+    //     Capacity = 10;
+    // }
+
+    private void Start()
     {
+        Capacity = int.Parse(PlayerPrefs.GetString("backpack_default_storage_capacity"));
     }
 
-    public void AddCrystal1()
+    public void IncreaseBagCapacity()
     {
-        Crystal1Item crystal1 = new Crystal1Item();
+        Capacity += int.Parse(PlayerPrefs.GetString("increase_in_backpack_storage_capacity"));
+    }
+
+    public void DecreaseBagCapacity()
+    {
+        Capacity -= int.Parse(PlayerPrefs.GetString("decrease_in_backpack_storage_capacity"));
+    }
+
+    public void AddCheapCrystal()
+    {
+        Debug.Log(Capacity);
+        CheapCrystalItem crystal1 = new CheapCrystalItem();
         if(crystal1.GetWeight() <= GetRemainingCapacity())
-            Crystal1s.Add(crystal1);
+            CheapCrystals.Add(crystal1);
     }
 
-    public void AddCrystal2()
+    public void AddExpensiveCrystal()
     {
-        Crystal2Item crystal2 = new Crystal2Item();
+        ExpensiveCrystalItem crystal2 = new ExpensiveCrystalItem();
         if(crystal2.GetWeight() <= GetRemainingCapacity())
-            Crystal2s.Add(crystal2);
+            ExpensiveCrystals.Add(crystal2);
     }
 
-    public void RemoveCrystal1(Crystal1Item crystal1)
+    public void RemoveCheapCrystal(CheapCrystalItem crystal1)
     {
-        Crystal1s.Remove(crystal1);
+        CheapCrystals.Remove(crystal1);
     }
 
-    public void RemoveCrystal2(Crystal2Item crystal2)
+    public void RemoveExpensiveCrystal(ExpensiveCrystalItem crystal2)
     {
-        Crystal2s.Remove(crystal2);
+        ExpensiveCrystals.Remove(crystal2);
     }
 
     public bool IsFull()
@@ -43,17 +62,17 @@ public class Bag : MonoBehaviour
 
     public bool IsEmpty()
     {
-        return Crystal1s.Count == 0 && Crystal2s.Count == 0;
+        return CheapCrystals.Count == 0 && ExpensiveCrystals.Count == 0;
     } 
 
     public int GetWeight()
     {
         int total = 0;
-        foreach (Crystal1Item crystal1 in Crystal1s)
+        foreach (CheapCrystalItem crystal1 in CheapCrystals)
         {
             total += crystal1.GetWeight();
         }
-        foreach (Crystal2Item crystal2 in Crystal2s)
+        foreach (ExpensiveCrystalItem crystal2 in ExpensiveCrystals)
         {
             total += crystal2.GetWeight();
         }
@@ -67,13 +86,13 @@ public class Bag : MonoBehaviour
 
     public void Empty()
     {
-        Crystal1s.Clear();
-        Crystal2s.Clear();
+        CheapCrystals.Clear();
+        ExpensiveCrystals.Clear();
     }
 
     public override string ToString()
     {
-        return "Bag: " + GetWeight() + "/" + Capacity + " (" + Crystal1s.Count + " Crystal1s, " + Crystal2s.Count + " Crystal2s)";
+        return "Bag: " + GetWeight() + "/" + Capacity + " (" + CheapCrystals.Count + " CheapCrystals, " + ExpensiveCrystals.Count + " ExpensiveCrystals)";
     }
 
 }

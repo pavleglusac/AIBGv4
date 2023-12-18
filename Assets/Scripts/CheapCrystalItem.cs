@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crystal2Item : MonoBehaviour
+public class CheapCrystalItem : MonoBehaviour
 {
     public bool isProcessed { get; set; } = false;
 

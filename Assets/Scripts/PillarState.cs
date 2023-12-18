@@ -8,8 +8,8 @@ public enum PillarState
     Player1,
     Player2,
     Wall, 
-    Crystal1, 
-    Crystal2,
+    CheapCrystal, 
+    ExpensiveCrystal,
     BasePlayer1,
     BasePlayer2
 }
