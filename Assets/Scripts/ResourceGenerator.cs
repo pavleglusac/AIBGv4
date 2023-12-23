@@ -18,8 +18,8 @@ public class ResourceGenerator : MonoBehaviour
     [HideInInspector] public int columns;
     [HideInInspector] public float spacing;
     [HideInInspector] public float animationDelay;
-    [HideInInspector] public int totalCheapCrystalCount;
-    [HideInInspector] public int totalExpensiveCrystalCount;
+    [HideInInspector] public int numOfCheapCrystalGroups;
+    [HideInInspector] public int numOfExpensiveCrystalGroups;
     public int baseAreaLength;
     public static System.Random random = new System.Random();
     
@@ -31,22 +31,22 @@ public class ResourceGenerator : MonoBehaviour
         columns = game.columns;
         spacing = game.spacing;
         animationDelay = game.animationDelay;
-        totalCheapCrystalCount = game.totalCheapCrystalCount;
-        totalExpensiveCrystalCount = game.totalExpensiveCrystalCount;
-        totalCheapCrystalCount = rows / 5;
-        totalExpensiveCrystalCount = columns / 5;
+        numOfCheapCrystalGroups = game.numOfCheapCrystalGroups;
+        numOfExpensiveCrystalGroups = game.numOfExpensiveCrystalGroups;
+        // totalCheapCrystalCount = rows / 5;
+        // totalExpensiveCrystalCount = columns / 5;
         baseAreaLength = rows / 3 + 1;
         // print all these 5 variables
-        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalCrystal1Count: " + totalCheapCrystalCount + " totalCrystal2Count: " + totalExpensiveCrystalCount + " baseAreaLength: " + baseAreaLength);
-        game.Board.CheapCrystals = new CheapCrystal[(int)(totalCheapCrystalCount * 3 * 2)];
-        game.Board.ExpensiveCrystals = new ExpensiveCrystal[(int)(totalExpensiveCrystalCount * 3 * 2)];
-        GenerateCrystals1();
-        GenerateCrystals2();
+        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalCrystal1Count: " + numOfCheapCrystalGroups + " totalCrystal2Count: " + numOfExpensiveCrystalGroups + " baseAreaLength: " + baseAreaLength);
+        game.Board.CheapCrystals = new CheapCrystal[(int)(numOfCheapCrystalGroups * 3 * 2)]; // 3 crystals per group, 2 groups one for each side
+        game.Board.ExpensiveCrystals = new ExpensiveCrystal[(int)(numOfExpensiveCrystalGroups * 3 * 2)]; // 3 crystals per group, 2 groups one for each side
+        GenerateCrystals(false);
+        GenerateCrystals(true);
         StartCoroutine(StartAnimations());
 
     }
 
-     public Tuple<int, int> GenerateCoordinates(bool up)
+    public Tuple<int, int> GenerateCoordinates(bool up)
     {
         int x, z;
         if (up)
@@ -84,53 +84,71 @@ public class ResourceGenerator : MonoBehaviour
         return true;
     }
 
-    void GenerateCrystals2()
-    {
-        Tuple<int, int>[] crystal2Coordinates = new Tuple<int, int>[int.Parse(totalExpensiveCrystalCount.ToString())];
-        List<Tuple<int, int>> crystals2Cordinates = new List<Tuple<int, int>>();
-        bool up = true;
-        for (int i = 0; i < crystal2Coordinates.Length; i++)
-        {
 
+    void GenerateCrystals(bool isExpensive)
+    {
+        int numOfGroups = isExpensive ? int.Parse(numOfExpensiveCrystalGroups.ToString()) : numOfCheapCrystalGroups;
+        Tuple<int, int>[] groupCoordinates = new Tuple<int, int>[numOfGroups];
+        List<Tuple<int, int>> crystalsCoordinates = new List<Tuple<int, int>>();
+        bool up = true;
+
+        for (int i = 0; i < groupCoordinates.Length; i++)
+        {
             Tuple<int, int> coordinates = GenerateCoordinates(up);
             int x = coordinates.Item1;
             int z = coordinates.Item2;
             up = !up;
 
-            crystal2Coordinates[i] = new Tuple<int, int>(x, z);
+            groupCoordinates[i] = new Tuple<int, int>(x, z);
             for (int j = 0; j < i; j++)
             {
-                if ((crystal2Coordinates[j].Item1 == x && crystal2Coordinates[j].Item2 == z) || (crystal2Coordinates[j].Item1 == z && crystal2Coordinates[j].Item2 == x))
+                if ((groupCoordinates[j].Item1 == x && groupCoordinates[j].Item2 == z) || (groupCoordinates[j].Item1 == z && groupCoordinates[j].Item2 == x))
                 {
                     i--;
                     break;
                 }
             }
-            crystals2Cordinates.AddRange(GenerateCrystal2Group(x, z, crystals2Cordinates));
+
+            crystalsCoordinates.AddRange(GenerateCrystalGroup(x, z, crystalsCoordinates, isExpensive));
         }
 
-        int generatedCrystals2 = 0;
-        for (int i = 0; i < crystals2Cordinates.Count; i++)
+        int generatedCrystals = 0;
+        for (int i = 0; i < crystalsCoordinates.Count; i++)
         {
-            int x = crystals2Cordinates[i].Item1;
-            int z = crystals2Cordinates[i].Item2;
+            int x = crystalsCoordinates[i].Item1;
+            int z = crystalsCoordinates[i].Item2;
             if (game.Board.Pillars[x, z].PillarState == PillarState.Empty && game.Board.Pillars[z, x].PillarState == PillarState.Empty)
             {
-                MakeCrystal2(x, z, generatedCrystals2);
-                generatedCrystals2++;
-                MakeCrystal2(z, x, generatedCrystals2);
-                generatedCrystals2++;
+                if (isExpensive)
+                {
+                    MakeCrystal2(x, z, generatedCrystals);
+                }
+                else
+                {
+                    MakeCrystal1(x, z, generatedCrystals);
+                }
+                generatedCrystals++;
+
+                if (isExpensive)
+                {
+                    MakeCrystal2(z, x, generatedCrystals);
+                }
+                else
+                {
+                    MakeCrystal1(z, x, generatedCrystals);
+                }
+                generatedCrystals++;
             }
         }
-
     }
 
-    
 
-    List<Tuple<int, int>> GenerateCrystal2Group(int x, int z, List<Tuple<int, int>> rocks)
+    List<Tuple<int, int>> GenerateCrystalGroup(int x, int z, List<Tuple<int, int>> existingCrystals, bool isExpensive)
     {
-        List<Tuple<int, int>> crystals2Coordinates = new List<Tuple<int, int>>();
-        for (int i = 0; i < 3; i++)
+        List<Tuple<int, int>> newCrystalsCoordinates = new List<Tuple<int, int>>();
+        int groupSize = isExpensive ? 3 : 3; // Adjust size if needed for expensive/non-expensive groups
+
+        for (int i = 0; i < groupSize; i++)
         {
             int xCoordinate = x;
             int zCoordinate = z;
@@ -155,7 +173,7 @@ public class ResourceGenerator : MonoBehaviour
                 }
             }
 
-            if(!CheckIfCoordinatesAreValid(xCoordinate, zCoordinate) || rocks.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || crystals2Coordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
+            if (!CheckIfCoordinatesAreValid(xCoordinate, zCoordinate) || existingCrystals.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || newCrystalsCoordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
             {
                 i--;
                 continue;
@@ -163,13 +181,18 @@ public class ResourceGenerator : MonoBehaviour
 
             if (game.Board.Pillars[xCoordinate, zCoordinate].PillarState == PillarState.Empty)
             {
-                crystals2Coordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
+                newCrystalsCoordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
             }
-
+            else
+            {
+                i--;
+            }
         }
 
-        return crystals2Coordinates;
+        return newCrystalsCoordinates;
     }
+
+    
 
 
     void MakeCrystal2(int x, int z, int crystal2Count)
@@ -191,98 +214,6 @@ public class ResourceGenerator : MonoBehaviour
 
     }
 
-    void GenerateCrystals1()
-    {
-        // make array of tuples cordinates
-        Tuple<int, int>[] crystal1groupCoordinates = new Tuple<int, int>[int.Parse(totalCheapCrystalCount.ToString())];
-        List<Tuple<int, int>> crystal1Cordinates = new List<Tuple<int, int>>();
-        bool up = true;
-        for(int i = 0; i < crystal1groupCoordinates.Length; i++)
-        {
-
-            Tuple<int, int> coordinates = GenerateCoordinates(up);
-            int x = coordinates.Item1;
-            int z = coordinates.Item2;
-            up = !up;
-
-            crystal1groupCoordinates[i] = new Tuple<int, int>(x, z);
-            for (int j = 0; j < i; j++)
-            {
-                if ((crystal1groupCoordinates[j].Item1 == x && crystal1groupCoordinates[j].Item2 == z) || (crystal1groupCoordinates[j].Item1 == z && crystal1groupCoordinates[j].Item2 == x))
-                {
-                    i--;
-                    break;
-                }
-            }
-
-            crystal1Cordinates.AddRange(GenerateCrystal1Groups(x, z, crystal1Cordinates));
-
-        }
-
-        // for all cordinates
-        int generatedCrystals1 = 0;
-        for (int i = 0; i < crystal1Cordinates.Count; i++)
-        {
-            int x = crystal1Cordinates[i].Item1;
-            int z = crystal1Cordinates[i].Item2;
-            if (game.Board.Pillars[x, z].PillarState == PillarState.Empty && game.Board.Pillars[z, x].PillarState == PillarState.Empty)
-            {
-                MakeCrystal1(x, z, generatedCrystals1);
-                generatedCrystals1++;
-                MakeCrystal1(z, x, generatedCrystals1);
-                generatedCrystals1++;
-            }
-        }
-
-        
-
-    }
-
-    List<Tuple<int, int>> GenerateCrystal1Groups(int x, int z, List<Tuple<int, int>> crystals1)
-    {
-        List<Tuple<int, int>> crystals1Coordinates = new List<Tuple<int, int>>();
-        // make 2 or 3 trees but stay in bounds and do not overlap with other trees
-        for (int i = 0; i < 3; i++)
-        {
-            // generate random x and z up down left or right
-            int xCoordinate = x;
-            int zCoordinate = z;
-            
-            if(i != 0)
-            {
-                int direction = Random.Range(0, 4);
-                switch (direction)
-                {
-                    case 0:
-                        xCoordinate++;
-                        break;
-                    case 1:
-                        xCoordinate--;
-                        break;
-                    case 2:
-                        zCoordinate++;
-                        break;
-                    case 3:
-                        zCoordinate--;
-                        break;
-                }
-            }
-
-
-            if (!CheckIfCoordinatesAreValid(xCoordinate, zCoordinate) || crystals1.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)) || crystals1Coordinates.Contains(new Tuple<int, int>(xCoordinate, zCoordinate)))
-            {
-                i--;
-                continue;
-            }
-
-            if (game.Board.Pillars[xCoordinate, zCoordinate].PillarState == PillarState.Empty)
-            {
-                crystals1Coordinates.Add(new Tuple<int, int>(xCoordinate, zCoordinate));
-            }
-        }
-
-        return crystals1Coordinates;
-    }
 
     void MakeCrystal1(int x, int z, int crystal1Count)
     {

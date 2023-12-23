@@ -27,8 +27,8 @@ public class Game : MonoBehaviour
     [HideInInspector] public int columns;
     public float spacing = 1.3f;
     public float animationDelay = 0.1f;
-    [HideInInspector] public int totalCheapCrystalCount;
-    [HideInInspector] public int totalExpensiveCrystalCount;
+    [HideInInspector] public int numOfCheapCrystalGroups;
+    [HideInInspector] public int numOfExpensiveCrystalGroups;
     [SerializeField] public Text player1Name;
     [SerializeField] public Text player2Name;
     [SerializeField] public Text player1Coins;
@@ -45,8 +45,8 @@ public class Game : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            totalCheapCrystalCount = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals"));
-            totalExpensiveCrystalCount = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals"));
+            numOfCheapCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals"));
+            numOfExpensiveCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals"));
             rows = int.Parse(PlayerPrefs.GetString("board_size"));
             columns = int.Parse(PlayerPrefs.GetString("board_size"));
             // create a new board but board is mono behaviour

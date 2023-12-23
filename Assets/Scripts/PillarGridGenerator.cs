@@ -43,8 +43,8 @@ public class PillarGridGenerator : MonoBehaviour
         columns = game.columns;
         spacing = game.spacing;
         animationDelay = game.animationDelay;
-        totalCheapCrystalCount = game.totalCheapCrystalCount;
-        totalExpensiveCrystalCount = game.totalExpensiveCrystalCount;
+        totalCheapCrystalCount = game.numOfCheapCrystalGroups;
+        totalExpensiveCrystalCount = game.numOfExpensiveCrystalGroups;
         totalCheapCrystalCount = rows / 5;
         totalExpensiveCrystalCount = columns / 5;
         baseAreaLength = rows / 3;
