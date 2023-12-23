@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -22,12 +23,12 @@ public class Game : MonoBehaviour
 
     public Board Board { get; set; }
 
-    public int rows = 12;
-    public int columns = 12;
+    [HideInInspector] public int rows;
+    [HideInInspector] public int columns;
     public float spacing = 1.3f;
     public float animationDelay = 0.1f;
-    public float totalForestCount = 3;
-    public float totalRockCount = 3;
+    [HideInInspector] public int numOfCheapCrystalGroups;
+    [HideInInspector] public int numOfExpensiveCrystalGroups;
     [SerializeField] public Text player1Name;
     [SerializeField] public Text player2Name;
     [SerializeField] public Text player1Coins;
@@ -44,6 +45,10 @@ public class Game : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            numOfCheapCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals"));
+            numOfExpensiveCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals"));
+            rows = int.Parse(PlayerPrefs.GetString("board_size"));
+            columns = int.Parse(PlayerPrefs.GetString("board_size"));
             // create a new board but board is mono behaviour
             Board = new GameObject("Board").AddComponent<Board>();
             CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();

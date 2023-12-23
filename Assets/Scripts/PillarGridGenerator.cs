@@ -24,13 +24,13 @@ public class PillarGridGenerator : MonoBehaviour
 
     public Transform cameraTransform;
 
-    public int rows;
-    public int columns;
-    public float spacing;
-    public float animationDelay;
-    public float totalForestCount;
-    public float totalRockCount;
-    public int baseAreaLength;
+    [HideInInspector] public int rows;
+    [HideInInspector] public int columns;
+    [HideInInspector] public float spacing;
+    [HideInInspector] public float animationDelay;
+    [HideInInspector] public int totalCheapCrystalCount;
+    [HideInInspector] public int totalExpensiveCrystalCount;
+    [HideInInspector] public int baseAreaLength;
 
 
     public static System.Random random = new System.Random();
@@ -43,8 +43,10 @@ public class PillarGridGenerator : MonoBehaviour
         columns = game.columns;
         spacing = game.spacing;
         animationDelay = game.animationDelay;
-        totalForestCount = rows / 5;
-        totalRockCount = columns / 5;
+        totalCheapCrystalCount = game.numOfCheapCrystalGroups;
+        totalExpensiveCrystalCount = game.numOfExpensiveCrystalGroups;
+        totalCheapCrystalCount = rows / 5;
+        totalExpensiveCrystalCount = columns / 5;
         baseAreaLength = rows / 3;
         game.Board.Pillars = new Pillar[rows, columns];
         game.Board.Bases = new Base[2];

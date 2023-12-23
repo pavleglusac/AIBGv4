@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0055674333, g: 0.0053765634, b: 0.005455244, a: 1}
+  m_IndirectSpecularColor: {r: 0.007127542, g: 0.0068377424, b: 0.0070086825, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -521,12 +521,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dc1ce0face6d14b97e2544df627454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 12
-  columns: 12
+  rows: 10
+  columns: 10
   spacing: 1
   animationDelay: 0.1
-  totalForestCount: 2
-  totalRockCount: 2
+  totalCheapCrystalCount: 0
+  totalExpensiveCrystalCount: 0
   player1Name: {fileID: 1849115510}
   player2Name: {fileID: 1176798022}
   player1Coins: {fileID: 248821594}
@@ -587,8 +587,8 @@ MonoBehaviour:
   columns: 0
   spacing: 0
   animationDelay: 0
-  totalCrystal1Count: 0
-  totalCrystal2Count: 0
+  totalCheapCrystalCount: 0
+  totalExpensiveCrystalCount: 0
   baseAreaLength: 0
 --- !u!4 &437951405
 Transform:
@@ -1871,8 +1871,8 @@ MonoBehaviour:
   columns: 10
   spacing: 1.1
   animationDelay: 0.1
-  totalForestCount: 3
-  totalRockCount: 3
+  totalCheapCrystalCount: 0
+  totalExpensiveCrystalCount: 0
   baseAreaLength: 0
 --- !u!4 &1108012866
 Transform:
