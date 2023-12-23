@@ -27,8 +27,10 @@ public class Game : MonoBehaviour
     [HideInInspector] public int columns;
     public float spacing = 1.3f;
     public float animationDelay = 0.1f;
-    [HideInInspector] public int numOfCheapCrystalGroups;
-    [HideInInspector] public int numOfExpensiveCrystalGroups;
+    [HideInInspector] public int numberOfCheapCrystalGroups;
+    [HideInInspector] public int numberOfExpensiveCrystalGroups;
+    [HideInInspector] public int numberOfCheapCrystalsInGroup;
+    [HideInInspector] public int numberOfExpensiveCrystalsInGroup;
     [SerializeField] public Text player1Name;
     [SerializeField] public Text player2Name;
     [SerializeField] public Text player1Coins;
@@ -45,9 +47,10 @@ public class Game : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            numOfCheapCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals"));
-            numOfExpensiveCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals"));
-
+            numberOfCheapCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystal_groups"));
+            numberOfExpensiveCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystal_groups"));
+            numberOfCheapCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals_in_group"));
+            numberOfExpensiveCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals_in_group"));
             rows = int.Parse(PlayerPrefs.GetString("board_size"));
             columns = int.Parse(PlayerPrefs.GetString("board_size"));
 
