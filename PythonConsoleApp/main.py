@@ -6,7 +6,6 @@ def main():
     Constants.load_from_env()
     game = Game()
     game.play_game()
-    pass
 
 
 if __name__ == '__main__':

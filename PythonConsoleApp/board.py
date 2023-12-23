@@ -14,6 +14,7 @@ class Board:
     def __init__(self):
         self.board_cells = [[BoardCell(Constants.empty_pillar_symbol) for _ in range(Constants.board_size)] for _ in
                             range(Constants.board_size)]
+        self.base_area_length = Constants.board_size // 3
         self.place_players()
         self.setup_ores()  ## TODO sa bojanom uradi
 
@@ -22,20 +23,116 @@ class Board:
         self.board_cells[Constants.board_size - 1][0].print_symbol = Constants.player2_symbol
 
     def setup_ores(self):
-        self.place_ores(Constants.number_of_cheap_crystals, Constants.cheep_crystal_symbol)
-        self.place_ores(Constants.number_of_expensive_crystals, Constants.expensive_crystal_symbol)
+        self.place_crystals(Constants.cheep_crystal_symbol)
+        self.place_crystals(Constants.expensive_crystal_symbol)
 
-    def place_ores(self, number_of_ores, ore_symbol):
-        for i in range(number_of_ores):
-            x1, y1 = random.randint(0, Constants.board_size - 1), random.randint(0, Constants.board_size - 1)
-            while (
-                    self.board_cells[x1][y1].print_symbol != Constants.empty_pillar_symbol
-                    or (x1 == 0 and y1 == Constants.board_size - 1)
-                    or (x1 == Constants.board_size - 1 and y1 == 0)
+    def place_crystals(self, ore_symbol):
+        is_expensive = ore_symbol == Constants.expensive_crystal_symbol
+        number_of_groups = Constants.number_of_expensive_crystal_groups \
+            if is_expensive else Constants.number_of_cheap_crystal_groups
+        number_of_crystals_in_group = Constants.number_of_expensive_crystals_in_group \
+            if is_expensive else Constants.number_of_cheap_crystals_in_group
+        group_coordinates = []
+        crystals_coordinates = []
+        up = True
+        for _ in range(number_of_groups):
+            can_not_be_center = True
+            coordinates = None
+            while can_not_be_center:
+                coordinates = self.generate_coordinates(up)
+                can_not_be_center = self.check_center_coordinates(coordinates, number_of_crystals_in_group)
+
+            x, y = coordinates
+            up = not up
+
+            group_coordinates.append((x, y))
+
+            for existing_group in group_coordinates[:-1]:
+                if (x, y) == existing_group or (y, x) == existing_group:
+                    group_coordinates.pop()
+                    break
+
+            generated_crystal_group = self.generate_crystal_group(x, y, crystals_coordinates, is_expensive)
+            crystals_coordinates.extend(generated_crystal_group)
+            for x, y in generated_crystal_group:
+                if (
+                        self.check_if_coordinates_are_valid(x, y)
+                        and self.board_cells[x][y].print_symbol == Constants.empty_pillar_symbol
+                        and self.board_cells[y][x].print_symbol == Constants.empty_pillar_symbol
+                ):
+                    self.board_cells[x][y].print_symbol = ore_symbol
+                    self.board_cells[y][x].print_symbol = ore_symbol
+
+    def generate_crystal_group(self, x, y, existing_crystals, is_expensive):
+        new_crystals_coordinates = []
+
+        number_of_crystals_in_group = Constants.number_of_expensive_crystals_in_group \
+            if is_expensive else Constants.number_of_cheap_crystals_in_group
+        i = -1
+        while i < number_of_crystals_in_group - 1:
+
+            i += 1
+            x_coordinate, y_coordinate = x, y
+
+            if i != 0:
+                direction = random.randint(0, 3)
+                if direction == 0:
+                    x_coordinate += 1
+                elif direction == 1:
+                    x_coordinate -= 1
+                elif direction == 2:
+                    y_coordinate += 1
+                elif direction == 3:
+                    y_coordinate -= 1
+
+            if (
+                    not self.check_if_coordinates_are_valid(x_coordinate, y_coordinate)
+                    or (x_coordinate, y_coordinate) in existing_crystals
+                    or (x_coordinate, y_coordinate) in new_crystals_coordinates
             ):
-                x1, y1 = random.randint(0, Constants.board_size - 1), random.randint(0, Constants.board_size - 1)
-            self.board_cells[x1][y1] = BoardCell(ore_symbol)
-            self.board_cells[y1][x1] = BoardCell(ore_symbol)
+                i -= 1
+                continue
+            if self.board_cells[x_coordinate][y_coordinate].print_symbol == Constants.empty_pillar_symbol:
+                new_crystals_coordinates.append((x_coordinate, y_coordinate))
+            else:
+                i -= 1
+        print("new_crystals_coordinates:", new_crystals_coordinates)
+        return new_crystals_coordinates
+
+    def check_center_coordinates(self, coordinates, group_size) -> bool:
+        print(coordinates)
+        if self.board_cells[coordinates[0]][coordinates[1]].print_symbol != Constants.empty_pillar_symbol:
+            return True
+
+        count = 1
+        for direction in [(0, 1), (0, -1), (-1, 0), (1, 0)]:
+            new_x = coordinates[0] + direction[0]
+            new_y = coordinates[1] + direction[1]
+            if not self.check_if_coordinates_are_valid(new_x, new_y):
+                continue
+            if self.board_cells[new_x][new_y].print_symbol == Constants.empty_pillar_symbol:
+                count += 1
+        return not count >= group_size
+
+    def generate_coordinates(self, up):
+        x, y = 0, 0
+        if up:
+            while not (x > y):
+                x = random.randint(1, Constants.board_size - self.base_area_length - 2)
+                y = random.randint(1, self.base_area_length)
+        else:
+            while not (x > y):
+                x = random.randint(Constants.board_size - self.base_area_length, Constants.board_size - 1)
+                y = random.randint(self.base_area_length + 1, Constants.board_size - 2)
+
+        return x, y
+
+    def check_if_coordinates_are_valid(self, x, y):
+        if Constants.board_size - self.base_area_length <= x <= Constants.board_size - 1 and 0 <= y <= self.base_area_length - 1:
+            return False
+        if x < 0 or x >= Constants.board_size or y < 0 or y >= Constants.board_size or x == y:
+            return False
+        return True
 
     def update_board(self, player1, player2):
         self.board_cells[0][Constants.board_size - 1].print_symbol = Constants.player1_castle_symbol

@@ -47,8 +47,10 @@ public class Game : MonoBehaviour
             Instance = this;
             numOfCheapCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals"));
             numOfExpensiveCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals"));
+
             rows = int.Parse(PlayerPrefs.GetString("board_size"));
             columns = int.Parse(PlayerPrefs.GetString("board_size"));
+
             // create a new board but board is mono behaviour
             Board = new GameObject("Board").AddComponent<Board>();
             CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();

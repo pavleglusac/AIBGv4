@@ -4,6 +4,10 @@ from dotenv import load_dotenv
 
 
 class Constants:
+    number_of_cheap_crystal_groups = 0
+    number_of_expensive_crystal_groups = 0
+    number_of_cheap_crystals_in_group = 0
+    number_of_expensive_crystals_in_group = 0
     board_size = 0
     resting_energy = 0
     time_to_do_action_in_turn_duration = 0
@@ -38,8 +42,6 @@ class Constants:
     cheep_crystal_symbol = ""
     expensive_crystal_symbol = ""
     refinement_facility_symbol = ""
-    number_of_cheap_crystals = 0
-    number_of_expensive_crystals = 0
     number_of_frozen_turns = 0
     freeze_cost = 0
     number_of_daze_turns = 0
@@ -55,8 +57,12 @@ class Constants:
 
     @staticmethod
     def load_from_env():
-        load_dotenv(dotenv_path='../env.txt')
+        load_dotenv(dotenv_path='../Assets/Resources/env.txt')
         Constants.resting_energy = int(os.getenv("resting_energy"))
+        Constants.number_of_cheap_crystal_groups = int(os.getenv("number_of_cheap_crystal_groups"))
+        Constants.number_of_expensive_crystal_groups = int(os.getenv("number_of_expensive_crystal_groups"))
+        Constants.number_of_cheap_crystals_in_group = int(os.getenv("number_of_cheap_crystals_in_group"))
+        Constants.number_of_expensive_crystals_in_group = int(os.getenv("number_of_expensive_crystals_in_group"))
         Constants.cheap_crystal_mine_hits = int(os.getenv("cheap_crystal_mine_hits"))
         Constants.expensive_crystal_mine_hits = int(os.getenv("expensive_crystal_mine_hits"))
         Constants.cheap_crystal_replenish_turns = int(os.getenv("cheap_crystal_replenish_turns"))
@@ -94,8 +100,6 @@ class Constants:
         Constants.cheep_crystal_symbol = os.getenv("cheep_crystal_symbol")
         Constants.expensive_crystal_symbol = os.getenv("expensive_crystal_symbol")
         Constants.refinement_facility_symbol = os.getenv("refinement_facility_symbol")
-        Constants.number_of_cheap_crystals = int(os.getenv("number_of_cheap_crystals"))
-        Constants.number_of_expensive_crystals = int(os.getenv("number_of_expensive_crystals"))
         Constants.number_of_frozen_turns = int(os.getenv("number_of_frozen_turns"))
         Constants.freeze_cost = int(os.getenv("freeze_cost"))
         Constants.number_of_daze_turns = int(os.getenv("number_of_daze_turns"))
