@@ -33,7 +33,6 @@ class Game:
         self.player1 = Player(Constants.player1_name, 0, Constants.board_size - 1)
         self.player2 = Player(Constants.player2_name, Constants.board_size - 1, 0)
         self.board = Board()
-        self.game_finished = False
         self.first_player_turn = True
         self.number_of_turns = 1
         self.input_history = []

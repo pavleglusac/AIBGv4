@@ -1,1 +1,1 @@
-py main.py
+cls & py .\main.py
