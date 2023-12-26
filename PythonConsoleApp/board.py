@@ -38,21 +38,33 @@ class Board:
         for _ in range(number_of_groups):
             can_not_be_center = True
             coordinates = None
+            try_number = 0
+            can_not_find = False
             while can_not_be_center:
+                try_number += 1
+                if try_number > 225:
+                    if number_of_crystals_in_group > 0:
+                        number_of_crystals_in_group -= 1
+                        try_number = 0
+                    else:
+
+                        can_not_find = True
+                        break
                 coordinates = self.generate_coordinates(up)
                 can_not_be_center = self.check_center_coordinates(coordinates, number_of_crystals_in_group)
 
+            if can_not_find:
+                break
             x, y = coordinates
             up = not up
-
             group_coordinates.append((x, y))
-
             for existing_group in group_coordinates[:-1]:
                 if (x, y) == existing_group or (y, x) == existing_group:
                     group_coordinates.pop()
                     break
 
-            generated_crystal_group = self.generate_crystal_group(x, y, crystals_coordinates, is_expensive)
+            generated_crystal_group = self.generate_crystal_group(x, y, crystals_coordinates, is_expensive,
+                                                                  number_of_crystals_in_group)
             crystals_coordinates.extend(generated_crystal_group)
             for x, y in generated_crystal_group:
                 if (
@@ -63,11 +75,9 @@ class Board:
                     self.board_cells[x][y].print_symbol = ore_symbol
                     self.board_cells[y][x].print_symbol = ore_symbol
 
-    def generate_crystal_group(self, x, y, existing_crystals, is_expensive):
+    def generate_crystal_group(self, x, y, existing_crystals, is_expensive, number_of_crystals_in_group):
         new_crystals_coordinates = []
 
-        number_of_crystals_in_group = Constants.number_of_expensive_crystals_in_group \
-            if is_expensive else Constants.number_of_cheap_crystals_in_group
         i = -1
         while i < number_of_crystals_in_group - 1:
 
@@ -96,11 +106,11 @@ class Board:
                 new_crystals_coordinates.append((x_coordinate, y_coordinate))
             else:
                 i -= 1
-        print("new_crystals_coordinates:", new_crystals_coordinates)
+        ##print("new_crystals_coordinates:", new_crystals_coordinates)
         return new_crystals_coordinates
 
     def check_center_coordinates(self, coordinates, group_size) -> bool:
-        print(coordinates)
+        # print(coordinates)
         if self.board_cells[coordinates[0]][coordinates[1]].print_symbol != Constants.empty_pillar_symbol:
             return True
 
@@ -112,9 +122,10 @@ class Board:
                 continue
             if self.board_cells[new_x][new_y].print_symbol == Constants.empty_pillar_symbol:
                 count += 1
-        return not count >= group_size
+        return count < group_size
 
     def generate_coordinates(self, up):
+        ## TODO dobavljaj samo random SLOBODNE pozicije
         x, y = 0, 0
         if up:
             while not (x > y):
