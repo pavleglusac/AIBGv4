@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.IO;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -28,6 +29,9 @@ public class ResourceGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        using StreamWriter writer = new("log.txt", true);
+        writer.WriteLine("POCETAK GENERISANJA RESURSA!");
+        // clear log file
         game = Game.Instance;
         rows = game.rows;
         columns = game.columns;
@@ -37,18 +41,26 @@ public class ResourceGenerator : MonoBehaviour
         numberOfExpensiveCrystalGroups = game.numberOfExpensiveCrystalGroups;
         numberOfCheapCrystalsInGroup = game.numberOfCheapCrystalsInGroup;
         numberOfExpensiveCrystalsInGroup = game.numberOfExpensiveCrystalsInGroup;
-        // totalCheapCrystalCount = rows / 5;
-        // totalExpensiveCrystalCount = columns / 5;
-        baseAreaLength = rows / 3 + 1;
-        // print all these 5 variables
-        Debug.Log("rows: " + rows + " columns: " + columns + " spacing: " + spacing + " animationDelay: " + animationDelay + " totalCrystal1Count: " + numberOfCheapCrystalGroups + " totalCrystal2Count: " + numberOfExpensiveCrystalGroups + " baseAreaLength: " + baseAreaLength);
+        baseAreaLength = rows / 3;
+
+        Debug.Log("numberOfCheapCrystalGroups: " + numberOfCheapCrystalGroups + " numberOfExpensiveCrystalGroups: " + numberOfExpensiveCrystalGroups + " numberOfCheapCrystalsInGroup: " + numberOfCheapCrystalsInGroup + " numberOfExpensiveCrystalsInGroup: " + numberOfExpensiveCrystalsInGroup);
+
         game.Board.CheapCrystals = new CheapCrystal[(numberOfCheapCrystalGroups * numberOfCheapCrystalsInGroup * 2)]; // 3 crystals per group, 2 groups one for each side
         game.Board.ExpensiveCrystals = new ExpensiveCrystal[(numberOfExpensiveCrystalGroups * numberOfExpensiveCrystalsInGroup * 2)]; // 3 crystals per group, 2 groups one for each side
-        GenerateCrystals(false);
-        GenerateCrystals(true);
-        StartCoroutine(StartAnimations());
+        writer.WriteLine("KRAJ INICIJALIZACIJE!");
 
+        GenerateCrystals(false, writer);
+        writer.WriteLine("KRAJ GENERISANJA JEFTINIH RESURSA!");
+        GenerateCrystals(true, writer);
+        writer.WriteLine("KRAJ GENERISANJA SKUPLJIH RESURSA!");
+        
+        writer.WriteLine("KRAJ GENERISANJA RESURSA!");
+        StartCoroutine(StartAnimations());
+        writer.WriteLine("KRAJ ANIMACIJA!");
+        
+        
     }
+
 
     public Tuple<int, int> GenerateCoordinates(bool up)
     {
@@ -59,7 +71,6 @@ public class ResourceGenerator : MonoBehaviour
             {
                 x = random.Next(1, rows - baseAreaLength - 1);
                 z = random.Next(1, baseAreaLength + 1); 
-                //Debug.Log("x: " + x + " z: " + z);
             } while (!(x > z)); 
         }
         else
@@ -89,7 +100,6 @@ public class ResourceGenerator : MonoBehaviour
 
     bool CheckCenterCoordinates(int x, int z, int groupSize)
     {
-        Debug.Log("x: " + x + " z: " + z);
         if(game.Board.Pillars[x, z].PillarState != PillarState.Empty)
         {
             return true;
@@ -110,12 +120,13 @@ public class ResourceGenerator : MonoBehaviour
                 count++;
             }
         }
-        return !(count >= groupSize);
+        return count < groupSize;
     }
 
 
-    void GenerateCrystals(bool isExpensive)
+    void GenerateCrystals(bool isExpensive, StreamWriter writer = null)
     {
+        writer.WriteLine("isExpensive: " + isExpensive.ToString());
         int generatedCrystals = 0;
 
         int numOfGroups = isExpensive ? numberOfExpensiveCrystalGroups : numberOfCheapCrystalGroups;
@@ -126,13 +137,36 @@ public class ResourceGenerator : MonoBehaviour
         bool up = true;
         for (int i = 0; i < groupCoordinates.Length; i++)
         {
+            numberOfCrystalsInGroup = isExpensive ? numberOfExpensiveCrystalsInGroup : numberOfCheapCrystalsInGroup;
+            writer.WriteLine("group number: " + i.ToString() + " up: " + up.ToString() + " length: " + groupCoordinates.Length.ToString());
             bool canNotBeCenter = true;
             Tuple<int, int> coordinates = new(0, 0);
-            while(canNotBeCenter)
+            int tryNumber = 0;
+            bool canNotFind = false;
+            while (canNotBeCenter)
             {
+                tryNumber++;
+                writer.WriteLine("tryNumber: " + tryNumber);
+                if (tryNumber > 225)
+                {
+                    if (numberOfCrystalsInGroup > 0)
+                    {
+                        numberOfCrystalsInGroup--;
+                        tryNumber = 0;
+                    }
+                    else
+                    {
+                        canNotFind = true;
+                        break;
+                    }
+                }
                 coordinates = GenerateCoordinates(up);
                 canNotBeCenter = CheckCenterCoordinates(coordinates.Item1, coordinates.Item2, numberOfCrystalsInGroup);
             }
+
+            if (canNotFind)
+                break;
+
             int x = coordinates.Item1;
             int z = coordinates.Item2;
             up = !up;
@@ -146,12 +180,14 @@ public class ResourceGenerator : MonoBehaviour
                     break;
                 }
             }
-
-            var groupCrystalsCoordinates = GenerateCrystalGroup(x, z, crystalsCoordinates, isExpensive);
+            writer.WriteLine("x: " + x.ToString() + " z: " + z.ToString());
+            var groupCrystalsCoordinates = GenerateCrystalGroup(x, z, crystalsCoordinates, isExpensive, numberOfCrystalsInGroup);
+            writer.WriteLine("groupCrystalsCoordinates: " + groupCrystalsCoordinates.Count.ToString());
             crystalsCoordinates.AddRange(groupCrystalsCoordinates);
-        
+
             for (int j = 0; j < groupCrystalsCoordinates.Count; j++)
             {
+                writer.WriteLine("j: " + j.ToString());
                 int crystal_x = groupCrystalsCoordinates[j].Item1;
                 int crystal_z = groupCrystalsCoordinates[j].Item2;
                 if (isExpensive)
@@ -174,20 +210,14 @@ public class ResourceGenerator : MonoBehaviour
                 }
                 generatedCrystals++;
             }
-        
         }
-
-        
-
-        
     }
 
 
-    List<Tuple<int, int>> GenerateCrystalGroup(int x, int z, List<Tuple<int, int>> existingCrystals, bool isExpensive)
+    List<Tuple<int, int>> GenerateCrystalGroup(int x, int z, List<Tuple<int, int>> existingCrystals, bool isExpensive, int numberOfCrystalsInGroup)
     {
         List<Tuple<int, int>> newCrystalsCoordinates = new();
-        int numberOfCrystalsInGroup = isExpensive ? numberOfExpensiveCrystalsInGroup : numberOfCheapCrystalsInGroup;
-
+        List<int> directions = new() { 0, 1, 2, 3 };
         for (int i = 0; i < numberOfCrystalsInGroup; i++)
         {
             int xCoordinate = x;
@@ -195,7 +225,12 @@ public class ResourceGenerator : MonoBehaviour
 
             if (i != 0)
             {
-                int direction = Random.Range(0, 4);
+                int direction = directions[random.Next(directions.Count)];
+                directions.Remove(direction);
+                if(directions.Count == 0)
+                {
+                    return newCrystalsCoordinates;
+                }
                 switch (direction)
                 {
                     case 0:
@@ -229,11 +264,6 @@ public class ResourceGenerator : MonoBehaviour
                 i--;
             }
         }
-        foreach (var item in newCrystalsCoordinates)
-        {
-            Debug.Log("x: " + item.Item1 + " z: " + item.Item2);
-        }
-
         return newCrystalsCoordinates;
     }
 

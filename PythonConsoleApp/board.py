@@ -47,7 +47,6 @@ class Board:
                         number_of_crystals_in_group -= 1
                         try_number = 0
                     else:
-
                         can_not_find = True
                         break
                 coordinates = self.generate_coordinates(up)
