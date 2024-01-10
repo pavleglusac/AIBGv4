@@ -82,9 +82,11 @@ class Board:
 
             i += 1
             x_coordinate, y_coordinate = x, y
+            directions = [0, 1, 2, 3]
 
             if i != 0:
-                direction = random.randint(0, 3)
+                direction = random.choice(directions)
+                directions.remove(direction)
                 if direction == 0:
                     x_coordinate += 1
                 elif direction == 1:
@@ -105,7 +107,6 @@ class Board:
                 new_crystals_coordinates.append((x_coordinate, y_coordinate))
             else:
                 i -= 1
-        ##print("new_crystals_coordinates:", new_crystals_coordinates)
         return new_crystals_coordinates
 
     def check_center_coordinates(self, coordinates, group_size) -> bool:
