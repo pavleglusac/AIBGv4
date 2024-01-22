@@ -54,11 +54,18 @@ class Constants:
     expensive_crystal_mine_hits = 0
     cheap_crystal_replenish_turns = 0
     expensive_crystal_replenish_turns = 0
+    refinement_facility_hits = 0
+    refinement_facility_storage = 0
+    refinement_facility_refinement_turns = 0
 
     @staticmethod
     def load_from_env():
         load_dotenv(dotenv_path='../Assets/Resources/env.txt')
         Constants.resting_energy = int(os.getenv("resting_energy"))
+        Constants.refinement_facility_hits = int(os.getenv("refinement_facility_hits"))
+        Constants.refinement_facility_storage = int(os.getenv("refinement_facility_storage"))
+        Constants.refinement_facility_refinement_time_turns = int(
+            os.getenv("refinement_facility_refinement_turns"))
         Constants.number_of_cheap_crystal_groups = int(os.getenv("number_of_cheap_crystal_groups"))
         Constants.number_of_expensive_crystal_groups = int(os.getenv("number_of_expensive_crystal_groups"))
         Constants.number_of_cheap_crystals_in_group = int(os.getenv("number_of_cheap_crystals_in_group"))
