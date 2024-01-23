@@ -18,7 +18,6 @@ public class PillarGridGenerator : MonoBehaviour
 
     public GameObject player1;
     public GameObject player2;
-
     public GameObject basePlayer1;
     public GameObject basePlayer2;
 

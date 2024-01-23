@@ -87,17 +87,48 @@ public class Player : MonoBehaviour
         if (DazeTurns > 0)
         {
             DazeTurns -= 1;
+            if (!IsDazed())
+            {
+                HandleDaze3D(false);
+
+            }
         }
     }
 
     public void AddDazeTurns()
     {
+        if (!IsDazed())
+        {
+            HandleDaze3D(true);
+
+        }
         DazeTurns += int.Parse(PlayerPrefs.GetString("number_of_daze_turns"));
+    }
+
+    private void HandleDaze3D(bool active)
+    {
+
+        Transform particles = PlayerObject.transform.GetChild(2);
+        particles.gameObject.SetActive(active);
     }
 
     public void AddFrozenTurns()
     {
+        if (!IsFrozen())
+        {
+            HandleFreeze3D(true);
+
+        }
         FrozenTurns += int.Parse(PlayerPrefs.GetString("number_of_frozen_turns"));
+    }
+
+    private void HandleFreeze3D(bool active)
+    {
+        Transform firstChildTransform = PlayerObject.transform.GetChild(0);
+        var icecube = firstChildTransform.GetChild(1);
+        icecube.gameObject.SetActive(active);
+        Transform particles = PlayerObject.transform.GetChild(1);
+        particles.gameObject.SetActive(active);
     }
 
     public void DecreaseFrozenTurns()
@@ -105,6 +136,10 @@ public class Player : MonoBehaviour
         if (FrozenTurns > 0)
         {
             FrozenTurns -= 1;
+            if (!IsFrozen())
+            {
+                HandleFreeze3D(false);
+            }
         }
     }
     public void AddIncreasedBackpackStorageTurns()
