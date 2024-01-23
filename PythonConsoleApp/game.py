@@ -12,6 +12,7 @@ from player import Player
 
 
 def print_shop_info():
+    print("Refinement facility cost:", Constants.refinement_facility_cost)
     print("Daze cost (Duration:", Constants.number_of_daze_turns, "turns):", Constants.daze_cost)
     print("Freeze cost (Duration:", Constants.number_of_frozen_turns, "turns):", Constants.freeze_cost)
     print("Backpack increase cost (Duration:", Constants.number_of_bigger_backpack_turns,
@@ -137,6 +138,9 @@ class Game:
             elif re.match(r'^mine (-?\d+) (-?\d+)$', user_input):
                 self.handle_mine(user_input)
 
+            elif re.match(r'^build (-?\d+) (-?\d+)$', user_input):
+                self.handle_build(user_input)
+
             elif re.match(r'^rest', user_input):
                 self.handle_resting()
 
@@ -261,3 +265,33 @@ class Game:
                 else:
                     print("Error: Can not mine something that is not crystal!")
                     self.invalid_turn_handling()
+
+    def handle_build(self, user_input):
+        match = re.match(r'^build (-?\d+) (-?\d+)$', user_input)
+        if not match:
+            return
+        x, y = int(match.group(1)), int(match.group(2))
+        if (0 > x or x >= Constants.board_size) and (0 > y or y >= Constants.board_size):
+            print("Error: Build out of bounds!")
+            self.invalid_turn_handling()
+            return
+        if self.board.board_cells[x][y].print_symbol != Constants.empty_pillar_symbol:
+            print("Error: You can only build on the empty pillar!")
+            self.invalid_turn_handling()
+            return
+        if self.board.board_cells[x][y].print_symbol != Constants.empty_pillar_symbol:
+            print("Error: You can only build on the empty pillar!")
+            self.invalid_turn_handling()
+            return
+        current_player = self.get_current_player()
+        if not are_neighbours(current_player.x, current_player.y, x, y):
+            print("Error: You can only build on the cells near you!")
+            self.invalid_turn_handling()
+            return
+        if current_player.coins < Constants.refinement_facility_cost:
+            print("You do not have enough coins to build!")
+            self.invalid_turn_handling()
+            return
+        self.board.board_cells[x][y].print_symbol = Constants.refinement_facility_symbol
+        current_player.remove_coins(Constants.refinement_facility_cost)
+        print("Build successful!")

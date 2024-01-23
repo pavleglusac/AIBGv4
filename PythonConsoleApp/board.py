@@ -188,7 +188,7 @@ def print_with_color(symbol):
         Constants.empty_pillar_symbol: Fore.LIGHTBLACK_EX,
         Constants.cheep_crystal_symbol: Fore.YELLOW,
         Constants.expensive_crystal_symbol: Fore.LIGHTMAGENTA_EX,
-        Constants.refinement_facility_symbol: Fore.LIGHTBLACK_EX,
+        Constants.refinement_facility_symbol: Fore.GREEN,
     }
 
     return color_mapping.get(symbol, "") + symbol + Style.RESET_ALL
