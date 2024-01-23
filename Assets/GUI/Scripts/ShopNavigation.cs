@@ -23,6 +23,7 @@ public class ShopNavigation : MonoBehaviour
 
     public void BuyFreeze()
     {
+
         if (Game.Instance.GetCurrentPlayer().Coins < int.Parse(PlayerPrefs.GetString("freeze_cost")))
         {
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
@@ -30,9 +31,11 @@ public class ShopNavigation : MonoBehaviour
             CloseShopMenu();
             return;
         }
-        Game.Instance.GetAlternatePlayer().AddFrozenTurns();
-        Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("freeze_cost")));
-        Game.Instance.SwitchPlayersAndDecreaseStats();
+        GameObject commandObject = new GameObject("FreezeCommand");
+        FreezeCommand mineCommandInstance = commandObject.AddComponent<FreezeCommand>();
+        mineCommandInstance.Initialize(Game.Instance.GetCurrentPlayer(), Game.Instance.GetAlternatePlayer());
+        Game.Instance.CommandManager.AddCommand(mineCommandInstance);
+
         CloseShopMenu();
     }
 
