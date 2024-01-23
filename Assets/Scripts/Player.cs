@@ -58,4 +58,8 @@ public class Player : MonoBehaviour
     {
         Energy -= count;
     }
+    public void TakeCoins(int count)
+    {
+        Coins -= count;
+    }
 }
