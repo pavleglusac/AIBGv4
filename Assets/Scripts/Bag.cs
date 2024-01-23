@@ -25,23 +25,23 @@ public class Bag : MonoBehaviour
         Capacity += int.Parse(PlayerPrefs.GetString("increase_in_backpack_storage_capacity"));
     }
 
-    public void DecreaseBagCapacity()
+    public void ResetBagCapacity()
     {
-        Capacity -= int.Parse(PlayerPrefs.GetString("decrease_in_backpack_storage_capacity"));
+        Capacity = int.Parse(PlayerPrefs.GetString("backpack_default_storage_capacity"));
     }
 
     public void AddCheapCrystal()
     {
         Debug.Log(Capacity);
         CheapCrystalItem crystal1 = new CheapCrystalItem();
-        if(crystal1.GetWeight() <= GetRemainingCapacity())
+        if (crystal1.GetWeight() <= GetRemainingCapacity())
             CheapCrystals.Add(crystal1);
     }
 
     public void AddExpensiveCrystal()
     {
         ExpensiveCrystalItem crystal2 = new ExpensiveCrystalItem();
-        if(crystal2.GetWeight() <= GetRemainingCapacity())
+        if (crystal2.GetWeight() <= GetRemainingCapacity())
             ExpensiveCrystals.Add(crystal2);
     }
 
@@ -63,7 +63,7 @@ public class Bag : MonoBehaviour
     public bool IsEmpty()
     {
         return CheapCrystals.Count == 0 && ExpensiveCrystals.Count == 0;
-    } 
+    }
 
     public int GetWeight()
     {
@@ -93,6 +93,27 @@ public class Bag : MonoBehaviour
     public override string ToString()
     {
         return "Bag: " + GetWeight() + "/" + Capacity + " (" + CheapCrystals.Count + " CheapCrystals, " + ExpensiveCrystals.Count + " ExpensiveCrystals)";
+    }
+    public void RemoveLastInsertedCrystal()
+    {
+        if (ExpensiveCrystals.Count > 0 || CheapCrystals.Count > 0)
+        {
+            // Check which list has the latest added crystal
+            bool expensiveLast = ExpensiveCrystals.Count > 0 &&
+                                 (CheapCrystals.Count == 0 ||
+                                  ExpensiveCrystals[ExpensiveCrystals.Count - 1].TimeAdded > CheapCrystals[CheapCrystals.Count - 1].TimeAdded);
+
+            if (expensiveLast)
+            {
+                ExpensiveCrystals.RemoveAt(ExpensiveCrystals.Count - 1);
+            }
+            else
+            {
+                CheapCrystals.RemoveAt(CheapCrystals.Count - 1);
+            }
+
+        }
+
     }
 
 }

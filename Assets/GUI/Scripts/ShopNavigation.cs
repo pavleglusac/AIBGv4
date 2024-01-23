@@ -19,4 +19,54 @@ public class ShopNavigation : MonoBehaviour
         shopMenu.SetActive(false);
         Game.ResumeGame();
     }
+
+
+    public void BuyFreeze()
+    {
+        if (Game.Instance.GetCurrentPlayer().Coins < int.Parse(PlayerPrefs.GetString("freeze_cost")))
+        {
+            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+            CloseShopMenu();
+            return;
+        }
+        Game.Instance.GetAlternatePlayer().AddFrozenTurns();
+        Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("freeze_cost")));
+        Game.Instance.SwitchPlayersAndDecreaseStats();
+        CloseShopMenu();
+    }
+
+
+    public void BuyDaze()
+    {
+        if (Game.Instance.GetCurrentPlayer().Coins < int.Parse(PlayerPrefs.GetString("daze_cost")))
+        {
+            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+            CloseShopMenu();
+            return;
+        }
+        Game.Instance.GetAlternatePlayer().AddDazeTurns();
+        Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("daze_cost")));
+        Game.Instance.SwitchPlayersAndDecreaseStats();
+        CloseShopMenu();
+    }
+
+
+    public void BuyIncreasedBackpackStorage()
+    {
+        if (Game.Instance.GetCurrentPlayer().Coins < int.Parse(PlayerPrefs.GetString("bigger_backpack_cost")))
+        {
+            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+            CloseShopMenu();
+            return;
+        }
+        Game.Instance.GetCurrentPlayer().AddIncreasedBackpackStorageTurns();
+        Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("bigger_backpack_cost")));
+        Game.Instance.SwitchPlayersAndDecreaseStats();
+        CloseShopMenu();
+    }
+
+
 }

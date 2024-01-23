@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CheapCrystal : MonoBehaviour
 {
-    public GameObject Crystal1ParentObject {get; set;}
-    public GameObject Crystal1Object {get; set; }
+    public GameObject Crystal1ParentObject { get; set; }
+    public GameObject Crystal1Object { get; set; }
     public Pillar Position { get; set; }
-    public int X {get; set;}
-    public int Z {get; set;}
+    public int X { get; set; }
+    public int Z { get; set; }
     // Start is called before the first frame update
 
     public int MaxMineHits { get; set; }
@@ -26,42 +26,42 @@ public class CheapCrystal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Called when the player is clicked
     void OnMouseDown()
     {
 
-        if(RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty == -1)
+        if (RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty == -1)
         {
             Debug.Log("Crystal is empty");
             TurnInWhichCrystalBecameEmpty = Game.Instance.TurnCount;
-            
-        }
-        
 
-        if((Game.Instance.TurnCount > TurnInWhichCrystalBecameEmpty + ReplenishTurns) && RemainingMineHits == 0)
+        }
+
+
+        if ((Game.Instance.TurnCount > TurnInWhichCrystalBecameEmpty + ReplenishTurns) && RemainingMineHits == 0)
         {
             Debug.Log("Crystal is replenished");
             RemainingMineHits = MaxMineHits;
             TurnInWhichCrystalBecameEmpty = -1;
         }
 
-        if(RemainingMineHits == 0)
+        if (RemainingMineHits == 0)
         {
             GameObject commandObject = new GameObject("NopCommandObject");
             NopCommand nopCommandInstance = commandObject.AddComponent<NopCommand>();
             nopCommandInstance.Initialize(Game.Instance.GetCurrentPlayer());
             Game.Instance.CommandManager.AddCommand(nopCommandInstance);
 
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            Game.Instance.SwitchPlayersAndDecreaseStats();
 
             Game.Instance.TurnCount++;
-            Game.Instance.UpdateAllPlayerStats();
+
             return;
         }
-        
+
         RemainingMineHits--;
 
         Debug.Log("Crystal is mined, remaining hits: " + RemainingMineHits);
@@ -97,5 +97,5 @@ public class CheapCrystal : MonoBehaviour
         Z = Position.Z;
     }
 
-    
+
 }

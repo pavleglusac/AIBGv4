@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     public int Energy { get; set; }
     public string Name { get; set; }
 
+    public int DazeTurns { get; set; } = 0;
+    public int FrozenTurns { get; set; } = 0;
+    public int IncreasedBackpackTurns { get; set; } = 0;
+
     public void SetupPlayer(string name)
     {
         XP = int.Parse(PlayerPrefs.GetString("start_xp"));
@@ -58,8 +62,71 @@ public class Player : MonoBehaviour
     {
         Energy -= count;
     }
+
+    public void InvalidMoveTakeEnergy()
+    {
+        Energy -= Energy - int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
+    }
+
     public void TakeCoins(int count)
     {
         Coins -= count;
     }
+
+    public bool IsFrozen()
+    {
+        return FrozenTurns > 0;
+    }
+    public bool IsDazed()
+    {
+        return DazeTurns > 0;
+    }
+
+    public void DecreaseDazeTurns()
+    {
+        if (DazeTurns > 0)
+        {
+            DazeTurns -= 1;
+        }
+    }
+
+    public void AddDazeTurns()
+    {
+        DazeTurns += int.Parse(PlayerPrefs.GetString("number_of_daze_turns"));
+    }
+
+    public void AddFrozenTurns()
+    {
+        FrozenTurns += int.Parse(PlayerPrefs.GetString("number_of_frozen_turns"));
+    }
+
+    public void DecreaseFrozenTurns()
+    {
+        if (FrozenTurns > 0)
+        {
+            FrozenTurns -= 1;
+        }
+    }
+    public void AddIncreasedBackpackStorageTurns()
+    {
+        IncreasedBackpackTurns += int.Parse(PlayerPrefs.GetString("number_of_bigger_backpack_turns"));
+        Bag.IncreaseBagCapacity();
+    }
+    public void DecreaseIncreasedBackpackStorageTurns()
+    {
+        if (IncreasedBackpackTurns > 0)
+        {
+            IncreasedBackpackTurns -= 1;
+        }
+        else
+        {
+            Bag.ResetBagCapacity();
+            while (Bag.GetWeight() > int.Parse(PlayerPrefs.GetString("backpack_default_storage_capacity")))
+            {
+                Bag.RemoveLastInsertedCrystal();
+            }
+        }
+    }
+
+
 }

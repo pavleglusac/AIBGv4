@@ -12,9 +12,9 @@ public static class Actions
         Game.Instance.CommandManager.AddCommand(mineCommandInstance);
 
         // swap player turn
-        Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+        Game.Instance.SwitchPlayersAndDecreaseStats();
 
-        if(pillar.PillarState == PillarState.CheapCrystal)
+        if (pillar.PillarState == PillarState.CheapCrystal)
         {
             player.TakeEnergy(int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss")));
         }
@@ -49,7 +49,7 @@ public static class Actions
         player.Position.PillarState = player.Position.LastState;
         pillar.LastState = pillar.PillarState;
         pillar.PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
-        Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+        Game.Instance.SwitchPlayersAndDecreaseStats();
         player.SetPosition(pillar);
         player.TakeEnergy(count * (player.Bag.GetWeight() + 1));
     }

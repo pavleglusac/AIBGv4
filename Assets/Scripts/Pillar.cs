@@ -21,20 +21,20 @@ public class Pillar : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && PillarState == PillarState.Empty)
         {
-            Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+            Player player = Game.Instance.GetCurrentPlayer();
 
             if (!CanAct(player))
             {
                 int penalty = int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
                 player.TakeEnergy(penalty);
-                Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+                Game.Instance.SwitchPlayersAndDecreaseStats();
                 return;
             }
             MakeHouse();
             int price = int.Parse(PlayerPrefs.GetString("refinement_facility_cost"));
             player.TakeCoins(price);
             Debug.Log(player.Coins);
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            Game.Instance.SwitchPlayersAndDecreaseStats();
 
         }
     }
@@ -49,7 +49,7 @@ public class Pillar : MonoBehaviour
 
     void OnMouseEnter()
     {
-        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+        Player player = Game.Instance.GetCurrentPlayer();
 
         if (!(CanStep() || CanAct(player)))
         {
@@ -93,12 +93,12 @@ public class Pillar : MonoBehaviour
         if (Game.IsPaused)
             return;
 
-        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+        Player player = Game.Instance.GetCurrentPlayer();
 
         if (path == null || path.Count == 0)
         {
             player.TakeEnergy(penalty);
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
         }
 
@@ -110,18 +110,19 @@ public class Pillar : MonoBehaviour
         {
 
             // TODO add logic for non-empty pillars
-            if(PillarState == PillarState.CheapCrystal || PillarState == PillarState.ExpensiveCrystal)
+            if (PillarState == PillarState.CheapCrystal || PillarState == PillarState.ExpensiveCrystal)
             {
                 Actions.Mine(this, player);
             }
-            
+
         }
-        else {
+        else
+        {
             player.TakeEnergy(penalty);
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            Game.Instance.SwitchPlayersAndDecreaseStats();
         }
         Game.Instance.TurnCount++;
-        Game.Instance.UpdateAllPlayerStats();
+
     }
 
     void OnMouseExit()
@@ -174,7 +175,8 @@ public class Pillar : MonoBehaviour
         return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
     }
 
-    private void MakeHouse() {
+    private void MakeHouse()
+    {
 
         Game.Instance.Board.Pillars[X, Z].PillarState = PillarState.House;
         // TODO code bellow breaks (housePrefab is null)
@@ -191,6 +193,6 @@ public class Pillar : MonoBehaviour
         //    animator.enabled = false;
         //}
     }
-        
+
 
 }

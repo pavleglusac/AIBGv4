@@ -96,6 +96,7 @@ public class Game : MonoBehaviour
         IsPaused = false;
     }
 
+
     public Player GetCurrentPlayer()
     {
         if (FirstPlayerTurn)
@@ -105,4 +106,28 @@ public class Game : MonoBehaviour
         return Player2;
     }
 
+    public Player GetAlternatePlayer()
+    {
+        if (FirstPlayerTurn)
+        {
+            return Player2;
+        }
+        return Player1;
+    }
+
+    public void SwitchPlayersAndDecreaseStats()
+    {
+        if (!GetAlternatePlayer().IsFrozen())
+            FirstPlayerTurn = !FirstPlayerTurn;
+        DecreasePlayerStatuses();
+        UpdateAllPlayerStats();
+    }
+
+    public void DecreasePlayerStatuses()
+    {
+        GetAlternatePlayer().DecreaseDazeTurns();
+        GetAlternatePlayer().DecreaseFrozenTurns();
+        GetCurrentPlayer().DecreaseIncreasedBackpackStorageTurns();
+
+    }
 }

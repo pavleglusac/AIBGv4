@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ExpensiveCrystal : MonoBehaviour
 {
-    public GameObject Crystal2ParentObject {get; set;}
-    public GameObject Crystal2Object {get; set;}
+    public GameObject Crystal2ParentObject { get; set; }
+    public GameObject Crystal2Object { get; set; }
     public Pillar Position { get; set; }
-    public int X {get; set;}
-    public int Z {get; set;}
+    public int X { get; set; }
+    public int Z { get; set; }
 
     public int MaxMineHits { get; set; }
     public int RemainingMineHits { get; set; }
@@ -28,22 +28,22 @@ public class ExpensiveCrystal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Called when the player is clicked
     void OnMouseDown()
     {
         Debug.Log(Game.Instance.TurnCount + " " + TurnInWhichCrystalBecameEmpty + " " + RemainingMineHits + " " + ReplenishTurns);
-        if(RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty == -1)
+        if (RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty == -1)
         {
             Debug.Log("Crystal is empty");
             TurnInWhichCrystalBecameEmpty = Game.Instance.TurnCount;
-            
-        }
-        
 
-        if((Game.Instance.TurnCount > TurnInWhichCrystalBecameEmpty + ReplenishTurns) && RemainingMineHits == 0)
+        }
+
+
+        if ((Game.Instance.TurnCount > TurnInWhichCrystalBecameEmpty + ReplenishTurns) && RemainingMineHits == 0)
         {
             Debug.Log("Crystal is replenished");
             RemainingMineHits = MaxMineHits;
@@ -52,17 +52,17 @@ public class ExpensiveCrystal : MonoBehaviour
 
 
 
-        if(RemainingMineHits == 0)
+        if (RemainingMineHits == 0)
         {
             GameObject commandObject = new GameObject("NopCommandObject");
             NopCommand nopCommandInstance = commandObject.AddComponent<NopCommand>();
             nopCommandInstance.Initialize(Game.Instance.GetCurrentPlayer());
             Game.Instance.CommandManager.AddCommand(nopCommandInstance);
 
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            Game.Instance.SwitchPlayersAndDecreaseStats();
 
             Game.Instance.TurnCount++;
-            Game.Instance.UpdateAllPlayerStats();
+
             return;
         }
 
@@ -102,5 +102,5 @@ public class ExpensiveCrystal : MonoBehaviour
         Z = Position.Z;
     }
 
-    
+
 }
