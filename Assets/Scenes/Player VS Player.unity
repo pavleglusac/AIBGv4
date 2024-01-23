@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.007127542, g: 0.0068377424, b: 0.0070086825, a: 1}
+  m_IndirectSpecularColor: {r: 0.010148792, g: 0.009528443, b: 0.009462661, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -525,8 +525,10 @@ MonoBehaviour:
   columns: 10
   spacing: 1
   animationDelay: 0.1
-  totalCheapCrystalCount: 0
-  totalExpensiveCrystalCount: 0
+  numberOfCheapCrystalGroups: 0
+  numberOfExpensiveCrystalGroups: 0
+  numberOfCheapCrystalsInGroup: 0
+  numberOfExpensiveCrystalsInGroup: 0
   player1Name: {fileID: 1849115510}
   player2Name: {fileID: 1176798022}
   player1Coins: {fileID: 248821594}
@@ -587,8 +589,10 @@ MonoBehaviour:
   columns: 0
   spacing: 0
   animationDelay: 0
-  totalCheapCrystalCount: 0
-  totalExpensiveCrystalCount: 0
+  numberOfCheapCrystalGroups: 0
+  numberOfExpensiveCrystalGroups: 0
+  numberOfCheapCrystalsInGroup: 0
+  numberOfExpensiveCrystalsInGroup: 0
   baseAreaLength: 0
 --- !u!4 &437951405
 Transform:
@@ -1862,6 +1866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game: {fileID: 0}
   pillarPrefab: {fileID: 163180044096257501, guid: 36d2d3c7d9ea7af439c938dd66f1f6aa, type: 3}
+  housePrefab: {fileID: 719075277259536644, guid: 3a067ef09e75c36439746dbf04d53727, type: 3}
   player1: {fileID: 3516734726966277635, guid: 30e9fa7d68c438144b941b5b9cf86949, type: 3}
   player2: {fileID: 6938244625838606387, guid: 5ace93a2a6c60694eb27bf6b70ec7189, type: 3}
   basePlayer1: {fileID: 7782940742131509612, guid: 4ea4282266737c548848a6cd1b2f0d3e, type: 3}
