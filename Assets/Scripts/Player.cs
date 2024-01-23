@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
     public void InvalidMoveTakeEnergy()
     {
-        Energy -= Energy - int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
+        Energy -= int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
     }
 
     public void TakeCoins(int count)

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public static class Actions
@@ -24,20 +26,41 @@ public static class Actions
         }
     }
 
-    public static void Move(Pillar pillar, Player player)
+    public static void Move(Pillar enteredPillar, Player player)
     {
-        int penalty = int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
-        if (!pillar.path.Contains(pillar))
+        Debug.Log("eNTERED: " + enteredPillar.X + " " + enteredPillar.Z);
+        Pillar pillar;
+        if (Game.Instance.GetCurrentPlayer().IsDazed())
         {
-            player.TakeEnergy(penalty);
+            if (OutOfBounds(enteredPillar, player))
+            {
+                player.InvalidMoveTakeEnergy();
+                Game.Instance.SwitchPlayersAndDecreaseStats();
+                return;
+            }
+
+            pillar = ChangePillarsBasedOnDaze(enteredPillar, player);
+        }
+        else
+        {
+            pillar = enteredPillar;
+        }
+
+
+        var path = Algorithms.findPath(Game.Instance.Board, player.Position, pillar);
+        if (!path.Contains(pillar))
+        {
+            player.InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
         }
 
         //Pillar prev = path[0];
         Pillar prev = player.Position;
         Pillar next = pillar;
-        int count = pillar.path.Count;
+        int count = Math.Abs(pillar.X - player.X) + Math.Abs(pillar.Z - player.Z);
         int direction = GetDirection(prev, next);
+
 
         // create commands
         GameObject commandObject = new GameObject("MoveCommandObject");
@@ -52,6 +75,35 @@ public static class Actions
         Game.Instance.SwitchPlayersAndDecreaseStats();
         player.SetPosition(pillar);
         player.TakeEnergy(count * (player.Bag.GetWeight() + 1));
+    }
+
+    private static bool OutOfBounds(Pillar pillar, Player player)
+    {
+        int stepX = Math.Abs(pillar.X - player.X);
+        int stepZ = Math.Abs(pillar.Z - player.Z);
+
+        int newX = player.X - stepX;
+        int newZ = player.Z - stepZ;
+
+        newX = (pillar.X > player.X) ? newX : player.X + stepX;
+        newZ = (pillar.Z > player.Z) ? newZ : player.Z + stepZ;
+        int boardSize = int.Parse(PlayerPrefs.GetString("board_size")) - 1;
+
+        return newX < 0 || newX > boardSize || newZ < 0 || newZ > boardSize;
+    }
+
+    private static Pillar ChangePillarsBasedOnDaze(Pillar pillar, Player player)
+    {
+        int stepX = Math.Abs(pillar.X - player.X);
+        int stepZ = Math.Abs(pillar.Z - player.Z);
+
+        int newX = player.X - stepX;
+        int newZ = player.Z - stepZ;
+
+        newX = (pillar.X > player.X) ? newX : player.X + stepX;
+        newZ = (pillar.Z > player.Z) ? newZ : player.Z + stepZ;
+
+        return Game.Instance.Board.Pillars[newX, newZ];
     }
 
     private static int GetDirection(Pillar prev, Pillar current)
