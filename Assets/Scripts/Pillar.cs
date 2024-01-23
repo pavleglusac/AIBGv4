@@ -23,15 +23,17 @@ public class Pillar : MonoBehaviour
         {
             Player player = Game.Instance.GetCurrentPlayer();
 
-            if (!CanAct(player))
+            int price = int.Parse(PlayerPrefs.GetString("refinement_facility_cost"));
+            if (!CanAct(player) || player.Coins < price)
             {
+                // TODO: koristi Penalty funkciju umesto TakeEnergy
                 int penalty = int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
                 player.TakeEnergy(penalty);
                 Game.Instance.SwitchPlayersAndDecreaseStats();
                 return;
             }
-            MakeHouse();
-            int price = int.Parse(PlayerPrefs.GetString("refinement_facility_cost"));
+
+            MakeHouse(player);
             player.TakeCoins(price);
             Debug.Log(player.Coins);
             Game.Instance.SwitchPlayersAndDecreaseStats();
@@ -175,23 +177,40 @@ public class Pillar : MonoBehaviour
         return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
     }
 
-    private void MakeHouse()
+    private void MakeHouse(Player player)
     {
 
         Game.Instance.Board.Pillars[X, Z].PillarState = PillarState.House;
         // TODO code bellow breaks (housePrefab is null)
-        //GameObject houseObject = Instantiate(housePrefab, new Vector3(X * Game.Instance.spacing, -50, Z * Game.Instance.spacing), Quaternion.identity, this.transform);
-        //houseObject.AddComponent<ExpensiveCrystal>();
-        //houseObject.GetComponent<ExpensiveCrystal>().Crystal2Object = houseObject;
-        //houseObject.GetComponent<ExpensiveCrystal>().SetPosition(Game.Instance.Board.Pillars[X, Z]);
-        //Game.Instance.Board.Houses.Add(houseObject.GetComponent<House>());
+        Vector3 pillarPosition = PillarObject.transform.position;
+        float x = pillarPosition.x;
+        float y = 0.65f;
+        float z = pillarPosition.z;
+        GameObject houseObject = Instantiate(housePrefab, new Vector3(x, y, z), Quaternion.identity);
+        if (!player.FirstPlayer)
+        {
+            Debug.Log("FIRST PLAYER MJAU");
+            Material redMat = Resources.Load("RedHouseMaterial", typeof(Material)) as Material;
+            houseObject.GetComponent<Renderer>().material = redMat;
+        }
 
-        //Animator animator = houseObject.GetComponent<Animator>();
+        houseObject.AddComponent<House>();
+        houseObject.GetComponent<House>().HouseParentObject = houseObject;
+        houseObject.GetComponent<House>().Position = this;
+        houseObject.GetComponent<House>().X = this.X;
+        houseObject.GetComponent<House>().Z = this.Z;
 
-        //if (animator != null)
-        //{
+        houseObject.AddComponent<ExpensiveCrystal>();
+        houseObject.GetComponent<ExpensiveCrystal>().Crystal2Object = houseObject;
+        houseObject.GetComponent<ExpensiveCrystal>().SetPosition(Game.Instance.Board.Pillars[X, Z]);
+        Game.Instance.Board.Houses.Add(houseObject.GetComponent<House>());
+
+        // Animator animator = houseObject.GetComponent<Animator>();
+
+        // if (animator != null)
+        // {
         //    animator.enabled = false;
-        //}
+        // }
     }
 
 
