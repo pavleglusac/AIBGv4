@@ -59,6 +59,10 @@ public class Game : MonoBehaviour
             CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
             DontDestroyOnLoad(gameObject);
 
+            GameObject scriptRunnerObject = new GameObject("ScriptRunnerObject");
+            ScriptRunner scriptRunner = scriptRunnerObject.AddComponent<ScriptRunner>();
+            scriptRunner.scriptPath = "/Users/pavleglusac/Personal/AIBGv4/Assets/Scripts/test.py";
+            scriptRunner.StartProcess(scriptRunner.scriptPath);
 
         }
         else
