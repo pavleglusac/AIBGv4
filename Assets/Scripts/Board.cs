@@ -8,7 +8,7 @@ public class Board : MonoBehaviour
     public CheapCrystal[] CheapCrystals {get; set;}
     public ExpensiveCrystal[] ExpensiveCrystals {get; set;}
     public Base[] Bases {get; set;}
-    public List<House> Houses {get; set;}
+    public List<House> Houses { get; set;}
     
 
     public List<Pillar> getNeighbours(Pillar pillar) 

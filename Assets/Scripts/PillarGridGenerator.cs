@@ -16,6 +16,8 @@ public class PillarGridGenerator : MonoBehaviour
 
     public GameObject pillarPrefab;
 
+    public GameObject housePrefab;
+
     public GameObject player1;
     public GameObject player2;
 
@@ -50,6 +52,7 @@ public class PillarGridGenerator : MonoBehaviour
         baseAreaLength = rows / 3;
         game.Board.Pillars = new Pillar[rows, columns];
         game.Board.Bases = new Base[2];
+        game.Board.Houses = new List<House>();
         GenerateGrid();
         MakeBase();
         MakePlayers();
@@ -106,6 +109,7 @@ public class PillarGridGenerator : MonoBehaviour
         playerObject1.AddComponent<Player>();
         playerObject1.GetComponent<Player>().PlayerObject = playerObject1;
         game.Player1 = playerObject1.GetComponent<Player>();
+        game.Player1.FirstPlayer = true;
         //game.Player1.X = i;
         //game.Player1.Z = j;
         game.Player1.SetPosition(game.Board.Pillars[i, j]);
@@ -141,6 +145,7 @@ public class PillarGridGenerator : MonoBehaviour
         Vector3 position = new Vector3(i * spacing, 0, j * spacing);
         GameObject pillarObject = Instantiate(pillarPrefab, position, Quaternion.identity, this.transform);
         pillarObject.AddComponent<Pillar>();
+        pillarObject.GetComponent<Pillar>().housePrefab = housePrefab;
         pillarObject.GetComponent<Pillar>().PillarObject = pillarObject;
         game.Board.Pillars[i, j] = pillarObject.GetComponent<Pillar>();
         game.Board.Pillars[i, j].X = i;
