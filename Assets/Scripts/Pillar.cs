@@ -30,8 +30,14 @@ public class Pillar : MonoBehaviour
                 Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
                 return;
             }
+<<<<<<< Updated upstream
             MakeHouse();
             int price = int.Parse(PlayerPrefs.GetString("refinement_facility_cost"));
+=======
+
+
+            MakeHouse(player);
+>>>>>>> Stashed changes
             player.TakeCoins(price);
             Debug.Log(player.Coins);
             Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;

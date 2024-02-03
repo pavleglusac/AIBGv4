@@ -57,11 +57,23 @@ class Constants:
     refinement_facility_hits = 0
     refinement_facility_storage = 0
     refinement_facility_refinement_turns = 0
+    exp_to_coins = 0
+    cheap_to_coins = 0
+    exp_to_energy = 0
+    cheap_to_energy = 0
+    exp_to_xp = 0
+    cheap_to_xp = 0
 
     @staticmethod
     def load_from_env():
         load_dotenv(dotenv_path='../Assets/Resources/env.txt')
         Constants.resting_energy = int(os.getenv("resting_energy"))
+        Constants.exp_to_coins = int(os.getenv("exp_to_coins"))
+        Constants.cheap_to_coins = int(os.getenv("cheap_to_coins"))
+        Constants.exp_to_energy = int(os.getenv("exp_to_energy"))
+        Constants.cheap_to_energy = int(os.getenv("cheap_to_energy"))
+        Constants.exp_to_xp = int(os.getenv("exp_to_xp"))
+        Constants.cheap_to_xp = int(os.getenv("cheap_to_xp"))
         Constants.refinement_facility_hits = int(os.getenv("refinement_facility_hits"))
         Constants.refinement_facility_storage = int(os.getenv("refinement_facility_storage"))
         Constants.refinement_facility_refinement_time_turns = int(
