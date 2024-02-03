@@ -122,7 +122,6 @@ public class Pillar : MonoBehaviour
             player.InvalidMoveTakeEnergy();
             Game.Instance.SwitchPlayersAndDecreaseStats();
         }
-        Game.Instance.TurnCount++;
 
     }
 
@@ -187,7 +186,6 @@ public class Pillar : MonoBehaviour
         GameObject houseObject = Instantiate(housePrefab, new Vector3(x, y, z), Quaternion.identity);
         if (!player.FirstPlayer)
         {
-            Debug.Log("FIRST PLAYER MJAU");
             Material redMat = Resources.Load("RedHouseMaterial", typeof(Material)) as Material;
             houseObject.GetComponent<Renderer>().material = redMat;
         }

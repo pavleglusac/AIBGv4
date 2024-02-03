@@ -29,7 +29,7 @@ public class MineCommand : MonoBehaviour, ICommand
 
     public void Update()
     {
-        
+
     }
 
     private IEnumerator ProcessMining()
@@ -44,7 +44,7 @@ public class MineCommand : MonoBehaviour, ICommand
 
     private IEnumerator Mine()
     {
-        if(isCrystal1)
+        if (isCrystal1)
         {
             Player.Bag.AddCheapCrystal();
         }
@@ -52,6 +52,7 @@ public class MineCommand : MonoBehaviour, ICommand
         {
             Player.Bag.AddExpensiveCrystal();
         }
+
         yield return new WaitForSeconds(0.0f);
     }
 

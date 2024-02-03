@@ -29,11 +29,13 @@ public class Player : MonoBehaviour
         Coins = int.Parse(PlayerPrefs.GetString("start_coins"));
         Energy = int.Parse(PlayerPrefs.GetString("start_energy"));
         Name = name;
+        Bag = gameObject.AddComponent<Bag>();
+        Bag.Capacity = int.Parse(PlayerPrefs.GetString("backpack_default_storage_capacity"));
     }
 
     void Start()
     {
-        Bag = gameObject.AddComponent<Bag>();
+
     }
 
 

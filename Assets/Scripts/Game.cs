@@ -31,14 +31,7 @@ public class Game : MonoBehaviour
     [HideInInspector] public int numberOfExpensiveCrystalGroups;
     [HideInInspector] public int numberOfCheapCrystalsInGroup;
     [HideInInspector] public int numberOfExpensiveCrystalsInGroup;
-    [SerializeField] public Text player1Name;
-    [SerializeField] public Text player2Name;
-    [SerializeField] public Text player1Coins;
-    [SerializeField] public Text player2Coins;
-    [SerializeField] public Text player1Energy;
-    [SerializeField] public Text player2Energy;
-    [SerializeField] public Text player1XP;
-    [SerializeField] public Text player2XP;
+
 
     public CommandManager CommandManager { get; set; }
 
@@ -68,18 +61,9 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void UpdateAllPlayerStats()
+    public void UpdateAllPlayerStats(String DisplayMessage)
     {
-
-        player1Name.text = Player1.Name.ToString();
-        player1Coins.text = Player1.Coins.ToString();
-        player1Energy.text = Player1.Energy.ToString();
-        player1XP.text = Player1.XP.ToString();
-
-        player2Name.text = Player2.Name.ToString();
-        player2Coins.text = Player2.Coins.ToString();
-        player2Energy.text = Player2.Energy.ToString();
-        player2XP.text = Player2.XP.ToString();
+        PlayerStatsHandle.Instance.UpdateGUI(Player1, Player2, TurnCount, FirstPlayerTurn, DisplayMessage);
     }
 
     public static void PauseGame()
@@ -118,10 +102,12 @@ public class Game : MonoBehaviour
 
     public void SwitchPlayersAndDecreaseStats()
     {
+        Game.Instance.TurnCount++;
+        string DisplayMessage = "gas";
         if (!GetAlternatePlayer().IsFrozen())
             FirstPlayerTurn = !FirstPlayerTurn;
         DecreasePlayerStatuses();
-        UpdateAllPlayerStats();
+        UpdateAllPlayerStats(DisplayMessage);
     }
 
     public void DecreasePlayerStatuses()
