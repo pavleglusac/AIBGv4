@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class CheapCrystalItem : MonoBehaviour
 {
     public bool isProcessed { get; set; } = false;
+    public DateTime TimeAdded { get; set; } = DateTime.Now;
 
     public int GetWeight()
     {

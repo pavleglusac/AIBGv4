@@ -21,25 +21,21 @@ public class Pillar : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && PillarState == PillarState.Empty)
         {
-            Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+            Player player = Game.Instance.GetCurrentPlayer();
 
             int price = int.Parse(PlayerPrefs.GetString("refinement_facility_cost"));
             if (!CanAct(player) || player.Coins < price)
             {
-                // TODO: koristi Penalty funkciju umesto TakeEnergy
-                int penalty = int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
-                player.TakeEnergy(penalty);
-                Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-                Game.Instance.UpdateAllPlayerStats();
 
+                player.InvalidMoveTakeEnergy();
+                Game.Instance.SwitchPlayersAndDecreaseStats();
                 return;
             }
 
             MakeHouse(player);
             player.TakeCoins(price);
             Debug.Log(player.Coins);
-            Game.Instance.UpdateAllPlayerStats();
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            Game.Instance.SwitchPlayersAndDecreaseStats();
 
         }
     }
@@ -54,7 +50,7 @@ public class Pillar : MonoBehaviour
 
     void OnMouseEnter()
     {
-        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+        Player player = Game.Instance.GetCurrentPlayer();
 
         if (!(CanStep() || CanAct(player)))
         {
@@ -94,16 +90,16 @@ public class Pillar : MonoBehaviour
 
     public void Move()
     {
-        int penalty = int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
+
         if (Game.IsPaused)
             return;
 
-        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
+        Player player = Game.Instance.GetCurrentPlayer();
 
         if (path == null || path.Count == 0)
         {
-            player.TakeEnergy(penalty);
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+            player.InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
         }
 
@@ -115,18 +111,19 @@ public class Pillar : MonoBehaviour
         {
 
             // TODO add logic for non-empty pillars
-            if(PillarState == PillarState.CheapCrystal || PillarState == PillarState.ExpensiveCrystal)
+            if (PillarState == PillarState.CheapCrystal || PillarState == PillarState.ExpensiveCrystal)
             {
                 Actions.Mine(this, player);
             }
-            
+
         }
-        else {
-            player.TakeEnergy(penalty);
-            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
+        else
+        {
+            player.InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
         }
         Game.Instance.TurnCount++;
-        Game.Instance.UpdateAllPlayerStats();
+
     }
 
     void OnMouseExit()
@@ -179,21 +176,22 @@ public class Pillar : MonoBehaviour
         return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
     }
 
-    private void MakeHouse(Player player) {
+    private void MakeHouse(Player player)
+    {
 
         Game.Instance.Board.Pillars[X, Z].PillarState = PillarState.House;
-        // TODO code bellow breaks (housePrefab is null)
         Vector3 pillarPosition = PillarObject.transform.position;
         float x = pillarPosition.x;
         float y = 0.65f;
         float z = pillarPosition.z;
         GameObject houseObject = Instantiate(housePrefab, new Vector3(x, y, z), Quaternion.identity);
-        if (!player.FirstPlayer) {
+        if (!player.FirstPlayer)
+        {
             Debug.Log("FIRST PLAYER MJAU");
             Material redMat = Resources.Load("RedHouseMaterial", typeof(Material)) as Material;
             houseObject.GetComponent<Renderer>().material = redMat;
         }
-        
+
         houseObject.AddComponent<House>();
         houseObject.GetComponent<House>().HouseParentObject = houseObject;
         houseObject.GetComponent<House>().Position = this;
@@ -212,6 +210,6 @@ public class Pillar : MonoBehaviour
         //    animator.enabled = false;
         // }
     }
-        
+
 
 }
