@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c27730c8-b0ae-41b2-ad8b-50792d241829" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Assets/Real Stars Skybox/StarSkybox04/StarSkybox04.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Real Stars Skybox/StarSkybox04/StarSkybox04.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Assets/Resources/env.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Resources/env.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Assets/Scenes/Player VS Player.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Scenes/Player VS Player.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Scripts/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Assets/Scripts/Pillar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Scripts/Pillar.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boardcell.py" beforeDir="false" afterPath="$PROJECT_DIR$/boardcell.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crystal.py" beforeDir="false" afterPath="$PROJECT_DIR$/crystal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../log.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +114,7 @@
       <workItem from="1703362354580" duration="8137000" />
       <workItem from="1704926047076" duration="442000" />
       <workItem from="1705962001479" duration="2763000" />
-      <workItem from="1706939414681" duration="5837000" />
+      <workItem from="1706939414681" duration="6110000" />
     </task>
     <servers />
   </component>
