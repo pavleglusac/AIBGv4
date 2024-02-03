@@ -90,7 +90,7 @@ public class Pillar : MonoBehaviour
 
     public void Move()
     {
-        int penalty = int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
+
         if (Game.IsPaused)
             return;
 
@@ -98,7 +98,7 @@ public class Pillar : MonoBehaviour
 
         if (path == null || path.Count == 0)
         {
-            player.DecreaseEnergy(penalty);
+            player.InvalidMoveTakeEnergy();
             Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
         }
@@ -119,7 +119,7 @@ public class Pillar : MonoBehaviour
         }
         else
         {
-            player.DecreaseEnergy(penalty);
+            player.InvalidMoveTakeEnergy();
             Game.Instance.SwitchPlayersAndDecreaseStats();
         }
         Game.Instance.TurnCount++;

@@ -47,9 +47,11 @@ public class ActionsMenuNavigation : MonoBehaviour
             CloseActionsMenu();
             return;
         }
-        Game.Instance.GetAlternatePlayer().AddDazeTurns();
-        Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("daze_cost")));
-        Game.Instance.SwitchPlayersAndDecreaseStats();
+
+        GameObject commandObject = new GameObject("DazeCommand");
+        DazeCommand commandInstance = commandObject.AddComponent<DazeCommand>();
+        commandInstance.Initialize(Game.Instance.GetCurrentPlayer(), Game.Instance.GetAlternatePlayer());
+        Game.Instance.CommandManager.AddCommand(commandInstance);
         CloseActionsMenu();
     }
 
@@ -63,9 +65,10 @@ public class ActionsMenuNavigation : MonoBehaviour
             CloseActionsMenu();
             return;
         }
-        Game.Instance.GetCurrentPlayer().AddIncreasedBackpackStorageTurns();
-        Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("bigger_backpack_cost")));
-        Game.Instance.SwitchPlayersAndDecreaseStats();
+        GameObject commandObject = new GameObject("IncreasedBackpackStorageCommand");
+        IncreasedBackpackStorageCommand commandInstance = commandObject.AddComponent<IncreasedBackpackStorageCommand>();
+        commandInstance.Initialize(Game.Instance.GetCurrentPlayer());
+        Game.Instance.CommandManager.AddCommand(commandInstance);
         CloseActionsMenu();
     }
 
