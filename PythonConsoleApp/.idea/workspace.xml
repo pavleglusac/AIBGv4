@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c27730c8-b0ae-41b2-ad8b-50792d241829" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Assets/Resources/env.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Resources/env.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
-    </list>
+    <list default="true" id="c27730c8-b0ae-41b2-ad8b-50792d241829" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +45,7 @@
     "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "2d-console-app",
+    "git-widget-placeholder": "power-ups",
     "ignore.virus.scanning.warn.message": "true",
     "last.edited.regexp": "conv 1 exp 2 cheap to coins, 1 exp 2 cheap to energy, 1 exp 2 cheap to xp",
     "last_opened_file_path": "C:/GitHub/AIBGv4/PythonConsoleApp",
@@ -114,7 +110,7 @@
       <workItem from="1703362354580" duration="8137000" />
       <workItem from="1704926047076" duration="442000" />
       <workItem from="1705962001479" duration="2763000" />
-      <workItem from="1706939414681" duration="6110000" />
+      <workItem from="1706939414681" duration="7317000" />
     </task>
     <servers />
   </component>

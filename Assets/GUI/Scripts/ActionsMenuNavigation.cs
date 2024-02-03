@@ -1,22 +1,20 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopNavigation : MonoBehaviour
+public class ActionsMenuNavigation : MonoBehaviour
 {
 
-    public GameObject shopMenu;
-    public void OpenShopMenu()
+    public GameObject actionMenu;
+    public void OpenActionsMenu()
     {
         if (Game.IsPaused)
             return;
-        shopMenu.SetActive(true);
+        actionMenu.SetActive(true);
         Game.PauseGame();
     }
-    public void CloseShopMenu()
+    public void CloseActionsMenu()
     {
-        shopMenu.SetActive(false);
+        actionMenu.SetActive(false);
         Game.ResumeGame();
     }
 
@@ -28,7 +26,7 @@ public class ShopNavigation : MonoBehaviour
         {
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
             Game.Instance.SwitchPlayersAndDecreaseStats();
-            CloseShopMenu();
+            CloseActionsMenu();
             return;
         }
         GameObject commandObject = new GameObject("FreezeCommand");
@@ -36,7 +34,7 @@ public class ShopNavigation : MonoBehaviour
         mineCommandInstance.Initialize(Game.Instance.GetCurrentPlayer(), Game.Instance.GetAlternatePlayer());
         Game.Instance.CommandManager.AddCommand(mineCommandInstance);
 
-        CloseShopMenu();
+        CloseActionsMenu();
     }
 
 
@@ -46,13 +44,13 @@ public class ShopNavigation : MonoBehaviour
         {
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
             Game.Instance.SwitchPlayersAndDecreaseStats();
-            CloseShopMenu();
+            CloseActionsMenu();
             return;
         }
         Game.Instance.GetAlternatePlayer().AddDazeTurns();
         Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("daze_cost")));
         Game.Instance.SwitchPlayersAndDecreaseStats();
-        CloseShopMenu();
+        CloseActionsMenu();
     }
 
 
@@ -62,14 +60,24 @@ public class ShopNavigation : MonoBehaviour
         {
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
             Game.Instance.SwitchPlayersAndDecreaseStats();
-            CloseShopMenu();
+            CloseActionsMenu();
             return;
         }
         Game.Instance.GetCurrentPlayer().AddIncreasedBackpackStorageTurns();
         Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("bigger_backpack_cost")));
         Game.Instance.SwitchPlayersAndDecreaseStats();
-        CloseShopMenu();
+        CloseActionsMenu();
     }
+
+    public void ActivateRest()
+    {
+        GameObject commandObject = new GameObject("RestCommand");
+        RestCommand commandInstance = commandObject.AddComponent<RestCommand>();
+        commandInstance.Initialize(Game.Instance.GetCurrentPlayer());
+        Game.Instance.CommandManager.AddCommand(commandInstance);
+        CloseActionsMenu();
+    }
+
 
 
 }

@@ -16,7 +16,7 @@ class Board:
                             range(Constants.board_size)]
         self.base_area_length = Constants.board_size // 3
         self.place_players()
-        self.setup_ores()  ## TODO sa bojanom uradi
+        self.setup_ores() 
 
     def place_players(self):
         self.board_cells[0][Constants.board_size - 1].set_symbol(Constants.player1_symbol)

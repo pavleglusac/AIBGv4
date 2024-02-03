@@ -15,13 +15,10 @@ public class Player : MonoBehaviour
     public int X { get; set; }
     public int Z { get; set; }
     public Bag Bag { get; set; }
-
-    // TODO Jovan: Added now for hud logic, change later 
     public int XP { get; set; }
     public int Coins { get; set; }
     public int Energy { get; set; }
     public string Name { get; set; }
-
     public int DazeTurns { get; set; } = 0;
     public int FrozenTurns { get; set; } = 0;
     public int IncreasedBackpackTurns { get; set; } = 0;
@@ -58,9 +55,18 @@ public class Player : MonoBehaviour
         Z = Position.Z;
     }
 
-    public void TakeEnergy(int count)
+    public void DecreaseEnergy(int amount)
     {
-        Energy -= count;
+        Energy -= amount;
+        if (Energy < 0)
+            Energy = 0;
+    }
+
+    public void IncreaseEnergy(int amount)
+    {
+        Energy += amount;
+        if (Energy > int.Parse(PlayerPrefs.GetString("max_energy")))
+            Energy = int.Parse(PlayerPrefs.GetString("max_energy"));
     }
 
     public void InvalidMoveTakeEnergy()
@@ -68,9 +74,9 @@ public class Player : MonoBehaviour
         Energy -= int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
     }
 
-    public void TakeCoins(int count)
+    public void TakeCoins(int c)
     {
-        Coins -= count;
+        Coins -= c;
     }
 
     public bool IsFrozen()

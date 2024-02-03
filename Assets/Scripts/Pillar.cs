@@ -26,9 +26,8 @@ public class Pillar : MonoBehaviour
             int price = int.Parse(PlayerPrefs.GetString("refinement_facility_cost"));
             if (!CanAct(player) || player.Coins < price)
             {
-                // TODO: koristi Penalty funkciju umesto TakeEnergy
-                int penalty = int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
-                player.TakeEnergy(penalty);
+
+                player.InvalidMoveTakeEnergy();
                 Game.Instance.SwitchPlayersAndDecreaseStats();
                 return;
             }
@@ -99,7 +98,7 @@ public class Pillar : MonoBehaviour
 
         if (path == null || path.Count == 0)
         {
-            player.TakeEnergy(penalty);
+            player.DecreaseEnergy(penalty);
             Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
         }
@@ -120,7 +119,7 @@ public class Pillar : MonoBehaviour
         }
         else
         {
-            player.TakeEnergy(penalty);
+            player.DecreaseEnergy(penalty);
             Game.Instance.SwitchPlayersAndDecreaseStats();
         }
         Game.Instance.TurnCount++;
@@ -181,7 +180,6 @@ public class Pillar : MonoBehaviour
     {
 
         Game.Instance.Board.Pillars[X, Z].PillarState = PillarState.House;
-        // TODO code bellow breaks (housePrefab is null)
         Vector3 pillarPosition = PillarObject.transform.position;
         float x = pillarPosition.x;
         float y = 0.65f;

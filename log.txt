@@ -2500,3 +2500,1051 @@ j: 1
 KRAJ GENERISANJA SKUPLJIH RESURSA!
 KRAJ GENERISANJA RESURSA!
 KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 3 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 7
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+tryNumber: 2
+x: 4 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 6 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 11 z: 8
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 6
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+tryNumber: 2
+tryNumber: 3
+tryNumber: 4
+x: 3 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+tryNumber: 3
+x: 6 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 11 z: 9
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 4 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 9
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 5 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+x: 4 z: 3
+groupCrystalsCoordinates: 1
+j: 0
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 11 z: 10
+groupCrystalsCoordinates: 1
+j: 0
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 4 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 5
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 3 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+x: 6 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 10 z: 8
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 4 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 8 z: 6
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 3 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 6 z: 3
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 10 z: 6
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 6 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+tryNumber: 2
+x: 9 z: 5
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 3 z: 2
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 5 z: 2
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+tryNumber: 2
+x: 9 z: 8
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 11 z: 5
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 4 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+tryNumber: 3
+tryNumber: 4
+x: 6 z: 3
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 11 z: 10
+groupCrystalsCoordinates: 1
+j: 0
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 8 z: 6
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 2 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 5 z: 4
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 9 z: 5
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 4 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 8
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+tryNumber: 2
+x: 5 z: 4
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 2 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 11 z: 5
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 3 z: 2
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 11 z: 8
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 5 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 4 z: 3
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 8 z: 6
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 4
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 11 z: 8
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 3 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+tryNumber: 3
+tryNumber: 4
+tryNumber: 5
+tryNumber: 6
+tryNumber: 7
+x: 6 z: 3
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 10 z: 9
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 6 z: 4
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 11 z: 9
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+tryNumber: 2
+x: 6 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+x: 4 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 11 z: 6
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 9 z: 6
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 2 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 6 z: 4
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 8 z: 6
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 3 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 8
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 4 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 6 z: 4
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 10 z: 6
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 11 z: 7
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 5 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 2 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 11 z: 6
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 8
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 5 z: 4
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+x: 3 z: 2
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+tryNumber: 2
+x: 11 z: 5
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 6
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 4 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 6 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 11 z: 5
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 6 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 9 z: 7
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 6 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+x: 4 z: 3
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 9 z: 5
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 4 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 8 z: 5
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 2 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+x: 6 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 9 z: 7
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 6 z: 4
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 9
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 5 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 4 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+tryNumber: 2
+x: 10 z: 7
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 3 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 5
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 3 z: 2
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 6 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+tryNumber: 2
+x: 10 z: 7
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 3
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 9 z: 6
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+tryNumber: 2
+tryNumber: 3
+x: 6 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 4 z: 1
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+tryNumber: 2
+x: 10 z: 7
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 6 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 5
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+tryNumber: 2
+x: 4 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 3 z: 2
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 8 z: 5
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 6 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 10 z: 6
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 2 up: True length: 3
+tryNumber: 1
+x: 6 z: 4
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+tryNumber: 2
+x: 3 z: 2
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 9 z: 5
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
+POCETAK GENERISANJA RESURSA!
+KRAJ INICIJALIZACIJE!
+isExpensive: False
+group number: 0 up: True length: 3
+tryNumber: 1
+x: 5 z: 2
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+group number: 1 up: False length: 3
+tryNumber: 1
+x: 8 z: 7
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 2 up: True length: 3
+tryNumber: 1
+tryNumber: 2
+x: 5 z: 1
+groupCrystalsCoordinates: 3
+j: 0
+j: 1
+j: 2
+KRAJ GENERISANJA JEFTINIH RESURSA!
+isExpensive: True
+group number: 0 up: True length: 2
+tryNumber: 1
+x: 4 z: 2
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+group number: 1 up: False length: 2
+tryNumber: 1
+x: 9 z: 6
+groupCrystalsCoordinates: 2
+j: 0
+j: 1
+KRAJ GENERISANJA SKUPLJIH RESURSA!
+KRAJ GENERISANJA RESURSA!
+KRAJ ANIMACIJA!
