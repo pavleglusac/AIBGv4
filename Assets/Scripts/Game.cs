@@ -63,6 +63,7 @@ public class Game : MonoBehaviour
         }
         else
         {
+
             Destroy(gameObject);
         }
     }

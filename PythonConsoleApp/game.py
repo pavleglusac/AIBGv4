@@ -141,6 +141,12 @@ class Game:
             elif re.match(r'^build (-?\d+) (-?\d+)$', user_input):
                 self.handle_build(user_input)
 
+            elif re.match(
+                    r'^conv (\d+) exp (\d+) cheap to coins, (\d+) exp (\d+) cheap to energy, '
+                    r'(\d+) exp (\d+) cheap to xp$',
+                    user_input):
+                self.handle_conversions_at_base(user_input)
+
             elif re.match(r'^rest', user_input):
                 self.handle_resting()
 
@@ -211,7 +217,7 @@ class Game:
                 print("Error: Only moving horizontally or vertically is allowed!")
                 self.invalid_turn_handling()
             else:
-                if self.board.is_obstacle_on_path(current_player.x, current_player.y, x, y):
+                if self.board.is_obstacle_on_path(current_player.x, current_player.y, x, y, self.first_player_turn):
                     print("Error: There is an obstacle on the way!")
                     self.invalid_turn_handling()
                 else:
@@ -292,6 +298,46 @@ class Game:
             print("You do not have enough coins to build!")
             self.invalid_turn_handling()
             return
-        self.board.board_cells[x][y].print_symbol = Constants.refinement_facility_symbol
+        self.board.board_cells[x][y].set_symbol(Constants.refinement_facility_symbol)
         current_player.remove_coins(Constants.refinement_facility_cost)
         print("Build successful!")
+
+    def handle_conversions_at_base(self, user_input):
+        match = re.match(
+            r'^conv (\d+) exp (\d+) cheap to coins, (\d+) exp (\d+) cheap to energy, (\d+) exp (\d+) cheap to xp$',
+            user_input)
+        exp_to_coins = int(match.group(1))
+        cheap_to_coins = int(match.group(2))
+        exp_to_energy = int(match.group(3))
+        cheap_to_energy = int(match.group(4))
+        exp_to_xp = int(match.group(5))
+        cheap_to_xp = int(match.group(6))
+
+        if not self.get_current_player().is_in_base():
+            print("You are not in your base, you can not do conversions!")
+            self.invalid_turn_handling()
+            return
+
+        if exp_to_xp + exp_to_coins + exp_to_energy > self.get_current_player().get_count_expensive():
+            print("You do not have enough expensive crystals!")
+            self.invalid_turn_handling()
+            return
+
+        if cheap_to_energy + cheap_to_xp + cheap_to_coins > self.get_current_player().get_count_cheap():
+            print("You do not have enough cheap crystals!")
+            self.invalid_turn_handling()
+            return
+
+        self.get_current_player().add_coins(
+            exp_to_coins * Constants.exp_to_coins + cheap_to_coins * Constants.cheap_to_coins)
+
+        self.get_current_player().add_xp(
+            exp_to_xp * Constants.exp_to_xp + cheap_to_xp * Constants.cheap_to_xp)
+
+        self.get_current_player().increase_energy(
+            exp_to_energy * Constants.exp_to_energy + cheap_to_energy * Constants.cheap_to_energy)
+
+        self.get_current_player().remove_expensive_crystals(exp_to_xp + exp_to_coins + exp_to_energy)
+        self.get_current_player().remove_cheap_crystals(cheap_to_energy + cheap_to_xp + cheap_to_coins)
+
+        print("Conversion successfully finished!")
