@@ -34,7 +34,7 @@ public class ExpensiveCrystal : MonoBehaviour
     // Called when the player is clicked
     void OnMouseDown()
     {
-        Debug.Log(Game.Instance.TurnCount + " " + TurnInWhichCrystalBecameEmpty + " " + RemainingMineHits + " " + ReplenishTurns);
+
         if (RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty == -1)
         {
             Debug.Log("Crystal is empty");
@@ -60,8 +60,6 @@ public class ExpensiveCrystal : MonoBehaviour
             Game.Instance.CommandManager.AddCommand(nopCommandInstance);
 
             Game.Instance.SwitchPlayersAndDecreaseStats();
-
-            Game.Instance.TurnCount++;
 
             return;
         }

@@ -13,9 +13,6 @@ public static class Actions
         mineCommandInstance.Initialize(player, pillar.PillarState == PillarState.CheapCrystal);
         Game.Instance.CommandManager.AddCommand(mineCommandInstance);
 
-        // swap player turn
-        Game.Instance.SwitchPlayersAndDecreaseStats();
-
         if (pillar.PillarState == PillarState.CheapCrystal)
         {
             player.DecreaseEnergy(int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss")));
@@ -24,11 +21,12 @@ public static class Actions
         {
             player.DecreaseEnergy(int.Parse(PlayerPrefs.GetString("mining_energy_expensive_crystal_loss")));
         }
+        // swap player turn
+        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public static void Move(Pillar enteredPillar, Player player)
     {
-        Debug.Log("eNTERED: " + enteredPillar.X + " " + enteredPillar.Z);
         Pillar pillar;
         if (Game.Instance.GetCurrentPlayer().IsDazed())
         {

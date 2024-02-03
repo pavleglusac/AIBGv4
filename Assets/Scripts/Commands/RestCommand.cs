@@ -14,10 +14,8 @@ public class RestCommand : MonoBehaviour, ICommand
     public void Execute()
     {
 
-        //Player.IncreaseEnergy(int.Parse(PlayerPrefs.GetString("resting_energy")));
-        Debug.Log(Player.Energy);
-        Player.IncreaseEnergy(10);
-        Debug.Log(Player.Energy);
+
+        Player.IncreaseEnergy(int.Parse(PlayerPrefs.GetString("resting_energy")));
         Game.Instance.SwitchPlayersAndDecreaseStats();
         isDone = true;
     }

@@ -57,7 +57,6 @@ public class CheapCrystal : MonoBehaviour
 
             Game.Instance.SwitchPlayersAndDecreaseStats();
 
-            Game.Instance.TurnCount++;
 
             return;
         }

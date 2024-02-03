@@ -8,7 +8,7 @@ public class Bag : MonoBehaviour
     public List<CheapCrystalItem> CheapCrystals { get; set; } = new List<CheapCrystalItem>();
     public List<ExpensiveCrystalItem> ExpensiveCrystals { get; set; } = new List<ExpensiveCrystalItem>();
     // private int Capacity  = int.Parse(PlayerPrefs.GetString("backpack_default_storage_capacity"));
-    private int Capacity;
+    public int Capacity { get; set; }
 
     // public Bag()
     // {
@@ -32,7 +32,7 @@ public class Bag : MonoBehaviour
 
     public void AddCheapCrystal()
     {
-        Debug.Log(Capacity);
+
         CheapCrystalItem crystal1 = new CheapCrystalItem();
         if (crystal1.GetWeight() <= GetRemainingCapacity())
             CheapCrystals.Add(crystal1);
@@ -68,6 +68,7 @@ public class Bag : MonoBehaviour
     public int GetWeight()
     {
         int total = 0;
+
         foreach (CheapCrystalItem crystal1 in CheapCrystals)
         {
             total += crystal1.GetWeight();

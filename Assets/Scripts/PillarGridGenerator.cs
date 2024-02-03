@@ -123,7 +123,7 @@ public class PillarGridGenerator : MonoBehaviour
         game.Player2.SetPosition(game.Board.Pillars[i, j]);
         game.Player2.SetupPlayer("Pupoljci");
 
-        game.UpdateAllPlayerStats();
+        game.UpdateAllPlayerStats("Good luck!");
     }
 
 

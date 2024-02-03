@@ -25,7 +25,7 @@ public class ResourceGenerator : MonoBehaviour
     [HideInInspector] public int numberOfExpensiveCrystalsInGroup;
     public int baseAreaLength;
     public static System.Random random = new System.Random();
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,12 +53,12 @@ public class ResourceGenerator : MonoBehaviour
         writer.WriteLine("KRAJ GENERISANJA JEFTINIH RESURSA!");
         GenerateCrystals(true, writer);
         writer.WriteLine("KRAJ GENERISANJA SKUPLJIH RESURSA!");
-        
+
         writer.WriteLine("KRAJ GENERISANJA RESURSA!");
         StartCoroutine(StartAnimations());
         writer.WriteLine("KRAJ ANIMACIJA!");
-        
-        
+
+
     }
 
 
@@ -66,19 +66,19 @@ public class ResourceGenerator : MonoBehaviour
     {
         int x, z;
         if (up)
-        {    
+        {
             do
             {
                 x = random.Next(1, rows - baseAreaLength - 1);
-                z = random.Next(1, baseAreaLength + 1); 
-            } while (!(x > z)); 
+                z = random.Next(1, baseAreaLength + 1);
+            } while (!(x > z));
         }
         else
         {
             do
             {
                 x = random.Next(rows - baseAreaLength, rows);
-                z = random.Next(baseAreaLength + 1, columns - 1); 
+                z = random.Next(baseAreaLength + 1, columns - 1);
             } while (!(x > z));
         }
         return new Tuple<int, int>(x, z);
@@ -100,7 +100,7 @@ public class ResourceGenerator : MonoBehaviour
 
     bool CheckCenterCoordinates(int x, int z, int groupSize)
     {
-        if(game.Board.Pillars[x, z].PillarState != PillarState.Empty)
+        if (game.Board.Pillars[x, z].PillarState != PillarState.Empty)
         {
             return true;
         }
@@ -227,7 +227,7 @@ public class ResourceGenerator : MonoBehaviour
             {
                 int direction = directions[random.Next(directions.Count)];
                 directions.Remove(direction);
-                if(directions.Count == 0)
+                if (directions.Count == 0)
                 {
                     return newCrystalsCoordinates;
                 }
@@ -267,7 +267,7 @@ public class ResourceGenerator : MonoBehaviour
         return newCrystalsCoordinates;
     }
 
-    
+
 
 
     void MakeCrystal2(int x, int z, int crystal2Count)
@@ -313,7 +313,7 @@ public class ResourceGenerator : MonoBehaviour
         Queue<Vector2Int> coordinates = new Queue<Vector2Int>();
         Queue<Vector2Int> childCoordinates = new Queue<Vector2Int>();
         coordinates.Enqueue(new Vector2Int(0, 0));
-        while(coordinates.Count > 0)
+        while (coordinates.Count > 0)
         {
             Vector2Int coordinate = coordinates.Dequeue();
             if (coordinate.x >= rows || coordinate.y >= columns)
@@ -351,7 +351,7 @@ public class ResourceGenerator : MonoBehaviour
             if (game.Board.CheapCrystals[i] != null)
             {
                 Animator animator = game.Board.CheapCrystals[i].Crystal1Object.GetComponent<Animator>();
-                if(animator != null)
+                if (animator != null)
                 {
                     animator.enabled = true;
                     animator.speed = 1.0f;
