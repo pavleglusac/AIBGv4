@@ -90,35 +90,25 @@ public class Pillar : MonoBehaviour
 
     public void Move()
     {
-
+        Debug.Log("Move");
         if (Game.IsPaused)
             return;
 
         Player player = Game.Instance.GetCurrentPlayer();
-
         if (path == null || path.Count == 0)
         {
             player.InvalidMoveTakeEnergy();
             Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
         }
-
         if (CanStep())
         {
+            Debug.Log("Can Step");
             Actions.Move(this, player);
-        }
-        else if (CanAct(player))
-        {
-
-            // TODO add logic for non-empty pillars
-            if (PillarState == PillarState.CheapCrystal || PillarState == PillarState.ExpensiveCrystal)
-            {
-                Actions.Mine(this, player);
-            }
-
         }
         else
         {
+            Debug.Log("Invalid Move");
             player.InvalidMoveTakeEnergy();
             Game.Instance.SwitchPlayersAndDecreaseStats();
         }

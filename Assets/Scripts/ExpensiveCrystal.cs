@@ -42,15 +42,12 @@ public class ExpensiveCrystal : MonoBehaviour
 
         }
 
-
         if ((Game.Instance.TurnCount > TurnInWhichCrystalBecameEmpty + ReplenishTurns) && RemainingMineHits == 0)
         {
             Debug.Log("Crystal is replenished");
             RemainingMineHits = MaxMineHits;
             TurnInWhichCrystalBecameEmpty = -1;
         }
-
-
 
         if (RemainingMineHits == 0)
         {
@@ -65,8 +62,7 @@ public class ExpensiveCrystal : MonoBehaviour
         }
 
         RemainingMineHits--;
-
-
+        
         if (!CanAnimate())
         {
             return;
@@ -78,7 +74,7 @@ public class ExpensiveCrystal : MonoBehaviour
             animator.speed = 4.0f;
             animator.SetTrigger("ShakeCrystal2Trigger");
         }
-        Position.Move();
+        Actions.Mine(PillarState.ExpensiveCrystal, Game.Instance.GetCurrentPlayer());
     }
 
 

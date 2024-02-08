@@ -75,7 +75,7 @@ public class CheapCrystal : MonoBehaviour
             animator.speed = 4.0f;
             animator.SetTrigger("ShakeCrystal1Trigger");
         }
-        Position.Move();
+        Actions.Mine(PillarState.CheapCrystal, Game.Instance.GetCurrentPlayer());
     }
 
 

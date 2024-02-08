@@ -25,6 +25,7 @@ public class MineCommand : MonoBehaviour, ICommand
             isCoroutineRunning = true;
             StartCoroutine(ProcessMining());
         }
+        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public void Update()

@@ -6,14 +6,15 @@ using UnityEngine;
 
 public static class Actions
 {
-    public static void Mine(Pillar pillar, Player player)
+
+    public static void Mine(PillarState pillarState, Player player)
     {
         GameObject commandObject = new GameObject("MineCommandObject");
         MineCommand mineCommandInstance = commandObject.AddComponent<MineCommand>();
-        mineCommandInstance.Initialize(player, pillar.PillarState == PillarState.CheapCrystal);
+        mineCommandInstance.Initialize(player, pillarState == PillarState.CheapCrystal);
         Game.Instance.CommandManager.AddCommand(mineCommandInstance);
 
-        if (pillar.PillarState == PillarState.CheapCrystal)
+        if (pillarState == PillarState.CheapCrystal)
         {
             player.DecreaseEnergy(int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss")));
         }
@@ -22,7 +23,6 @@ public static class Actions
             player.DecreaseEnergy(int.Parse(PlayerPrefs.GetString("mining_energy_expensive_crystal_loss")));
         }
         // swap player turn
-        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public static void Move(Pillar enteredPillar, Player player)
