@@ -32,14 +32,17 @@ public class CheapCrystal : MonoBehaviour
     // Called when the player is clicked
     void OnMouseDown()
     {
-
+        if(!CanAct(Game.Instance.GetCurrentPlayer()))
+        {
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+            return;
+        }        
         if (RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty == -1)
         {
             Debug.Log("Crystal is empty");
             TurnInWhichCrystalBecameEmpty = Game.Instance.TurnCount;
 
         }
-
 
         if ((Game.Instance.TurnCount > TurnInWhichCrystalBecameEmpty + ReplenishTurns) && RemainingMineHits == 0)
         {
@@ -68,6 +71,7 @@ public class CheapCrystal : MonoBehaviour
         {
             return;
         }
+
         Animator animator = GetComponent<Animator>();
         if (animator != null)
         {
@@ -75,7 +79,20 @@ public class CheapCrystal : MonoBehaviour
             animator.speed = 4.0f;
             animator.SetTrigger("ShakeCrystal1Trigger");
         }
+
+
         Actions.Mine(PillarState.CheapCrystal, Game.Instance.GetCurrentPlayer());
+        
+    }
+
+    bool CanAct(Player player)
+    {
+        List<Pillar> neighbours = Game.Instance.Board.getNeighbours(Position);
+        if (neighbours.Contains(player.Position))
+        {
+            return true;
+        }
+        return false;
     }
 
 

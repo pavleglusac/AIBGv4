@@ -34,6 +34,11 @@ public class ExpensiveCrystal : MonoBehaviour
     // Called when the player is clicked
     void OnMouseDown()
     {
+        if(!CanAct(Game.Instance.GetCurrentPlayer()))
+        {
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+            return;
+        }
 
         if (RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty == -1)
         {
@@ -75,8 +80,18 @@ public class ExpensiveCrystal : MonoBehaviour
             animator.SetTrigger("ShakeCrystal2Trigger");
         }
         Actions.Mine(PillarState.ExpensiveCrystal, Game.Instance.GetCurrentPlayer());
+        
     }
 
+    bool CanAct(Player player)
+    {
+        List<Pillar> neighbours = Game.Instance.Board.getNeighbours(Position);
+        if (neighbours.Contains(player.Position))
+        {
+            return true;
+        }
+        return false;
+    }
 
     bool CanAnimate()
     {
