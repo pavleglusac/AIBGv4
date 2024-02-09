@@ -22,30 +22,14 @@ public class Pillar : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && PillarState == PillarState.Empty)
         {
             Player player = Game.Instance.GetCurrentPlayer();
-
-            int price = int.Parse(PlayerPrefs.GetString("refinement_facility_cost"));
-            if (!CanAct(player) || player.Coins < price)
-            {
-
-                player.InvalidMoveTakeEnergy();
-                Game.Instance.SwitchPlayersAndDecreaseStats();
-                return;
-            }
-
             MakeHouse(player);
-            player.TakeCoins(price);
-            Debug.Log(player.Coins);
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-
         }
     }
-
 
 
     void OnMouseDown()
     {
         Move();
-
     }
 
     void OnMouseEnter()
@@ -88,29 +72,6 @@ public class Pillar : MonoBehaviour
         }
     }
 
-    public void Move()
-    {
-        if (Game.IsPaused)
-            return;
-
-        Player player = Game.Instance.GetCurrentPlayer();
-        if (path == null || path.Count == 0)
-        {
-            player.InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-            return;
-        }
-        if (CanStep())
-        {
-            Actions.Move(this, player);
-        }
-        else
-        {
-            player.InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-        }
-
-    }
 
     void OnMouseExit()
     {
@@ -145,8 +106,7 @@ public class Pillar : MonoBehaviour
         return false;
     }
 
-
-    bool CanAct(Player player)
+    public bool CanAct(Player player)
     {
         List<Pillar> neighbours = Game.Instance.Board.getNeighbours(this);
         if (neighbours.Contains(player.Position))
@@ -164,37 +124,30 @@ public class Pillar : MonoBehaviour
 
     private void MakeHouse(Player player)
     {
-
-        Game.Instance.Board.Pillars[X, Z].PillarState = PillarState.House;
-        Vector3 pillarPosition = PillarObject.transform.position;
-        float x = pillarPosition.x;
-        float y = 0.65f;
-        float z = pillarPosition.z;
-        GameObject houseObject = Instantiate(housePrefab, new Vector3(x, y, z), Quaternion.identity);
-        if (!player.FirstPlayer)
-        {
-            Material redMat = Resources.Load("RedHouseMaterial", typeof(Material)) as Material;
-            houseObject.GetComponent<Renderer>().material = redMat;
-        }
-
-        houseObject.AddComponent<House>();
-        houseObject.GetComponent<House>().HouseParentObject = houseObject;
-        houseObject.GetComponent<House>().Position = this;
-        houseObject.GetComponent<House>().X = this.X;
-        houseObject.GetComponent<House>().Z = this.Z;
-
-        houseObject.AddComponent<ExpensiveCrystal>();
-        houseObject.GetComponent<ExpensiveCrystal>().Crystal2Object = houseObject;
-        houseObject.GetComponent<ExpensiveCrystal>().SetPosition(Game.Instance.Board.Pillars[X, Z]);
-        Game.Instance.Board.Houses.Add(houseObject.GetComponent<House>());
-
-        // Animator animator = houseObject.GetComponent<Animator>();
-
-        // if (animator != null)
-        // {
-        //    animator.enabled = false;
-        // }
+        Actions.BuildHouse(player, this);
     }
 
+    public void Move()
+    {
+        if (Game.IsPaused)
+            return;
+
+        Player player = Game.Instance.GetCurrentPlayer();
+        if (path == null || path.Count == 0)
+        {
+            player.InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+            return;
+        }
+        if (CanStep())
+        {
+            Actions.Move(this, player);
+        }
+        else
+        {
+            player.InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+        }
+    }
 
 }

@@ -20,6 +20,14 @@ public static class Actions
         // swap player turn
     }
 
+    public static void BuildHouse(Player player, Pillar pillar)
+    {
+        GameObject commandObject = new GameObject("BuildHouseObject");
+        BuildHouseCommand buildHouseCommandInstance = commandObject.AddComponent<BuildHouseCommand>();
+        buildHouseCommandInstance.Initialize(player, pillar);
+        Game.Instance.CommandManager.AddCommand(buildHouseCommandInstance);
+    }
+
     public static void Move(Pillar enteredPillar, Player player)
     {
         Pillar pillar;

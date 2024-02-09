@@ -64,6 +64,7 @@ public class CommandManager : MonoBehaviour
         else if (_currentCommand is ICoinSpendingCommand)
         {
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
         }
         _currentCommand = null;
         _index++;
