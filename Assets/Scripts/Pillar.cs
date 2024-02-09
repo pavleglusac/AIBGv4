@@ -90,7 +90,6 @@ public class Pillar : MonoBehaviour
 
     public void Move()
     {
-        Debug.Log("Move");
         if (Game.IsPaused)
             return;
 
@@ -103,12 +102,10 @@ public class Pillar : MonoBehaviour
         }
         if (CanStep())
         {
-            Debug.Log("Can Step");
             Actions.Move(this, player);
         }
         else
         {
-            Debug.Log("Invalid Move");
             player.InvalidMoveTakeEnergy();
             Game.Instance.SwitchPlayersAndDecreaseStats();
         }

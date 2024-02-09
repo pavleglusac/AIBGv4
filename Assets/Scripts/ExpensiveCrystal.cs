@@ -60,7 +60,6 @@ public class ExpensiveCrystal : MonoBehaviour
             NopCommand nopCommandInstance = commandObject.AddComponent<NopCommand>();
             nopCommandInstance.Initialize(Game.Instance.GetCurrentPlayer());
             Game.Instance.CommandManager.AddCommand(nopCommandInstance);
-
             Game.Instance.SwitchPlayersAndDecreaseStats();
 
             return;

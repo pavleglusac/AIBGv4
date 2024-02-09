@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FreezeCommand : MonoBehaviour, ICommand
+public class FreezeCommand : MonoBehaviour, ICoinSpendingCommand
 {
     public Player Player { get; set; }
     public Player AlternatePlayer { get; set; }
@@ -15,7 +15,6 @@ public class FreezeCommand : MonoBehaviour, ICommand
 
     public void Execute()
     {
-
         Game.Instance.GetAlternatePlayer().AddFrozenTurns();
         Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("freeze_cost")));
         Game.Instance.SwitchPlayersAndDecreaseStats();
@@ -30,5 +29,10 @@ public class FreezeCommand : MonoBehaviour, ICommand
     public bool IsDone()
     {
         return isDone;
+    }
+
+    public bool CanExecute()
+    {
+        return Game.Instance.GetCurrentPlayer().Coins >= int.Parse(PlayerPrefs.GetString("freeze_cost"));
     }
 }

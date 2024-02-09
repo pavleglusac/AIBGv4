@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DazeCommand : MonoBehaviour, ICommand
+public class DazeCommand : MonoBehaviour, ICoinSpendingCommand
 {
     public Player Player { get; set; }
     public Player AlternatePlayer { get; set; }
@@ -29,5 +29,10 @@ public class DazeCommand : MonoBehaviour, ICommand
     public bool IsDone()
     {
         return isDone;
+    }
+
+    public bool CanExecute()
+    {
+        return Player.Coins >= int.Parse(PlayerPrefs.GetString("daze_cost"));
     }
 }

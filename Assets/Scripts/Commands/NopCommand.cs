@@ -25,4 +25,9 @@ public class NopCommand : MonoBehaviour, ICommand
     {
         return isDone;
     }
+
+    public bool CanExecute()
+    {
+        return Player.Energy > 0;
+    }
 }

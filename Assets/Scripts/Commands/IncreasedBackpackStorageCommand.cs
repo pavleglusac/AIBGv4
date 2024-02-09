@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IncreasedBackpackStorageCommand : MonoBehaviour, ICommand
+public class IncreasedBackpackStorageCommand : MonoBehaviour, ICoinSpendingCommand
 {
     public Player Player { get; set; }
     public bool isDone { get; set; } = false;
@@ -27,5 +27,10 @@ public class IncreasedBackpackStorageCommand : MonoBehaviour, ICommand
     public bool IsDone()
     {
         return isDone;
+    }
+
+    public bool CanExecute()
+    {
+        return Player.Coins >= int.Parse(PlayerPrefs.GetString("bigger_backpack_cost"));
     }
 }
