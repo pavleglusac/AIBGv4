@@ -15,8 +15,8 @@ public class FreezeCommand : MonoBehaviour, ICoinSpendingCommand
 
     public void Execute()
     {
-        Game.Instance.GetAlternatePlayer().AddFrozenTurns();
-        Game.Instance.GetCurrentPlayer().TakeCoins(int.Parse(PlayerPrefs.GetString("freeze_cost")));
+        AlternatePlayer.AddFrozenTurns();
+        Player.TakeCoins(GetCoinCost());
         Game.Instance.SwitchPlayersAndDecreaseStats();
         isDone = true;
     }
@@ -34,5 +34,10 @@ public class FreezeCommand : MonoBehaviour, ICoinSpendingCommand
     public bool CanExecute()
     {
         return Game.Instance.GetCurrentPlayer().Coins >= int.Parse(PlayerPrefs.GetString("freeze_cost"));
+    }
+
+    public int GetCoinCost()
+    {
+        return int.Parse(PlayerPrefs.GetString("freeze_cost"));
     }
 }

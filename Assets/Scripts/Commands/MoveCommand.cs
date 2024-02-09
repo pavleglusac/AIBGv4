@@ -28,7 +28,7 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
     public void Execute()
     {
         isMoving = true;
-        Player.DecreaseEnergy((Player.Bag.GetWeight() + energyCost) * Count);
+        Player.DecreaseEnergy(GetEnergyCost());
         Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
@@ -97,7 +97,12 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
 
     public bool CanExecute()
     {
-        return Player.Energy >= (Player.Bag.GetWeight() + energyCost) * Count; 
+        return Player.Energy >= GetEnergyCost();
+    }
+
+    public int GetEnergyCost()
+    {
+        return (Player.Bag.GetWeight() + energyCost) * Count;
     }
 
 }

@@ -25,9 +25,7 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
             isCoroutineRunning = true;
             StartCoroutine(ProcessMining());
         }
-        Player.DecreaseEnergy(isCheapCrystal
-            ? int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss"))
-            : int.Parse(PlayerPrefs.GetString("mining_energy_expensive_crystal_loss")));
+        Player.DecreaseEnergy(GetEnergyCost());
         Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
@@ -67,13 +65,13 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
 
     public bool CanExecute()
     {
-        if (isCheapCrystal)
-        {
-            return Player.Energy > int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss"));
-        }
-        else
-        {
-            return Player.Energy > int.Parse(PlayerPrefs.GetString("mining_energy_expensive_crystal_loss"));
-        }
+        return Player.Energy >= GetEnergyCost();
+    }
+
+    public int GetEnergyCost()
+    {
+        return isCheapCrystal
+            ? int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss"))
+            : int.Parse(PlayerPrefs.GetString("mining_energy_expensive_crystal_loss"));
     }
 }

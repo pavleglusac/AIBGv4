@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IEnergySpendingCommand : ICommand
 {
+    public int GetEnergyCost();
 
 }

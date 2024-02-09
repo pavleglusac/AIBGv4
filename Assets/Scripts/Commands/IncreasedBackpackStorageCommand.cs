@@ -14,7 +14,7 @@ public class IncreasedBackpackStorageCommand : MonoBehaviour, ICoinSpendingComma
     public void Execute()
     {
         Player.AddIncreasedBackpackStorageTurns();
-        Player.TakeCoins(int.Parse(PlayerPrefs.GetString("bigger_backpack_cost")));
+        Player.TakeCoins(GetCoinCost());
         Game.Instance.SwitchPlayersAndDecreaseStats();
         isDone = true;
     }
@@ -31,6 +31,11 @@ public class IncreasedBackpackStorageCommand : MonoBehaviour, ICoinSpendingComma
 
     public bool CanExecute()
     {
-        return Player.Coins >= int.Parse(PlayerPrefs.GetString("bigger_backpack_cost"));
+        return Player.Coins >= GetCoinCost();
+    }
+
+    public int GetCoinCost()
+    {
+        return int.Parse(PlayerPrefs.GetString("bigger_backpack_cost"));
     }
 }

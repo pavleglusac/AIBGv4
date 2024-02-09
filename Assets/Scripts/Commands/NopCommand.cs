@@ -30,4 +30,9 @@ public class NopCommand : MonoBehaviour, ICommand
     {
         return Player.Energy > 0;
     }
+
+    public int GetEnergyCost()
+    {
+        return 0;
+    }
 }

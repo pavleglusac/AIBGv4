@@ -32,4 +32,9 @@ public class RestCommand : MonoBehaviour, ICommand
     {
         return true;
     }
+
+    public int GetEnergyCost()
+    {
+        return 0;
+    }
 }

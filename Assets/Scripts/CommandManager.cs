@@ -60,7 +60,10 @@ public class CommandManager : MonoBehaviour
             Debug.Log("Game over");
             Debug.Log("Winner is: " + Game.Instance.Winner);   
             Game.EndGame();
-                
+        }
+        else if (_currentCommand is ICoinSpendingCommand)
+        {
+            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
         }
         _currentCommand = null;
         _index++;

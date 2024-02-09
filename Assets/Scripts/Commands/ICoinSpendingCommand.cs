@@ -5,5 +5,5 @@ using UnityEngine;
 // create abstract class for command
 public interface ICoinSpendingCommand : ICommand
 {
-
+    public int GetCoinCost();
 }

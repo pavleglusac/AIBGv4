@@ -16,7 +16,7 @@ public class DazeCommand : MonoBehaviour, ICoinSpendingCommand
     public void Execute()
     {
         AlternatePlayer.AddDazeTurns();
-        Player.TakeCoins(int.Parse(PlayerPrefs.GetString("daze_cost")));
+        Player.TakeCoins(GetCoinCost());
         Game.Instance.SwitchPlayersAndDecreaseStats();
         isDone = true;
     }
@@ -33,6 +33,11 @@ public class DazeCommand : MonoBehaviour, ICoinSpendingCommand
 
     public bool CanExecute()
     {
-        return Player.Coins >= int.Parse(PlayerPrefs.GetString("daze_cost"));
+        return Player.Coins >= GetCoinCost();
+    }
+
+    public int GetCoinCost()
+    {
+        return int.Parse(PlayerPrefs.GetString("daze_cost"));
     }
 }
