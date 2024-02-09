@@ -45,26 +45,25 @@ public class CommandManager : MonoBehaviour
             _currentCommand = null;
             _index++;
         }
-        
-        if (_currentCommand != null && !_currentCommand.IsDone())
+
+        if (_currentCommand == null || _currentCommand.IsDone()) return;
+
+        if(_currentCommand.CanExecute())
         {
-            if(_currentCommand.CanExecute())
-            {
-                Debug.Log("Executing command: " + _currentCommand.ToString());
-                _currentCommand.Execute();
-            }
-            else if(_currentCommand is IEnergySpendingCommand)
-            {
-                Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
-                Game.Instance.GameOver = true;
-                Debug.Log("Game over");
-                Debug.Log("Winner is: " + Game.Instance.Winner);   
-                Game.EndGame();
-                
-            }
-            _currentCommand = null;
-            _index++;
+            Debug.Log("Executing command: " + _currentCommand.ToString());
+            _currentCommand.Execute();
         }
+        else if(_currentCommand is IEnergySpendingCommand)
+        {
+            Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
+            Game.Instance.GameOver = true;
+            Debug.Log("Game over");
+            Debug.Log("Winner is: " + Game.Instance.Winner);   
+            Game.EndGame();
+                
+        }
+        _currentCommand = null;
+        _index++;
     }
 
 }

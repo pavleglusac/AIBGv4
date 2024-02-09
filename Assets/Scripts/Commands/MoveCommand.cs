@@ -28,6 +28,8 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
     public void Execute()
     {
         isMoving = true;
+        Player.DecreaseEnergy((Player.Bag.GetWeight() + energyCost) * Count);
+        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public void Update()

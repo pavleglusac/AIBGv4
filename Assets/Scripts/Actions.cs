@@ -14,14 +14,9 @@ public static class Actions
         mineCommandInstance.Initialize(player, pillarState == PillarState.CheapCrystal);
         Game.Instance.CommandManager.AddCommand(mineCommandInstance);
 
-        if (pillarState == PillarState.CheapCrystal)
-        {
-            player.DecreaseEnergy(int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss")));
-        }
-        else
-        {
-            player.DecreaseEnergy(int.Parse(PlayerPrefs.GetString("mining_energy_expensive_crystal_loss")));
-        }
+        // player.DecreaseEnergy(pillarState == PillarState.CheapCrystal
+        //     ? int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss"))
+        //     : int.Parse(PlayerPrefs.GetString("mining_energy_expensive_crystal_loss")));
         // swap player turn
     }
 
@@ -72,8 +67,7 @@ public static class Actions
         pillar.PillarState = Game.Instance.FirstPlayerTurn ? PillarState.Player1 : PillarState.Player2;
 
         player.SetPosition(pillar);
-        player.DecreaseEnergy(count * (player.Bag.GetWeight() + 1));
-        Game.Instance.SwitchPlayersAndDecreaseStats();
+        // player.DecreaseEnergy(count * (player.Bag.GetWeight() + 1));
     }
 
     private static bool OutOfBounds(Pillar pillar, Player player)
