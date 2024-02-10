@@ -13,8 +13,6 @@ public class RestCommand : MonoBehaviour, ICommand
 
     public void Execute()
     {
-
-
         Player.IncreaseEnergy(int.Parse(PlayerPrefs.GetString("resting_energy")));
         Game.Instance.SwitchPlayersAndDecreaseStats();
         isDone = true;
@@ -28,5 +26,15 @@ public class RestCommand : MonoBehaviour, ICommand
     public bool IsDone()
     {
         return isDone;
+    }
+
+    public bool CanExecute()
+    {
+        return true;
+    }
+
+    public int GetEnergyCost()
+    {
+        return 0;
     }
 }

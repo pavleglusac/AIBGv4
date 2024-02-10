@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IncreasedBackpackStorageCommand : MonoBehaviour, ICommand
+public class IncreasedBackpackStorageCommand : MonoBehaviour, ICoinSpendingCommand
 {
     public Player Player { get; set; }
     public bool isDone { get; set; } = false;
@@ -14,7 +14,7 @@ public class IncreasedBackpackStorageCommand : MonoBehaviour, ICommand
     public void Execute()
     {
         Player.AddIncreasedBackpackStorageTurns();
-        Player.TakeCoins(int.Parse(PlayerPrefs.GetString("bigger_backpack_cost")));
+        Player.TakeCoins(GetCoinCost());
         Game.Instance.SwitchPlayersAndDecreaseStats();
         isDone = true;
     }
@@ -27,5 +27,15 @@ public class IncreasedBackpackStorageCommand : MonoBehaviour, ICommand
     public bool IsDone()
     {
         return isDone;
+    }
+
+    public bool CanExecute()
+    {
+        return Player.Coins >= GetCoinCost();
+    }
+
+    public int GetCoinCost()
+    {
+        return int.Parse(PlayerPrefs.GetString("bigger_backpack_cost"));
     }
 }

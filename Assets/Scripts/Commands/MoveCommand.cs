@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+ 
 
 
 // inherit from command
-public class MoveCommand : MonoBehaviour, ICommand
+public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
 {
     public int Direction { get; set; }
     public int Count { get; set; }
@@ -12,20 +13,23 @@ public class MoveCommand : MonoBehaviour, ICommand
     public bool isMoving { get; set; } = false;
     public bool isDone { get; set; } = false;
     private float stepDuration = 0.2f;
-
     private bool isCoroutineRunning = false;
+    private int energyCost;
 
     public MoveCommand Initialize(Player player, int direction, int count)
     {
         Direction = direction;
         Count = count;
         Player = player;
+        energyCost = int.Parse(PlayerPrefs.GetString("movement_cost"));
         return this;
     }
 
     public void Execute()
     {
         isMoving = true;
+        Player.DecreaseEnergy(GetEnergyCost());
+        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public void Update()
@@ -91,5 +95,14 @@ public class MoveCommand : MonoBehaviour, ICommand
         return "MoveCommand: " + Player.FirstPlayer + " " + Direction + " " + Count;
     }
 
+    public bool CanExecute()
+    {
+        return Player.Energy >= GetEnergyCost();
+    }
+
+    public int GetEnergyCost()
+    {
+        return (Player.Bag.GetWeight() + energyCost) * Count;
+    }
 
 }

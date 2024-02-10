@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Game : MonoBehaviour
 {
@@ -79,6 +81,12 @@ public class Game : MonoBehaviour
             return;
         Time.timeScale = 1f;
         IsPaused = false;
+    }
+
+    public static void EndGame()
+    {
+        ResumeGame();
+        SceneManager.LoadScene("Main menu");
     }
 
 

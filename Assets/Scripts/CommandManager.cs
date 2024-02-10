@@ -37,7 +37,7 @@ public class CommandManager : MonoBehaviour
         if (_currentCommand == null && _commands.Count > 0)
         {
             _currentCommand = _commands[_index];
-            _currentCommand.Execute();
+            // _currentCommand.Execute();
             //Debug.Log("Executing command: " + _currentCommand.ToString());
         }
         else if (_currentCommand != null && _currentCommand.IsDone())
@@ -45,6 +45,29 @@ public class CommandManager : MonoBehaviour
             _currentCommand = null;
             _index++;
         }
+
+        if (_currentCommand == null || _currentCommand.IsDone()) return;
+
+        if(_currentCommand.CanExecute())
+        {
+            Debug.Log("Executing command: " + _currentCommand.ToString());
+            _currentCommand.Execute();
+        }
+        else if(_currentCommand is IEnergySpendingCommand)
+        {
+            Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
+            Game.Instance.GameOver = true;
+            Debug.Log("Game over");
+            Debug.Log("Winner is: " + Game.Instance.Winner);   
+            Game.EndGame();
+        }
+        else if (_currentCommand is ICoinSpendingCommand)
+        {
+            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+        }
+        _currentCommand = null;
+        _index++;
     }
 
 }

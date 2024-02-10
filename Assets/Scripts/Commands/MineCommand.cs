@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MineCommand : MonoBehaviour, ICommand
+public class MineCommand : MonoBehaviour, IEnergySpendingCommand
 {
     public Player Player { get; set; }
     public bool isDone { get; set; } = false;
     public bool isMining { get; set; } = false;
     private bool isCoroutineRunning = false;
-    private bool isCrystal1 = true;
+    private bool isCheapCrystal = true;
 
     public MineCommand Initialize(Player player, bool isCrystal1)
     {
         this.Player = player;
-        this.isCrystal1 = isCrystal1;
+        this.isCheapCrystal = isCrystal1;
         return this;
     }
 
@@ -25,6 +25,7 @@ public class MineCommand : MonoBehaviour, ICommand
             isCoroutineRunning = true;
             StartCoroutine(ProcessMining());
         }
+        Player.DecreaseEnergy(GetEnergyCost());
         Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
@@ -45,7 +46,7 @@ public class MineCommand : MonoBehaviour, ICommand
 
     private IEnumerator Mine()
     {
-        if (isCrystal1)
+        if (isCheapCrystal)
         {
             Player.Bag.AddCheapCrystal();
         }
@@ -60,5 +61,17 @@ public class MineCommand : MonoBehaviour, ICommand
     public bool IsDone()
     {
         return isDone;
+    }
+
+    public bool CanExecute()
+    {
+        return Player.Energy >= GetEnergyCost();
+    }
+
+    public int GetEnergyCost()
+    {
+        return isCheapCrystal
+            ? int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss"))
+            : int.Parse(PlayerPrefs.GetString("mining_energy_expensive_crystal_loss"));
     }
 }
