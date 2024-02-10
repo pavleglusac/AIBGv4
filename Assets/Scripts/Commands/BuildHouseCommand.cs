@@ -38,10 +38,7 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
         houseObject.GetComponent<House>().Position = Pillar;
         houseObject.GetComponent<House>().X = Pillar.X;
         houseObject.GetComponent<House>().Z = Pillar.Z;
-
-        houseObject.AddComponent<ExpensiveCrystal>();
-        houseObject.GetComponent<ExpensiveCrystal>().Crystal2Object = houseObject;
-        houseObject.GetComponent<ExpensiveCrystal>().SetPosition(Game.Instance.Board.Pillars[Pillar.X, Pillar.Z]);
+        houseObject.GetComponent<House>().IsFirstPlayers = Player.FirstPlayer;
         Game.Instance.Board.Houses.Add(houseObject.GetComponent<House>());
 
         Player.TakeCoins(GetCoinCost());

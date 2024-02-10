@@ -34,6 +34,8 @@ public class Game : MonoBehaviour
     [HideInInspector] public int numberOfCheapCrystalsInGroup;
     [HideInInspector] public int numberOfExpensiveCrystalsInGroup;
 
+    [HideInInspector] public House selectedHouse;
+
 
     public CommandManager CommandManager { get; set; }
 

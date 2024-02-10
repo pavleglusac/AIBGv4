@@ -117,4 +117,28 @@ public class Bag : MonoBehaviour
 
     }
 
+    public int GetCheapCrystalCount()
+    {
+        return CheapCrystals.Count;
+    }
+
+    public int GetExpensiveCrystalCount()
+    {
+        return ExpensiveCrystals.Count;
+    }
+
+    public CheapCrystalItem PopCheapCrystal()
+    {
+        CheapCrystalItem crystal = CheapCrystals[0];
+        CheapCrystals.RemoveAt(0);
+        return crystal;
+    }
+
+    public ExpensiveCrystalItem PopExpensiveCrystal()
+    {
+        ExpensiveCrystalItem crystal = ExpensiveCrystals[0];
+        ExpensiveCrystals.RemoveAt(0);
+        return crystal;
+    }
+
 }

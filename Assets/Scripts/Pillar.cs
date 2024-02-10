@@ -29,6 +29,7 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
+     
         Move();
     }
 
