@@ -43,11 +43,13 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
     {
         for (int i = 0; i < PutCheap; i++)
         {
+            Debug.Log("daje u cheap");
             House.CheapCrystals.Add(new Tuple<CheapCrystalItem, int>(Player.Bag.PopCheapCrystal(), Game.Instance.TurnCount));
         }
 
         for (int i = 0; i < PutExpensive; i++)
         {
+            Debug.Log("daje u cheap");
             House.ExpensiveCrystals.Add(new Tuple<ExpensiveCrystalItem, int>(Player.Bag.PopExpensiveCrystal(), Game.Instance.TurnCount));
         }
 

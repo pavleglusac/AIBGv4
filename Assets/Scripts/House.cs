@@ -1,15 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
+
 
 public class House : MonoBehaviour
 {
 
-    public RefinementMenuNavigation refinementMenuNavigation;
+
     public GameObject HouseParentObject { get; set; }
     public GameObject HouseObject { get; set; }
     public Pillar Position { get; set; }
@@ -31,7 +29,6 @@ public class House : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Player clicked");
         if (Game.Instance.GetCurrentPlayer().FirstPlayer != this.IsFirstPlayers) return;
         Game.Instance.selectedHouse = this;
         RefinementMenuNavigation.Instance.OpenRefinementMenu();
@@ -72,6 +69,6 @@ public class House : MonoBehaviour
 
 
 
-    
+
 
 }
