@@ -17,13 +17,44 @@ public class House : MonoBehaviour
     public List<Tuple<CheapCrystalItem, int>> CheapCrystals { get; set; } = new List<Tuple<CheapCrystalItem, int>>();
     public List<Tuple<ExpensiveCrystalItem, int>> ExpensiveCrystals { get; set; } = new List<Tuple<ExpensiveCrystalItem, int>>();
 
+
+    private Vector3 initialPosition;
+
     void Start()
     {
+        initialPosition = HouseParentObject.transform.position;
     }
-
 
     void Update()
     {
+        int unprocessedCheapCrystalCount = GetUnprocessedCheapCrystalCount();
+        int unprocessedExpensiveCrystalCount = GetUnprocessedExpensiveCrystalCount();
+        int processedCheapCrystalCount = GetProcessedCheapCrystalCount();
+        int processedExpensiveCrystalCount = GetProcessedExpensiveCrystalCount();
+        var position = initialPosition;
+
+        if (unprocessedCheapCrystalCount > 0 || unprocessedExpensiveCrystalCount > 0)
+        {
+            float time = Time.time;
+            float x = initialPosition.x + Mathf.Sin(time * 3) * 0.05f;
+            float z = initialPosition.z + Mathf.Cos(time * 10 + 1) * 0.05f;
+            position = new Vector3(x, position.y, z);
+        }
+
+        if (processedCheapCrystalCount > 0 || processedExpensiveCrystalCount > 0)
+        {
+            float time = Time.time;
+            float y = initialPosition.y + Mathf.Abs(Mathf.Sin(time * 2)) * 0.25f;
+            position = new Vector3(position.x, y, position.z);
+        }
+
+        if (processedCheapCrystalCount == 0 && processedExpensiveCrystalCount == 0 && unprocessedCheapCrystalCount == 0 && unprocessedExpensiveCrystalCount == 0)
+        {
+            position = initialPosition;
+        }
+        HouseParentObject.transform.position = position;
+
+
     }
 
 
