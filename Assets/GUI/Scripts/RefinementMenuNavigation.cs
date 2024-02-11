@@ -87,6 +87,52 @@ public class RefinementMenuNavigation : MonoBehaviour
         CloseRefinementMenu();
     }
 
+    public void IncreaseTakeCheapCrystal()
+    {
+        Player player = Game.Instance.GetCurrentPlayer();
+        if (Instance.TakeCheap == Game.Instance.selectedHouse.GetProcessedCheapCrystalCount()) return;
+        int processedCheapCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_cheap_crystal_weight"));
+        int processedExpensiveCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_expensive_crystal_weight"));
+        if (player.Bag.GetRemainingCapacity() < (Instance.TakeCheap + 1) * processedCheapCrystalWeight + Instance.TakeExpensive * processedExpensiveCrystalWeight) return;
+        Instance.TakeCheap++;
+        UpdateText();
+    }
+
+    public void DecreaseTakeCheapCrystal()
+    {
+        if (Instance.TakeCheap > 0)
+        {
+            Instance.TakeCheap--;
+        }
+        UpdateText();
+    }
+
+    public void IncreaseTakeExpensiveCrystal()
+    {
+        Player player = Game.Instance.GetCurrentPlayer();
+        if (Instance.TakeExpensive == Game.Instance.selectedHouse.GetProcessedExpensiveCrystalCount()) return;
+        int processedCheapCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_cheap_crystal_weight"));
+        int processedExpensiveCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_expensive_crystal_weight"));
+        if (player.Bag.GetRemainingCapacity() < (Instance.TakeExpensive + 1) * processedExpensiveCrystalWeight + Instance.TakeCheap * processedCheapCrystalWeight) return;
+        Instance.TakeExpensive++;
+        UpdateText();
+    }
+
+    public void DecreaseTakeExpensiveCrystal()
+    {
+        if (Instance.TakeExpensive > 0)
+        {
+            Instance.TakeExpensive--;
+        }
+        UpdateText();
+    }
+
+    public void Take()
+    {
+        Actions.TakeRefinement(Game.Instance.GetCurrentPlayer(), Game.Instance.selectedHouse, Instance.TakeCheap, Instance.TakeExpensive);
+        CloseRefinementMenu();
+    }
+
     void Start()
     {
         if (Instance == null) Instance = this;

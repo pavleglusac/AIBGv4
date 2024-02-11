@@ -66,6 +66,24 @@ public class House : MonoBehaviour
         return ExpensiveCrystals.Count(crystal => Game.Instance.TurnCount - crystal.Item2 < expensiveCrystalProcessingTurns);
     }
 
+    public CheapCrystalItem PopProcessedCheapCrystal()
+    {
+        int cheapCrystalProcessingTurns = int.Parse(PlayerPrefs.GetString("cheap_crystal_processing_turns"));
+        Tuple<CheapCrystalItem, int> crystal = CheapCrystals.First(c => Game.Instance.TurnCount - c.Item2 >= cheapCrystalProcessingTurns);
+        CheapCrystals.Remove(crystal);
+        crystal.Item1.isProcessed = true;
+        return crystal.Item1;
+    }
+
+    public ExpensiveCrystalItem PopProcessedExpensiveCrystal()
+    {
+        int expensiveCrystalProcessingTurns = int.Parse(PlayerPrefs.GetString("expensive_crystal_processing_turns"));
+        Tuple<ExpensiveCrystalItem, int> crystal = ExpensiveCrystals.First(c => Game.Instance.TurnCount - c.Item2 >= expensiveCrystalProcessingTurns);
+        ExpensiveCrystals.Remove(crystal);
+        crystal.Item1.isProcessed = true;
+        return crystal.Item1;
+    }
+
 
 
 

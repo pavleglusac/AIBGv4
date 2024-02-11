@@ -33,6 +33,14 @@ public static class Actions
         Game.Instance.CommandManager.AddCommand(refinementPutCommandInstance);
     }
 
+    public static void TakeRefinement(Player player, House house, int takeCheap, int takeExpensive)
+    {
+        GameObject commandObject = new GameObject("RefinementTakeCommandObject");
+        RefinementTakeCommand refinementTakeCommandInstance = commandObject.AddComponent<RefinementTakeCommand>();
+        refinementTakeCommandInstance.Initialize(player, takeCheap, takeExpensive, house);
+        Game.Instance.CommandManager.AddCommand(refinementTakeCommandInstance);
+    }
+
     public static void Move(Pillar enteredPillar, Player player)
     {
         Pillar pillar;
