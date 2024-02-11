@@ -32,15 +32,27 @@ public class Bag : MonoBehaviour
 
     public void AddCheapCrystal()
     {
-
         CheapCrystalItem crystal1 = new CheapCrystalItem();
         if (crystal1.GetWeight() <= GetRemainingCapacity())
             CheapCrystals.Add(crystal1);
     }
 
+    public void AddCheapCrystal(CheapCrystalItem crystal1)
+    {
+        if (crystal1.GetWeight() <= GetRemainingCapacity())
+            CheapCrystals.Add(crystal1);
+    }
+
+
     public void AddExpensiveCrystal()
     {
         ExpensiveCrystalItem crystal2 = new ExpensiveCrystalItem();
+        if (crystal2.GetWeight() <= GetRemainingCapacity())
+            ExpensiveCrystals.Add(crystal2);
+    }
+
+    public void AddExpensiveCrystal(ExpensiveCrystalItem crystal2)
+    {
         if (crystal2.GetWeight() <= GetRemainingCapacity())
             ExpensiveCrystals.Add(crystal2);
     }
@@ -115,6 +127,30 @@ public class Bag : MonoBehaviour
 
         }
 
+    }
+
+    public int GetCheapCrystalCount()
+    {
+        return CheapCrystals.Count;
+    }
+
+    public int GetExpensiveCrystalCount()
+    {
+        return ExpensiveCrystals.Count;
+    }
+
+    public CheapCrystalItem PopCheapCrystal()
+    {
+        CheapCrystalItem crystal = CheapCrystals[0];
+        CheapCrystals.RemoveAt(0);
+        return crystal;
+    }
+
+    public ExpensiveCrystalItem PopExpensiveCrystal()
+    {
+        ExpensiveCrystalItem crystal = ExpensiveCrystals[0];
+        ExpensiveCrystals.RemoveAt(0);
+        return crystal;
     }
 
 }

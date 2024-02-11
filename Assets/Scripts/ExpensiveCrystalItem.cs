@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor.ShaderKeywordFilter;
 
 public class ExpensiveCrystalItem : MonoBehaviour
 {
@@ -9,11 +10,9 @@ public class ExpensiveCrystalItem : MonoBehaviour
     public DateTime TimeAdded { get; set; } = DateTime.Now;
     public int GetWeight()
     {
-        return isProcessed ? 1 : 3;
+        int processedExpensiveCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_expensive_crystal_weight"));
+        int rawExpensiveCrystalWeight = int.Parse(PlayerPrefs.GetString("raw_expensive_crystal_weight"));
+        return isProcessed ? processedExpensiveCrystalWeight : rawExpensiveCrystalWeight;
     }
 
-    public int GetValue()
-    {
-        return isProcessed ? 10 : 5;
-    }
 }

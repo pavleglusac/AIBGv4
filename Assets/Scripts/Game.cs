@@ -34,6 +34,8 @@ public class Game : MonoBehaviour
     [HideInInspector] public int numberOfCheapCrystalsInGroup;
     [HideInInspector] public int numberOfExpensiveCrystalsInGroup;
 
+    [HideInInspector] public House selectedHouse;
+
 
     public CommandManager CommandManager { get; set; }
 
@@ -41,25 +43,46 @@ public class Game : MonoBehaviour
     {
         if (Instance == null)
         {
-            Instance = this;
-            numberOfCheapCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystal_groups"));
-            numberOfExpensiveCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystal_groups"));
-            numberOfCheapCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals_in_group"));
-            numberOfExpensiveCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals_in_group"));
-            rows = int.Parse(PlayerPrefs.GetString("board_size"));
-            columns = int.Parse(PlayerPrefs.GetString("board_size"));
-
-            // create a new board but board is mono behaviour
-            Board = new GameObject("Board").AddComponent<Board>();
-            CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
-            DontDestroyOnLoad(gameObject);
-
+            SetupGame();
 
         }
         else
         {
 
             Destroy(gameObject);
+        }
+    }
+
+    public void SetupGame()
+    {
+        ResetGame();
+        numberOfCheapCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystal_groups"));
+        numberOfExpensiveCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystal_groups"));
+        numberOfCheapCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals_in_group"));
+        numberOfExpensiveCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals_in_group"));
+        rows = int.Parse(PlayerPrefs.GetString("board_size"));
+        columns = int.Parse(PlayerPrefs.GetString("board_size"));
+
+        // create a new board but board is mono behaviour
+        Board = new GameObject("Board").AddComponent<Board>();
+        CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
+        DontDestroyOnLoad(gameObject);
+
+    }
+
+    public void ResetGame()
+    {
+        IsPaused = false;
+        FirstPlayerTurn = true;
+        Winner = "";
+        TurnCount = 0;
+        GameOver = false;
+        selectedHouse = null;
+        Instance = this;
+        if (Player1 != null && Player2 != null)
+        {
+            Player2.SetupPlayer("Pupoljci");
+            Player1.SetupPlayer("Crni Cerak");
         }
     }
 

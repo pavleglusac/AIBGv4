@@ -9,15 +9,12 @@ public static class Actions
 
     public static void Mine(PillarState pillarState, Player player)
     {
+        
         GameObject commandObject = new GameObject("MineCommandObject");
         MineCommand mineCommandInstance = commandObject.AddComponent<MineCommand>();
         mineCommandInstance.Initialize(player, pillarState == PillarState.CheapCrystal);
         Game.Instance.CommandManager.AddCommand(mineCommandInstance);
 
-        // player.DecreaseEnergy(pillarState == PillarState.CheapCrystal
-        //     ? int.Parse(PlayerPrefs.GetString("mining_energy_cheap_crystal_loss"))
-        //     : int.Parse(PlayerPrefs.GetString("mining_energy_expensive_crystal_loss")));
-        // swap player turn
     }
 
     public static void BuildHouse(Player player, Pillar pillar)
@@ -26,6 +23,22 @@ public static class Actions
         BuildHouseCommand buildHouseCommandInstance = commandObject.AddComponent<BuildHouseCommand>();
         buildHouseCommandInstance.Initialize(player, pillar);
         Game.Instance.CommandManager.AddCommand(buildHouseCommandInstance);
+    }
+
+    public static void PutRefinement(Player player, House house, int putCheap, int putExpensive)
+    {
+        GameObject commandObject = new GameObject("RefinementPutCommandObject");
+        RefinementPutCommand refinementPutCommandInstance = commandObject.AddComponent<RefinementPutCommand>();
+        refinementPutCommandInstance.Initialize(player, putCheap, putExpensive, house);
+        Game.Instance.CommandManager.AddCommand(refinementPutCommandInstance);
+    }
+
+    public static void TakeRefinement(Player player, House house, int takeCheap, int takeExpensive)
+    {
+        GameObject commandObject = new GameObject("RefinementTakeCommandObject");
+        RefinementTakeCommand refinementTakeCommandInstance = commandObject.AddComponent<RefinementTakeCommand>();
+        refinementTakeCommandInstance.Initialize(player, takeCheap, takeExpensive, house);
+        Game.Instance.CommandManager.AddCommand(refinementTakeCommandInstance);
     }
 
     public static void Move(Pillar enteredPillar, Player player)

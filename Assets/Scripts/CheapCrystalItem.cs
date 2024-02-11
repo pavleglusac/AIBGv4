@@ -10,11 +10,9 @@ public class CheapCrystalItem : MonoBehaviour
 
     public int GetWeight()
     {
-        return isProcessed ? 1 : 3;
+        int processedCheapCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_cheap_crystal_weight"));
+        int rawCheapCrystalWeight = int.Parse(PlayerPrefs.GetString("raw_cheap_crystal_weight"));
+        return isProcessed ? processedCheapCrystalWeight : rawCheapCrystalWeight;
     }
 
-    public int GetValue()
-    {
-        return isProcessed ? 10 : 5;
-    }
 }

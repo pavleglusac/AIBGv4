@@ -50,21 +50,25 @@ public class CommandManager : MonoBehaviour
 
         if(_currentCommand.CanExecute())
         {
-            Debug.Log("Executing command: " + _currentCommand.ToString());
             _currentCommand.Execute();
         }
-        else if(_currentCommand is IEnergySpendingCommand)
+        else switch (_currentCommand)
         {
-            Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
-            Game.Instance.GameOver = true;
-            Debug.Log("Game over");
-            Debug.Log("Winner is: " + Game.Instance.Winner);   
-            Game.EndGame();
-        }
-        else if (_currentCommand is ICoinSpendingCommand)
-        {
-            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
+            case IEnergySpendingCommand:
+                Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
+                Game.Instance.GameOver = true;
+                Debug.Log("Game over");
+                Debug.Log("Winner is: " + Game.Instance.Winner);   
+                Game.EndGame();
+                break;
+            case ICoinSpendingCommand:
+                Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+                Game.Instance.SwitchPlayersAndDecreaseStats();
+                break;
+            default:
+                Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+                Game.Instance.SwitchPlayersAndDecreaseStats();
+                break;
         }
         _currentCommand = null;
         _index++;
