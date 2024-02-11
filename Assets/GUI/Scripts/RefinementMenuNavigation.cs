@@ -20,7 +20,7 @@ public class RefinementMenuNavigation : MonoBehaviour
 
     public void UpdateText()
     {
-        RefinementMenuGUIValues.Instance.UpdateText(PutCheap, PutExpensive, TakeCheap, TakeExpensive);
+        RefinementMenuGUIValues.Instance.UpdateText(Instance.PutCheap, Instance.PutExpensive, Instance.TakeCheap, Instance.TakeExpensive);
     }
 
     public void CloseRefinementMenu()
@@ -28,6 +28,10 @@ public class RefinementMenuNavigation : MonoBehaviour
         refinementMenu.SetActive(false);
         Game.Instance.selectedHouse = null;
         Game.ResumeGame();
+        Instance.PutCheap = 0;
+        Instance.PutExpensive = 0;
+        Instance.TakeCheap = 0;
+        Instance.TakeExpensive = 0;
     }
 
     public void OpenRefinementMenu()
@@ -42,18 +46,18 @@ public class RefinementMenuNavigation : MonoBehaviour
     public void IncreasePutCheapCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        if (PutCheap < player.Bag.GetCheapCrystalCount())
+        if (Instance.PutCheap < player.Bag.GetCheapCrystalCount())
         {
-            PutCheap++;
+            Instance.PutCheap++;
         }
         UpdateText();
     }
 
     public void DecreasePutCheapCrystal()
     {
-        if (PutCheap > 0)
+        if (Instance.PutCheap > 0)
         {
-            PutCheap--;
+            Instance.PutCheap--;
         }
         UpdateText();
     }
@@ -61,25 +65,25 @@ public class RefinementMenuNavigation : MonoBehaviour
     public void IncreasePutExpensiveCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        if (PutExpensive < player.Bag.GetExpensiveCrystalCount())
+        if (Instance.PutExpensive < player.Bag.GetExpensiveCrystalCount())
         {
-            PutExpensive++;
+            Instance.PutExpensive++;
         }
         UpdateText();
     }
 
     public void DecreasePutExpensiveCrystal()
     {
-        if (PutExpensive > 0)
+        if (Instance.PutExpensive > 0)
         {
-            PutExpensive--;
+            Instance.PutExpensive--;
         }
         UpdateText();
     }
 
     public void Put()
     {
-        Actions.PutRefinement(Game.Instance.GetCurrentPlayer(), Game.Instance.selectedHouse, PutCheap, PutExpensive);
+        Actions.PutRefinement(Game.Instance.GetCurrentPlayer(), Game.Instance.selectedHouse, Instance.PutCheap, Instance.PutExpensive);
         CloseRefinementMenu();
     }
 
