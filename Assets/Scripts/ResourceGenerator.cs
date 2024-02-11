@@ -29,8 +29,6 @@ public class ResourceGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        using StreamWriter writer = new("log.txt", true);
-        writer.WriteLine("POCETAK GENERISANJA RESURSA!");
         // clear log file
         game = Game.Instance;
         rows = game.rows;
@@ -47,16 +45,11 @@ public class ResourceGenerator : MonoBehaviour
 
         game.Board.CheapCrystals = new CheapCrystal[(numberOfCheapCrystalGroups * numberOfCheapCrystalsInGroup * 2)]; // 3 crystals per group, 2 groups one for each side
         game.Board.ExpensiveCrystals = new ExpensiveCrystal[(numberOfExpensiveCrystalGroups * numberOfExpensiveCrystalsInGroup * 2)]; // 3 crystals per group, 2 groups one for each side
-        writer.WriteLine("KRAJ INICIJALIZACIJE!");
 
-        GenerateCrystals(false, writer);
-        writer.WriteLine("KRAJ GENERISANJA JEFTINIH RESURSA!");
-        GenerateCrystals(true, writer);
-        writer.WriteLine("KRAJ GENERISANJA SKUPLJIH RESURSA!");
+        GenerateCrystals(false);
+        GenerateCrystals(true);
 
-        writer.WriteLine("KRAJ GENERISANJA RESURSA!");
         StartCoroutine(StartAnimations());
-        writer.WriteLine("KRAJ ANIMACIJA!");
 
 
     }
@@ -124,9 +117,8 @@ public class ResourceGenerator : MonoBehaviour
     }
 
 
-    void GenerateCrystals(bool isExpensive, StreamWriter writer = null)
+    void GenerateCrystals(bool isExpensive)
     {
-        writer.WriteLine("isExpensive: " + isExpensive.ToString());
         int generatedCrystals = 0;
 
         int numOfGroups = isExpensive ? numberOfExpensiveCrystalGroups : numberOfCheapCrystalGroups;
@@ -138,7 +130,6 @@ public class ResourceGenerator : MonoBehaviour
         for (int i = 0; i < groupCoordinates.Length; i++)
         {
             numberOfCrystalsInGroup = isExpensive ? numberOfExpensiveCrystalsInGroup : numberOfCheapCrystalsInGroup;
-            writer.WriteLine("group number: " + i.ToString() + " up: " + up.ToString() + " length: " + groupCoordinates.Length.ToString());
             bool canNotBeCenter = true;
             Tuple<int, int> coordinates = new(0, 0);
             int tryNumber = 0;
@@ -146,7 +137,6 @@ public class ResourceGenerator : MonoBehaviour
             while (canNotBeCenter)
             {
                 tryNumber++;
-                writer.WriteLine("tryNumber: " + tryNumber);
                 if (tryNumber > 225)
                 {
                     if (numberOfCrystalsInGroup > 0)
@@ -180,16 +170,13 @@ public class ResourceGenerator : MonoBehaviour
                     break;
                 }
             }
-            writer.WriteLine("x: " + x.ToString() + " z: " + z.ToString());
             var groupCrystalsCoordinates = GenerateCrystalGroup(x, z, crystalsCoordinates, isExpensive, numberOfCrystalsInGroup);
-            writer.WriteLine("groupCrystalsCoordinates: " + groupCrystalsCoordinates.Count.ToString());
             crystalsCoordinates.AddRange(groupCrystalsCoordinates);
 
-            for (int j = 0; j < groupCrystalsCoordinates.Count; j++)
+            foreach (var t in groupCrystalsCoordinates)
             {
-                writer.WriteLine("j: " + j.ToString());
-                int crystal_x = groupCrystalsCoordinates[j].Item1;
-                int crystal_z = groupCrystalsCoordinates[j].Item2;
+                int crystal_x = t.Item1;
+                int crystal_z = t.Item2;
                 if (isExpensive)
                 {
                     MakeCrystal2(crystal_x, crystal_z, generatedCrystals);
@@ -348,30 +335,22 @@ public class ResourceGenerator : MonoBehaviour
 
         for (int i = 0; i < game.Board.CheapCrystals.Length; i++)
         {
-            if (game.Board.CheapCrystals[i] != null)
-            {
-                Animator animator = game.Board.CheapCrystals[i].Crystal1Object.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    animator.enabled = true;
-                    animator.speed = 1.0f;
-                    animator.SetTrigger("Crystal1GrowingTrigger");
-                }
-            }
+            if (game.Board.CheapCrystals[i] == null) continue;
+            Animator animator = game.Board.CheapCrystals[i].Crystal1Object.GetComponent<Animator>();
+            if (animator == null) continue;
+            animator.enabled = true;
+            animator.speed = 1.0f;
+            animator.SetTrigger("Crystal1GrowingTrigger");
         }
 
         for (int i = 0; i < game.Board.ExpensiveCrystals.Length; i++)
         {
-            if (game.Board.ExpensiveCrystals[i] != null)
-            {
-                Animator animator = game.Board.ExpensiveCrystals[i].Crystal2Object.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    animator.enabled = true;
-                    animator.speed = 1.0f;
-                    animator.SetTrigger("Crystal2GrowingTrigger");
-                }
-            }
+            if (game.Board.ExpensiveCrystals[i] == null) continue;
+            Animator animator = game.Board.ExpensiveCrystals[i].Crystal2Object.GetComponent<Animator>();
+            if (animator == null) continue;
+            animator.enabled = true;
+            animator.speed = 1.0f;
+            animator.SetTrigger("Crystal2GrowingTrigger");
         }
 
         for (int i = 0; i < game.Board.Bases.Length; i++)
