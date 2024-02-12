@@ -19,10 +19,18 @@ public class PlayerStatsHandle : MonoBehaviour
     [SerializeField] public Text player2XP;
     [SerializeField] public Text player2Backpack;
     [SerializeField] public Text turnCount;
+    [SerializeField] public Text displayMessage;
+    [SerializeField] public GameObject displayMessageBackgorund;
+
+
+    [SerializeField] public Text Player1MyTurn;
+    [SerializeField] public Text Player2MyTurn;
+
+    private bool GameStarted = false;
 
 
 
-    public void UpdateGUI(Player Player1, Player Player2, int turnNumber, bool FirstPlayerTurn, string DisplayMessage)
+    public void UpdateGUI(Player Player1, Player Player2, int turnNumber, bool FirstPlayerTurn, string DisplayMessage, bool previousTurnFirstPlayer)
     {
         player1Name.text = Player1.Name.ToString();
         player1Coins.text = Player1.Coins.ToString();
@@ -37,6 +45,33 @@ public class PlayerStatsHandle : MonoBehaviour
         player2Backpack.text = Player2.Bag.GetWeight().ToString() + "/" + Player2.Bag.Capacity.ToString();
 
         turnCount.text = turnNumber.ToString();
+        displayMessage.text = DisplayMessage;
+
+        if (FirstPlayerTurn)
+        {
+            Player1MyTurn.text = "My turn!";
+            Player2MyTurn.text = "Stand By";
+
+        }
+        else
+        {
+            Player1MyTurn.text = "Stand By";
+            Player2MyTurn.text = "My turn!";
+        }
+
+        if (GameStarted)
+        {
+            if (previousTurnFirstPlayer)
+                displayMessageBackgorund.GetComponent<Image>().color = new Color(76f / 255f, 88f / 255f, 195f / 255f, 157f / 255f);
+            else
+                displayMessageBackgorund.GetComponent<Image>().color = new Color(195f / 255f, 76f / 255f, 76f / 255f, 157f / 255f);
+        }
+
+        if (!GameStarted)
+        {
+            GameStarted = true;
+        }
+
 
     }
 

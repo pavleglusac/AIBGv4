@@ -124,7 +124,7 @@ public class PillarGridGenerator : MonoBehaviour
 
         game.Player2.FirstPlayer = false;
         game.Player2.SetupPlayer("Pupoljci");
-        game.UpdateAllPlayerStats("Good luck!");
+        game.UpdateAllPlayerStats(true);
     }
 
 

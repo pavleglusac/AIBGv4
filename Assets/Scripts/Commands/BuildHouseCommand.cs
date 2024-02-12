@@ -43,6 +43,7 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
 
         Player.TakeCoins(GetCoinCost());
 
+        Game.Instance.DisplayMessage = "House succesfuly built!";
         Game.Instance.SwitchPlayersAndDecreaseStats();
         isDone = true;
     }

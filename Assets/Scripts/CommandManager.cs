@@ -48,28 +48,29 @@ public class CommandManager : MonoBehaviour
 
         if (_currentCommand == null || _currentCommand.IsDone()) return;
 
-        if(_currentCommand.CanExecute())
+        if (_currentCommand.CanExecute())
         {
             _currentCommand.Execute();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
         }
         else switch (_currentCommand)
-        {
-            case IEnergySpendingCommand:
-                Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
-                Game.Instance.GameOver = true;
-                Debug.Log("Game over");
-                Debug.Log("Winner is: " + Game.Instance.Winner);   
-                Game.EndGame();
-                break;
-            case ICoinSpendingCommand:
-                Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-                Game.Instance.SwitchPlayersAndDecreaseStats();
-                break;
-            default:
-                Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-                Game.Instance.SwitchPlayersAndDecreaseStats();
-                break;
-        }
+            {
+                case IEnergySpendingCommand:
+                    Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
+                    Game.Instance.GameOver = true;
+                    Debug.Log("Game over");
+                    Debug.Log("Winner is: " + Game.Instance.Winner);
+                    Game.EndGame();
+                    break;
+                case ICoinSpendingCommand:
+                    Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+                    Game.Instance.SwitchPlayersAndDecreaseStats();
+                    break;
+                default:
+                    Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+                    Game.Instance.SwitchPlayersAndDecreaseStats();
+                    break;
+            }
         _currentCommand = null;
         _index++;
     }
