@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class RefinementTakeCommand: MonoBehaviour, ICommand
+public class RefinementTakeCommand : MonoBehaviour, ICommand
 {
     public Player Player { get; set; }
     public int TakeCheap { get; set; }
@@ -52,8 +52,8 @@ public class RefinementTakeCommand: MonoBehaviour, ICommand
         {
             Player.Bag.AddExpensiveCrystal(House.PopProcessedExpensiveCrystal());
         }
+        Game.Instance.DisplayMessage = "Refinement take successful!";
         isDone = true;
-        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public bool IsDone()

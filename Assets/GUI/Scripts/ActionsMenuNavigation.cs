@@ -22,13 +22,6 @@ public class ActionsMenuNavigation : MonoBehaviour
     public void BuyFreeze()
     {
 
-        if (Game.Instance.GetCurrentPlayer().Coins < int.Parse(PlayerPrefs.GetString("freeze_cost")))
-        {
-            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-            CloseActionsMenu();
-            return;
-        }
         GameObject commandObject = new GameObject("FreezeCommand");
         FreezeCommand mineCommandInstance = commandObject.AddComponent<FreezeCommand>();
         mineCommandInstance.Initialize(Game.Instance.GetCurrentPlayer(), Game.Instance.GetAlternatePlayer());
@@ -40,13 +33,6 @@ public class ActionsMenuNavigation : MonoBehaviour
 
     public void BuyDaze()
     {
-        if (Game.Instance.GetCurrentPlayer().Coins < int.Parse(PlayerPrefs.GetString("daze_cost")))
-        {
-            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-            CloseActionsMenu();
-            return;
-        }
 
         GameObject commandObject = new GameObject("DazeCommand");
         DazeCommand commandInstance = commandObject.AddComponent<DazeCommand>();
@@ -58,13 +44,7 @@ public class ActionsMenuNavigation : MonoBehaviour
 
     public void BuyIncreasedBackpackStorage()
     {
-        if (Game.Instance.GetCurrentPlayer().Coins < int.Parse(PlayerPrefs.GetString("bigger_backpack_cost")))
-        {
-            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-            CloseActionsMenu();
-            return;
-        }
+
         GameObject commandObject = new GameObject("IncreasedBackpackStorageCommand");
         IncreasedBackpackStorageCommand commandInstance = commandObject.AddComponent<IncreasedBackpackStorageCommand>();
         commandInstance.Initialize(Game.Instance.GetCurrentPlayer());

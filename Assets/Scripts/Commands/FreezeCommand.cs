@@ -17,7 +17,7 @@ public class FreezeCommand : MonoBehaviour, ICoinSpendingCommand
     {
         AlternatePlayer.AddFrozenTurns();
         Player.TakeCoins(GetCoinCost());
-        Game.Instance.SwitchPlayersAndDecreaseStats();
+        Game.Instance.DisplayMessage = "Freeze Successful!";
         isDone = true;
     }
 

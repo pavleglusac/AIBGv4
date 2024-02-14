@@ -9,7 +9,7 @@ public static class Actions
 
     public static void Mine(PillarState pillarState, Player player)
     {
-        
+
         GameObject commandObject = new GameObject("MineCommandObject");
         MineCommand mineCommandInstance = commandObject.AddComponent<MineCommand>();
         mineCommandInstance.Initialize(player, pillarState == PillarState.CheapCrystal);
@@ -49,7 +49,6 @@ public static class Actions
             if (OutOfBounds(enteredPillar, player))
             {
                 player.InvalidMoveTakeEnergy();
-                Game.Instance.SwitchPlayersAndDecreaseStats();
                 return;
             }
 
@@ -65,7 +64,6 @@ public static class Actions
         if (!path.Contains(pillar))
         {
             player.InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
         }
 

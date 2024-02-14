@@ -32,11 +32,10 @@ public class CheapCrystal : MonoBehaviour
     // Called when the player is clicked
     void OnMouseDown()
     {
-        if(!CanAct(Game.Instance.GetCurrentPlayer()))
+        if (!CanAct(Game.Instance.GetCurrentPlayer()))
         {
-            Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
-        }        
+        }
         if (RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty == -1)
         {
             Debug.Log("Crystal is empty");
@@ -57,10 +56,6 @@ public class CheapCrystal : MonoBehaviour
             NopCommand nopCommandInstance = commandObject.AddComponent<NopCommand>();
             nopCommandInstance.Initialize(Game.Instance.GetCurrentPlayer());
             Game.Instance.CommandManager.AddCommand(nopCommandInstance);
-
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-
-
             return;
         }
 
@@ -82,7 +77,7 @@ public class CheapCrystal : MonoBehaviour
 
 
         Actions.Mine(PillarState.CheapCrystal, Game.Instance.GetCurrentPlayer());
-        
+
     }
 
     bool CanAct(Player player)

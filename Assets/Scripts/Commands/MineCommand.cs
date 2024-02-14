@@ -26,7 +26,6 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
             StartCoroutine(ProcessMining());
         }
         Player.DecreaseEnergy(GetEnergyCost());
-        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public void Update()

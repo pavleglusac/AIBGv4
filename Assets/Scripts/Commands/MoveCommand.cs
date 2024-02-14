@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
 
 
 // inherit from command
@@ -29,7 +29,6 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
     {
         isMoving = true;
         Player.DecreaseEnergy(GetEnergyCost());
-        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public void Update()
@@ -72,13 +71,13 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
     private IEnumerator MoveInDirection(int direction, int steps)
     {
         Vector3 directionVector = GetDirectionVector(direction);
-        
+
         for (int i = 0; i < steps; i++)
         {
             Vector3 startPosition = Player.PlayerObject.transform.position;
             Vector3 targetPosition = startPosition + directionVector;
             float elapsedTime = 0f;
-            
+
             while (elapsedTime < stepDuration)
             {
                 Player.PlayerObject.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / stepDuration);

@@ -17,7 +17,7 @@ public class DazeCommand : MonoBehaviour, ICoinSpendingCommand
     {
         AlternatePlayer.AddDazeTurns();
         Player.TakeCoins(GetCoinCost());
-        Game.Instance.SwitchPlayersAndDecreaseStats();
+        Game.Instance.DisplayMessage = "Daze Successful!";
         isDone = true;
     }
 

@@ -52,9 +52,9 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
             Debug.Log("daje u cheap");
             House.ExpensiveCrystals.Add(new Tuple<ExpensiveCrystalItem, int>(Player.Bag.PopExpensiveCrystal(), Game.Instance.TurnCount));
         }
+        Game.Instance.DisplayMessage = "Put to refinement Successful!";
 
         isDone = true;
-        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public bool IsDone()

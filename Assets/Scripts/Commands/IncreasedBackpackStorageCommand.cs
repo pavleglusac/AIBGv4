@@ -15,7 +15,6 @@ public class IncreasedBackpackStorageCommand : MonoBehaviour, ICoinSpendingComma
     {
         Player.AddIncreasedBackpackStorageTurns();
         Player.TakeCoins(GetCoinCost());
-        Game.Instance.SwitchPlayersAndDecreaseStats();
         isDone = true;
     }
 
