@@ -10,5 +10,6 @@ public class Crystal: MonoBehaviour
     public int MaxMineHits { get; set; }
     public int RemainingMineHits { get; set; }
     public int ReplenishTurns { get; set; }
-    public int TurnInWhichCrystalBecameEmpty { get; set; }
+    public int TurnInWhichCrystalBecameEmpty { get; set; } = -1;
+    public bool IsEmpty { get; set; }
 }

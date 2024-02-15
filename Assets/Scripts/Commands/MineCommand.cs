@@ -98,12 +98,17 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
 
     public bool CanExecute()
     {
-        if (!CanAct()) return false;
+        if (!CanAct())
+        {
+            Game.Instance.DisplayMessage = "You are not close enough to mine";
+            return false;
+        }
         if (Crystal.RemainingMineHits == 0 && Crystal.TurnInWhichCrystalBecameEmpty == -1)
         {
             Debug.Log("Crystal is empty");
             Game.Instance.DisplayMessage = "Crystal is empty";
             Crystal.TurnInWhichCrystalBecameEmpty = Game.Instance.TurnCount;
+            Crystal.IsEmpty = true;
             return false;
         }
         if ((Game.Instance.TurnCount > Crystal.TurnInWhichCrystalBecameEmpty + Crystal.ReplenishTurns) && Crystal.RemainingMineHits == 0)
@@ -112,6 +117,7 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
             Game.Instance.DisplayMessage = "Crystal is replenished";
             Crystal.RemainingMineHits = Crystal.MaxMineHits;
             Crystal.TurnInWhichCrystalBecameEmpty = -1;
+            Crystal.IsEmpty = false;
         }
         if (Crystal.RemainingMineHits == 0)
         {
