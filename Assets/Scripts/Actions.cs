@@ -7,14 +7,12 @@ using UnityEngine;
 public static class Actions
 {
 
-    public static void Mine(PillarState pillarState, Player player)
+    public static void Mine(int x, int z)
     {
-
         GameObject commandObject = new GameObject("MineCommandObject");
         MineCommand mineCommandInstance = commandObject.AddComponent<MineCommand>();
-        mineCommandInstance.Initialize(player, pillarState == PillarState.CheapCrystal);
+        mineCommandInstance.Initialize(Game.Instance.GetCurrentPlayer(), x, z);
         Game.Instance.CommandManager.AddCommand(mineCommandInstance);
-
     }
 
     public static void BuildHouse(Player player, Pillar pillar)
