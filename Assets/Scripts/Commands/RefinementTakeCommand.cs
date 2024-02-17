@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class RefinementTakeCommand: MonoBehaviour, ICommand
+public class RefinementTakeCommand : MonoBehaviour, ICommand
 {
     public Player Player { get; set; }
     public int TakeCheap { get; set; }
@@ -25,13 +25,39 @@ public class RefinementTakeCommand: MonoBehaviour, ICommand
 
     public bool CanExecute()
     {
-        if (House.IsFirstPlayers != Player.FirstPlayer) return false;
-        if (House.GetProcessedCheapCrystalCount() < TakeCheap) return false;
-        if (House.GetProcessedExpensiveCrystalCount() < TakeExpensive) return false;
+        if (House.IsFirstPlayers != Player.FirstPlayer)
+        {
+            Game.Instance.DisplayMessage = "Cannot take crystals from a refinement that is not yours";
+            return false;
+        }
+
+        if (House.GetProcessedCheapCrystalCount() < TakeCheap)
+        {
+            Game.Instance.DisplayMessage = "You can not take more processed cheap crystals than available in the refinement";
+            return false;
+        }
+
+        if (House.GetProcessedExpensiveCrystalCount() < TakeExpensive)
+        {
+            Game.Instance.DisplayMessage = "You can not take more processed expensive crystals than available in the refinement";
+            return false;
+        }
+
         int processedCheapCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_cheap_crystal_weight"));
         int processedExpensiveCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_expensive_crystal_weight"));
-        if (Player.Bag.GetRemainingCapacity() < TakeCheap * processedCheapCrystalWeight + TakeExpensive * processedExpensiveCrystalWeight) return false;
-        if (!CanAct()) return false;
+
+        if (Player.Bag.GetRemainingCapacity() < TakeCheap * processedCheapCrystalWeight + TakeExpensive * processedExpensiveCrystalWeight)
+        {
+            Game.Instance.DisplayMessage = "Not enough space in your backpack for the selected crystals";
+            return false;
+        }
+
+        if (!CanAct())
+        {
+            Game.Instance.DisplayMessage = "You must be near your refinement to take crystals from it";
+            return false;
+        }
+
         return true;
     }
 
@@ -52,8 +78,8 @@ public class RefinementTakeCommand: MonoBehaviour, ICommand
         {
             Player.Bag.AddExpensiveCrystal(House.PopProcessedExpensiveCrystal());
         }
+        Game.Instance.DisplayMessage = "Refinement take successful!";
         isDone = true;
-        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public bool IsDone()

@@ -27,6 +27,7 @@ public class RefinementMenuGUIValues : MonoBehaviour
     public Text TakeCheapText;
     public Text TakeExpensiveText;
 
+
     //update text
     public void UpdateText(int PutCheap, int PutExpensive, int TakeCheap, int TakeExpensive)
     {

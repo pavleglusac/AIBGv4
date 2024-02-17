@@ -29,7 +29,7 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
-     
+
         Move();
     }
 
@@ -137,7 +137,6 @@ public class Pillar : MonoBehaviour
         if (path == null || path.Count == 0)
         {
             player.InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
         }
         if (CanStep())
@@ -147,7 +146,6 @@ public class Pillar : MonoBehaviour
         else
         {
             player.InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
         }
     }
 

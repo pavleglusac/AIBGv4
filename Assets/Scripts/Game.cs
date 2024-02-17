@@ -16,6 +16,7 @@ public class Game : MonoBehaviour
     public bool GameOver { get; set; } = false;
     public int TurnCount { get; set; } = 0;
     public string Winner { get; set; } = "";
+    public string DisplayMessage { get; set; } = "Good luck!";
 
     public Player Player1 { get; set; }
     public Player Player2 { get; set; }
@@ -72,6 +73,7 @@ public class Game : MonoBehaviour
 
     public void ResetGame()
     {
+        DisplayMessage = "Good Luck!";
         IsPaused = false;
         FirstPlayerTurn = true;
         Winner = "";
@@ -86,9 +88,9 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void UpdateAllPlayerStats(String DisplayMessage)
+    public void UpdateAllPlayerStats(bool previousTurnFirstPlayer)
     {
-        PlayerStatsHandle.Instance.UpdateGUI(Player1, Player2, TurnCount, FirstPlayerTurn, DisplayMessage);
+        PlayerStatsHandle.Instance.UpdateGUI(Player1, Player2, TurnCount, FirstPlayerTurn, DisplayMessage, previousTurnFirstPlayer);
     }
 
     public static void PauseGame()
@@ -108,8 +110,8 @@ public class Game : MonoBehaviour
 
     public static void EndGame()
     {
-        ResumeGame();
-        SceneManager.LoadScene("Main menu");
+        PauseGame();
+        PlayerStatsHandle.Instance.GameOverScreen();
     }
 
 
@@ -134,11 +136,11 @@ public class Game : MonoBehaviour
     public void SwitchPlayersAndDecreaseStats()
     {
         Game.Instance.TurnCount++;
-        string DisplayMessage = "gas";
+        bool previousTurnFirstPlayer = FirstPlayerTurn;
         if (!GetAlternatePlayer().IsFrozen())
             FirstPlayerTurn = !FirstPlayerTurn;
         DecreasePlayerStatuses();
-        UpdateAllPlayerStats(DisplayMessage);
+        UpdateAllPlayerStats(previousTurnFirstPlayer);
     }
 
     public void DecreasePlayerStatuses()

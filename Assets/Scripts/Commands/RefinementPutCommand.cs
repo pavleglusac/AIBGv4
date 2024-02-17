@@ -26,10 +26,27 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
 
     public bool CanExecute()
     {
-        if (House.IsFirstPlayers != Player.FirstPlayer) return false;
-        if (Player.Bag.GetCheapCrystalCount() < PutCheap) return false;
-        if (Player.Bag.GetExpensiveCrystalCount() < PutExpensive) return false;
-        if (!CanAct()) return false;
+        if (House.IsFirstPlayers != Player.FirstPlayer)
+        {
+            Game.Instance.DisplayMessage = "Can not put in refinement that is not yours";
+            return false;
+        }
+        if (Player.Bag.GetCheapCrystalCount() < PutCheap)
+        {
+            Game.Instance.DisplayMessage = "You can't put more cheap crystals than you have in your backpack";
+
+            return false;
+        }
+        if (Player.Bag.GetExpensiveCrystalCount() < PutExpensive)
+        {
+            Game.Instance.DisplayMessage = "You can't put more expensive crystals than you have in your backpack";
+            return false;
+        }
+        if (!CanAct())
+        {
+            Game.Instance.DisplayMessage = "You must be near your refinement to put crystals in it.";
+            return false;
+        }
         return true;
     }
 
@@ -43,18 +60,16 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
     {
         for (int i = 0; i < PutCheap; i++)
         {
-            Debug.Log("daje u cheap");
             House.CheapCrystals.Add(new Tuple<CheapCrystalItem, int>(Player.Bag.PopCheapCrystal(), Game.Instance.TurnCount));
         }
 
         for (int i = 0; i < PutExpensive; i++)
         {
-            Debug.Log("daje u cheap");
             House.ExpensiveCrystals.Add(new Tuple<ExpensiveCrystalItem, int>(Player.Bag.PopExpensiveCrystal(), Game.Instance.TurnCount));
         }
+        Game.Instance.DisplayMessage = "Put to refinement Successful!";
 
         isDone = true;
-        Game.Instance.SwitchPlayersAndDecreaseStats();
     }
 
     public bool IsDone()

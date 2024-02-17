@@ -1,22 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class CheapCrystal : MonoBehaviour
+public class CheapCrystal : Crystal
 {
     public GameObject Crystal1ParentObject { get; set; }
     public GameObject Crystal1Object { get; set; }
-    public Pillar Position { get; set; }
-    public int X { get; set; }
-    public int Z { get; set; }
-    // Start is called before the first frame update
 
-    public int MaxMineHits { get; set; }
-    public int RemainingMineHits { get; set; }
-    public int ReplenishTurns { get; set; }
-    public int TurnInWhichCrystalBecameEmpty { get; set; } = -1;
-    public bool IsEmpty { get; set; }
 
 
     public Dictionary<string, Tuple<Material, Material>> materials = new Dictionary<string, Tuple<Material, Material>>();
@@ -34,7 +26,7 @@ public class CheapCrystal : MonoBehaviour
             materials[child.name] = new Tuple<Material, Material>(rend.materials[0], rend.materials[1]);
         }
         IsEmpty = false;
-        
+
     }
 
     // Update is called once per frame
@@ -42,7 +34,6 @@ public class CheapCrystal : MonoBehaviour
     {
         if ((Game.Instance.TurnCount > TurnInWhichCrystalBecameEmpty + ReplenishTurns) && RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty != -1)
         {
-            
             IsEmpty = false;
         }
         foreach (Transform child in transform)
@@ -68,79 +59,7 @@ public class CheapCrystal : MonoBehaviour
     // Called when the player is clicked
     void OnMouseDown()
     {
-        if(!CanAct(Game.Instance.GetCurrentPlayer()))
-        {
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-            return;
-        }        
-        if (RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty == -1)
-        {
-            Debug.Log("Crystal is empty");
-            TurnInWhichCrystalBecameEmpty = Game.Instance.TurnCount;
-            IsEmpty = true;
-        }
-
-        if ((Game.Instance.TurnCount > TurnInWhichCrystalBecameEmpty + ReplenishTurns) && RemainingMineHits == 0)
-        {
-            Debug.Log("Crystal is replenished");
-            RemainingMineHits = MaxMineHits;
-            TurnInWhichCrystalBecameEmpty = -1;
-            IsEmpty = false;
-        }
-
-        if (RemainingMineHits == 0)
-        {
-            GameObject commandObject = new GameObject("NopCommandObject");
-            NopCommand nopCommandInstance = commandObject.AddComponent<NopCommand>();
-            nopCommandInstance.Initialize(Game.Instance.GetCurrentPlayer());
-            Game.Instance.CommandManager.AddCommand(nopCommandInstance);
-
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-
-
-            return;
-        }
-
-        RemainingMineHits--;
-
-        Debug.Log("Crystal is mined, remaining hits: " + RemainingMineHits);
-        if (!CanAnimate())
-        {
-            return;
-        }
-
-        Animator animator = GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.enabled = true;
-            animator.speed = 4.0f;
-            animator.SetTrigger("ShakeCrystal1Trigger");
-        }
-
-
-        Actions.Mine(PillarState.CheapCrystal, Game.Instance.GetCurrentPlayer());
-        
-    }
-
-    bool CanAct(Player player)
-    {
-        List<Pillar> neighbours = Game.Instance.Board.getNeighbours(Position);
-        if (neighbours.Contains(player.Position))
-        {
-            return true;
-        }
-        return false;
-    }
-
-
-    bool CanAnimate()
-    {
-        List<Pillar> neighbours = Game.Instance.Board.getNeighbours(Position);
-        if (neighbours.Contains(Game.Instance.GetCurrentPlayer().Position))
-        {
-            return true;
-        }
-        return false;
+        Actions.Mine(X, Z);
     }
 
     public void SetPosition(Pillar pillar)
@@ -149,6 +68,7 @@ public class CheapCrystal : MonoBehaviour
         X = Position.X;
         Z = Position.Z;
     }
+
 
 
 }

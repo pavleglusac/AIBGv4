@@ -15,7 +15,8 @@ public class IncreasedBackpackStorageCommand : MonoBehaviour, ICoinSpendingComma
     {
         Player.AddIncreasedBackpackStorageTurns();
         Player.TakeCoins(GetCoinCost());
-        Game.Instance.SwitchPlayersAndDecreaseStats();
+        Game.Instance.DisplayMessage = "Backpack storage increase successful!";
+
         isDone = true;
     }
 
@@ -31,7 +32,13 @@ public class IncreasedBackpackStorageCommand : MonoBehaviour, ICoinSpendingComma
 
     public bool CanExecute()
     {
-        return Player.Coins >= GetCoinCost();
+        if (Player.Coins < GetCoinCost())
+        {
+            Game.Instance.DisplayMessage = "Not enough coins for backpack capacity increase";
+            return false;
+        }
+
+        return true;
     }
 
     public int GetCoinCost()

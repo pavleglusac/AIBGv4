@@ -7,14 +7,12 @@ using UnityEngine;
 public static class Actions
 {
 
-    public static void Mine(PillarState pillarState, Player player)
+    public static void Mine(int x, int z)
     {
-        
         GameObject commandObject = new GameObject("MineCommandObject");
         MineCommand mineCommandInstance = commandObject.AddComponent<MineCommand>();
-        mineCommandInstance.Initialize(player, pillarState == PillarState.CheapCrystal);
+        mineCommandInstance.Initialize(Game.Instance.GetCurrentPlayer(), x, z);
         Game.Instance.CommandManager.AddCommand(mineCommandInstance);
-
     }
 
     public static void BuildHouse(Player player, Pillar pillar)
@@ -41,6 +39,41 @@ public static class Actions
         Game.Instance.CommandManager.AddCommand(refinementTakeCommandInstance);
     }
 
+
+
+    public static void Daze()
+    {
+        GameObject commandObject = new GameObject("DazeCommand");
+        DazeCommand commandInstance = commandObject.AddComponent<DazeCommand>();
+        commandInstance.Initialize(Game.Instance.GetCurrentPlayer(), Game.Instance.GetAlternatePlayer());
+        Game.Instance.CommandManager.AddCommand(commandInstance);
+    }
+    public static void Freeze()
+    {
+
+        GameObject commandObject = new GameObject("FreezeCommand");
+        FreezeCommand mineCommandInstance = commandObject.AddComponent<FreezeCommand>();
+        mineCommandInstance.Initialize(Game.Instance.GetCurrentPlayer(), Game.Instance.GetAlternatePlayer());
+        Game.Instance.CommandManager.AddCommand(mineCommandInstance);
+    }
+    public static void IncreaseBacpackStorage()
+    {
+
+        GameObject commandObject = new GameObject("IncreasedBackpackStorageCommand");
+        IncreasedBackpackStorageCommand commandInstance = commandObject.AddComponent<IncreasedBackpackStorageCommand>();
+        commandInstance.Initialize(Game.Instance.GetCurrentPlayer());
+        Game.Instance.CommandManager.AddCommand(commandInstance);
+    }
+
+
+    public static void Rest()
+    {
+        GameObject commandObject = new GameObject("RestCommand");
+        RestCommand commandInstance = commandObject.AddComponent<RestCommand>();
+        commandInstance.Initialize(Game.Instance.GetCurrentPlayer());
+        Game.Instance.CommandManager.AddCommand(commandInstance);
+    }
+
     public static void Move(Pillar enteredPillar, Player player)
     {
         Pillar pillar;
@@ -49,7 +82,6 @@ public static class Actions
             if (OutOfBounds(enteredPillar, player))
             {
                 player.InvalidMoveTakeEnergy();
-                Game.Instance.SwitchPlayersAndDecreaseStats();
                 return;
             }
 
@@ -65,7 +97,6 @@ public static class Actions
         if (!path.Contains(pillar))
         {
             player.InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
         }
 

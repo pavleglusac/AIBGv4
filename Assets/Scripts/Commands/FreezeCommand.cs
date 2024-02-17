@@ -17,7 +17,7 @@ public class FreezeCommand : MonoBehaviour, ICoinSpendingCommand
     {
         AlternatePlayer.AddFrozenTurns();
         Player.TakeCoins(GetCoinCost());
-        Game.Instance.SwitchPlayersAndDecreaseStats();
+        Game.Instance.DisplayMessage = "Freeze Successful!";
         isDone = true;
     }
 
@@ -33,7 +33,13 @@ public class FreezeCommand : MonoBehaviour, ICoinSpendingCommand
 
     public bool CanExecute()
     {
-        return Game.Instance.GetCurrentPlayer().Coins >= int.Parse(PlayerPrefs.GetString("freeze_cost"));
+        if (Player.Coins < GetCoinCost())
+        {
+            Game.Instance.DisplayMessage = "Not enough coins for freeze";
+            return false;
+        }
+
+        return true;
     }
 
     public int GetCoinCost()

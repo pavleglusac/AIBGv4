@@ -17,7 +17,7 @@ public class DazeCommand : MonoBehaviour, ICoinSpendingCommand
     {
         AlternatePlayer.AddDazeTurns();
         Player.TakeCoins(GetCoinCost());
-        Game.Instance.SwitchPlayersAndDecreaseStats();
+        Game.Instance.DisplayMessage = "Daze Successful!";
         isDone = true;
     }
 
@@ -33,7 +33,12 @@ public class DazeCommand : MonoBehaviour, ICoinSpendingCommand
 
     public bool CanExecute()
     {
-        return Player.Coins >= GetCoinCost();
+        if (Player.Coins < GetCoinCost())
+        {
+            Game.Instance.DisplayMessage = "Not enough coins for daze";
+            return false;
+        }
+        return true;
     }
 
     public int GetCoinCost()
