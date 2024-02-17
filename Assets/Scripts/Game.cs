@@ -73,6 +73,7 @@ public class Game : MonoBehaviour
 
     public void ResetGame()
     {
+        DisplayMessage = "Good Luck!";
         IsPaused = false;
         FirstPlayerTurn = true;
         Winner = "";
@@ -109,8 +110,8 @@ public class Game : MonoBehaviour
 
     public static void EndGame()
     {
-        ResumeGame();
-        SceneManager.LoadScene("Main menu");
+        PauseGame();
+        PlayerStatsHandle.Instance.GameOverScreen();
     }
 
 

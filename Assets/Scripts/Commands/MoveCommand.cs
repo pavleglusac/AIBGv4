@@ -96,7 +96,7 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
 
     public bool CanExecute()
     {
-        Game.Instance.GameOver = Player.Energy <= GetEnergyCost();
+
         return Player.Energy >= GetEnergyCost();
     }
 

@@ -21,11 +21,7 @@ public class ActionsMenuNavigation : MonoBehaviour
 
     public void BuyFreeze()
     {
-
-        GameObject commandObject = new GameObject("FreezeCommand");
-        FreezeCommand mineCommandInstance = commandObject.AddComponent<FreezeCommand>();
-        mineCommandInstance.Initialize(Game.Instance.GetCurrentPlayer(), Game.Instance.GetAlternatePlayer());
-        Game.Instance.CommandManager.AddCommand(mineCommandInstance);
+        Actions.Freeze();
 
         CloseActionsMenu();
     }
@@ -34,30 +30,20 @@ public class ActionsMenuNavigation : MonoBehaviour
     public void BuyDaze()
     {
 
-        GameObject commandObject = new GameObject("DazeCommand");
-        DazeCommand commandInstance = commandObject.AddComponent<DazeCommand>();
-        commandInstance.Initialize(Game.Instance.GetCurrentPlayer(), Game.Instance.GetAlternatePlayer());
-        Game.Instance.CommandManager.AddCommand(commandInstance);
+        Actions.Daze();
         CloseActionsMenu();
     }
 
 
     public void BuyIncreasedBackpackStorage()
     {
-
-        GameObject commandObject = new GameObject("IncreasedBackpackStorageCommand");
-        IncreasedBackpackStorageCommand commandInstance = commandObject.AddComponent<IncreasedBackpackStorageCommand>();
-        commandInstance.Initialize(Game.Instance.GetCurrentPlayer());
-        Game.Instance.CommandManager.AddCommand(commandInstance);
+        Actions.IncreaseBacpackStorage();
         CloseActionsMenu();
     }
 
     public void ActivateRest()
     {
-        GameObject commandObject = new GameObject("RestCommand");
-        RestCommand commandInstance = commandObject.AddComponent<RestCommand>();
-        commandInstance.Initialize(Game.Instance.GetCurrentPlayer());
-        Game.Instance.CommandManager.AddCommand(commandInstance);
+        Actions.Rest();
         CloseActionsMenu();
     }
 

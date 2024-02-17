@@ -51,6 +51,7 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
             StartCoroutine(ProcessMining());
         }
         Player.DecreaseEnergy(GetEnergyCost());
+        isDone = true;
     }
 
     public void Update()
@@ -64,8 +65,6 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
         yield return StartCoroutine(Mine());
         isMining = false;
         isCoroutineRunning = false;
-        isDone = true;
-
     }
 
     private IEnumerator Mine()
@@ -78,16 +77,25 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
             string trigger = isCheapCrystal ? "ShakeCrystal1Trigger" : "ShakeCrystal2Trigger";
             animator.SetTrigger(trigger);
         }
+
         Crystal.RemainingMineHits--;
+        if (Crystal.RemainingMineHits == 0)
+        {
+            Crystal.IsEmpty = true;
+            Crystal.TurnInWhichCrystalBecameEmpty = Game.Instance.TurnCount;
+        }
+
         if (isCheapCrystal)
         {
             Player.Bag.AddCheapCrystal();
+            Game.Instance.DisplayMessage = "Cheap Crystal is mined";
         }
         else
         {
+            Game.Instance.DisplayMessage = "Expensive Crystal is mined";
             Player.Bag.AddExpensiveCrystal();
         }
-        Game.Instance.DisplayMessage = "Crystal is mined";
+
         yield return new WaitForSeconds(0.0f);
     }
 
@@ -105,27 +113,28 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
         }
         if (Crystal.RemainingMineHits == 0 && Crystal.TurnInWhichCrystalBecameEmpty == -1)
         {
-            Debug.Log("Crystal is empty");
-            Game.Instance.DisplayMessage = "Crystal is empty";
+            Game.Instance.DisplayMessage = "Crystal is not replenished";
             Crystal.TurnInWhichCrystalBecameEmpty = Game.Instance.TurnCount;
             Crystal.IsEmpty = true;
             return false;
         }
         if ((Game.Instance.TurnCount > Crystal.TurnInWhichCrystalBecameEmpty + Crystal.ReplenishTurns) && Crystal.RemainingMineHits == 0)
         {
-            Debug.Log("Crystal is replenished");
-            Game.Instance.DisplayMessage = "Crystal is replenished";
             Crystal.RemainingMineHits = Crystal.MaxMineHits;
             Crystal.TurnInWhichCrystalBecameEmpty = -1;
             Crystal.IsEmpty = false;
         }
         if (Crystal.RemainingMineHits == 0)
         {
-            Game.Instance.DisplayMessage = "Crystal is empty";
+            Game.Instance.DisplayMessage = "Crystal is not replenished";
             return false;
         }
-        Game.Instance.GameOver = Player.Energy <= GetEnergyCost();
-        return Player.Energy >= GetEnergyCost();
+        if (Player.Energy < GetEnergyCost())
+        {
+            Game.Instance.DisplayMessage = "Not enough energy for mining";
+            return false;
+        }
+        return true;
     }
 
     public int GetEnergyCost()

@@ -1,5 +1,6 @@
 
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ public class PlayerStatsHandle : MonoBehaviour
     [SerializeField] public Text turnCount;
     [SerializeField] public Text displayMessage;
     [SerializeField] public GameObject displayMessageBackgorund;
+    [SerializeField] public GameObject GameOverMenu;
+    [SerializeField] public Text displayWinner;
 
 
     [SerializeField] public Text Player1MyTurn;
@@ -72,6 +75,13 @@ public class PlayerStatsHandle : MonoBehaviour
             GameStarted = true;
         }
 
+
+    }
+
+    public void GameOverScreen()
+    {
+        displayWinner.text = "Winner: " + Game.Instance.Winner;
+        GameOverMenu.SetActive(true);
 
     }
 
