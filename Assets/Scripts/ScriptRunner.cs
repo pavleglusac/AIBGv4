@@ -3,16 +3,19 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using System.Threading.Tasks;
+
 
 public class ScriptRunner : MonoBehaviour
 {
     public string scriptPath;
+    private Process process;
+    public CommandParser CommandParser { get; set; }
     
     private void Update()
     {
         if (outputQueue.Count > 0)
         {
-            UnityEngine.Debug.Log("apdejttt");
             lock (outputQueue)
             {
                 while (outputQueue.Count > 0)
@@ -25,44 +28,22 @@ public class ScriptRunner : MonoBehaviour
 
     public void StartProcess(string scriptPath)
     {
-        var process = new Process
+        process = new Process
         {
             StartInfo = new ProcessStartInfo
             {
-                FileName = "/usr/bin/python3",
+                FileName = "python3",
                 Arguments = "-u " + scriptPath,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
+                RedirectStandardInput = true,
                 UseShellExecute = false,
                 CreateNoWindow = true
             }
         };
 
         process.Start();
-
-        new Thread(() =>
-        {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            while (!process.StandardOutput.EndOfStream)
-            {
-                string line = process.StandardOutput.ReadLine();
-                stopwatch.Stop();
-
-                EnqueueOutput($"Time taken: {stopwatch.Elapsed.TotalMilliseconds} ms - Output from {scriptPath}: {line}");
-
-                stopwatch.Restart();
-            }
-
-            string stderr = process.StandardError.ReadToEnd();
-            if (!string.IsNullOrEmpty(stderr))
-            {
-                EnqueueOutput($"Error: {stderr}");
-            }
-
-            process.WaitForExit();
-        }).Start();
+        UnityEngine.Debug.Log("Pokrenuta skripta!!!");
     }
 
     private Queue<string> outputQueue = new Queue<string>();
@@ -74,4 +55,40 @@ public class ScriptRunner : MonoBehaviour
             outputQueue.Enqueue(output);
         }
     }
+
+
+    public async Task WriteToProcessAsync(string input)
+    {
+        UnityEngine.Debug.Log("Pisem!!!");
+        UnityEngine.Debug.Log(input);
+
+        if (process == null || process.HasExited)
+        {
+            return;
+        }
+        process.StandardInput.WriteLine(input);
+        process.StandardInput.Flush();
+
+        var cancellationTokenSource = new CancellationTokenSource(5000);
+        try
+        {
+            await Task.Run(() =>
+            {
+                while (!cancellationTokenSource.Token.IsCancellationRequested)
+                {
+                    string line = process.StandardOutput.ReadLine();
+                    UnityEngine.Debug.Log($"Ovo je output: {line}");
+                    CommandParser.ParseCommand(line);
+                    break;
+                }
+            }, cancellationTokenSource.Token);
+        }
+        catch (TaskCanceledException)
+        {
+            UnityEngine.Debug.Log("Response time exceeded 5 seconds.");
+            EnqueueOutput("Response time exceeded 5 seconds.");
+        }
+    }
+
+
 }
