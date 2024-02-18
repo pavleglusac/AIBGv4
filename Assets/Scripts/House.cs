@@ -14,6 +14,7 @@ public class House : MonoBehaviour
     public bool IsFirstPlayers { get; set; }
     public int X { get; set; }
     public int Z { get; set; }
+    public int Health { get; set; }
     public List<Tuple<CheapCrystalItem, int>> CheapCrystals { get; set; } = new List<Tuple<CheapCrystalItem, int>>();
     public List<Tuple<ExpensiveCrystalItem, int>> ExpensiveCrystals { get; set; } = new List<Tuple<ExpensiveCrystalItem, int>>();
 
@@ -60,9 +61,19 @@ public class House : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (Game.Instance.GetCurrentPlayer().FirstPlayer != this.IsFirstPlayers) return;
-        Game.Instance.selectedHouse = this;
-        RefinementMenuNavigation.Instance.OpenRefinementMenu();
+
+        if (Game.Instance.GetCurrentPlayer().FirstPlayer != this.IsFirstPlayers)
+        {
+            // TODO: Attack
+            Game.Instance.selectedHouse = this;
+            Debug.Log("Attack");
+            Debug.Log(this.Health);
+        }
+        else
+        {
+            Game.Instance.selectedHouse = this;
+            RefinementMenuNavigation.Instance.OpenRefinementMenu();
+        }
 
     }
 
