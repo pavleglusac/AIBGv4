@@ -19,18 +19,15 @@ public class Pillar : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1) && PillarState == PillarState.Empty)
+        if (Input.GetMouseButtonDown(1))
         {
-            Player player = Game.Instance.GetCurrentPlayer();
-            MakeHouse(player);
+            Actions.BuildHouse(this.X, this.Z);
         }
     }
 
-
     void OnMouseDown()
     {
-
-        Move();
+        Actions.Move(this.X, this.Z);
     }
 
     void OnMouseEnter()
@@ -65,14 +62,13 @@ public class Pillar : MonoBehaviour
             return;
         }
 
-        path = Algorithms.findPath(Game.Instance.Board, from, to);
+        path = Algorithms.FindPath(Game.Instance.Board, from, to);
         foreach (Pillar pillar in path)
         {
             originalColors.Add(pillar.PillarObject.GetComponent<Renderer>().material.color);
             pillar.PillarObject.GetComponent<Renderer>().material.color = color;
         }
     }
-
 
     void OnMouseExit()
     {
@@ -122,31 +118,4 @@ public class Pillar : MonoBehaviour
         Pillar pillar = (other as Pillar);
         return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
     }
-
-    private void MakeHouse(Player player)
-    {
-        Actions.BuildHouse(player, this);
-    }
-
-    public void Move()
-    {
-        if (Game.IsPaused)
-            return;
-
-        Player player = Game.Instance.GetCurrentPlayer();
-        if (path == null || path.Count == 0)
-        {
-            player.InvalidMoveTakeEnergy();
-            return;
-        }
-        if (CanStep())
-        {
-            Actions.Move(this, player);
-        }
-        else
-        {
-            player.InvalidMoveTakeEnergy();
-        }
-    }
-
 }

@@ -26,4 +26,12 @@ public class Base : MonoBehaviour
     {
         // Debug.Log("Player clicked");
     }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Actions.BuildHouse(this.X, this.Z);
+        }
+    }
 }

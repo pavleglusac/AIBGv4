@@ -66,6 +66,14 @@ public class House : MonoBehaviour
 
     }
 
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Actions.BuildHouse(this.X, this.Z);
+        }
+    }
+
     public void SetPosition(Pillar pillar)
     {
         Position = pillar;
