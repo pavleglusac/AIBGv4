@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.006917483, g: 0.006709338, b: 0.006469295, a: 1}
+  m_IndirectSpecularColor: {r: 0.007957927, g: 0.007730628, b: 0.0076977187, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7492,7 +7492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseActionsMenu
+      value: CancelActions
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -10417,10 +10417,10 @@ MonoBehaviour:
   CoinsBagExpensive: {fileID: 1604328394}
   CoinsCheap: {fileID: 1474155081}
   CoinsExpensive: {fileID: 1450717633}
-  EnergyBagCheap: {fileID: 0}
-  EnergyBagExpensive: {fileID: 0}
-  EnergyCheap: {fileID: 0}
-  EnergyExpensive: {fileID: 0}
+  EnergyBagCheap: {fileID: 1021293659}
+  EnergyBagExpensive: {fileID: 1609658888}
+  EnergyCheap: {fileID: 1893184412}
+  EnergyExpensive: {fileID: 1199321394}
   XPTotal: {fileID: 2810594}
   CoinsTotal: {fileID: 2013203994}
 --- !u!1 &1108012864

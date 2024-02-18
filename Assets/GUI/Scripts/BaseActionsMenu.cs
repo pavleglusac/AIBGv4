@@ -223,4 +223,17 @@ public class BaseActionsMenu : MonoBehaviour
         Instance.CoinsTotal = Instance.CoinsCheap * Instance.CoinsCheapConversionRate + Instance.CoinsExpensive * Instance.CoinsExpensiveConversionRate;
         Instance.EnergyTotal = Instance.EnergyCheap * Instance.EnergyCheapConversionRate + Instance.EnergyExpensive * Instance.EnergyExpensiveConversionRate;
     }
+
+    public void CancelActions()
+    {
+        Instance.XPCheap = 0;
+        Instance.XPExpensive = 0;
+        Instance.CoinsCheap = 0;
+        Instance.CoinsExpensive = 0;
+        Instance.EnergyCheap = 0;
+        Instance.EnergyExpensive = 0;
+        CalculateTotal();
+        UpdateText();
+        CloseActionsMenu();
+    }
 }
