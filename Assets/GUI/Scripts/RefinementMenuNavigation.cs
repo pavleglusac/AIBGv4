@@ -135,6 +135,7 @@ public class RefinementMenuNavigation : MonoBehaviour
 
     void Start()
     {
+        // Debug.Log("Usao");
         if (Instance == null) Instance = this;
     }
 }

@@ -25,6 +25,7 @@ public static class Actions
 
     public static void BuildHouse(int x, int z)
     {
+        if ((x == Game.Instance.BasePlayer1.X && z == Game.Instance.BasePlayer1.Z) || (x == Game.Instance.BasePlayer2.X && z == Game.Instance.BasePlayer2.Z)) return;
         GameObject commandObject = new GameObject("BuildHouseObject");
         BuildHouseCommand buildHouseCommandInstance = commandObject.AddComponent<BuildHouseCommand>();
         buildHouseCommandInstance.Initialize(x, z);
@@ -46,6 +47,17 @@ public static class Actions
         refinementTakeCommandInstance.Initialize(player, takeCheap, takeExpensive, house);
         Game.Instance.CommandManager.AddCommand(refinementTakeCommandInstance);
     }
+
+    public static void BaseConversions(Player player, int cheapTotal, int expensiveTotal, int XPTotal, int coinsTotal, int energyTotal)
+    {
+        GameObject commandObject = new GameObject("ConversionsCommandObject");
+        ConversionCommand conversionsCommand = commandObject.AddComponent<ConversionCommand>();
+        conversionsCommand.Initialize(player, cheapTotal, expensiveTotal, XPTotal, coinsTotal, energyTotal);
+        Game.Instance.CommandManager.AddCommand(conversionsCommand);
+    }
+
+
+
 
     public static void Daze()
     {
