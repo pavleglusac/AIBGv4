@@ -20,7 +20,6 @@ public class PillarGridGenerator : MonoBehaviour
 
     public GameObject player1;
     public GameObject player2;
-
     public GameObject basePlayer1;
     public GameObject basePlayer2;
 
@@ -122,9 +121,10 @@ public class PillarGridGenerator : MonoBehaviour
         playerObject2.GetComponent<Player>().PlayerObject = playerObject2;
         game.Player2 = playerObject2.GetComponent<Player>();
         game.Player2.SetPosition(game.Board.Pillars[i, j]);
-        game.Player2.SetupPlayer("Pupoljci");
 
-        game.UpdateAllPlayerStats();
+        game.Player2.FirstPlayer = false;
+        game.Player2.SetupPlayer("Pupoljci");
+        game.UpdateAllPlayerStats(true);
     }
 
 

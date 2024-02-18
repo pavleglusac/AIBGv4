@@ -7,6 +7,7 @@ public class PlayerVsPlayerButtonClick : MonoBehaviour
 {
     public void StartGamePlayerVsPlayer()
     {
+        Game.Instance.ResetGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

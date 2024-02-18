@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 // inherit from command
-public class MoveCommand : MonoBehaviour, ICommand
+public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
 {
     public int Direction { get; set; }
     public int Count { get; set; }
@@ -12,20 +13,22 @@ public class MoveCommand : MonoBehaviour, ICommand
     public bool isMoving { get; set; } = false;
     public bool isDone { get; set; } = false;
     private float stepDuration = 0.2f;
-
     private bool isCoroutineRunning = false;
+    private int energyCost;
 
     public MoveCommand Initialize(Player player, int direction, int count)
     {
         Direction = direction;
         Count = count;
         Player = player;
+        energyCost = int.Parse(PlayerPrefs.GetString("movement_cost"));
         return this;
     }
 
     public void Execute()
     {
         isMoving = true;
+        Player.DecreaseEnergy(GetEnergyCost());
     }
 
     public void Update()
@@ -68,13 +71,13 @@ public class MoveCommand : MonoBehaviour, ICommand
     private IEnumerator MoveInDirection(int direction, int steps)
     {
         Vector3 directionVector = GetDirectionVector(direction);
-        
+
         for (int i = 0; i < steps; i++)
         {
             Vector3 startPosition = Player.PlayerObject.transform.position;
             Vector3 targetPosition = startPosition + directionVector;
             float elapsedTime = 0f;
-            
+
             while (elapsedTime < stepDuration)
             {
                 Player.PlayerObject.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / stepDuration);
@@ -91,5 +94,15 @@ public class MoveCommand : MonoBehaviour, ICommand
         return "MoveCommand: " + Player.FirstPlayer + " " + Direction + " " + Count;
     }
 
+    public bool CanExecute()
+    {
+
+        return Player.Energy >= GetEnergyCost();
+    }
+
+    public int GetEnergyCost()
+    {
+        return (Player.Bag.GetWeight() + energyCost) * Count;
+    }
 
 }

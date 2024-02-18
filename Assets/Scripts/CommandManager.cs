@@ -37,7 +37,7 @@ public class CommandManager : MonoBehaviour
         if (_currentCommand == null && _commands.Count > 0)
         {
             _currentCommand = _commands[_index];
-            _currentCommand.Execute();
+            // _currentCommand.Execute();
             //Debug.Log("Executing command: " + _currentCommand.ToString());
         }
         else if (_currentCommand != null && _currentCommand.IsDone())
@@ -45,6 +45,48 @@ public class CommandManager : MonoBehaviour
             _currentCommand = null;
             _index++;
         }
+
+        if (_currentCommand == null || _currentCommand.IsDone()) return;
+
+        if (_currentCommand.CanExecute())
+        {
+            _currentCommand.Execute();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+        }
+        else switch (_currentCommand)
+            {
+
+                case IEnergySpendingCommand:
+                    Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+                    if (Game.Instance.GetCurrentPlayer().Energy <= 0)
+                    {
+                        Game.Instance.GameOver = true;
+                    }
+
+                    if (Game.Instance.GameOver)
+                    {
+                        Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player2.Name : Game.Instance.Player1.Name;
+                        Game.EndGame();
+                    }
+                    else
+                    {
+                        Game.Instance.SwitchPlayersAndDecreaseStats();
+                    }
+                    break;
+                case ICoinSpendingCommand:
+                    Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+                    Game.Instance.SwitchPlayersAndDecreaseStats();
+                    break;
+                default:
+                    Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+                    Game.Instance.SwitchPlayersAndDecreaseStats();
+                    break;
+            }
+        //If you get this message that means that you have not put correct display message for your behaviour
+        Game.Instance.DisplayMessage = "UNDEFINED MESSAGE!";
+
+        _currentCommand = null;
+        _index++;
     }
 
 }

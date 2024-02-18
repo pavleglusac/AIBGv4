@@ -11,11 +11,28 @@ class Player:
         self.coins = Constants.start_coins
         self.x = x
         self.y = y
+        self.x_base = x
+        self.y_base = y
         self.frozen_turns = 0
         self.daze_turns = 0
         self.increased_backpack_turns = 0
         self.backpack_storage_capacity = Constants.backpack_default_storage_capacity
         self.crystals = []
+
+    def is_in_base(self):
+        return self.x_base == self.x and self.y_base == self.y
+
+    def remove_expensive_crystals(self, number_of_crystals_to_remove):
+        expensive_crystals = [crystal for crystal in self.crystals if crystal.is_expensive]
+        if len(expensive_crystals) >= number_of_crystals_to_remove:
+            removed_crystals = expensive_crystals[:number_of_crystals_to_remove]
+            self.crystals = [crystal for crystal in self.crystals if crystal not in removed_crystals]
+
+    def remove_cheap_crystals(self, number_of_crystals_to_remove):
+        non_expensive_crystals = [crystal for crystal in self.crystals if not crystal.is_expensive]
+        if len(non_expensive_crystals) >= number_of_crystals_to_remove:
+            removed_crystals = non_expensive_crystals[:number_of_crystals_to_remove]
+            self.crystals = [crystal for crystal in self.crystals if crystal not in removed_crystals]
 
     def decrease_energy(self, amount):
         self.energy -= amount
@@ -101,6 +118,12 @@ class Player:
     def get_count_expensive_raw(self):
         return sum(1 for crystal in self.crystals if crystal.is_expensive and not crystal.is_processed)
 
+    def get_count_expensive(self):
+        return sum(1 for crystal in self.crystals if crystal.is_expensive)
+
+    def get_count_cheap(self):
+        return sum(1 for crystal in self.crystals if not crystal.is_expensive)
+
     def get_count_cheap_processed(self):
         return sum(1 for crystal in self.crystals if not crystal.is_expensive and crystal.is_processed)
 
@@ -123,3 +146,6 @@ class Player:
             f"{Fore.LIGHTMAGENTA_EX}Raw expensive crystal -> Weight: {self.get_total_weight_expensive_raw()}, Count: {self.get_count_expensive_raw()} || "
             f"{Fore.LIGHTMAGENTA_EX}Processed expensive crystal -> Weight: {self.get_total_weight_expensive_processed()}, Count: {self.get_count_expensive_processed()}{Style.RESET_ALL}\n"
         )
+
+    def add_xp(self, xp):
+        self.xp += xp

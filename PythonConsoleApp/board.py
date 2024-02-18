@@ -16,11 +16,11 @@ class Board:
                             range(Constants.board_size)]
         self.base_area_length = Constants.board_size // 3
         self.place_players()
-        self.setup_ores()  ## TODO sa bojanom uradi
+        self.setup_ores() 
 
     def place_players(self):
-        self.board_cells[0][Constants.board_size - 1].print_symbol = Constants.player1_symbol
-        self.board_cells[Constants.board_size - 1][0].print_symbol = Constants.player2_symbol
+        self.board_cells[0][Constants.board_size - 1].set_symbol(Constants.player1_symbol)
+        self.board_cells[Constants.board_size - 1][0].set_symbol(Constants.player2_symbol)
 
     def setup_ores(self):
         self.place_crystals(Constants.cheep_crystal_symbol)
@@ -71,8 +71,8 @@ class Board:
                         and self.board_cells[x][y].print_symbol == Constants.empty_pillar_symbol
                         and self.board_cells[y][x].print_symbol == Constants.empty_pillar_symbol
                 ):
-                    self.board_cells[x][y].print_symbol = ore_symbol
-                    self.board_cells[y][x].print_symbol = ore_symbol
+                    self.board_cells[x][y].set_symbol(ore_symbol)
+                    self.board_cells[y][x].set_symbol(ore_symbol)
 
     def generate_crystal_group(self, x, y, existing_crystals, is_expensive, number_of_crystals_in_group):
         new_crystals_coordinates = []
@@ -146,18 +146,18 @@ class Board:
         return True
 
     def update_board(self, player1, player2):
-        self.board_cells[0][Constants.board_size - 1].print_symbol = Constants.player1_castle_symbol
-        self.board_cells[Constants.board_size - 1][0].print_symbol = Constants.player2_castle_symbol
+        self.board_cells[0][Constants.board_size - 1].set_symbol(Constants.player1_castle_symbol)
+        self.board_cells[Constants.board_size - 1][0].set_symbol(Constants.player2_castle_symbol)
         for i in range(Constants.board_size):
             for j in range(Constants.board_size):
                 self.board_cells[i][j].replenish()
                 if (self.board_cells[i][j].print_symbol == Constants.player1_symbol
                         or self.board_cells[i][j].print_symbol
                         == Constants.player2_symbol):
-                    self.board_cells[i][j].print_symbol = Constants.empty_pillar_symbol
+                    self.board_cells[i][j].set_symbol(Constants.empty_pillar_symbol)
 
-        self.board_cells[player1.x][player1.y].print_symbol = Constants.player1_symbol
-        self.board_cells[player2.x][player2.y].print_symbol = Constants.player2_symbol
+        self.board_cells[player1.x][player1.y].set_symbol(Constants.player1_symbol)
+        self.board_cells[player2.x][player2.y].set_symbol(Constants.player2_symbol)
 
     def draw_board(self):
         print("  " + "".join([f"{i:3}" for i in range(len(self.board_cells))]))
@@ -167,15 +167,18 @@ class Board:
             print(f"{col:3} {'  '.join(colored_col)} {col:3} ")
         print("  " + "".join([f"{i:3}" for i in range(len(self.board_cells))]))
 
-    def is_obstacle_on_path(self, start_x, start_y, end_x, end_y):
+    def is_obstacle_on_path(self, start_x, start_y, end_x, end_y, first_player_turn):
+        base_symbol = Constants.player1_castle_symbol if first_player_turn else Constants.player2_castle_symbol
         for i in range(min(start_x, end_x), max(start_x, end_x) + 1):
             if i != start_x:
                 if self.board_cells[i][start_y].print_symbol != Constants.empty_pillar_symbol:
-                    return True
+                    if self.board_cells[i][start_y].print_symbol != base_symbol:
+                        return True
         for j in range(min(start_y, end_y), max(start_y, end_y) + 1):
             if j != start_y:
                 if self.board_cells[start_x][j].print_symbol != Constants.empty_pillar_symbol:
-                    return True
+                    if self.board_cells[start_x][j].print_symbol != base_symbol:
+                        return True
         return False
 
 

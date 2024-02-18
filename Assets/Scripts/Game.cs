@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Game : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class Game : MonoBehaviour
     public bool GameOver { get; set; } = false;
     public int TurnCount { get; set; } = 0;
     public string Winner { get; set; } = "";
+    public string DisplayMessage { get; set; } = "Good luck!";
 
     public Player Player1 { get; set; }
     public Player Player2 { get; set; }
@@ -31,14 +34,9 @@ public class Game : MonoBehaviour
     [HideInInspector] public int numberOfExpensiveCrystalGroups;
     [HideInInspector] public int numberOfCheapCrystalsInGroup;
     [HideInInspector] public int numberOfExpensiveCrystalsInGroup;
-    [SerializeField] public Text player1Name;
-    [SerializeField] public Text player2Name;
-    [SerializeField] public Text player1Coins;
-    [SerializeField] public Text player2Coins;
-    [SerializeField] public Text player1Energy;
-    [SerializeField] public Text player2Energy;
-    [SerializeField] public Text player1XP;
-    [SerializeField] public Text player2XP;
+
+    [HideInInspector] public House selectedHouse;
+
 
     public CommandManager CommandManager { get; set; }
 
@@ -46,19 +44,9 @@ public class Game : MonoBehaviour
     {
         if (Instance == null)
         {
-            Instance = this;
-            numberOfCheapCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystal_groups"));
-            numberOfExpensiveCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystal_groups"));
-            numberOfCheapCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals_in_group"));
-            numberOfExpensiveCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals_in_group"));
-            rows = int.Parse(PlayerPrefs.GetString("board_size"));
-            columns = int.Parse(PlayerPrefs.GetString("board_size"));
 
-            // create a new board but board is mono behaviour
-            Board = new GameObject("Board").AddComponent<Board>();
-            CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
-            DontDestroyOnLoad(gameObject);
 
+            SetupGame();
             GameObject scriptRunnerObject = new GameObject("ScriptRunnerObject");
             ScriptRunner scriptRunner = scriptRunnerObject.AddComponent<ScriptRunner>();
             scriptRunner.scriptPath = "/Users/pavleglusac/Personal/AIBGv4/Assets/Scripts/test.py";
@@ -67,22 +55,48 @@ public class Game : MonoBehaviour
         }
         else
         {
+
             Destroy(gameObject);
         }
     }
 
-    public void UpdateAllPlayerStats()
+    public void SetupGame()
     {
+        ResetGame();
+        numberOfCheapCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystal_groups"));
+        numberOfExpensiveCrystalGroups = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystal_groups"));
+        numberOfCheapCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_cheap_crystals_in_group"));
+        numberOfExpensiveCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals_in_group"));
+        rows = int.Parse(PlayerPrefs.GetString("board_size"));
+        columns = int.Parse(PlayerPrefs.GetString("board_size"));
 
-        player1Name.text = Player1.Name.ToString();
-        player1Coins.text = Player1.Coins.ToString();
-        player1Energy.text = Player1.Energy.ToString();
-        player1XP.text = Player1.XP.ToString();
+        // create a new board but board is mono behaviour
+        Board = new GameObject("Board").AddComponent<Board>();
+        CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
+        DontDestroyOnLoad(gameObject);
 
-        player2Name.text = Player2.Name.ToString();
-        player2Coins.text = Player2.Coins.ToString();
-        player2Energy.text = Player2.Energy.ToString();
-        player2XP.text = Player2.XP.ToString();
+    }
+
+    public void ResetGame()
+    {
+        DisplayMessage = "Good Luck!";
+        IsPaused = false;
+        FirstPlayerTurn = true;
+        Winner = "";
+        TurnCount = 0;
+        GameOver = false;
+        selectedHouse = null;
+        Instance = this;
+        if (Player1 != null && Player2 != null)
+        {
+            Player2.SetupPlayer("Pupoljci");
+            Player1.SetupPlayer("Crni Cerak");
+        }
+    }
+
+    public void UpdateAllPlayerStats(bool previousTurnFirstPlayer)
+    {
+        PlayerStatsHandle.Instance.UpdateGUI(Player1, Player2, TurnCount, FirstPlayerTurn, DisplayMessage, previousTurnFirstPlayer);
     }
 
     public static void PauseGame()
@@ -100,6 +114,13 @@ public class Game : MonoBehaviour
         IsPaused = false;
     }
 
+    public static void EndGame()
+    {
+        PauseGame();
+        PlayerStatsHandle.Instance.GameOverScreen();
+    }
+
+
     public Player GetCurrentPlayer()
     {
         if (FirstPlayerTurn)
@@ -109,4 +130,30 @@ public class Game : MonoBehaviour
         return Player2;
     }
 
+    public Player GetAlternatePlayer()
+    {
+        if (FirstPlayerTurn)
+        {
+            return Player2;
+        }
+        return Player1;
+    }
+
+    public void SwitchPlayersAndDecreaseStats()
+    {
+        Game.Instance.TurnCount++;
+        bool previousTurnFirstPlayer = FirstPlayerTurn;
+        if (!GetAlternatePlayer().IsFrozen())
+            FirstPlayerTurn = !FirstPlayerTurn;
+        DecreasePlayerStatuses();
+        UpdateAllPlayerStats(previousTurnFirstPlayer);
+    }
+
+    public void DecreasePlayerStatuses()
+    {
+        GetAlternatePlayer().DecreaseDazeTurns();
+        GetAlternatePlayer().DecreaseFrozenTurns();
+        GetCurrentPlayer().DecreaseIncreasedBackpackStorageTurns();
+
+    }
 }

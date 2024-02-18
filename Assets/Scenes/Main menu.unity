@@ -208,7 +208,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Name
-      value: Add teams
+      value: Replay
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Name
@@ -216,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Text
-      value: Add teams
+      value: Replay
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Pivot.x
@@ -512,15 +512,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Name
-      value: Replay
+      value: BOT VS GAME BOT
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Name
-      value: Player VS Player (2)
+      value: BOT VS GAME BOT
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Text
-      value: Replay
+      value: BOT VS GAME BOT
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Pivot.x
@@ -783,11 +783,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Name
-      value: Player VS BOT
+      value: BOT VS BOT
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Text
-      value: Player VS BOT
+      value: BOT VS BOT
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Pivot.x
