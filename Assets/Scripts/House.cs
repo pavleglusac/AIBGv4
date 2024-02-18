@@ -58,6 +58,12 @@ public class House : MonoBehaviour
 
     }
 
+    public void Destroy()
+    {
+        Position.LastState = Position.PillarState;
+        Position.PillarState = PillarState.Empty;
+        Destroy(gameObject);
+    }
 
     void OnMouseDown()
     {
@@ -68,6 +74,7 @@ public class House : MonoBehaviour
             Game.Instance.selectedHouse = this;
             Debug.Log("Attack");
             Debug.Log(this.Health);
+            Actions.AttackHouse(Game.Instance.GetCurrentPlayer(), this);
         }
         else
         {
