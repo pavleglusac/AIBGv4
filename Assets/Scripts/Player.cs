@@ -81,6 +81,16 @@ public class Player : MonoBehaviour
         Coins -= c;
     }
 
+    public void AddCoins(int c)
+    {
+        Coins += c;
+    }
+
+    public void AddXP(int xp)
+    {
+        XP -= xp;
+    }
+
     public bool IsFrozen()
     {
         return FrozenTurns > 0;
