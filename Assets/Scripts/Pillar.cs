@@ -19,9 +19,8 @@ public class Pillar : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1) && PillarState == PillarState.Empty)
+        if (Input.GetMouseButtonDown(1))
         {
-            Player player = Game.Instance.GetCurrentPlayer();
             Actions.BuildHouse(this.X, this.Z);
         }
     }
