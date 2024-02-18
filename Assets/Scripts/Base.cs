@@ -21,13 +21,13 @@ public class Base : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log(this.X + " " + this.Z);
-            Debug.Log("Name: " + gameObject.name);
-            if (this.X == 0 && this.Z == 0) return;
-            Debug.Log(this.IsFirstPlayers);
-            if (Game.Instance.GetCurrentPlayer().X != this.X || Game.Instance.GetCurrentPlayer().Z != this.Z) return;
-            // if (Game.Instance.GetCurrentPlayer().FirstPlayer != this.IsFirstPlayers) return;
-            BaseActionsMenu.Instance.OpenActionsMenu();
+            // Debug.Log(this.X + " " + this.Z);
+            // Debug.Log("Name: " + gameObject.name);
+            // if (this.X == 0 && this.Z == 0) return;
+            // Debug.Log(this.IsFirstPlayers);
+            // if (Game.Instance.GetCurrentPlayer().X != this.X || Game.Instance.GetCurrentPlayer().Z != this.Z) return;
+            // // if (Game.Instance.GetCurrentPlayer().FirstPlayer != this.IsFirstPlayers) return;
+            // BaseActionsMenu.Instance.OpenActionsMenu();
         }
 
     }
@@ -36,7 +36,14 @@ public class Base : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Actions.BuildHouse(this.X, this.Z);
+            // Actions.BuildHouse(this.X, this.Z);
+            Debug.Log(this.X + " " + this.Z);
+            Debug.Log("Name: " + gameObject.name);
+            if (this.X == 0 && this.Z == 0) return;
+            Debug.Log(this.IsFirstPlayers);
+            if (Game.Instance.GetCurrentPlayer().X != this.X || Game.Instance.GetCurrentPlayer().Z != this.Z) return;
+            // if (Game.Instance.GetCurrentPlayer().FirstPlayer != this.IsFirstPlayers) return;
+            BaseActionsMenu.Instance.OpenActionsMenu();
         }
     }
 }
