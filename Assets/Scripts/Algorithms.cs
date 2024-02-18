@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class Algorithms
 {
-    public static List<Pillar> findPath(Board board, Pillar start, Pillar end)
+    public static List<Pillar> FindPath(Board board, Pillar start, Pillar end)
     {
         Queue<Pillar> queue = new Queue<Pillar>();
         HashSet<Pillar> visited = new HashSet<Pillar>();
         Dictionary<Pillar, Pillar> cameFrom = new Dictionary<Pillar, Pillar>();
+
+
+        if (start.X != end.X && start.Z != end.Z) {
+            return null;
+        }
 
         queue.Enqueue(start);
         visited.Add(start);

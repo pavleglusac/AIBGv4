@@ -33,7 +33,6 @@ public class CommandManager : MonoBehaviour
         {
             return;
         }
-
         if (_currentCommand == null && _commands.Count > 0)
         {
             _currentCommand = _commands[_index];
@@ -47,6 +46,9 @@ public class CommandManager : MonoBehaviour
         }
 
         if (_currentCommand == null || _currentCommand.IsDone()) return;
+
+        if (Game.IsPaused)
+            return;
 
         if (_currentCommand.CanExecute())
         {

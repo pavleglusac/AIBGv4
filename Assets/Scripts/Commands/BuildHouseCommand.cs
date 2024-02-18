@@ -12,10 +12,10 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
     public Pillar Pillar { get; set; }
     public bool isDone { get; set; } = false;
 
-    public BuildHouseCommand Initialize(Player player, Pillar pillar)
+    public BuildHouseCommand Initialize(int x, int z)
     {
-        Pillar = pillar;
-        Player = player;
+        Player = Game.Instance.GetCurrentPlayer();
+        Pillar = Game.Instance.Board.Pillars[x, z];
         return this;
     }
 
