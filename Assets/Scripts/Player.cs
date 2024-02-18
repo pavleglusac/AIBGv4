@@ -45,9 +45,12 @@ public class Player : MonoBehaviour
     }
 
 
-    void OnMouseDown()
+    void OnMouseOver()
     {
-        // Debug.Log("Player clicked");
+        if (Input.GetMouseButtonDown(1))
+        {
+            Actions.BuildHouse(this.X, this.Z);
+        }
     }
 
     public void SetPosition(Pillar pillar)

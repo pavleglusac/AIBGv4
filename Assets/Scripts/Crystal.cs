@@ -12,4 +12,12 @@ public class Crystal: MonoBehaviour
     public int ReplenishTurns { get; set; }
     public int TurnInWhichCrystalBecameEmpty { get; set; } = -1;
     public bool IsEmpty { get; set; }
+    
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Actions.BuildHouse(this.X, this.Z);
+        }
+    }
 }

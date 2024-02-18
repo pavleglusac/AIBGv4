@@ -164,6 +164,12 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
             TargetPillar = ChangePillarsBasedOnDaze(TargetPillar, Player);
         }
 
+        if (Player.Position.X == TargetPillar.X && Player.Position.Z == TargetPillar.Z)
+        {
+            Game.Instance.DisplayMessage = "Cannot stay on the same place!";
+            return false;
+        }
+
         Path = Algorithms.FindPath(Game.Instance.Board, Player.Position, TargetPillar);
 
         if (Path == null)
@@ -171,11 +177,6 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
             Game.Instance.DisplayMessage = "You can only move horizontally and vertically!";
             return false;
         }
-
-        if (Player.Position.X == TargetPillar.X && Player.Position.Z == TargetPillar.Z) {
-            Game.Instance.DisplayMessage = "Cannot stay on the same place!";
-        }
-
         if (Path.Count == 0 || !Path.Contains(TargetPillar))
         {
             Game.Instance.DisplayMessage = "Obstacle on the way!";
