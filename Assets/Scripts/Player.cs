@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
 
     public void AddXP(int xp)
     {
-        XP -= xp;
+        XP += xp;
     }
 
     public bool IsFrozen()

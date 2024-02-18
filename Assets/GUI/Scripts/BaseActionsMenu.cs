@@ -31,6 +31,7 @@ public class BaseActionsMenu : MonoBehaviour
         if (Game.IsPaused)
             return;
         actionMenu.SetActive(true);
+        UpdateText();
         Game.PauseGame();
     }
 
@@ -55,8 +56,8 @@ public class BaseActionsMenu : MonoBehaviour
     public void IncreaseXPCheapCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
-        if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < 5)
+        if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
+        // // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < 5)
         {
             Instance.XPCheap++;
             CalculateTotal();
@@ -68,7 +69,6 @@ public class BaseActionsMenu : MonoBehaviour
     public void DecreaseXPCheapCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
         if (Instance.XPCheap > 0)
         {
             Instance.XPCheap--;
@@ -81,8 +81,8 @@ public class BaseActionsMenu : MonoBehaviour
     public void IncreaseXPExpensiveCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < player.Bag.GetCheapCrystalCount())
-        if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < 5)
+        if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < player.Bag.GetExpensiveCrystalCount())
+        // if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < 5)
         {
             Instance.XPExpensive++;
             CalculateTotal();
@@ -94,7 +94,6 @@ public class BaseActionsMenu : MonoBehaviour
     public void DecreaseXPExpensiveCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
         if (Instance.XPExpensive > 0)
         {
             Instance.XPExpensive--;
@@ -108,8 +107,8 @@ public class BaseActionsMenu : MonoBehaviour
     public void IncreaseCoinsCheapCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
-        if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < 5)
+        if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
+        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < 5)
         {
             Instance.CoinsCheap++;
             CalculateTotal();
@@ -121,7 +120,6 @@ public class BaseActionsMenu : MonoBehaviour
     public void DecreaseCoinsCheapCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
         if (Instance.CoinsCheap > 0)
         {
             Instance.CoinsCheap--;
@@ -134,8 +132,8 @@ public class BaseActionsMenu : MonoBehaviour
     public void IncreaseCoinsExpensiveCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < player.Bag.GetCheapCrystalCount())
-        if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < 5)
+        if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < player.Bag.GetExpensiveCrystalCount())
+        // if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < 5)
         {
             Instance.CoinsExpensive++;
             CalculateTotal();
@@ -147,7 +145,6 @@ public class BaseActionsMenu : MonoBehaviour
     public void DecreaseCoinsExpensiveCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
         if (Instance.CoinsExpensive > 0)
         {
             Instance.CoinsExpensive--;
@@ -161,8 +158,8 @@ public class BaseActionsMenu : MonoBehaviour
     public void IncreaseEnergyCheapCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
-        if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < 5)
+        if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
+        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < 5)
         {
             Instance.EnergyCheap++;
             CalculateTotal();
@@ -174,7 +171,6 @@ public class BaseActionsMenu : MonoBehaviour
     public void DecreaseEnergyCheapCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
         if (Instance.EnergyCheap > 0)
         {
             Instance.EnergyCheap--;
@@ -187,8 +183,8 @@ public class BaseActionsMenu : MonoBehaviour
     public void IncreaseEnergyExpensiveCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < player.Bag.GetCheapCrystalCount())
-        if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < 5)
+        if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < player.Bag.GetExpensiveCrystalCount())
+        // if ((Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive) < 5)
         {
             Instance.EnergyExpensive++;
             CalculateTotal();
@@ -200,7 +196,6 @@ public class BaseActionsMenu : MonoBehaviour
     public void DecreaseEnergyExpensiveCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        // if ((Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap) < player.Bag.GetCheapCrystalCount())
         if (Instance.EnergyExpensive > 0)
         {
             Instance.EnergyExpensive--;
@@ -235,5 +230,11 @@ public class BaseActionsMenu : MonoBehaviour
         CalculateTotal();
         UpdateText();
         CloseActionsMenu();
+    }
+
+    public void Convert()
+    {
+        Actions.BaseConversions(Game.Instance.GetCurrentPlayer(), Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap, Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive, Instance.XPTotal, Instance.CoinsTotal, Instance.EnergyTotal);
+        CancelActions();
     }
 }

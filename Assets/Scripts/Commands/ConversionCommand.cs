@@ -6,12 +6,8 @@ public class ConversionCommand : MonoBehaviour, ICommand
 {
     public Player Player { get; set; }
 
-    public int XPCheap { get; set; }
-    public int XPExpensive { get; set; }
-    public int CoinsCheap { get; set; }
-    public int CoinsExpensive { get; set; }
-    public int EnergyCheap { get; set; }
-    public int EnergyExpensive { get; set; }
+    public int CheapTotal { get; set; }
+    public int ExpensiveTotal { get; set; }
 
     public int CoinsTotal { get; set; }
     public int XPTotal { get; set; }
@@ -20,30 +16,25 @@ public class ConversionCommand : MonoBehaviour, ICommand
 
     private bool isDone = false;
 
-    public ConversionCommand Initialize(Player player, int XPCheap, int XPExpensive, int coinsCheap, int coinsExpensive, int energyCheap, int energyExpensive, int XPTotal, int coinsTotal, int energyTotal)
+    public ConversionCommand Initialize(Player player, int cheapTotal, int expensiveTotal, int XPTotal, int coinsTotal, int energyTotal)
     {
         Player = player;
-        this.XPCheap = XPCheap;
-        this.XPExpensive = XPExpensive;
+        CheapTotal = cheapTotal;
+        ExpensiveTotal = expensiveTotal;
         this.XPTotal = XPTotal;
-        CoinsCheap = coinsCheap;
-        CoinsExpensive = coinsExpensive;
         CoinsTotal = coinsTotal;
-        EnergyCheap = energyCheap;
-        EnergyExpensive = energyExpensive;
         EnergyTotal = energyTotal;
         return this;
     }
 
     public void Execute()
     {
-        int cheapTotal = XPCheap + CoinsCheap + EnergyCheap;
-        for (int i = 0; i < cheapTotal; i++)
+        for (int i = 0; i < CheapTotal; i++)
         {
             Player.Bag.PopCheapCrystal();
         }
-        int expensiveTotal = XPExpensive + CoinsExpensive + EnergyExpensive;
-        for (int i = 0; i < expensiveTotal; i++)
+
+        for (int i = 0; i < ExpensiveTotal; i++)
         {
             Player.Bag.PopExpensiveCrystal();
         }

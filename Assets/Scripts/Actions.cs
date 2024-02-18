@@ -39,6 +39,15 @@ public static class Actions
         Game.Instance.CommandManager.AddCommand(refinementTakeCommandInstance);
     }
 
+    public static void BaseConversions(Player player, int cheapTotal, int expensiveTotal, int XPTotal, int coinsTotal, int energyTotal)
+    {
+        GameObject commandObject = new GameObject("ConversionsCommandObject");
+        ConversionCommand conversionsCommand = commandObject.AddComponent<ConversionCommand>();
+        conversionsCommand.Initialize(player, cheapTotal, expensiveTotal, XPTotal, coinsTotal, energyTotal);
+        Game.Instance.CommandManager.AddCommand(conversionsCommand);
+    }
+
+
 
 
     public static void Daze()
