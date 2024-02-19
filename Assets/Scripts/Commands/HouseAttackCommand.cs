@@ -24,6 +24,7 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
         {
             House.Destroy();
             Player.AddCoins(int.Parse(PlayerPrefs.GetString("house_destroy_reward")));
+            Game.Instance.DisplayMessage = "House successfully destroyed";
         }
 
 
@@ -36,6 +37,11 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
     }
     public bool CanExecute()
     {
+        if (House.IsFirstPlayers == Player.FirstPlayer)
+        {
+            Game.Instance.DisplayMessage = "Cannot attack your own house";
+            return false;
+        }
         if (!House.Position.CanAct(Player))
         {
             Game.Instance.DisplayMessage = "You need to be near the opponent house to attack it";
