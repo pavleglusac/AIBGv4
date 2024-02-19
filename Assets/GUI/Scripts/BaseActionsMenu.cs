@@ -234,7 +234,7 @@ public class BaseActionsMenu : MonoBehaviour
 
     public void Convert()
     {
-        Actions.BaseConversions(Game.Instance.GetCurrentPlayer(), Instance.XPCheap + Instance.CoinsCheap + Instance.EnergyCheap, Instance.XPExpensive + Instance.CoinsExpensive + Instance.EnergyExpensive, Instance.XPTotal, Instance.CoinsTotal, Instance.EnergyTotal);
+        Actions.BaseConversions(Game.Instance.GetCurrentPlayer(), Instance.XPCheap, Instance.XPExpensive, Instance.CoinsCheap, Instance.CoinsExpensive, Instance.EnergyCheap, Instance.EnergyExpensive);
         CancelActions();
     }
 }

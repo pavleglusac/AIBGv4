@@ -38,6 +38,7 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
         houseObject.GetComponent<House>().Position = Pillar;
         houseObject.GetComponent<House>().X = Pillar.X;
         houseObject.GetComponent<House>().Z = Pillar.Z;
+        houseObject.GetComponent<House>().Health = int.Parse(PlayerPrefs.GetString("house_health"));
         houseObject.GetComponent<House>().IsFirstPlayers = Player.FirstPlayer;
         Game.Instance.Board.Houses.Add(houseObject.GetComponent<House>());
 
@@ -54,7 +55,8 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
 
     public bool CanExecute()
     {
-        if (Pillar.PillarState != PillarState.Empty) {
+        if (Pillar.PillarState != PillarState.Empty)
+        {
             Game.Instance.DisplayMessage = "Pillar is not empty";
             return false;
         }
@@ -62,8 +64,9 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
         {
             Game.Instance.DisplayMessage = "You are not close enough to build";
             return false;
-        } 
-        if (Player.Coins < GetCoinCost()) {
+        }
+        if (Player.Coins < GetCoinCost())
+        {
             Game.Instance.DisplayMessage = "Not enough coins";
             return false;
         }

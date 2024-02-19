@@ -25,11 +25,19 @@ public static class Actions
 
     public static void BuildHouse(int x, int z)
     {
-        if ((x == Game.Instance.BasePlayer1.X && z == Game.Instance.BasePlayer1.Z) || (x == Game.Instance.BasePlayer2.X && z == Game.Instance.BasePlayer2.Z)) return;
+        if ((x == Game.Instance.Board.Bases[0].X && z == Game.Instance.Board.Bases[0].Z) || (x == Game.Instance.Board.Bases[1].X && z == Game.Instance.Board.Bases[1].Z)) return;
         GameObject commandObject = new GameObject("BuildHouseObject");
         BuildHouseCommand buildHouseCommandInstance = commandObject.AddComponent<BuildHouseCommand>();
         buildHouseCommandInstance.Initialize(x, z);
         Game.Instance.CommandManager.AddCommand(buildHouseCommandInstance);
+    }
+
+    public static void AttackHouse(Player player, House house)
+    {
+        GameObject commandObject = new GameObject("AttackHouseObject");
+        HouseAttackCommand attackHouseCommandInstance = commandObject.AddComponent<HouseAttackCommand>();
+        attackHouseCommandInstance.Initialize(player, house);
+        Game.Instance.CommandManager.AddCommand(attackHouseCommandInstance);
     }
 
     public static void PutRefinement(Player player, House house, int putCheap, int putExpensive)
@@ -48,11 +56,11 @@ public static class Actions
         Game.Instance.CommandManager.AddCommand(refinementTakeCommandInstance);
     }
 
-    public static void BaseConversions(Player player, int cheapTotal, int expensiveTotal, int XPTotal, int coinsTotal, int energyTotal)
+    public static void BaseConversions(Player player, int XPCheap, int XPExpensive, int coinsCheap, int coinsExpensive, int energyCheap, int energyExpensive)
     {
         GameObject commandObject = new GameObject("ConversionsCommandObject");
         ConversionCommand conversionsCommand = commandObject.AddComponent<ConversionCommand>();
-        conversionsCommand.Initialize(player, cheapTotal, expensiveTotal, XPTotal, coinsTotal, energyTotal);
+        conversionsCommand.Initialize(player, XPCheap, XPExpensive, coinsCheap, coinsExpensive, energyCheap, energyExpensive);
         Game.Instance.CommandManager.AddCommand(conversionsCommand);
     }
 
