@@ -45,9 +45,12 @@ public class Player : MonoBehaviour
     }
 
 
-    void OnMouseDown()
+    void OnMouseOver()
     {
-        // Debug.Log("Player clicked");
+        if (Input.GetMouseButtonDown(1))
+        {
+            Actions.BuildHouse(this.X, this.Z);
+        }
     }
 
     public void SetPosition(Pillar pillar)
@@ -79,6 +82,16 @@ public class Player : MonoBehaviour
     public void TakeCoins(int c)
     {
         Coins -= c;
+    }
+
+    public void AddCoins(int c)
+    {
+        Coins += c;
+    }
+
+    public void AddXP(int xp)
+    {
+        XP += xp;
     }
 
     public bool IsFrozen()

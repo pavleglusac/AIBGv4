@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CommandManager : MonoBehaviour
 {
@@ -33,7 +34,6 @@ public class CommandManager : MonoBehaviour
         {
             return;
         }
-
         if (_currentCommand == null && _commands.Count > 0)
         {
             _currentCommand = _commands[_index];
@@ -53,35 +53,27 @@ public class CommandManager : MonoBehaviour
             _currentCommand.Execute();
             Game.Instance.SwitchPlayersAndDecreaseStats();
         }
-        else switch (_currentCommand)
+        else { 
+            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            if (Game.Instance.TurnCount > int.Parse(PlayerPrefs.GetString("max_number_of_turns")))
             {
-
-                case IEnergySpendingCommand:
-                    Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-                    if (Game.Instance.GetCurrentPlayer().Energy <= 0)
-                    {
-                        Game.Instance.GameOver = true;
-                    }
-
-                    if (Game.Instance.GameOver)
-                    {
-                        Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player2.Name : Game.Instance.Player1.Name;
-                        Game.EndGame();
-                    }
-                    else
-                    {
-                        Game.Instance.SwitchPlayersAndDecreaseStats();
-                    }
-                    break;
-                case ICoinSpendingCommand:
-                    Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-                    Game.Instance.SwitchPlayersAndDecreaseStats();
-                    break;
-                default:
-                    Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-                    Game.Instance.SwitchPlayersAndDecreaseStats();
-                    break;
+                Game.Instance.GameOver = true;
+                Game.Instance.Winner = Game.Instance.Player1.XP > Game.Instance.Player2.XP ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
             }
+            if (Game.Instance.GetCurrentPlayer().Energy <= 0)
+            {
+                Game.Instance.GameOver = true;
+                Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player2.Name : Game.Instance.Player1.Name;
+            }
+            if (Game.Instance.GameOver)
+            {
+                Game.EndGame();
+            }
+            else
+            {
+                Game.Instance.SwitchPlayersAndDecreaseStats();
+            }
+        }
         //If you get this message that means that you have not put correct display message for your behaviour
         Game.Instance.DisplayMessage = "UNDEFINED MESSAGE!";
 
