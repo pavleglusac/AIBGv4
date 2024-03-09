@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
+using System.Linq;
 
 public class Board : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class Board : MonoBehaviour
         if (z < h - 1) neighbours.Add(Pillars[x, z + 1]);
 
         return neighbours;
+    }
+
+    public House FindHouse(int x, int z)
+    {
+        return Houses.Where(house => house.X == x && house.Z == z).FirstOrDefault();
     }
 
 

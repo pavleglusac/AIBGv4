@@ -16,6 +16,12 @@ public class CommandParser : MonoBehaviour
     string restPattern = @"^rest";
     string shopPattern = @"^shop (freeze|backpack|daze)$";
 
+    string attackPattern = @"attack (-?\d+) (-?\d+)$";
+
+    string putRefinement = @"refinement-put (-?\d+) (-?\d+) cheap (-?\d+) expensive (-?\d+)";
+
+    string takeRefinement = @"refinement-take (-?\d+) (-?\d+) cheap (-?\d+) expensive (-?\d+)";
+
     private readonly Queue<Action> mainThreadActions = new Queue<Action>();
 
     void Update()
@@ -40,6 +46,10 @@ public class CommandParser : MonoBehaviour
     public void ParseCommand(string command) 
     {
         UnityEngine.Debug.Log($"PARSING: {command}");
+        if (command == null)
+        {
+            return;
+        }
         if (command.StartsWith("//")) 
         {
             // UnityEngine.Debug.Log($"{command}");
@@ -82,6 +92,14 @@ public class CommandParser : MonoBehaviour
                     HandleDaze();
                     break;
             }
+        }
+        else if (Regex.IsMatch(command, putRefinement))
+        {
+            HandlePutRefinement(command);
+        }
+        else if (Regex.IsMatch(command, takeRefinement))
+        {
+            HandleTakeRefinement(command);
         }
         else
         {
@@ -155,9 +173,51 @@ public class CommandParser : MonoBehaviour
         }
     }
 
+    private void HandlePutRefinement(string command)
+    {
+        var match = Regex.Match(command, buildPattern);
+        if (match.Success)
+        {
+            int x = int.Parse(match.Groups[1].Value);
+            int z = int.Parse(match.Groups[2].Value);
+            int cheap = int.Parse(match.Groups[3].Value);
+            int expensive = int.Parse(match.Groups[4].Value);
+            mainThreadActions.Enqueue(() => {
+                Actions.PutRefinement(x, z, cheap, expensive);
+            });
+            
+            UnityEngine.Debug.Log($"PUT REFINEMENT {x} {z} {cheap} {expensive}");
+        }
+        else
+        {
+            Console.WriteLine("Invalid move command.");
+        }
+    }
+
+    private void HandleTakeRefinement(string command)
+    {
+        var match = Regex.Match(command, buildPattern);
+        if (match.Success)
+        {
+
+        }
+        else
+        {
+            
+        }
+    }
+
     private void HandleConversionsAtBase(string command) 
     {
+        var match = Regex.Match(command, buildPattern);
+        if (match.Success)
+        {
 
+        }
+        else
+        {
+            
+        }
     }
 
     private void HandleResting(string command) 

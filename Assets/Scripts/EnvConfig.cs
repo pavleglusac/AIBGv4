@@ -15,6 +15,7 @@ public class EnvConfig : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         if (Instance == null)
         {
             Instance = this;
@@ -40,6 +41,7 @@ public class EnvConfig : MonoBehaviour
                     string value = keyValue[1].Trim();
 
                     PlayerPrefs.SetString(key, value);
+                
                 }
             }
 

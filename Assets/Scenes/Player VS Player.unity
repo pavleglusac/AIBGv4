@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.004709318, g: 0.004479017, b: 0.004487423, a: 1}
+  m_IndirectSpecularColor: {r: 0.008798571, g: 0.008241418, b: 0.008119887, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3105,18 +3105,18 @@ PrefabInstance:
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 353859524}
+      objectReference: {fileID: 353859528}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseActionsMenu
+      value: DecreaseTakeExpensiveCrystal
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ActionsMenuNavigation, Assembly-CSharp
+      value: RefinementMenuNavigation, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3260,7 +3260,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 353859524}
+      addedObject: {fileID: 353859528}
   m_SourcePrefab: {fileID: 100100000, guid: b5790287cae64de46a4f0136090067a9, type: 3}
 --- !u!224 &353859522 stripped
 RectTransform:
@@ -3272,7 +3272,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
   m_PrefabInstance: {fileID: 353859521}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &353859524
+--- !u!114 &353859528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3281,10 +3281,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 353859523}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac138e5fbfcf29d45b4c5cc56cacb362, type: 3}
+  m_Script: {fileID: 11500000, guid: 786aeb56cea9a5d40aa136829379c9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionMenu: {fileID: 752945026}
+  refinementMenu: {fileID: 67661571}
 --- !u!1 &369284692
 GameObject:
   m_ObjectHideFlags: 0
@@ -7351,6 +7351,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 7
+--- !u!1 &841813924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
+  m_PrefabInstance: {fileID: 931952918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &846212310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8120,18 +8125,18 @@ PrefabInstance:
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 931952923}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseActionsMenu
+      value: IncreaseTakeExpensiveCrystal
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ActionsMenuNavigation, Assembly-CSharp
+      value: RefinementMenuNavigation, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -8272,13 +8277,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 931952923}
   m_SourcePrefab: {fileID: 100100000, guid: b5790287cae64de46a4f0136090067a9, type: 3}
 --- !u!224 &931952919 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
   m_PrefabInstance: {fileID: 931952918}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &931952923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841813924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786aeb56cea9a5d40aa136829379c9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refinementMenu: {fileID: 67661571}
 --- !u!1 &954527521
 GameObject:
   m_ObjectHideFlags: 0
@@ -10358,10 +10379,10 @@ RectTransform:
   - {fileID: 1485883715}
   - {fileID: 1693335207}
   - {fileID: 778945}
+  - {fileID: 1790465648}
   - {fileID: 752945025}
   - {fileID: 458589098}
   - {fileID: 26485232}
-  - {fileID: 1790465648}
   - {fileID: 1697673308}
   - {fileID: 1087145085}
   m_Father: {fileID: 0}
@@ -13384,7 +13405,7 @@ GameObject:
   - component: {fileID: 1516435234}
   - component: {fileID: 1516435233}
   m_Layer: 5
-  m_Name: "\u0415xpensiveCrystalPut"
+  m_Name: "\u0415xpensiveCrystalTake"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14957,7 +14978,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790465647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -14.999979}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

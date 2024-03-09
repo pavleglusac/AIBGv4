@@ -12,19 +12,30 @@ public class RefinementTakeCommand : MonoBehaviour, ICommand
     public int TakeExpensive { get; set; }
     public House House { get; set; }
 
+    private int X, Z;
+
     private bool isDone = false;
 
-    public RefinementTakeCommand Initialize(Player player, int takeCheap, int takeExpensive, House house)
+    public RefinementTakeCommand Initialize(Player player, int takeCheap, int takeExpensive, int x, int  z)
     {
         Player = player;
         TakeCheap = takeCheap;
         TakeExpensive = takeExpensive;
-        House = house;
+        X = x;
+        Z = z;
+
         return this;
     }
 
     public bool CanExecute()
     {
+        House = Game.Instance.Board.FindHouse(X, Z);
+        
+        if (House == null) {
+            Game.Instance.DisplayMessage = "Not a refinement facility!";
+            return false;
+        }
+
         if (House.IsFirstPlayers != Player.FirstPlayer)
         {
             Game.Instance.DisplayMessage = "Cannot take crystals from a refinement that is not yours";

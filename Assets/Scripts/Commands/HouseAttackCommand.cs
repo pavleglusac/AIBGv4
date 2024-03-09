@@ -7,11 +7,13 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
     public Player Player { get; set; }
     public House House { get; set; }
     private bool isDone = false;
+    public int X, Z;
 
-    public HouseAttackCommand Initialize(Player player, House house)
+    public HouseAttackCommand Initialize(Player player, int x, int z)
     {
         Player = player;
-        House = house;
+        X = x;
+        Z = z;
         return this;
     }
 
@@ -37,6 +39,14 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
     }
     public bool CanExecute()
     {
+        House = Game.Instance.Board.FindHouse(X, Z);
+
+        if (House == null)
+        {
+            Game.Instance.DisplayMessage = "Not a refinement facility!";
+            return false;
+        }
+
         if (House.IsFirstPlayers == Player.FirstPlayer)
         {
             Game.Instance.DisplayMessage = "Cannot attack your own house";

@@ -32,39 +32,41 @@ public static class Actions
         Game.Instance.CommandManager.AddCommand(buildHouseCommandInstance);
     }
 
-    public static void AttackHouse(Player player, House house)
+    public static void AttackHouse(int x, int z)
     {
+        Player player = Game.Instance.GetCurrentPlayer();
         GameObject commandObject = new GameObject("AttackHouseObject");
         HouseAttackCommand attackHouseCommandInstance = commandObject.AddComponent<HouseAttackCommand>();
-        attackHouseCommandInstance.Initialize(player, house);
+        attackHouseCommandInstance.Initialize(player, x, z);
         Game.Instance.CommandManager.AddCommand(attackHouseCommandInstance);
     }
 
-    public static void PutRefinement(Player player, House house, int putCheap, int putExpensive)
+    public static void PutRefinement(int x, int z, int putCheap, int putExpensive)
     {
+        Player player = Game.Instance.GetCurrentPlayer();
         GameObject commandObject = new GameObject("RefinementPutCommandObject");
         RefinementPutCommand refinementPutCommandInstance = commandObject.AddComponent<RefinementPutCommand>();
-        refinementPutCommandInstance.Initialize(player, putCheap, putExpensive, house);
+        refinementPutCommandInstance.Initialize(player, putCheap, putExpensive, x, z);
         Game.Instance.CommandManager.AddCommand(refinementPutCommandInstance);
     }
 
-    public static void TakeRefinement(Player player, House house, int takeCheap, int takeExpensive)
+    public static void TakeRefinement(int x, int z, int takeCheap, int takeExpensive)
     {
         GameObject commandObject = new GameObject("RefinementTakeCommandObject");
+        Player player = Game.Instance.GetCurrentPlayer();
         RefinementTakeCommand refinementTakeCommandInstance = commandObject.AddComponent<RefinementTakeCommand>();
-        refinementTakeCommandInstance.Initialize(player, takeCheap, takeExpensive, house);
+        refinementTakeCommandInstance.Initialize(player, takeCheap, takeExpensive, x, z);
         Game.Instance.CommandManager.AddCommand(refinementTakeCommandInstance);
     }
 
-    public static void BaseConversions(Player player, int XPCheap, int XPExpensive, int coinsCheap, int coinsExpensive, int energyCheap, int energyExpensive)
+    public static void BaseConversions(int XPCheap, int XPExpensive, int coinsCheap, int coinsExpensive, int energyCheap, int energyExpensive)
     {
+        Player player = Game.Instance.GetCurrentPlayer();
         GameObject commandObject = new GameObject("ConversionsCommandObject");
         ConversionCommand conversionsCommand = commandObject.AddComponent<ConversionCommand>();
         conversionsCommand.Initialize(player, XPCheap, XPExpensive, coinsCheap, coinsExpensive, energyCheap, energyExpensive);
         Game.Instance.CommandManager.AddCommand(conversionsCommand);
     }
-
-
 
 
     public static void Daze()

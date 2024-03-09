@@ -13,6 +13,8 @@ public class RefinementMenuNavigation : MonoBehaviour
     public static RefinementMenuNavigation Instance;
     public GameObject refinementMenu;
 
+    private House selectedHouse;
+
     private int PutCheap = 0;
     private int PutExpensive = 0;
     private int TakeCheap = 0;
@@ -27,6 +29,7 @@ public class RefinementMenuNavigation : MonoBehaviour
     {
         refinementMenu.SetActive(false);
         Game.Instance.selectedHouse = null;
+        Instance.selectedHouse = null;
         Game.ResumeGame();
         Instance.PutCheap = 0;
         Instance.PutExpensive = 0;
@@ -34,10 +37,13 @@ public class RefinementMenuNavigation : MonoBehaviour
         Instance.TakeExpensive = 0;
     }
 
-    public void OpenRefinementMenu()
+    public void OpenRefinementMenu(House house)
     {
         if (Game.IsPaused)
             return;
+        selectedHouse = house;
+        Instance.selectedHouse = house;
+        Game.Instance.selectedHouse = house;
         refinementMenu.SetActive(true);
         UpdateText();
         Game.PauseGame();
@@ -83,14 +89,15 @@ public class RefinementMenuNavigation : MonoBehaviour
 
     public void Put()
     {
-        Actions.PutRefinement(Game.Instance.GetCurrentPlayer(), Game.Instance.selectedHouse, Instance.PutCheap, Instance.PutExpensive);
+        Actions.PutRefinement(Instance.selectedHouse.X, Instance.selectedHouse.Z, Instance.PutCheap, Instance.PutExpensive);
         CloseRefinementMenu();
     }
 
     public void IncreaseTakeCheapCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        if (Instance.TakeCheap == Game.Instance.selectedHouse.GetProcessedCheapCrystalCount()) return;
+        Debug.Log(Instance.selectedHouse);
+        if (Instance.TakeCheap == Instance.selectedHouse.GetProcessedCheapCrystalCount()) return;
         int processedCheapCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_cheap_crystal_weight"));
         int processedExpensiveCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_expensive_crystal_weight"));
         if (player.Bag.GetRemainingCapacity() < (Instance.TakeCheap + 1) * processedCheapCrystalWeight + Instance.TakeExpensive * processedExpensiveCrystalWeight) return;
@@ -110,7 +117,7 @@ public class RefinementMenuNavigation : MonoBehaviour
     public void IncreaseTakeExpensiveCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        if (Instance.TakeExpensive == Game.Instance.selectedHouse.GetProcessedExpensiveCrystalCount()) return;
+        if (Instance.TakeExpensive == Instance.selectedHouse.GetProcessedExpensiveCrystalCount()) return;
         int processedCheapCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_cheap_crystal_weight"));
         int processedExpensiveCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_expensive_crystal_weight"));
         if (player.Bag.GetRemainingCapacity() < (Instance.TakeExpensive + 1) * processedExpensiveCrystalWeight + Instance.TakeCheap * processedCheapCrystalWeight) return;
@@ -129,7 +136,7 @@ public class RefinementMenuNavigation : MonoBehaviour
 
     public void Take()
     {
-        Actions.TakeRefinement(Game.Instance.GetCurrentPlayer(), Game.Instance.selectedHouse, Instance.TakeCheap, Instance.TakeExpensive);
+        Actions.TakeRefinement(Instance.selectedHouse.X, Instance.selectedHouse.Z, Instance.TakeCheap, Instance.TakeExpensive);
         CloseRefinementMenu();
     }
 

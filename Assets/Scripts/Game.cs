@@ -44,8 +44,8 @@ public class Game : MonoBehaviour
     String player1ScriptPath;
     String player2ScriptPath;
 
-    ScriptRunner player1ScriptRunner;
-    ScriptRunner player2ScriptRunner;
+    ScriptRunner player1ScriptRunner = null;
+    ScriptRunner player2ScriptRunner = null;
 
     private void Awake()
     {
@@ -82,7 +82,8 @@ public class Game : MonoBehaviour
         CommandParser.Game = Instance;
         DontDestroyOnLoad(gameObject);
 
-        if (player1ScriptPath != null) {
+        Debug.Log(player2ScriptPath);
+        if (!string.IsNullOrEmpty(player1ScriptPath)) {
             GameObject player1ScriptRunnerObject = new GameObject("ScriptRunnerObject");
             player1ScriptRunner = player1ScriptRunnerObject.AddComponent<ScriptRunner>();
             player1ScriptRunner.scriptPath = player1ScriptPath;
@@ -90,7 +91,7 @@ public class Game : MonoBehaviour
             player1ScriptRunner.StartProcess(player1ScriptRunner.scriptPath);
         }
 
-        if (player2ScriptPath != null) {
+        if (!string.IsNullOrEmpty(player2ScriptPath)) {
             GameObject player2ScriptRunnerObject = new GameObject("ScriptRunnerObject");
             player2ScriptRunner = player2ScriptRunnerObject.AddComponent<ScriptRunner>();
             player2ScriptRunner.scriptPath = player2ScriptPath;
@@ -180,7 +181,6 @@ public class Game : MonoBehaviour
             return;
         }
         string msg = GetGameState();
-
         Task.Run(() => targetRunner.WriteToProcessAsync(msg)).ContinueWith(task => 
         {
             if (task.IsFaulted)
