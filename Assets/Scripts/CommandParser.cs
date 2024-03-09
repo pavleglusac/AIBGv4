@@ -39,6 +39,12 @@ public class CommandParser : MonoBehaviour
 
     public void ParseCommand(string command) 
     {
+        UnityEngine.Debug.Log($"PARSING: {command}");
+        if (command.StartsWith("//")) 
+        {
+            // UnityEngine.Debug.Log($"{command}");
+            return;
+        }
 
         if (Regex.IsMatch(command, movePattern))
         {
@@ -58,7 +64,7 @@ public class CommandParser : MonoBehaviour
         }
         else if (Regex.IsMatch(command, restPattern))
         {
-            HandleResting();
+            HandleResting(command);
         }
         else if (Regex.IsMatch(command, shopPattern))
         {
@@ -91,17 +97,17 @@ public class CommandParser : MonoBehaviour
         var match = Regex.Match(command, movePattern);
         if (match.Success)
         {
-            int direction = int.Parse(match.Groups[1].Value);
-            int count = int.Parse(match.Groups[2].Value);
+            int x = int.Parse(match.Groups[1].Value);
+            int z = int.Parse(match.Groups[2].Value);
 
             mainThreadActions.Enqueue(() => {
                 GameObject commandObject = new GameObject("MoveCommandObject");
                 MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
-                moveCommandInstance.Initialize(Game.Instance.GetCurrentPlayer(), direction, count);
+                moveCommandInstance.Initialize(x, z);
                 Game.Instance.CommandManager.AddCommand(moveCommandInstance);
             });
             
-            UnityEngine.Debug.Log($"MOVE {direction} {count}");
+            UnityEngine.Debug.Log($"MOVE {x} {z}");
         }
         else
         {
@@ -138,7 +144,7 @@ public class CommandParser : MonoBehaviour
             int z = int.Parse(match.Groups[2].Value);
 
             mainThreadActions.Enqueue(() => {
-                Actions.BuildHouse(Game.GetCurrentPlayer(), Game.Instance.Board.Pillars[x, z]);
+                Actions.BuildHouse(x, z);
             });
             
             UnityEngine.Debug.Log($"MINE {x} {z}");
@@ -154,7 +160,7 @@ public class CommandParser : MonoBehaviour
 
     }
 
-    private void HandleResting() 
+    private void HandleResting(string command) 
     {
         var match = Regex.Match(command, restPattern);
         if (match.Success)

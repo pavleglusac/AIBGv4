@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class Bag : MonoBehaviour
 {
@@ -151,6 +152,56 @@ public class Bag : MonoBehaviour
         ExpensiveCrystalItem crystal = ExpensiveCrystals[0];
         ExpensiveCrystals.RemoveAt(0);
         return crystal;
+    }
+
+        public float GetTotalWeightExpensiveProcessed()
+    {
+        return ExpensiveCrystals.Where(crystal => crystal.isProcessed).Sum(crystal => crystal.GetWeight());
+    }
+
+    public float GetTotalWeightExpensiveRaw()
+    {
+        return ExpensiveCrystals.Where(crystal => !crystal.isProcessed).Sum(crystal => crystal.GetWeight());
+    }
+
+    public float GetTotalWeightCheapProcessed()
+    {
+        return CheapCrystals.Where(crystal => crystal.isProcessed).Sum(crystal => crystal.GetWeight());
+    }
+
+    public float GetTotalWeightCheapRaw()
+    {
+        return CheapCrystals.Where(crystal => !crystal.isProcessed).Sum(crystal => crystal.GetWeight());
+    }
+
+    public int GetCountExpensiveProcessed()
+    {
+        return ExpensiveCrystals.Count(crystal => crystal.isProcessed);
+    }
+
+    public int GetCountExpensiveRaw()
+    {
+        return ExpensiveCrystals.Count(crystal => !crystal.isProcessed);
+    }
+
+    public int GetCountExpensive()
+    {
+        return ExpensiveCrystals.Count;
+    }
+
+    public int GetCountCheap()
+    {
+        return CheapCrystals.Count;
+    }
+
+    public int GetCountCheapProcessed()
+    {
+        return CheapCrystals.Count(crystal => crystal.isProcessed);
+    }
+
+    public int GetCountCheapRaw()
+    {
+        return CheapCrystals.Count(crystal => !crystal.isProcessed);
     }
 
 }

@@ -28,12 +28,13 @@ public class ScriptRunner : MonoBehaviour
 
     public void StartProcess(string scriptPath)
     {
+        UnityEngine.Debug.Log(scriptPath);
         process = new Process
         {
             StartInfo = new ProcessStartInfo
             {
-                FileName = "python3",
-                Arguments = "-u " + scriptPath,
+                FileName = "/bin/bash",
+                Arguments = scriptPath,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 RedirectStandardInput = true,
@@ -61,6 +62,7 @@ public class ScriptRunner : MonoBehaviour
     {
         UnityEngine.Debug.Log("Pisem!!!");
         UnityEngine.Debug.Log(input);
+        input = input.Replace("\n", "^");
 
         if (process == null || process.HasExited)
         {

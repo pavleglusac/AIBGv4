@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 public class Board : MonoBehaviour
 {
@@ -27,5 +28,25 @@ public class Board : MonoBehaviour
 
         return neighbours;
     }
+
+
+    public string DrawBoard()
+    {
+        int rows = Pillars.GetLength(0);
+        int cols = Pillars.GetLength(1);
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                sb.Append(Pillars[i, j].PillarState);
+            }
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
+    }
+
     
 }

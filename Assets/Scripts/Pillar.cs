@@ -118,4 +118,9 @@ public class Pillar : MonoBehaviour
         Pillar pillar = (other as Pillar);
         return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
     }
+
+    public string GetSymbol()
+    {
+        return PillarState.ToString();
+    }
 }

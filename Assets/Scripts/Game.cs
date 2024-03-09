@@ -179,7 +179,7 @@ public class Game : MonoBehaviour
         if (targetRunner == null) {
             return;
         }
-        string msg = $"TURN: {Game.Instance.TurnCount}; PLAYER: {(Game.Instance.FirstPlayerTurn ? 1 : 2)}";
+        string msg = GetGameState();
 
         Task.Run(() => targetRunner.WriteToProcessAsync(msg)).ContinueWith(task => 
         {
@@ -200,6 +200,25 @@ public class Game : MonoBehaviour
         GetAlternatePlayer().DecreaseDazeTurns();
         GetAlternatePlayer().DecreaseFrozenTurns();
         GetCurrentPlayer().DecreaseIncreasedBackpackStorageTurns();
+
+    }
+
+    public string GetGameState()
+    {
+        string info = "";
+        info += Player1.GetStats();
+        info += Player2.GetStats();
+        info += $@"
+Refinement facility cost: {PlayerPrefs.GetString("refinement_facility_cost")}
+Daze cost: (Duration: {PlayerPrefs.GetString("number_of_daze_turns")} turns): {PlayerPrefs.GetString("daze_cost")}
+Freeze cost: (Duration: {PlayerPrefs.GetString("number_of_frozen_turns")} turns): {PlayerPrefs.GetString("freeze_cost")}
+Backpack increase cost: (Duration: {PlayerPrefs.GetString("number_of_bigger_backpack_turns")} turns): {PlayerPrefs.GetString("bigger_backpack_cost")}
+";
+
+        info += Board.DrawBoard();
+        info += $"Turn number: {TurnCount} / {PlayerPrefs.GetString("max_number_of_turns")}\n";
+        info += $"Now playing: {GetCurrentPlayer().Name}";
+        return info;
 
     }
 }

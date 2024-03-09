@@ -33,6 +33,25 @@ public class Player : MonoBehaviour
         Bag.Capacity = int.Parse(PlayerPrefs.GetString("backpack_default_storage_capacity"));
     }
 
+    public string GetStats()
+    {
+        string stats = $@"
+{Name}
+Energy: {Energy}
+XP: {XP}
+Coins: {Coins}
+Position: ({X}, {Z})
+Increased backpack capacity duration: {IncreasedBackpackTurns}
+Daze turns: {DazeTurns}
+Frozen turns: {FrozenTurns}
+Backpack capacity: {Bag.GetWeight() / Bag.Capacity}
+Raw cheap crystal -> Count: {Bag.GetCountCheapRaw()}
+Processed cheap crystal -> Count: {Bag.GetCountCheapProcessed()}
+Raw expensive crystal -> Count: {Bag.GetCountExpensiveRaw()}
+Processed expensive crystal -> Count: {Bag.GetCountExpensiveProcessed()}";
+        return stats;
+    }
+
     void Start()
     {
 
