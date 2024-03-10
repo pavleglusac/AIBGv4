@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 
 public class ScriptRunner : MonoBehaviour
@@ -11,7 +12,7 @@ public class ScriptRunner : MonoBehaviour
     public string scriptPath;
     private Process process;
     public CommandParser CommandParser { get; set; }
-    
+
     private void Update()
     {
         if (outputQueue.Count > 0)
@@ -29,12 +30,26 @@ public class ScriptRunner : MonoBehaviour
     public void StartProcess(string scriptPath)
     {
         UnityEngine.Debug.Log(scriptPath);
+        string fileName, argumentsPrefix;
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            fileName = "wsl";
+            argumentsPrefix = "";
+        }
+        else
+        {
+            fileName = "/bin/bash";
+            argumentsPrefix = "";
+        }
+
+        scriptPath = "/mnt/c/GitHub/AIBGv4/Assets/Scripts/run.sh";
+        // 
         process = new Process
         {
             StartInfo = new ProcessStartInfo
             {
-                FileName = "/bin/bash",
-                Arguments = scriptPath,
+                FileName = fileName,
+                Arguments = argumentsPrefix + scriptPath,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 RedirectStandardInput = true,
@@ -42,8 +57,12 @@ public class ScriptRunner : MonoBehaviour
                 CreateNoWindow = true
             }
         };
+        UnityEngine.Debug.Log("NIJEEEEEE Pokrenuta skripta!!!");
 
         process.Start();
+        // string err = process.StandardError.ReadToEnd();
+        // UnityEngine.Debug.Log($"{err}");
+        UnityEngine.Debug.Log($"{process.HasExited}");
         UnityEngine.Debug.Log("Pokrenuta skripta!!!");
     }
 

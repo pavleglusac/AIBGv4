@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c27730c8-b0ae-41b2-ad8b-50792d241829" name="Changes" comment="" />
+    <list default="true" id="c27730c8-b0ae-41b2-ad8b-50792d241829" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Assets/Scenes/Main menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Scenes/Main menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assets/Scripts/ScriptRunner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Scripts/ScriptRunner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assets/Scripts/logs_raw.txt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Scripts/logs_raw.txt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assets/Scripts/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Assets/Scripts/test.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +50,7 @@
     "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "power-ups",
+    "git-widget-placeholder": "script-reading",
     "ignore.virus.scanning.warn.message": "true",
     "last.edited.regexp": "conv 1 exp 2 cheap to coins, 1 exp 2 cheap to energy, 1 exp 2 cheap to xp",
     "last_opened_file_path": "C:/GitHub/AIBGv4/PythonConsoleApp",
@@ -54,7 +59,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -91,7 +96,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5a2391486177-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13763.11" />
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
       </set>
     </attachedChunks>
   </component>
@@ -111,6 +116,7 @@
       <workItem from="1704926047076" duration="442000" />
       <workItem from="1705962001479" duration="2763000" />
       <workItem from="1706939414681" duration="7317000" />
+      <workItem from="1710027739702" duration="660000" />
     </task>
     <servers />
   </component>

@@ -2,7 +2,7 @@ import sys
 import time
 import logging
 
-logging.basicConfig(filename='/Users/pavleglusac/Personal/AIBGv4/Assets/Scripts/logs_raw.txt', filemode='a', level=logging.DEBUG)
+logging.basicConfig(filename='./logs_raw.txt', filemode='a', level=logging.DEBUG)
 logging.info("mrnjaaau")
 
 
