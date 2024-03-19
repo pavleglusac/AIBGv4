@@ -42,7 +42,7 @@ public class ScriptRunner : MonoBehaviour
             argumentsPrefix = "";
         }
 
-        scriptPath = "/mnt/c/GitHub/AIBGv4/Assets/Scripts/run.sh";
+        //scriptPath = "/mnt/c/GitHub/AIBGv4/Assets/Scripts/run.sh";
         // 
         process = new Process
         {

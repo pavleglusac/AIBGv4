@@ -26,6 +26,8 @@ public class Game : MonoBehaviour
 
     public Board Board { get; set; }
 
+    public LevelData LevelData { get; set; }
+
     [HideInInspector] public int rows;
     [HideInInspector] public int columns;
     public float spacing = 1.3f;
@@ -75,6 +77,7 @@ public class Game : MonoBehaviour
 
 
         // create a new board but board is mono behaviour
+        LevelData = new GameObject("LevelData").AddComponent<LevelData>();
         Board = new GameObject("Board").AddComponent<Board>();
         CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
         CommandParser = new GameObject("CommandParser").AddComponent<CommandParser>();

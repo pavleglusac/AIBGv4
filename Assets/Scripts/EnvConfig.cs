@@ -13,7 +13,7 @@ public class EnvConfig : MonoBehaviour
 
     private static EnvConfig Instance;
 
-    void Start()
+    void Awake()
     {
         PlayerPrefs.DeleteAll();
         if (Instance == null)
