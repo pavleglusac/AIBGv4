@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using System.Threading.Tasks;
 
 public class Game : MonoBehaviour
 {
@@ -26,6 +26,8 @@ public class Game : MonoBehaviour
 
     public Board Board { get; set; }
 
+    public LevelData LevelData { get; set; }
+
     [HideInInspector] public int rows;
     [HideInInspector] public int columns;
     public float spacing = 1.3f;
@@ -39,13 +41,20 @@ public class Game : MonoBehaviour
 
 
     public CommandManager CommandManager { get; set; }
+    public CommandParser CommandParser { get; set; }
+
+    String player1ScriptPath;
+    String player2ScriptPath;
+
+    ScriptRunner player1ScriptRunner = null;
+    ScriptRunner player2ScriptRunner = null;
 
     private void Awake()
     {
         if (Instance == null)
         {
-            SetupGame();
 
+            SetupGame();
         }
         else
         {
@@ -63,11 +72,35 @@ public class Game : MonoBehaviour
         numberOfExpensiveCrystalsInGroup = int.Parse(PlayerPrefs.GetString("number_of_expensive_crystals_in_group"));
         rows = int.Parse(PlayerPrefs.GetString("board_size"));
         columns = int.Parse(PlayerPrefs.GetString("board_size"));
+        player1ScriptPath = PlayerPrefs.GetString("player_1_script_path");
+        player2ScriptPath = PlayerPrefs.GetString("player_2_script_path");
+
 
         // create a new board but board is mono behaviour
+        LevelData = new GameObject("LevelData").AddComponent<LevelData>();
         Board = new GameObject("Board").AddComponent<Board>();
         CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
+        CommandParser = new GameObject("CommandParser").AddComponent<CommandParser>();
+        CommandParser.CommandManager = CommandManager;
+        CommandParser.Game = Instance;
         DontDestroyOnLoad(gameObject);
+
+        Debug.Log(player2ScriptPath);
+        if (!string.IsNullOrEmpty(player1ScriptPath)) {
+            GameObject player1ScriptRunnerObject = new GameObject("ScriptRunnerObject");
+            player1ScriptRunner = player1ScriptRunnerObject.AddComponent<ScriptRunner>();
+            player1ScriptRunner.scriptPath = player1ScriptPath;
+            player1ScriptRunner.CommandParser = CommandParser;
+            player1ScriptRunner.StartProcess(player1ScriptRunner.scriptPath);
+        }
+
+        if (!string.IsNullOrEmpty(player2ScriptPath)) {
+            GameObject player2ScriptRunnerObject = new GameObject("ScriptRunnerObject");
+            player2ScriptRunner = player2ScriptRunnerObject.AddComponent<ScriptRunner>();
+            player2ScriptRunner.scriptPath = player2ScriptPath;
+            player2ScriptRunner.CommandParser = CommandParser;
+            player2ScriptRunner.StartProcess(player2ScriptRunner.scriptPath);
+        }
 
     }
 
@@ -117,16 +150,16 @@ public class Game : MonoBehaviour
 
     public Player GetCurrentPlayer()
     {
-        if (FirstPlayerTurn)
+        if (Game.Instance.FirstPlayerTurn)
         {
-            return Player1;
+            return Game.Instance.Player1;
         }
-        return Player2;
+        return Game.Instance.Player2;
     }
 
     public Player GetAlternatePlayer()
     {
-        if (FirstPlayerTurn)
+        if (Game.Instance.FirstPlayerTurn)
         {
             return Player2;
         }
@@ -136,11 +169,33 @@ public class Game : MonoBehaviour
     public void SwitchPlayersAndDecreaseStats()
     {
         Game.Instance.TurnCount++;
-        bool previousTurnFirstPlayer = FirstPlayerTurn;
+        bool previousTurnFirstPlayer = Game.Instance.FirstPlayerTurn;
         if (!GetAlternatePlayer().IsFrozen())
-            FirstPlayerTurn = !FirstPlayerTurn;
+            Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
         DecreasePlayerStatuses();
         UpdateAllPlayerStats(previousTurnFirstPlayer);
+        Debug.Log($"Switch Player! Current Player: {(FirstPlayerTurn ? 1 : 2)}");
+        InvokeScript(FirstPlayerTurn);
+    }
+
+    public void InvokeScript(bool FirstPlayerTurn) {
+        ScriptRunner targetRunner = FirstPlayerTurn ? player1ScriptRunner : player2ScriptRunner;
+        if (targetRunner == null) {
+            return;
+        }
+        string msg = GetGameState();
+        Task.Run(() => targetRunner.WriteToProcessAsync(msg)).ContinueWith(task => 
+        {
+            if (task.IsFaulted)
+            {
+                UnityEngine.Debug.LogError(task.Exception?.ToString());
+            }
+            else
+            {
+                UnityEngine.Debug.Log("WriteToProcessAsync completed successfully.");
+            }
+        });
+
     }
 
     public void DecreasePlayerStatuses()
@@ -148,6 +203,25 @@ public class Game : MonoBehaviour
         GetAlternatePlayer().DecreaseDazeTurns();
         GetAlternatePlayer().DecreaseFrozenTurns();
         GetCurrentPlayer().DecreaseIncreasedBackpackStorageTurns();
+
+    }
+
+    public string GetGameState()
+    {
+        string info = "";
+        info += Player1.GetStats();
+        info += Player2.GetStats();
+        info += $@"
+Refinement facility cost: {PlayerPrefs.GetString("refinement_facility_cost")}
+Daze cost: (Duration: {PlayerPrefs.GetString("number_of_daze_turns")} turns): {PlayerPrefs.GetString("daze_cost")}
+Freeze cost: (Duration: {PlayerPrefs.GetString("number_of_frozen_turns")} turns): {PlayerPrefs.GetString("freeze_cost")}
+Backpack increase cost: (Duration: {PlayerPrefs.GetString("number_of_bigger_backpack_turns")} turns): {PlayerPrefs.GetString("bigger_backpack_cost")}
+";
+
+        info += Board.DrawBoard();
+        info += $"Turn number: {TurnCount} / {PlayerPrefs.GetString("max_number_of_turns")}\n";
+        info += $"Now playing: {GetCurrentPlayer().Name}";
+        return info;
 
     }
 }

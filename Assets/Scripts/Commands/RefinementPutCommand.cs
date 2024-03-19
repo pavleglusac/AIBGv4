@@ -11,21 +11,31 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
     public int PutCheap { get; set; }
     public int PutExpensive { get; set; }
     public House House { get; set; }
+    public int X, Z;
 
     private bool isDone = false;
 
-    public RefinementPutCommand Initialize(Player player, int putCheap, int putExpensive, House house)
+    public RefinementPutCommand Initialize(Player player, int putCheap, int putExpensive, int x, int z)
     {
         Player = player;
         PutCheap = putCheap;
         PutExpensive = putExpensive;
-        House = house;
+        X = x;
+        Z = z;
         return this;
     }
 
 
     public bool CanExecute()
     {
+        
+        House = Game.Instance.Board.FindHouse(X, Z);
+        
+        if (House == null) {
+            Game.Instance.DisplayMessage = "Not a refinement facility!";
+            return false;
+        }
+
         if (House.IsFirstPlayers != Player.FirstPlayer)
         {
             Game.Instance.DisplayMessage = "Can not put in refinement that is not yours";

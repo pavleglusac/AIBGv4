@@ -13,8 +13,9 @@ public class EnvConfig : MonoBehaviour
 
     private static EnvConfig Instance;
 
-    void Start()
+    void Awake()
     {
+        PlayerPrefs.DeleteAll();
         if (Instance == null)
         {
             Instance = this;
@@ -40,6 +41,7 @@ public class EnvConfig : MonoBehaviour
                     string value = keyValue[1].Trim();
 
                     PlayerPrefs.SetString(key, value);
+                
                 }
             }
 

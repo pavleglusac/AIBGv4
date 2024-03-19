@@ -74,12 +74,12 @@ public class House : MonoBehaviour
             Game.Instance.selectedHouse = this;
             Debug.Log("Attack");
             Debug.Log(this.Health);
-            Actions.AttackHouse(Game.Instance.GetCurrentPlayer(), this);
+            Actions.AttackHouse(X, Z);
         }
         else
         {
             Game.Instance.selectedHouse = this;
-            RefinementMenuNavigation.Instance.OpenRefinementMenu();
+            RefinementMenuNavigation.Instance.OpenRefinementMenu(this);
         }
 
     }

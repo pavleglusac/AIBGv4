@@ -6,7 +6,8 @@ using System.Data;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using Newtonsoft;
+
 
 [DefaultExecutionOrder(2)]
 public class ResourceGenerator : MonoBehaviour
@@ -26,7 +27,7 @@ public class ResourceGenerator : MonoBehaviour
     public int baseAreaLength;
     public static System.Random random = new System.Random();
 
-    // Start is called before the first frame update
+    // Start :called before the first frame update
     void Start()
     {
         // clear log file
@@ -46,35 +47,71 @@ public class ResourceGenerator : MonoBehaviour
         game.Board.CheapCrystals = new CheapCrystal[(numberOfCheapCrystalGroups * numberOfCheapCrystalsInGroup * 2)]; // 3 crystals per group, 2 groups one for each side
         game.Board.ExpensiveCrystals = new ExpensiveCrystal[(numberOfExpensiveCrystalGroups * numberOfExpensiveCrystalsInGroup * 2)]; // 3 crystals per group, 2 groups one for each side
 
-        GenerateCrystals(false);
-        GenerateCrystals(true);
+        //GenerateCrystals(false);
+        //GenerateCrystals(true);
 
+        //StartCoroutine(StartAnimations());
+        int index = random.Next(LevelData.Levels.Count);
+        LevelData.ItemData level = LevelData.Levels[index];
+        var count = 0;
+        foreach (var crystal in level.cheap)
+        {
+            Debug.Log($"{crystal}");
+            MakeCrystalCheap(crystal[0], crystal[1], count);
+            MakeCrystalCheap(crystal[1], crystal[0], count);
+            count++;
+        }
+        count = 0;
+        foreach (var crystal in level.expensive)
+        {
+            MakeCrystalExpensive(crystal[0], crystal[1], count);
+            MakeCrystalExpensive(crystal[1], crystal[0], count);
+            count++;
+        }
         StartCoroutine(StartAnimations());
+    }
 
 
+    public List<Tuple<int, int>> FindFreeCells(bool up)
+    {
+        List<Tuple<int, int>> freeCells = new List<Tuple<int, int>>();
+
+        for (int i = 0; i < game.Board.Pillars.GetLength(0); i++)
+        {
+            for (int j = 0; j < game.Board.Pillars.GetLength(1); j++)
+            {
+                int x = game.Board.Pillars[i, j].X;
+                int z = game.Board.Pillars[i, j].Z;
+
+                if (x <= z) continue;
+
+                bool inSquare = x > rows - baseAreaLength - 1 && z < baseAreaLength;
+                bool isUp = (12 - x) > z;
+                if (up && !(isUp && !(inSquare))) continue;
+
+                if (!up && !(!isUp && !(inSquare))) continue;
+
+
+                if (game.Board.Pillars[i, j].PillarState != PillarState.Empty) continue;
+                freeCells.Add(new Tuple<int, int>(x, z));
+            }
+        }
+
+        return freeCells;
     }
 
 
     public Tuple<int, int> GenerateCoordinates(bool up)
     {
         int x, z;
-        if (up)
+        List<Tuple<int, int>> freeCells = FindFreeCells(up);
+        freeCells = freeCells.OrderBy(_ => random.Next()).ToList();
+
+        foreach (Tuple<int, int> cell in freeCells)
         {
-            do
-            {
-                x = random.Next(1, rows - baseAreaLength - 1);
-                z = random.Next(1, baseAreaLength + 1);
-            } while (!(x > z));
+            return cell;
         }
-        else
-        {
-            do
-            {
-                x = random.Next(rows - baseAreaLength, rows);
-                z = random.Next(baseAreaLength + 1, columns - 1);
-            } while (!(x > z));
-        }
-        return new Tuple<int, int>(x, z);
+        return new Tuple<int, int>(-1, -1);
 
     }
 
@@ -93,6 +130,7 @@ public class ResourceGenerator : MonoBehaviour
 
     bool CheckCenterCoordinates(int x, int z, int groupSize)
     {
+        if (x < 0 || z < 0) return true;
         if (game.Board.Pillars[x, z].PillarState != PillarState.Empty)
         {
             return true;
@@ -113,12 +151,17 @@ public class ResourceGenerator : MonoBehaviour
                 count++;
             }
         }
+        if(x == 7 && z == 4)
+        {
+            Debug.Log($"Kurcina moja masn {count} {groupSize}");
+        }
         return count < groupSize;
     }
 
 
     void GenerateCrystals(bool isExpensive)
     {
+        Debug.Log($"{isExpensive} Groups: E {numberOfExpensiveCrystalGroups} C {numberOfCheapCrystalGroups}  | Crystals: E {numberOfExpensiveCrystalsInGroup} C {numberOfCheapCrystalsInGroup}");
         int generatedCrystals = 0;
 
         int numOfGroups = isExpensive ? numberOfExpensiveCrystalGroups : numberOfCheapCrystalGroups;
@@ -129,7 +172,6 @@ public class ResourceGenerator : MonoBehaviour
         bool up = true;
         for (int i = 0; i < groupCoordinates.Length; i++)
         {
-            numberOfCrystalsInGroup = isExpensive ? numberOfExpensiveCrystalsInGroup : numberOfCheapCrystalsInGroup;
             bool canNotBeCenter = true;
             Tuple<int, int> coordinates = new(0, 0);
             int tryNumber = 0;
@@ -137,20 +179,18 @@ public class ResourceGenerator : MonoBehaviour
             while (canNotBeCenter)
             {
                 tryNumber++;
-                if (tryNumber > 225)
+                coordinates = GenerateCoordinates(up);
+                if (coordinates.Item1 == -1)
                 {
-                    if (numberOfCrystalsInGroup > 0)
-                    {
-                        numberOfCrystalsInGroup--;
-                        tryNumber = 0;
-                    }
-                    else
+                    numberOfCrystalsInGroup--;
+                    if (numberOfCrystalsInGroup == 0)
                     {
                         canNotFind = true;
                         break;
                     }
+                    continue;
                 }
-                coordinates = GenerateCoordinates(up);
+                Debug.Log($"Checking... x={coordinates.Item1} z={coordinates.Item2}");
                 canNotBeCenter = CheckCenterCoordinates(coordinates.Item1, coordinates.Item2, numberOfCrystalsInGroup);
             }
 
@@ -179,21 +219,21 @@ public class ResourceGenerator : MonoBehaviour
                 int crystal_z = t.Item2;
                 if (isExpensive)
                 {
-                    MakeCrystal2(crystal_x, crystal_z, generatedCrystals);
+                    MakeCrystalExpensive(crystal_x, crystal_z, generatedCrystals);
                 }
                 else
                 {
-                    MakeCrystal1(crystal_x, crystal_z, generatedCrystals);
+                    MakeCrystalCheap(crystal_x, crystal_z, generatedCrystals);
                 }
                 generatedCrystals++;
 
                 if (isExpensive)
                 {
-                    MakeCrystal2(crystal_z, crystal_x, generatedCrystals);
+                    MakeCrystalExpensive(crystal_z, crystal_x, generatedCrystals);
                 }
                 else
                 {
-                    MakeCrystal1(crystal_z, crystal_x, generatedCrystals);
+                    MakeCrystalCheap(crystal_z, crystal_x, generatedCrystals);
                 }
                 generatedCrystals++;
             }
@@ -257,7 +297,7 @@ public class ResourceGenerator : MonoBehaviour
 
 
 
-    void MakeCrystal2(int x, int z, int crystal2Count)
+    void MakeCrystalExpensive(int x, int z, int crystal2Count)
     {
         game.Board.Pillars[x, z].PillarState = PillarState.ExpensiveCrystal;
         GameObject crystal2Object = Instantiate(crystal2Prefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
@@ -277,7 +317,7 @@ public class ResourceGenerator : MonoBehaviour
     }
 
 
-    void MakeCrystal1(int x, int z, int crystal1Count)
+    void MakeCrystalCheap(int x, int z, int crystal1Count)
     {
         game.Board.Pillars[x, z].PillarState = PillarState.CheapCrystal;
         GameObject crystal1Object = Instantiate(crystal1Prefab, new Vector3(x * spacing, -50, z * spacing), Quaternion.identity, this.transform);
