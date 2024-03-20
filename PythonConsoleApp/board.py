@@ -189,7 +189,7 @@ def print_with_color(symbol):
         Constants.player1_castle_symbol: Fore.BLUE,
         Constants.player2_castle_symbol: Fore.RED,
         Constants.empty_pillar_symbol: Fore.LIGHTBLACK_EX,
-        Constants.cheep_crystal_symbol: Fore.YELLOW,
+        Constants.cheep_crystal_symbol: Fore.BLUE,
         Constants.expensive_crystal_symbol: Fore.LIGHTMAGENTA_EX,
         Constants.refinement_facility_symbol: Fore.GREEN,
     }
