@@ -62,6 +62,8 @@ public class ConversionCommand : MonoBehaviour, ICommand
         Player.AddCoins(CoinsTotal);
         Player.AddXP(XPTotal);
         Player.IncreaseEnergy(EnergyTotal);
+        Game.Instance.DisplayMessage = "Conversion successful!";
+
         isDone = true;
     }
 

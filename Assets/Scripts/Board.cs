@@ -6,14 +6,19 @@ using System.Linq;
 
 public class Board : MonoBehaviour
 {
-    public Pillar[,] Pillars {get; set;}
-    public CheapCrystal[] CheapCrystals {get; set;}
-    public ExpensiveCrystal[] ExpensiveCrystals {get; set;}
-    public Base[] Bases {get; set;}
-    public List<House> Houses { get; set;}
-    
+    public Pillar[,] Pillars { get; set; }
+    public CheapCrystal[] CheapCrystals { get; set; }
+    public ExpensiveCrystal[] ExpensiveCrystals { get; set; }
+    public Base[] Bases { get; set; }
+    public List<House> Houses { get; set; }
 
-    public List<Pillar> getNeighbours(Pillar pillar) 
+    // Get houses by firstplayerturn
+    public int CountPlayersHouses(bool IsFirstPlayers)
+    {
+        return Houses.Where(house => house.IsFirstPlayers == IsFirstPlayers).ToList().Count;
+    }
+
+    public List<Pillar> getNeighbours(Pillar pillar)
     {
         List<Pillar> neighbours = new List<Pillar>();
         int x = pillar.X;
@@ -54,5 +59,5 @@ public class Board : MonoBehaviour
         return sb.ToString();
     }
 
-    
+
 }
