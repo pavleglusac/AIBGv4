@@ -28,7 +28,7 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
             Player.AddCoins(int.Parse(PlayerPrefs.GetString("house_destroy_reward")));
             Game.Instance.DisplayMessage = "House successfully destroyed";
         }
-
+        Game.Instance.DisplayMessage = "Refinement facility attacked!";
 
         isDone = true;
     }

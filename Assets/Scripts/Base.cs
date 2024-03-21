@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Base : MonoBehaviour
 {
@@ -41,6 +42,12 @@ public class Base : MonoBehaviour
 
     void OnMouseOver()
     {
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(1))
         {
             if (Game.Instance.GetCurrentPlayer().X != this.X || Game.Instance.GetCurrentPlayer().Z != this.Z) return;
@@ -50,6 +57,12 @@ public class Base : MonoBehaviour
 
     void OnMouseDown()
     {
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         Actions.Move(this.X, this.Z);
     }
 }

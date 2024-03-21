@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Pillar : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class Pillar : MonoBehaviour
 
     void OnMouseOver()
     {
+
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(1))
         {
             Actions.BuildHouse(this.X, this.Z);
@@ -27,11 +34,23 @@ public class Pillar : MonoBehaviour
 
     void OnMouseDown()
     {
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         Actions.Move(this.X, this.Z);
     }
 
     void OnMouseEnter()
     {
+
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         Player player = Game.Instance.GetCurrentPlayer();
 
         if (!(CanStep() || CanAct(player)))
@@ -72,6 +91,11 @@ public class Pillar : MonoBehaviour
 
     void OnMouseExit()
     {
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (Game.IsPaused)
             return;
         if (path == null || path.Count == 0 || originalColors.Count == 0)
@@ -113,11 +137,7 @@ public class Pillar : MonoBehaviour
         return false;
     }
 
-    public override bool Equals(object other)
-    {
-        Pillar pillar = (other as Pillar);
-        return pillar.X == X && pillar.Z == Z && pillar.PillarState == PillarState;
-    }
+
 
     public string GetSymbol()
     {
