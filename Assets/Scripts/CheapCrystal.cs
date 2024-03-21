@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CheapCrystal : Crystal
 {
@@ -59,6 +60,12 @@ public class CheapCrystal : Crystal
     // Called when the player is clicked
     void OnMouseDown()
     {
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         Actions.Mine(X, Z);
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class House : MonoBehaviour
@@ -67,6 +68,12 @@ public class House : MonoBehaviour
 
     void OnMouseDown()
     {
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
 
         if (Game.Instance.GetCurrentPlayer().FirstPlayer != this.IsFirstPlayers)
         {
