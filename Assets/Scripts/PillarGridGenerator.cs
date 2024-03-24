@@ -167,38 +167,39 @@ public class PillarGridGenerator : MonoBehaviour
         Queue<Vector2Int> coordinates = new Queue<Vector2Int>();
         Queue<Vector2Int> childCoordinates = new Queue<Vector2Int>();
         coordinates.Enqueue(new Vector2Int(0, 0));
-        while (coordinates.Count > 0)
-        {
-            Vector2Int coordinate = coordinates.Dequeue();
-            if (coordinate.x >= rows || coordinate.y >= columns)
-            {
-                continue;
-            }
+        //while (coordinates.Count > 0)
+        //{
+        //    Vector2Int coordinate = coordinates.Dequeue();
+        //    if (coordinate.x >= rows || coordinate.y >= columns)
+        //    {
+        //        continue;
+        //    }
 
-            GameObject pillar = game.Board.Pillars[coordinate.x, coordinate.y].PillarObject;
-            if (pillar != null && !wasHere.Contains(coordinate))
-            {
-                Animator animator = pillar.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    animator.enabled = true;
-                    animator.speed = 4.0f;
-                    animator.SetTrigger("StartAnimationState");
-                }
-                childCoordinates.Enqueue(new Vector2Int(coordinate.x + 1, coordinate.y));
-                childCoordinates.Enqueue(new Vector2Int(coordinate.x, coordinate.y + 1));
-                childCoordinates.Enqueue(new Vector2Int(coordinate.x + 1, coordinate.y + 1));
-                wasHere.Add(coordinate);
-            }
+        //    GameObject pillar = game.Board.Pillars[coordinate.x, coordinate.y].PillarObject;
+        //    if (pillar != null && !wasHere.Contains(coordinate))
+        //    {
+        //        Animator animator = pillar.GetComponent<Animator>();
+        //        if (animator != null)
+        //        {
+        //            animator.enabled = true;
+        //            animator.speed = 4.0f;
+        //            animator.SetTrigger("StartAnimationState");
+        //        }
+        //        childCoordinates.Enqueue(new Vector2Int(coordinate.x + 1, coordinate.y));
+        //        childCoordinates.Enqueue(new Vector2Int(coordinate.x, coordinate.y + 1));
+        //        childCoordinates.Enqueue(new Vector2Int(coordinate.x + 1, coordinate.y + 1));
+        //        wasHere.Add(coordinate);
+        //    }
 
 
-            if (coordinates.Count == 0)
-            {
-                coordinates = childCoordinates;
-                childCoordinates = new Queue<Vector2Int>();
-                yield return new WaitForSeconds(animationDelay);
-            }
-        }
+        //    if (coordinates.Count == 0)
+        //    {
+        //        coordinates = childCoordinates;
+        //        childCoordinates = new Queue<Vector2Int>();
+        //        yield return new WaitForSeconds(animationDelay);
+        //    }
+        //}
+        yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < game.Board.Bases.Length; i++)
         {

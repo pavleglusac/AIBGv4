@@ -31,7 +31,7 @@ public class Game : MonoBehaviour
     [HideInInspector] public int rows;
     [HideInInspector] public int columns;
     public float spacing = 1.3f;
-    public float animationDelay = 0.1f;
+    public float animationDelay = 0.05f;
     [HideInInspector] public int numberOfCheapCrystalGroups;
     [HideInInspector] public int numberOfExpensiveCrystalGroups;
     [HideInInspector] public int numberOfCheapCrystalsInGroup;

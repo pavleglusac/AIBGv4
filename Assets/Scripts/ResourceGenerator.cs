@@ -340,42 +340,7 @@ public class ResourceGenerator : MonoBehaviour
 
     IEnumerator StartAnimations()
     {
-        HashSet<Vector2Int> wasHere = new HashSet<Vector2Int>();
-        Queue<Vector2Int> coordinates = new Queue<Vector2Int>();
-        Queue<Vector2Int> childCoordinates = new Queue<Vector2Int>();
-        coordinates.Enqueue(new Vector2Int(0, 0));
-        while (coordinates.Count > 0)
-        {
-            Vector2Int coordinate = coordinates.Dequeue();
-            if (coordinate.x >= rows || coordinate.y >= columns)
-            {
-                continue;
-            }
-
-            GameObject pillar = game.Board.Pillars[coordinate.x, coordinate.y].PillarObject;
-            if (pillar != null && !wasHere.Contains(coordinate))
-            {
-                Animator animator = pillar.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    animator.enabled = true;
-                    animator.speed = 4.0f;
-                    animator.SetTrigger("StartAnimationState");
-                }
-                childCoordinates.Enqueue(new Vector2Int(coordinate.x + 1, coordinate.y));
-                childCoordinates.Enqueue(new Vector2Int(coordinate.x, coordinate.y + 1));
-                childCoordinates.Enqueue(new Vector2Int(coordinate.x + 1, coordinate.y + 1));
-                wasHere.Add(coordinate);
-            }
-
-
-            if (coordinates.Count == 0)
-            {
-                coordinates = childCoordinates;
-                childCoordinates = new Queue<Vector2Int>();
-                yield return new WaitForSeconds(animationDelay);
-            }
-        }
+        yield return new WaitForSeconds(animationDelay);
 
         for (int i = 0; i < game.Board.CheapCrystals.Length; i++)
         {
@@ -395,36 +360,6 @@ public class ResourceGenerator : MonoBehaviour
             animator.enabled = true;
             animator.speed = 1.0f;
             animator.SetTrigger("Crystal2GrowingTrigger");
-        }
-
-        for (int i = 0; i < game.Board.Bases.Length; i++)
-        {
-            if (game.Board.Bases[i] != null)
-            {
-                Animator animator = game.Board.Bases[i].BaseObject.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    animator.enabled = true;
-                    animator.speed = 1.0f;
-                    animator.SetTrigger("Base" + (i + 1).ToString() + "BuildingTrigger");
-                }
-            }
-        }
-
-        Animator animatorP1 = game.Player1.PlayerObject.GetComponent<Animator>();
-        if (animatorP1 != null)
-        {
-            animatorP1.enabled = true;
-            animatorP1.speed = 1.0f;
-            animatorP1.SetTrigger("UFO2LandingTrigger");
-        }
-
-        Animator animatorP2 = game.Player2.PlayerObject.GetComponent<Animator>();
-        if (animatorP2 != null)
-        {
-            animatorP2.enabled = true;
-            animatorP2.speed = 1.0f;
-            animatorP2.SetTrigger("UFO1LandingTrigger");
         }
 
         // activate trigger on player 1
