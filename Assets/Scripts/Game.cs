@@ -194,20 +194,26 @@ public class Game : MonoBehaviour
         }
 
         string msg = GetGameState();
-        Task.Run(() => targetRunner.WriteToProcessAsync(msg)).ContinueWith(task => 
-        {
-            if (task.IsFaulted)
-            {
-                UnityEngine.Debug.LogError("Task failed!");
-                UnityEngine.Debug.LogError(task.Exception?.ToString());
-            }
-            else
-            {
-                UnityEngine.Debug.Log("WriteToProcessAsync completed successfully.");
-            }
-        });
-
+        RunWriteToProcessAsync(msg, targetRunner);
     }
+
+    public async void RunWriteToProcessAsync(string msg, ScriptRunner targetRunner)
+    {
+        try
+        {
+            await Task.Run(() => targetRunner.WriteToProcessAsync(msg));
+            UnityEngine.Debug.Log("WriteToProcessAsync completed successfully.");
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.LogError("Task failed!");
+            UnityEngine.Debug.LogError(ex.ToString());
+            Game.Instance.DisplayMessage = ex.Message;
+            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+        }
+    }
+
 
     public void DecreasePlayerStatuses()
     {
@@ -219,19 +225,11 @@ public class Game : MonoBehaviour
 
     public string GetGameState()
     {
-        string info = "";
-        info += Player1.GetStats();
-        info += Player2.GetStats();
-        info += $@"
-Refinement facility cost: {PlayerPrefs.GetString("refinement_facility_cost")}
-Daze cost: (Duration: {PlayerPrefs.GetString("number_of_daze_turns")} turns): {PlayerPrefs.GetString("daze_cost")}
-Freeze cost: (Duration: {PlayerPrefs.GetString("number_of_frozen_turns")} turns): {PlayerPrefs.GetString("freeze_cost")}
-Backpack increase cost: (Duration: {PlayerPrefs.GetString("number_of_bigger_backpack_turns")} turns): {PlayerPrefs.GetString("bigger_backpack_cost")}
-";
-
+        string info = "{";
+        info += Player1.GetStats(true) + ",";
+        info += Player2.GetStats(false) + ",";
         info += Board.DrawBoard();
-        info += $"Turn number: {TurnCount} / {PlayerPrefs.GetString("max_number_of_turns")}\n";
-        info += $"Now playing: {GetCurrentPlayer().Name}";
+        info += "}";
         return info;
 
     }

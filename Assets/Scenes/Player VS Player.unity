@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009607108, g: 0.008879641, b: 0.008128567, a: 1}
+  m_IndirectSpecularColor: {r: 0.008237103, g: 0.0077853864, b: 0.007599504, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5179,7 +5179,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Expensive : 4'
+  m_Text: 'DIAMONDS : 4'
 --- !u!222 &570123183
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5520,7 +5520,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cheap: 2'
+  m_Text: 'Minerals: 2'
 --- !u!222 &704211148
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7727,7 +7727,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Expensive : 4'
+  m_Text: 'DIAMONDS : 4'
 --- !u!222 &881613955
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7806,7 +7806,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cheap: 2'
+  m_Text: 'MINERALS: 2'
 --- !u!222 &893856234
 CanvasRenderer:
   m_ObjectHideFlags: 0

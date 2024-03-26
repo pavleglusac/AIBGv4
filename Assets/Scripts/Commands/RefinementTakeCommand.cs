@@ -12,9 +12,10 @@ public class RefinementTakeCommand : MonoBehaviour, ICommand
     public int TakeExpensive { get; set; }
     public House House { get; set; }
 
+
     private int X, Z;
 
-    private bool isDone = false;
+    public bool isDone { get; set; } = false;
 
     public RefinementTakeCommand Initialize(Player player, int takeCheap, int takeExpensive, int x, int  z)
     {
@@ -44,13 +45,13 @@ public class RefinementTakeCommand : MonoBehaviour, ICommand
 
         if (House.GetProcessedCheapCrystalCount() < TakeCheap)
         {
-            Game.Instance.DisplayMessage = "You can not take more processed cheap crystals than available in the refinement";
+            Game.Instance.DisplayMessage = "You can not take more processed minerals than available in the refinement";
             return false;
         }
 
         if (House.GetProcessedExpensiveCrystalCount() < TakeExpensive)
         {
-            Game.Instance.DisplayMessage = "You can not take more processed expensive crystals than available in the refinement";
+            Game.Instance.DisplayMessage = "You can not take more processed diamonds than available in the refinement";
             return false;
         }
 

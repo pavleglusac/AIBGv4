@@ -12,8 +12,8 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
     public int PutExpensive { get; set; }
     public House House { get; set; }
     public int X, Z;
-
-    private bool isDone = false;
+    public bool isDone { get; set; } = false;
+    
 
     public RefinementPutCommand Initialize(Player player, int putCheap, int putExpensive, int x, int z)
     {
@@ -43,13 +43,13 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
         }
         if (Player.Bag.GetCheapCrystalCount() < PutCheap)
         {
-            Game.Instance.DisplayMessage = "You can't put more cheap crystals than you have in your backpack";
+            Game.Instance.DisplayMessage = "You can't put more minerals than you have in your backpack";
 
             return false;
         }
         if (Player.Bag.GetExpensiveCrystalCount() < PutExpensive)
         {
-            Game.Instance.DisplayMessage = "You can't put more expensive crystals than you have in your backpack";
+            Game.Instance.DisplayMessage = "You can't put more diamonds than you have in your backpack";
             return false;
         }
         if (!CanAct())

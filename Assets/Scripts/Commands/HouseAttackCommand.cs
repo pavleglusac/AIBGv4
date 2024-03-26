@@ -6,7 +6,7 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
 {
     public Player Player { get; set; }
     public House House { get; set; }
-    private bool isDone = false;
+    public bool isDone { get; set; } = false;
     public int X, Z;
 
     public HouseAttackCommand Initialize(Player player, int x, int z)
@@ -26,9 +26,12 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
         {
             House.Destroy();
             Player.AddCoins(int.Parse(PlayerPrefs.GetString("house_destroy_reward")));
-            Game.Instance.DisplayMessage = "House successfully destroyed";
+            Game.Instance.DisplayMessage = "Refinement facility successfully destroyed";
         }
-        Game.Instance.DisplayMessage = "Refinement facility attacked!";
+        else
+        {
+            Game.Instance.DisplayMessage = "Refinement facility attacked!";
+        }
 
         isDone = true;
     }
@@ -49,12 +52,12 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
 
         if (House.IsFirstPlayers == Player.FirstPlayer)
         {
-            Game.Instance.DisplayMessage = "Cannot attack your own house";
+            Game.Instance.DisplayMessage = "Cannot attack your own refinement facility";
             return false;
         }
         if (!House.Position.CanAct(Player))
         {
-            Game.Instance.DisplayMessage = "You need to be near the opponent house to attack it";
+            Game.Instance.DisplayMessage = "You need to be near the opponent's refinement facility to attack it";
             return false;
         }
 

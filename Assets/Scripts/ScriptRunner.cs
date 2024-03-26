@@ -6,7 +6,8 @@ using UnityEngine;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-
+using System.IO;
+using System.Text;
 
 public class ScriptRunner : MonoBehaviour
 {
@@ -97,41 +98,90 @@ public class ScriptRunner : MonoBehaviour
 
     public async Task WriteToProcessAsync(string input)
     {
+
         UnityEngine.Debug.Log("Pisem u proces!!!");
         UnityEngine.Debug.Log(input);
-        input = input.Replace("\n", "^");
+        input = input.Replace("\n", "");
 
         if (process == null || process.HasExited)
         {
             UnityEngine.Debug.Log("Process is not started.");
-            // TODO: drugi igrac je pobedio.
             return;
         }
+
         process.StandardInput.WriteLine(input);
         process.StandardInput.Flush();
 
-        var cancellationTokenSource = new CancellationTokenSource(5000);
+        var cancellationTokenSource = new CancellationTokenSource();
+        var streamToken = new CancellationTokenSource();
         try
         {
-            await Task.Run(() =>
+            var delayTask = Task.Delay(5000, cancellationTokenSource.Token);
+            var readTask = Task.Run(() => CustomReadLineAsync(process.StandardOutput, streamToken.Token));
+
+            var completedTask = await Task.WhenAny(readTask, delayTask);
+
+            if (completedTask == readTask && !cancellationTokenSource.Token.IsCancellationRequested)
             {
-                while (!cancellationTokenSource.Token.IsCancellationRequested)
-                {
-                    string line = process.StandardOutput.ReadLine();
-                    UnityEngine.Debug.Log($"Ovo je output: {line}");
-                    //UnityEngine.Debug.Log($"Ovo je memorijsko: {process.PeakWorkingSet64}");
-                    CommandParser.ParseCommand(line);
-                    
-                    break;
-                }
-            }, cancellationTokenSource.Token);
+                string line = await readTask;
+                CommandParser.ParseCommand(line);
+            }
+            else
+            {
+                streamToken.Cancel();
+                cancellationTokenSource.Cancel();
+                
+                UnityEngine.Debug.Log("Response time exceeded 5 seconds.");
+                EnqueueOutput("Response time exceeded 5 seconds.");
+                throw new Exception("Response time exceeded 5 seconds.");
+            }
         }
         catch (TaskCanceledException)
         {
-            UnityEngine.Debug.Log("Response time exceeded 5 seconds.");
-            EnqueueOutput("Response time exceeded 5 seconds.");
+            UnityEngine.Debug.Log("Operation was canceled.");
+            EnqueueOutput("Operation was canceled.");
+            throw new Exception("Operation was canceled.");
+        }
+        finally
+        {
+            streamToken.Cancel();
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource.Dispose();
         }
     }
+
+    public async Task<string> CustomReadLineAsync(StreamReader streamReader, CancellationToken cancellationToken)
+    {
+        Memory<char> buffer = new Memory<char>(new char[1024]);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            int readCount = await streamReader.ReadAsync(buffer, cancellationToken);
+
+            if (readCount == 0)
+                break;
+
+            string tempString = new string(buffer.Span.Slice(0, readCount).ToArray());
+            int lineEnd = tempString.IndexOf('\n');
+            if (lineEnd >= 0)
+            {
+                stringBuilder.Append(tempString, 0, lineEnd + 1);
+                break;
+            }
+            else
+            {
+                stringBuilder.Append(tempString);
+            }
+        }
+
+        if (stringBuilder.Length == 0)
+            return null;
+
+        return stringBuilder.ToString();
+    }
+
+
 
 
 }

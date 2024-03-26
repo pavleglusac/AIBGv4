@@ -33,22 +33,23 @@ public class Player : MonoBehaviour
         Bag.Capacity = int.Parse(PlayerPrefs.GetString("backpack_default_storage_capacity"));
     }
 
-    public string GetStats()
+    public string GetStats(bool FirstPlayer)
     {
-        string stats = $@"
-{Name}
-Energy: {Energy}
-XP: {XP}
-Coins: {Coins}
-Position: ({X}, {Z})
-Increased backpack capacity duration: {IncreasedBackpackTurns}
-Daze turns: {DazeTurns}
-Frozen turns: {FrozenTurns}
-Backpack capacity: {Bag.GetWeight() / Bag.Capacity}
-Raw cheap crystal -> Count: {Bag.GetCountCheapRaw()}
-Processed cheap crystal -> Count: {Bag.GetCountCheapProcessed()}
-Raw expensive crystal -> Count: {Bag.GetCountExpensiveRaw()}
-Processed expensive crystal -> Count: {Bag.GetCountExpensiveProcessed()}";
+        string suffix = FirstPlayer ? "1" : "2";
+        string stats = $@"""player{suffix}"":{{
+""name"": ""{Name}"",
+""energy"": {Energy},
+""xp"": {XP},
+""coins"": {Coins},
+""position"": [{X}, {Z}],
+""increased_backpack_duration"": {IncreasedBackpackTurns},
+""daze_turns"": {DazeTurns},
+""frozen_turns"": {FrozenTurns},
+""backpack_capacity"": {Bag.GetWeight() / Bag.Capacity},
+""raw_minerals"": {Bag.GetCountCheapRaw()},
+""processed_minerals"": {Bag.GetCountCheapProcessed()},
+""raw_diamonds"": {Bag.GetCountExpensiveRaw()},
+""processed_diamonds"": {Bag.GetCountExpensiveProcessed()}}}";
         return stats;
     }
 
