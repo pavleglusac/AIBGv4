@@ -76,12 +76,12 @@ public class ConversionCommand : MonoBehaviour, ICommand
     {
         if (Player.Bag.GetCheapCrystalCount() < CheapTotal)
         {
-            Game.Instance.DisplayMessage = "You can't put more cheap crystals than you have in your backpack";
+            Game.Instance.DisplayMessage = "You can't put more minerals than you have in your backpack";
             return false;
         }
         if (Player.Bag.GetExpensiveCrystalCount() < ExpensiveTotal)
         {
-            Game.Instance.DisplayMessage = "You can't put more expensive crystals than you have in your backpack";
+            Game.Instance.DisplayMessage = "You can't put more diamonds than you have in your backpack";
             return false;
         }
         return true;

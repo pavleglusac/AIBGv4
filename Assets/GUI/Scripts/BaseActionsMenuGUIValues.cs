@@ -33,12 +33,12 @@ public class BaseActionsMenuGUI : MonoBehaviour
     public void UpdateText(int XPCheap, int XPExpensive, int CoinsCheap, int CoinsExpensive, int EnergyCheap, int EnergyExpensive, int XPTotal, int CoinsTotal)
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        XPBagCheap.text = "Cheap: " + player.Bag.GetCheapCrystalCount().ToString();
-        XPBagExpensive.text = "Expensive: " + player.Bag.GetExpensiveCrystalCount().ToString();
-        CoinsBagCheap.text = "Cheap: " + player.Bag.GetCheapCrystalCount().ToString();
-        CoinsBagExpensive.text = "Expensive: " + player.Bag.GetExpensiveCrystalCount().ToString();
-        EnergyBagCheap.text = "Cheap: " + player.Bag.GetCheapCrystalCount().ToString();
-        EnergyBagExpensive.text = "Expensive: " + player.Bag.GetExpensiveCrystalCount().ToString();
+        XPBagCheap.text = "Minerals: " + player.Bag.GetCheapCrystalCount().ToString();
+        XPBagExpensive.text = "Diamonds: " + player.Bag.GetExpensiveCrystalCount().ToString();
+        CoinsBagCheap.text = "Minerals: " + player.Bag.GetCheapCrystalCount().ToString();
+        CoinsBagExpensive.text = "Diamonds: " + player.Bag.GetExpensiveCrystalCount().ToString();
+        EnergyBagCheap.text = "Minerals: " + player.Bag.GetCheapCrystalCount().ToString();
+        EnergyBagExpensive.text = "Diamonds: " + player.Bag.GetExpensiveCrystalCount().ToString();
         this.XPCheap.text = XPCheap.ToString();
         this.XPExpensive.text = XPExpensive.ToString();
         this.CoinsCheap.text = CoinsCheap.ToString();

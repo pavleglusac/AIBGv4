@@ -32,12 +32,12 @@ public class RefinementMenuGUIValues : MonoBehaviour
     public void UpdateText(int PutCheap, int PutExpensive, int TakeCheap, int TakeExpensive)
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        BagCheap.text = "Cheap: " + player.Bag.GetCheapCrystalCount().ToString();
-        BagExpensive.text = "Expensive: " + player.Bag.GetExpensiveCrystalCount().ToString();
-        ProcessingCheap.text = "Cheap: " + Game.Instance.selectedHouse.GetUnprocessedCheapCrystalCount().ToString();
-        ProcessingExpensive.text = "Expensive: " + Game.Instance.selectedHouse.GetUnprocessedExpensiveCrystalCount().ToString();
-        DoneCheap.text = "Cheap: " + Game.Instance.selectedHouse.GetProcessedCheapCrystalCount().ToString();
-        DoneExpensive.text = "Expensive: " + Game.Instance.selectedHouse.GetProcessedExpensiveCrystalCount().ToString();
+        BagCheap.text = "Minerals: " + player.Bag.GetCheapCrystalCount().ToString();
+        BagExpensive.text = "Diamonds: " + player.Bag.GetExpensiveCrystalCount().ToString();
+        ProcessingCheap.text = "Minerals: " + Game.Instance.selectedHouse.GetUnprocessedCheapCrystalCount().ToString();
+        ProcessingExpensive.text = "Diamonds: " + Game.Instance.selectedHouse.GetUnprocessedExpensiveCrystalCount().ToString();
+        DoneCheap.text = "Minerals: " + Game.Instance.selectedHouse.GetProcessedCheapCrystalCount().ToString();
+        DoneExpensive.text = "Diamonds: " + Game.Instance.selectedHouse.GetProcessedExpensiveCrystalCount().ToString();
         PutCheapText.text = PutCheap.ToString();
         PutExpensiveText.text = PutExpensive.ToString();
         TakeCheapText.text = TakeCheap.ToString();

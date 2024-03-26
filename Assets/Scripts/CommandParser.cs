@@ -12,15 +12,15 @@ public class CommandParser : MonoBehaviour
     string movePattern = @"^move (-?\d+) (-?\d+)$";
     string minePattern = @"^mine (-?\d+) (-?\d+)$";
     string buildPattern = @"^build (-?\d+) (-?\d+)$";
-    string conversionsPattern = @"^conv (\d+) exp (\d+) cheap to coins, (\d+) exp (\d+) cheap to energy, (\d+) exp (\d+) cheap to xp$";
+    string conversionsPattern = @"^conv (\d+) diamond (\d+) mineral to coins, (\d+) diamond (\d+) mineral to energy, (\d+) diamond (\d+) mineral to xp$";
     string restPattern = @"^rest";
     string shopPattern = @"^shop (freeze|backpack|daze)$";
 
     string attackPattern = @"attack (-?\d+) (-?\d+)$";
 
-    string putRefinement = @"refinement-put (-?\d+) (-?\d+) cheap (-?\d+) expensive (-?\d+)";
+    string putRefinement = @"refinement-put (-?\d+) (-?\d+) mineral (-?\d+) diamond (-?\d+)";
 
-    string takeRefinement = @"refinement-take (-?\d+) (-?\d+) cheap (-?\d+) expensive (-?\d+)";
+    string takeRefinement = @"refinement-take (-?\d+) (-?\d+) mineral (-?\d+) diamond (-?\d+)";
 
     private readonly Queue<Action> mainThreadActions = new Queue<Action>();
 
@@ -101,9 +101,13 @@ public class CommandParser : MonoBehaviour
         {
             HandleTakeRefinement(command);
         }
+        else if (Regex.IsMatch(command, attackPattern))
+        {
+            HandleAttack(command);
+        }
         else
         {
-            Console.WriteLine("Invalid input, command not recognised!");
+            UnityEngine.Debug.Log("Invalid input, command not recognised!");
             InvalidTurnHandling();
         }
 
@@ -129,7 +133,7 @@ public class CommandParser : MonoBehaviour
         }
         else
         {
-            Console.WriteLine("Invalid move command.");
+            UnityEngine.Debug.Log("Invalid move command.");
         }
     }
 
@@ -149,7 +153,7 @@ public class CommandParser : MonoBehaviour
         }
         else
         {
-            Console.WriteLine("Invalid move command.");
+            UnityEngine.Debug.Log("Invalid move command.");
         }
     }
 
@@ -165,17 +169,37 @@ public class CommandParser : MonoBehaviour
                 Actions.BuildHouse(x, z);
             });
             
-            UnityEngine.Debug.Log($"MINE {x} {z}");
+            UnityEngine.Debug.Log($"BUILD {x} {z}");
         }
         else
         {
-            Console.WriteLine("Invalid move command.");
+            UnityEngine.Debug.Log("Invalid move command.");
+        }
+    }
+
+    private void HandleAttack(string command)
+    {
+        var match = Regex.Match(command, buildPattern);
+        if (match.Success)
+        {
+            int x = int.Parse(match.Groups[1].Value);
+            int z = int.Parse(match.Groups[2].Value);
+
+            mainThreadActions.Enqueue(() => {
+                Actions.AttackHouse(x, z);
+            });
+
+            UnityEngine.Debug.Log($"ATTACK {x} {z}");
+        }
+        else
+        {
+            UnityEngine.Debug.Log("Invalid move command.");
         }
     }
 
     private void HandlePutRefinement(string command)
     {
-        var match = Regex.Match(command, buildPattern);
+        var match = Regex.Match(command, putRefinement);
         if (match.Success)
         {
             int x = int.Parse(match.Groups[1].Value);
@@ -190,33 +214,53 @@ public class CommandParser : MonoBehaviour
         }
         else
         {
-            Console.WriteLine("Invalid move command.");
+            UnityEngine.Debug.Log("Invalid move command.");
         }
     }
 
     private void HandleTakeRefinement(string command)
     {
-        var match = Regex.Match(command, buildPattern);
+        var match = Regex.Match(command, takeRefinement);
         if (match.Success)
         {
+            int x = int.Parse(match.Groups[1].Value);
+            int z = int.Parse(match.Groups[2].Value);
+            int cheap = int.Parse(match.Groups[3].Value);
+            int expensive = int.Parse(match.Groups[4].Value);
+            mainThreadActions.Enqueue(() => {
+                Actions.TakeRefinement(x, z, cheap, expensive);
+            });
 
+            UnityEngine.Debug.Log($"TAKE REFINEMENT {x} {z} {cheap} {expensive}");
         }
         else
         {
-            
+            UnityEngine.Debug.Log("Invalid move command.");
         }
     }
 
+    //string conversionsPattern = @"^conv (\d+) diamond (\d+) mineral to coins, (\d+) diamond (\d+) mineral to energy, (\d+) diamond (\d+) mineral to xp$";
+
     private void HandleConversionsAtBase(string command) 
     {
-        var match = Regex.Match(command, buildPattern);
+        var match = Regex.Match(command, conversionsPattern);
         if (match.Success)
         {
+            int cheapCoins = int.Parse(match.Groups[1].Value);
+            int expCoins = int.Parse(match.Groups[2].Value);
+            int cheapEnergy = int.Parse(match.Groups[3].Value);
+            int expEnergy = int.Parse(match.Groups[4].Value);
+            int cheapXP = int.Parse(match.Groups[5].Value);
+            int expXP = int.Parse(match.Groups[6].Value);
+            mainThreadActions.Enqueue(() => {
+                Actions.BaseConversions(cheapXP, expXP, cheapCoins, expCoins, cheapEnergy, expEnergy);
+            });
 
+            UnityEngine.Debug.Log($"BASE CONVERSIONS {cheapCoins} {expCoins} {cheapEnergy} {expEnergy} {cheapXP} {expXP}");
         }
         else
         {
-            
+            UnityEngine.Debug.Log("Invalid move command.");
         }
     }
 
@@ -234,7 +278,7 @@ public class CommandParser : MonoBehaviour
         }
         else
         {
-            Console.WriteLine("Invalid move command.");
+            UnityEngine.Debug.Log("Invalid move command.");
         }
     }
 
