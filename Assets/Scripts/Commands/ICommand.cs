@@ -7,6 +7,7 @@ public interface ICommand
 {
 
     public Player Player { get; set; }
+    public bool isDone { get; set; }
     public void Execute();
     public bool IsDone();
     public bool CanExecute();

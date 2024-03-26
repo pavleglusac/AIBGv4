@@ -6,7 +6,7 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
 {
     public Player Player { get; set; }
     public House House { get; set; }
-    private bool isDone = false;
+    public bool isDone { get; set; } = false;
     public int X, Z;
 
     public HouseAttackCommand Initialize(Player player, int x, int z)

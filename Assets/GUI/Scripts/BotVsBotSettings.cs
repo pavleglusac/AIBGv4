@@ -23,7 +23,8 @@ public class BotVsBotSettings : MonoBehaviour
                     (paths) =>
                     {
                         PlayerPrefs.SetString("player_1_script_path", paths[0]);
-                        ButtonTextPlayer1.text = paths[0];
+                        string fileName = System.IO.Path.GetFileName(paths[0]);
+                        ButtonTextPlayer1.text = fileName;
                         Debug.Log("Selected: " + paths[0]);
                     },
                     () => { Debug.Log("Canceled"); },
@@ -43,7 +44,8 @@ public class BotVsBotSettings : MonoBehaviour
                       (paths) =>
                       {
                           PlayerPrefs.SetString("player_2_script_path", paths[0]);
-                          ButtonTextPlayer2.text = paths[0];
+                          string fileName = System.IO.Path.GetFileName(paths[0]);
+                          ButtonTextPlayer2.text = fileName;
                           Debug.Log("Selected: " + paths[0]);
                       },
                       () => { Debug.Log("Canceled"); },

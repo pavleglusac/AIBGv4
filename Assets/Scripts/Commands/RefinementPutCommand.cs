@@ -12,8 +12,8 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
     public int PutExpensive { get; set; }
     public House House { get; set; }
     public int X, Z;
-
-    private bool isDone = false;
+    public bool isDone { get; set; } = false;
+    
 
     public RefinementPutCommand Initialize(Player player, int putCheap, int putExpensive, int x, int z)
     {

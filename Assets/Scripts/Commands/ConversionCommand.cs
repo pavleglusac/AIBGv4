@@ -21,7 +21,7 @@ public class ConversionCommand : MonoBehaviour, ICommand
     public int EnergyTotal { get; set; }
 
 
-    private bool isDone = false;
+    public bool isDone { get; set; } = false;
 
     public ConversionCommand Initialize(Player player, int XPCheap, int XPExpensive, int coinsCheap, int coinsExpensive, int energyCheap, int energyExpensive)
     {

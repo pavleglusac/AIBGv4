@@ -63,16 +63,28 @@ public class Board : MonoBehaviour
         int rows = Pillars.GetLength(0);
         int cols = Pillars.GetLength(1);
         StringBuilder sb = new StringBuilder();
+        sb.Append("\"board\":[");
 
         for (int i = 0; i < rows; i++)
         {
+            sb.Append("[");
             for (int j = 0; j < cols; j++)
             {
                 string targetString = temp[Pillars[i, j].PillarState.ToString()];
-                sb.Append(targetString);
+                sb.Append("\"" + targetString + "\"");
+                if (j < cols - 1)
+                {
+                    sb.Append(", ");
+                }
+            }
+            sb.Append("]");
+            if (i < rows - 1)
+            {
+                sb.Append(",");
             }
             sb.AppendLine();
         }
+        sb.Append("]");
 
         return sb.ToString();
     }

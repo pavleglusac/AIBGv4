@@ -12,9 +12,10 @@ public class RefinementTakeCommand : MonoBehaviour, ICommand
     public int TakeExpensive { get; set; }
     public House House { get; set; }
 
+
     private int X, Z;
 
-    private bool isDone = false;
+    public bool isDone { get; set; } = false;
 
     public RefinementTakeCommand Initialize(Player player, int takeCheap, int takeExpensive, int x, int  z)
     {

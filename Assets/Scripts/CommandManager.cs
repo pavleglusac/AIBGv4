@@ -8,6 +8,8 @@ public class CommandManager : MonoBehaviour
 {
     private List<ICommand> _commands = new List<ICommand>();
     private ICommand _currentCommand;
+    private ICommand _lastCommand;
+    private bool switching = false;
     private int _index = 0;
 
     public void AddCommand(ICommand command)
@@ -17,10 +19,22 @@ public class CommandManager : MonoBehaviour
 
     private void LateUpdate()
     {
+
+        if (_lastCommand != null && _lastCommand.IsDone())
+        {
+            _lastCommand = null;
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+            return;
+        } else if (_lastCommand != null && !_lastCommand.IsDone())
+        {
+            return;
+        }
+        
         if (_index >= _commands.Count)
         {
             return;
         }
+
         if (_currentCommand == null && _commands.Count > 0)
         {
             _currentCommand = _commands[_index];
@@ -33,15 +47,17 @@ public class CommandManager : MonoBehaviour
             _index++;
         }
 
+        
+
         if (_currentCommand == null || _currentCommand.IsDone()) return;
 
         if (_currentCommand.CanExecute())
         {
             _currentCommand.Execute();
-
         }
         else
         {
+            _currentCommand.isDone = true;
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
         }
 
@@ -72,14 +88,10 @@ public class CommandManager : MonoBehaviour
         {
             Game.EndGame();
         }
-        else
-        {
-            Game.Instance.SwitchPlayersAndDecreaseStats();
-        }
 
         //If you get this message that means that you have not put correct display message for your behaviour
-        Game.Instance.DisplayMessage = "UNDEFINED MESSAGE!";
-
+        //Game.Instance.DisplayMessage = "UNDEFINED MESSAGE!";
+        _lastCommand = _currentCommand;
         _currentCommand = null;
         _index++;
     }
