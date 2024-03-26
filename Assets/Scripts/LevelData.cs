@@ -28,7 +28,6 @@ public class LevelData : MonoBehaviour
     void LoadJsonFromFile(string resourceName)
     {
         TextAsset textAsset = Resources.Load<TextAsset>(resourceName);
-        Debug.Log($"{textAsset.text}");
         if (textAsset != null)
         {
             Item root = JsonConvert.DeserializeObject<Item>(textAsset.text);

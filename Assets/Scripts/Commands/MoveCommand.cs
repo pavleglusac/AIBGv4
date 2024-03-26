@@ -32,7 +32,6 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
 
     public void Execute()
     {
-
         Pillar prev = Player.Position;
         Count = Math.Abs(TargetPillar.X - Player.X) + Math.Abs(TargetPillar.Z - Player.Z);
         Direction = GetDirection(prev, TargetPillar);

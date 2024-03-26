@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 public class Game : MonoBehaviour
 {
-    public static Game Instance { get; private set; }
+    public static Game Instance { get; set; }
 
     public static bool IsPaused = false;
     public bool FirstPlayerTurn { get; set; } = true;
@@ -53,14 +53,10 @@ public class Game : MonoBehaviour
     {
         if (Instance == null)
         {
-
-            SetupGame();
+            Instance = this;
+            DontDestroyOnLoad(Instance);
         }
-        else
-        {
-
-            Destroy(gameObject);
-        }
+        SetupGame();
     }
 
     public void SetupGame()
@@ -78,12 +74,16 @@ public class Game : MonoBehaviour
 
         // create a new board but board is mono behaviour
         LevelData = new GameObject("LevelData").AddComponent<LevelData>();
-        Board = new GameObject("Board").AddComponent<Board>();
-        CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
+        Board = new GameObject("Board").AddComponent<Board>();   
+        CommandManager = GameObject.FindObjectOfType<CommandManager>();
+        if (CommandManager == null)
+        {
+            CommandManager = new GameObject("CommandManager").AddComponent<CommandManager>();
+        }
         CommandParser = new GameObject("CommandParser").AddComponent<CommandParser>();
         CommandParser.CommandManager = CommandManager;
         CommandParser.Game = Instance;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         Debug.Log(player2ScriptPath);
         if (!string.IsNullOrEmpty(player1ScriptPath)) {
@@ -104,6 +104,7 @@ public class Game : MonoBehaviour
 
     }
 
+
     public void ResetGame()
     {
         DisplayMessage = "Good Luck!";
@@ -113,17 +114,24 @@ public class Game : MonoBehaviour
         TurnCount = 0;
         GameOver = false;
         selectedHouse = null;
-        Instance = this;
         if (Player1 != null && Player2 != null)
         {
-            Player2.SetupPlayer("Pupoljci");
-            Player1.SetupPlayer("Crni Cerak");
+            Player2.SetupPlayer(PlayerPrefs.GetString("player2_name"));
+            Player1.SetupPlayer(PlayerPrefs.GetString("player1_name"));
         }
+        player1ScriptRunner?.process?.Kill();
+        player2ScriptRunner?.process?.Kill();
+
+        player1ScriptPath = PlayerPrefs.GetString("player_1_script_path");
+        player2ScriptPath = PlayerPrefs.GetString("player_2_script_path");
+        player1ScriptRunner = null;
+        player2ScriptRunner = null;
+        Instance = this;
     }
 
     public void UpdateAllPlayerStats(bool previousTurnFirstPlayer)
     {
-        PlayerStatsHandle.Instance.UpdateGUI(Player1, Player2, TurnCount, FirstPlayerTurn, DisplayMessage, previousTurnFirstPlayer);
+        PlayerStatsHandle.Instance.UpdateGUI(Player1, Player2, Instance.TurnCount, FirstPlayerTurn, DisplayMessage, previousTurnFirstPlayer);
     }
 
     public static void PauseGame()
@@ -180,14 +188,17 @@ public class Game : MonoBehaviour
 
     public void InvokeScript(bool FirstPlayerTurn) {
         ScriptRunner targetRunner = FirstPlayerTurn ? player1ScriptRunner : player2ScriptRunner;
+        Debug.Log($"Target runner jeeeee {targetRunner != null}");
         if (targetRunner == null) {
             return;
         }
+
         string msg = GetGameState();
         Task.Run(() => targetRunner.WriteToProcessAsync(msg)).ContinueWith(task => 
         {
             if (task.IsFaulted)
             {
+                UnityEngine.Debug.LogError("Task failed!");
                 UnityEngine.Debug.LogError(task.Exception?.ToString());
             }
             else

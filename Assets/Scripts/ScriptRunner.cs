@@ -5,12 +5,13 @@ using System.Threading;
 using UnityEngine;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 
 public class ScriptRunner : MonoBehaviour
 {
     public string scriptPath;
-    private Process process;
+    public Process process;
     public CommandParser CommandParser { get; set; }
 
     private void Update()
@@ -27,14 +28,33 @@ public class ScriptRunner : MonoBehaviour
         }
     }
 
+    public static string ConvertWindowsPathToWsl(string windowsPath)
+    {
+        if (string.IsNullOrEmpty(windowsPath)) return windowsPath;
+
+        string wslPath = windowsPath.Replace('\\', '/');
+
+        if (wslPath.Length >= 2 && wslPath[1] == ':')
+        {
+            char driveLetter = char.ToLower(wslPath[0]);
+            wslPath = "/mnt/" + driveLetter + wslPath.Substring(2);
+        }
+
+        wslPath = Regex.Replace(wslPath, "/+", "/");
+
+        return wslPath;
+    }
+
     public void StartProcess(string scriptPath)
     {
         UnityEngine.Debug.Log(scriptPath);
         string fileName, argumentsPrefix;
+        UnityEngine.Debug.Log(ConvertWindowsPathToWsl("C://Users//Pavle//mjau.sh"));
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             fileName = "wsl";
             argumentsPrefix = "";
+            scriptPath = ConvertWindowsPathToWsl(scriptPath);
         }
         else
         {
@@ -42,8 +62,7 @@ public class ScriptRunner : MonoBehaviour
             argumentsPrefix = "";
         }
 
-        //scriptPath = "/mnt/c/GitHub/AIBGv4/Assets/Scripts/run.sh";
-        // 
+        
         process = new Process
         {
             StartInfo = new ProcessStartInfo
@@ -57,12 +76,11 @@ public class ScriptRunner : MonoBehaviour
                 CreateNoWindow = true
             }
         };
-        UnityEngine.Debug.Log("NIJEEEEEE Pokrenuta skripta!!!");
 
         process.Start();
         // string err = process.StandardError.ReadToEnd();
         // UnityEngine.Debug.Log($"{err}");
-        UnityEngine.Debug.Log($"{process.HasExited}");
+        UnityEngine.Debug.Log($"Script status: {process.HasExited}");
         UnityEngine.Debug.Log("Pokrenuta skripta!!!");
     }
 
@@ -79,12 +97,14 @@ public class ScriptRunner : MonoBehaviour
 
     public async Task WriteToProcessAsync(string input)
     {
-        UnityEngine.Debug.Log("Pisem!!!");
+        UnityEngine.Debug.Log("Pisem u proces!!!");
         UnityEngine.Debug.Log(input);
         input = input.Replace("\n", "^");
 
         if (process == null || process.HasExited)
         {
+            UnityEngine.Debug.Log("Process is not started.");
+            // TODO: drugi igrac je pobedio.
             return;
         }
         process.StandardInput.WriteLine(input);
@@ -99,7 +119,9 @@ public class ScriptRunner : MonoBehaviour
                 {
                     string line = process.StandardOutput.ReadLine();
                     UnityEngine.Debug.Log($"Ovo je output: {line}");
+                    //UnityEngine.Debug.Log($"Ovo je memorijsko: {process.PeakWorkingSet64}");
                     CommandParser.ParseCommand(line);
+                    
                     break;
                 }
             }, cancellationTokenSource.Token);

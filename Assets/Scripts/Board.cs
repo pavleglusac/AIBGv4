@@ -41,8 +41,25 @@ public class Board : MonoBehaviour
     }
 
 
+
+
     public string DrawBoard()
     {
+        Dictionary<string, string> temp = new Dictionary<string, string>();
+        Dictionary<string, string> symbols = new Dictionary<string, string>();
+        symbols.Add("Empty", PlayerPrefs.GetString("empty_pillar_symbol"));
+        symbols.Add("Player1", PlayerPrefs.GetString("player1_symbol"));
+        symbols.Add("Player2", PlayerPrefs.GetString("player2_symbol"));
+        symbols.Add("CheapCrystal", PlayerPrefs.GetString("cheep_crystal_symbol"));
+        symbols.Add("ExpensiveCrystal", PlayerPrefs.GetString("expensive_crystal_symbol"));
+        symbols.Add("BasePlayer1", PlayerPrefs.GetString("player1_castle_symbol"));
+        symbols.Add("BasePlayer2", PlayerPrefs.GetString("player2_castle_symbol"));
+        symbols.Add("House", PlayerPrefs.GetString("refinement_facility_symbol"));
+
+        foreach (KeyValuePair<string, string> entry in symbols)
+        {
+            temp[entry.Key] = entry.Value.Replace("\"", "");
+        }
         int rows = Pillars.GetLength(0);
         int cols = Pillars.GetLength(1);
         StringBuilder sb = new StringBuilder();
@@ -51,7 +68,8 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < cols; j++)
             {
-                sb.Append(Pillars[i, j].PillarState);
+                string targetString = temp[Pillars[i, j].PillarState.ToString()];
+                sb.Append(targetString);
             }
             sb.AppendLine();
         }

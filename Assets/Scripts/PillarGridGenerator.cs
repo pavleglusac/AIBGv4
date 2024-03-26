@@ -112,7 +112,7 @@ public class PillarGridGenerator : MonoBehaviour
         //game.Player1.X = i;
         //game.Player1.Z = j;
         game.Player1.SetPosition(game.Board.Pillars[i, j]);
-        game.Player1.SetupPlayer("Crni Cerak");
+        game.Player1.SetupPlayer(PlayerPrefs.GetString("player1_name"));
 
         i = 0;
         j = columns - 1;
@@ -123,7 +123,7 @@ public class PillarGridGenerator : MonoBehaviour
         game.Player2.SetPosition(game.Board.Pillars[i, j]);
 
         game.Player2.FirstPlayer = false;
-        game.Player2.SetupPlayer("Pupoljci");
+        game.Player2.SetupPlayer(PlayerPrefs.GetString("player2_name"));
         game.UpdateAllPlayerStats(true);
     }
 
@@ -229,7 +229,13 @@ public class PillarGridGenerator : MonoBehaviour
             animatorP2.enabled = true;
             animatorP2.speed = 1.0f;
             animatorP2.SetTrigger("UFO1LandingTrigger");
+            //yield return new WaitForSeconds(animatorP2.GetCurrentAnimatorStateInfo(0).length);
+            //game.InvokeScript(game.FirstPlayerTurn);
+            //StartCoroutine(WaitForAnimation(animatorP2));
         }
+
+
     }
+
 
 }

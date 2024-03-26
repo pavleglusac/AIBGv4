@@ -29,7 +29,7 @@ public class PauseMenuNavigation : MonoBehaviour
     public void Restart()
     {
         Game.ResumeGame();
-        Game.Instance.ResetGame();
+        Game.Instance.SetupGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }

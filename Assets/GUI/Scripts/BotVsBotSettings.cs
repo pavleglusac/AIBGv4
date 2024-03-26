@@ -76,10 +76,7 @@ public class BotVsBotSettings : MonoBehaviour
         {
             return;
         }
-        if (Game.Instance != null)
-        {
-            Game.Instance.ResetGame();
-        }
+        
 
         if (LoadGameBot)
         {
@@ -92,6 +89,10 @@ public class BotVsBotSettings : MonoBehaviour
 
         
         PlayerPrefs.SetString("player1_name", InputPlayer1.text);
+        if (Game.Instance != null)
+        {
+            Game.Instance.ResetGame();
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }

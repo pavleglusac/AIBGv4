@@ -59,7 +59,6 @@ public class ResourceGenerator : MonoBehaviour
 
         foreach (var crystal in level.cheap)
         {
-            Debug.Log($"{crystal}");
             MakeCrystalCheap(crystal[0], crystal[1], count);
             if (crystal[0] == crystal[1]) continue;
             MakeCrystalCheap(crystal[1], crystal[0], count);
@@ -155,17 +154,13 @@ public class ResourceGenerator : MonoBehaviour
                 count++;
             }
         }
-        if(x == 7 && z == 4)
-        {
-            Debug.Log($"Kurcina moja masn {count} {groupSize}");
-        }
         return count < groupSize;
     }
 
 
     void GenerateCrystals(bool isExpensive)
     {
-        Debug.Log($"{isExpensive} Groups: E {numberOfExpensiveCrystalGroups} C {numberOfCheapCrystalGroups}  | Crystals: E {numberOfExpensiveCrystalsInGroup} C {numberOfCheapCrystalsInGroup}");
+   
         int generatedCrystals = 0;
 
         int numOfGroups = isExpensive ? numberOfExpensiveCrystalGroups : numberOfCheapCrystalGroups;
@@ -194,7 +189,6 @@ public class ResourceGenerator : MonoBehaviour
                     }
                     continue;
                 }
-                Debug.Log($"Checking... x={coordinates.Item1} z={coordinates.Item2}");
                 canNotBeCenter = CheckCenterCoordinates(coordinates.Item1, coordinates.Item2, numberOfCrystalsInGroup);
             }
 

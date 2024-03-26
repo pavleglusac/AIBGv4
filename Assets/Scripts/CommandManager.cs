@@ -6,23 +6,9 @@ using UnityEngine.Rendering;
 
 public class CommandManager : MonoBehaviour
 {
-    public static CommandManager Instance { get; private set; }
     private List<ICommand> _commands = new List<ICommand>();
     private ICommand _currentCommand;
     private int _index = 0;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void AddCommand(ICommand command)
     {
