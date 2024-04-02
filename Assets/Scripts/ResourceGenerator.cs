@@ -106,7 +106,7 @@ public class ResourceGenerator : MonoBehaviour
 
     public Tuple<int, int> GenerateCoordinates(bool up)
     {
-        int x, z;
+
         List<Tuple<int, int>> freeCells = FindFreeCells(up);
         freeCells = freeCells.OrderBy(_ => random.Next()).ToList();
 
@@ -160,7 +160,7 @@ public class ResourceGenerator : MonoBehaviour
 
     void GenerateCrystals(bool isExpensive)
     {
-   
+
         int generatedCrystals = 0;
 
         int numOfGroups = isExpensive ? numberOfExpensiveCrystalGroups : numberOfCheapCrystalGroups;

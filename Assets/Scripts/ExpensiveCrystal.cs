@@ -76,5 +76,9 @@ public class ExpensiveCrystal : Crystal
         Z = Position.Z;
     }
 
+    public static int GetUnprocessedWeight()
+    {
+        return int.Parse(PlayerPrefs.GetString("raw_expensive_crystal_weight"));
+    }
 
 }

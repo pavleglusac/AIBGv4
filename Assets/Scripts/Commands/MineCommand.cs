@@ -13,8 +13,10 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
     private bool isCoroutineRunning = false;
     private bool isCheapCrystal = true;
     Crystal Crystal { get; set; }
-
+    private int crystalWeight;
     public Pillar Pillar { get; set; }
+    private int x;
+    private int z;
 
     // public MineCommand Initialize(Player player, bool isCrystal1)
     // {
@@ -29,16 +31,8 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
         Pillar pillar = Game.Instance.Board.Pillars[x, z];
         this.Pillar = pillar;
         this.isCheapCrystal = pillar.PillarState == PillarState.CheapCrystal;
-        try
-        {
-            CheapCrystal crystal = Game.Instance.Board.CheapCrystals.First(c => c.X == x && c.Z == z);
-            this.Crystal = crystal;
-        }
-        catch (Exception)
-        {
-            ExpensiveCrystal crystal = Game.Instance.Board.ExpensiveCrystals.First(c => c.X == x && c.Z == z);
-            this.Crystal = crystal;
-        }
+        this.x = x;
+        this.z = z;
         return this;
     }
 
@@ -111,6 +105,28 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
             Game.Instance.DisplayMessage = "You are not close enough to mine";
             return false;
         }
+
+        CheapCrystal cheapCrystal = Game.Instance.Board.CheapCrystals.FirstOrDefault(c => c.X == x && c.Z == z);
+        if (cheapCrystal != null)
+        {
+            this.Crystal = cheapCrystal;
+            this.crystalWeight = CheapCrystal.GetUnprocessedWeight();
+        }
+        else
+        {
+            ExpensiveCrystal expensiveCrystal = Game.Instance.Board.ExpensiveCrystals.FirstOrDefault(c => c.X == x && c.Z == z);
+            if (expensiveCrystal != null)
+            {
+                this.Crystal = expensiveCrystal;
+                this.crystalWeight = ExpensiveCrystal.GetUnprocessedWeight();
+            }
+            else
+            {
+                Game.Instance.DisplayMessage = "No crystal found";
+                return false;
+            }
+        }
+
         if (Crystal.RemainingMineHits == 0 && Crystal.TurnInWhichCrystalBecameEmpty == -1)
         {
             Game.Instance.DisplayMessage = "Crystal is not replenished";
@@ -132,6 +148,11 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
         if (Player.Energy < GetEnergyCost())
         {
             Game.Instance.DisplayMessage = "Not enough energy for mining";
+            return false;
+        }
+        if (Player.Bag.GetRemainingCapacity() < crystalWeight)
+        {
+            Game.Instance.DisplayMessage = "Not enough space in the bag";
             return false;
         }
         return true;

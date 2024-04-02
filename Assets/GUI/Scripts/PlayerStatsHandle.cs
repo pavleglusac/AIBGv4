@@ -24,6 +24,7 @@ public class PlayerStatsHandle : MonoBehaviour
     [SerializeField] public GameObject displayMessageBackgorund;
     [SerializeField] public GameObject GameOverMenu;
     [SerializeField] public Text displayWinner;
+    [SerializeField] public Text displayGameOverReason;
 
 
     [SerializeField] public Text Player1MyTurn;
@@ -78,9 +79,10 @@ public class PlayerStatsHandle : MonoBehaviour
 
     }
 
-    public void GameOverScreen()
+    public void GameOverScreen(string gameOverMessage)
     {
         displayWinner.text = "Winner: " + Game.Instance.Winner;
+        displayGameOverReason.text = gameOverMessage;
         GameOverMenu.SetActive(true);
 
     }
