@@ -25,6 +25,7 @@ public class CommandManager : MonoBehaviour
         {
             _lastCommand = null;
             Game.Instance.SwitchPlayersAndDecreaseStats();
+            Game.Instance.DisplayMessage = "UNDEFINED MESSAGE!";
             return;
         }
         else if (_lastCommand != null && !_lastCommand.IsDone())
@@ -94,7 +95,7 @@ public class CommandManager : MonoBehaviour
         }
 
         //If you get this message that means that you have not put correct display message for your behaviour
-        Game.Instance.DisplayMessage = "UNDEFINED MESSAGE!";
+        
         _lastCommand = _currentCommand;
         _currentCommand = null;
         _index++;
