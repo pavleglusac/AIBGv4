@@ -1,15 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
+
 
 public class CommandManager : MonoBehaviour
 {
     private List<ICommand> _commands = new List<ICommand>();
     private ICommand _currentCommand;
     private ICommand _lastCommand;
-    private bool switching = false;
     private int _index = 0;
 
     public void AddCommand(ICommand command)
@@ -19,17 +16,22 @@ public class CommandManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (Game.Instance.GameOver)
+        {
+            return;
+        }
 
         if (_lastCommand != null && _lastCommand.IsDone())
         {
             _lastCommand = null;
             Game.Instance.SwitchPlayersAndDecreaseStats();
             return;
-        } else if (_lastCommand != null && !_lastCommand.IsDone())
+        }
+        else if (_lastCommand != null && !_lastCommand.IsDone())
         {
             return;
         }
-        
+
         if (_index >= _commands.Count)
         {
             return;
@@ -47,7 +49,7 @@ public class CommandManager : MonoBehaviour
             _index++;
         }
 
-        
+
 
         if (_currentCommand == null || _currentCommand.IsDone()) return;
 
@@ -60,74 +62,102 @@ public class CommandManager : MonoBehaviour
             _currentCommand.isDone = true;
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
         }
+        string gameOverMessage = "";
 
         if (Game.Instance.GetCurrentPlayer().Energy <= 0)
         {
             Game.Instance.GameOver = true;
             Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player2.Name : Game.Instance.Player1.Name;
+            gameOverMessage = Game.Instance.GetCurrentPlayer().Name + " has no energy left!";
         }
-
-
-        if (Game.Instance.TurnCount + 1 >= int.Parse(PlayerPrefs.GetString("max_number_of_turns")))
+        else
         {
-            Player winner = GetWinner();
-            Game.Instance.GameOver = true;
+            if (Game.Instance.TurnCount + 1 >= int.Parse(PlayerPrefs.GetString("max_number_of_turns")))
+            {
+                Player winner = GetWinner(ref gameOverMessage);
+                Game.Instance.GameOver = true;
 
-            if (winner != null)
-            {
-                Game.Instance.Winner = winner.Name;
-            }
-            else
-            {
-                Game.Instance.Winner = "NO WINNER - PLAY AGAIN";
+                if (winner != null)
+                {
+                    Game.Instance.Winner = winner.Name;
+                }
+                else
+                {
+                    Game.Instance.Winner = "NO WINNER - PLAY AGAIN";
+                }
             }
         }
-
 
         if (Game.Instance.GameOver)
         {
-            Game.EndGame();
+            Game.EndGame(gameOverMessage);
         }
 
         //If you get this message that means that you have not put correct display message for your behaviour
-        //Game.Instance.DisplayMessage = "UNDEFINED MESSAGE!";
+        Game.Instance.DisplayMessage = "UNDEFINED MESSAGE!";
         _lastCommand = _currentCommand;
         _currentCommand = null;
         _index++;
     }
 
-    private Player GetWinner()
+    private Player GetWinner(ref string gameOverMessage)
     {
         if (Game.Instance.Player1.XP > Game.Instance.Player2.XP)
+        {
+            gameOverMessage = Game.Instance.Player1.Name + " had more XP at the end of the game";
             return Game.Instance.Player1;
-
-        if (Game.Instance.Player1.XP < Game.Instance.Player2.XP)
+        }
+        else if (Game.Instance.Player1.XP < Game.Instance.Player2.XP)
+        {
+            gameOverMessage = Game.Instance.Player2.Name + " had more XP at the end of the game";
             return Game.Instance.Player2;
+        }
 
         if (Game.Instance.Player1.Coins > Game.Instance.Player2.Coins)
+        {
+            gameOverMessage = Game.Instance.Player1.Name + " had more coins at the end of the game";
             return Game.Instance.Player1;
-
-        if (Game.Instance.Player1.Coins < Game.Instance.Player2.Coins)
+        }
+        else if (Game.Instance.Player1.Coins < Game.Instance.Player2.Coins)
+        {
+            gameOverMessage = Game.Instance.Player2.Name + " had more coins at the end of the game";
             return Game.Instance.Player2;
+        }
 
         if (Game.Instance.Player1.Energy > Game.Instance.Player2.Energy)
+        {
+            gameOverMessage = Game.Instance.Player1.Name + " had more energy at the end of the game";
             return Game.Instance.Player1;
-
-        if (Game.Instance.Player1.Energy < Game.Instance.Player2.Energy)
-            return Game.Instance.Player1;
+        }
+        else if (Game.Instance.Player1.Energy < Game.Instance.Player2.Energy)
+        {
+            gameOverMessage = Game.Instance.Player2.Name + " had more energy at the end of the game";
+            return Game.Instance.Player2;
+        }
 
         if (Game.Instance.Player1.Bag.GetWeight() > Game.Instance.Player2.Bag.GetWeight())
+        {
+            gameOverMessage = Game.Instance.Player1.Name + "'s bag was heavier at the end of the game";
             return Game.Instance.Player1;
-
-        if (Game.Instance.Player1.Bag.GetWeight() < Game.Instance.Player2.Bag.GetWeight())
-            return Game.Instance.Player1;
+        }
+        else if (Game.Instance.Player1.Bag.GetWeight() < Game.Instance.Player2.Bag.GetWeight())
+        {
+            gameOverMessage = Game.Instance.Player2.Name + "'s bag was heavier at the end of the game";
+            return Game.Instance.Player2;
+        }
 
         if (Game.Instance.Board.CountPlayersHouses(true) > Game.Instance.Board.CountPlayersHouses(false))
+        {
+            gameOverMessage = Game.Instance.Player1.Name + " had more refinement facilities at the end of the game";
             return Game.Instance.Player1;
+        }
+        else if (Game.Instance.Board.CountPlayersHouses(true) < Game.Instance.Board.CountPlayersHouses(false))
+        {
+            gameOverMessage = Game.Instance.Player2.Name + " had more  refinement facilities at the end of the game";
+            return Game.Instance.Player2;
+        }
 
-        if (Game.Instance.Board.CountPlayersHouses(true) < Game.Instance.Board.CountPlayersHouses(false))
-            return Game.Instance.Player1;
-
+        gameOverMessage = "Players were matched in skill completely!";
         return null;
     }
 }

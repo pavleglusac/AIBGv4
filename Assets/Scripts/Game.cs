@@ -74,7 +74,7 @@ public class Game : MonoBehaviour
 
         // create a new board but board is mono behaviour
         LevelData = new GameObject("LevelData").AddComponent<LevelData>();
-        Board = new GameObject("Board").AddComponent<Board>();   
+        Board = new GameObject("Board").AddComponent<Board>();
         CommandManager = GameObject.FindObjectOfType<CommandManager>();
         if (CommandManager == null)
         {
@@ -86,7 +86,8 @@ public class Game : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
 
         Debug.Log(player2ScriptPath);
-        if (!string.IsNullOrEmpty(player1ScriptPath)) {
+        if (!string.IsNullOrEmpty(player1ScriptPath))
+        {
             GameObject player1ScriptRunnerObject = new GameObject("ScriptRunnerObject");
             player1ScriptRunner = player1ScriptRunnerObject.AddComponent<ScriptRunner>();
             player1ScriptRunner.scriptPath = player1ScriptPath;
@@ -94,7 +95,8 @@ public class Game : MonoBehaviour
             player1ScriptRunner.StartProcess(player1ScriptRunner.scriptPath);
         }
 
-        if (!string.IsNullOrEmpty(player2ScriptPath)) {
+        if (!string.IsNullOrEmpty(player2ScriptPath))
+        {
             GameObject player2ScriptRunnerObject = new GameObject("ScriptRunnerObject");
             player2ScriptRunner = player2ScriptRunnerObject.AddComponent<ScriptRunner>();
             player2ScriptRunner.scriptPath = player2ScriptPath;
@@ -149,10 +151,10 @@ public class Game : MonoBehaviour
         IsPaused = false;
     }
 
-    public static void EndGame()
+    public static void EndGame(string gameOverMessage)
     {
         PauseGame();
-        PlayerStatsHandle.Instance.GameOverScreen();
+        PlayerStatsHandle.Instance.GameOverScreen(gameOverMessage);
     }
 
 
@@ -186,10 +188,12 @@ public class Game : MonoBehaviour
         InvokeScript(FirstPlayerTurn);
     }
 
-    public void InvokeScript(bool FirstPlayerTurn) {
+    public void InvokeScript(bool FirstPlayerTurn)
+    {
         ScriptRunner targetRunner = FirstPlayerTurn ? player1ScriptRunner : player2ScriptRunner;
         Debug.Log($"Target runner jeeeee {targetRunner != null}");
-        if (targetRunner == null) {
+        if (targetRunner == null)
+        {
             return;
         }
 
