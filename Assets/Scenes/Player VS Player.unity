@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009406308, g: 0.008795648, b: 0.008788569, a: 1}
+  m_IndirectSpecularColor: {r: 0.0073761917, g: 0.007008719, b: 0.0069371425, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10561,8 +10561,8 @@ MonoBehaviour:
   housePrefab: {fileID: 719075277259536644, guid: 3a067ef09e75c36439746dbf04d53727, type: 3}
   player1: {fileID: 3516734726966277635, guid: 30e9fa7d68c438144b941b5b9cf86949, type: 3}
   player2: {fileID: 6938244625838606387, guid: 5ace93a2a6c60694eb27bf6b70ec7189, type: 3}
-  basePlayer1: {fileID: 7782940742131509612, guid: 4ea4282266737c548848a6cd1b2f0d3e, type: 3}
-  basePlayer2: {fileID: 4136474663737259870, guid: 6118d062e375a574f88950d171ac16c9, type: 3}
+  basePlayer1: {fileID: 684024447624234787, guid: 7933877b15293480e95e905e657ad2fb, type: 3}
+  basePlayer2: {fileID: 2958027224418936398, guid: ca8880e3a4bc24aa881377a3e2987c2f, type: 3}
   cameraTransform: {fileID: 963194228}
   rows: 10
   columns: 10

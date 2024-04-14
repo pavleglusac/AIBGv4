@@ -50,7 +50,6 @@ public class ScriptRunner : MonoBehaviour
     {
         UnityEngine.Debug.Log(scriptPath);
         string fileName, argumentsPrefix;
-        UnityEngine.Debug.Log(ConvertWindowsPathToWsl("C://Users//Pavle//mjau.sh"));
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             fileName = "wsl";
@@ -106,6 +105,9 @@ public class ScriptRunner : MonoBehaviour
         if (process == null || process.HasExited)
         {
             UnityEngine.Debug.Log("Process is not started.");
+            // print error message from stderr
+            string err = process?.StandardError.ReadToEnd();
+            UnityEngine.Debug.Log($"{err}");
             return;
         }
 

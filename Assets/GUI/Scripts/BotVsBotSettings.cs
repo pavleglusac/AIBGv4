@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 using SimpleFileBrowser;
 using TMPro;
+using System.IO;
 
 public class BotVsBotSettings : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class BotVsBotSettings : MonoBehaviour
 
     public void SetPlayer1Script()
     {
+        FileBrowser.SetDefaultFilter( ".sh" );
+        FileBrowser.SetFilters(true, new FileBrowser.Filter( "Shell Files", ".sh"));
         FileBrowser.ShowLoadDialog(
                     (paths) =>
                     {
@@ -40,6 +43,7 @@ public class BotVsBotSettings : MonoBehaviour
 
     public void SetPlayer2Script()
     {
+        FileBrowser.SetFilters(true, new FileBrowser.Filter( "Shell Files", ".sh"));
         FileBrowser.ShowLoadDialog(
                       (paths) =>
                       {
@@ -61,9 +65,9 @@ public class BotVsBotSettings : MonoBehaviour
 
     public bool CheckIfCanBeginGame()
     {
-        if (string.IsNullOrEmpty(InputPlayer1.text))
+        if (string.IsNullOrEmpty(InputPlayer1?.text))
             return false;
-        if (string.IsNullOrEmpty(InputPlayer2.text) && !LoadGameBot)
+        if (string.IsNullOrEmpty(InputPlayer2?.text) && !LoadGameBot)
             return false;
         if (string.IsNullOrEmpty(PlayerPrefs.GetString("player_1_script_path")))
             return false;
@@ -76,6 +80,7 @@ public class BotVsBotSettings : MonoBehaviour
     {
         if (!CheckIfCanBeginGame())
         {
+            Debug.Log("cant start game becayse reasons");
             return;
         }
         
@@ -83,9 +88,9 @@ public class BotVsBotSettings : MonoBehaviour
         if (LoadGameBot)
         {
             PlayerPrefs.SetString("player2_name", "Topic Team");
-            PlayerPrefs.SetString("player_2_script_path", "mjau");
-        }
-        {
+            string gameBotPath = Path.Combine(Application.streamingAssetsPath, "run.sh");
+            PlayerPrefs.SetString("player_2_script_path", gameBotPath);
+        } else {
             PlayerPrefs.SetString("player2_name", InputPlayer2.text);
         }
 

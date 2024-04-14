@@ -246,12 +246,12 @@ public class CommandParser : MonoBehaviour
         var match = Regex.Match(command, conversionsPattern);
         if (match.Success)
         {
-            int cheapCoins = int.Parse(match.Groups[1].Value);
-            int expCoins = int.Parse(match.Groups[2].Value);
-            int cheapEnergy = int.Parse(match.Groups[3].Value);
-            int expEnergy = int.Parse(match.Groups[4].Value);
-            int cheapXP = int.Parse(match.Groups[5].Value);
-            int expXP = int.Parse(match.Groups[6].Value);
+            int expCoins = int.Parse(match.Groups[1].Value);
+            int cheapCoins = int.Parse(match.Groups[2].Value);
+            int cheapEnergy = int.Parse(match.Groups[4].Value);
+            int expEnergy = int.Parse(match.Groups[3].Value);
+            int expXP = int.Parse(match.Groups[5].Value);
+            int cheapXP = int.Parse(match.Groups[6].Value);
             mainThreadActions.Enqueue(() => {
                 Actions.BaseConversions(cheapXP, expXP, cheapCoins, expCoins, cheapEnergy, expEnergy);
             });
