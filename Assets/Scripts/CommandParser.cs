@@ -304,8 +304,13 @@ public class CommandParser : MonoBehaviour
     }
 
     private void InvalidTurnHandling() 
-    { 
-
+    {
+        mainThreadActions.Enqueue(() => {
+            Game.Instance.DisplayMessage = "Invalid command!";
+            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            Game.Instance.SwitchPlayersAndDecreaseStats();
+        });
+        
     }
 
     private void TimeoutHandling() 

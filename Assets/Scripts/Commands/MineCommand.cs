@@ -106,7 +106,7 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
             return false;
         }
 
-        CheapCrystal cheapCrystal = Game.Instance.Board.CheapCrystals.FirstOrDefault(c => c.X == x && c.Z == z);
+        CheapCrystal cheapCrystal = Game.Instance.Board.CheapCrystals.Where(c => c != null).FirstOrDefault(c => c.X == x && c.Z == z);
         if (cheapCrystal != null)
         {
             this.Crystal = cheapCrystal;

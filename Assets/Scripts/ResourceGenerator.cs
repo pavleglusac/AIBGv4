@@ -54,13 +54,39 @@ public class ResourceGenerator : MonoBehaviour
         int index = random.Next(LevelData.Levels.Count);
         LevelData.ItemData level = LevelData.Levels[index];
         var count = 0;
-        game.Board.CheapCrystals = new CheapCrystal[level.cheap.Count]; // 3 crystals per group, 2 groups one for each side
-        game.Board.ExpensiveCrystals = new ExpensiveCrystal[level.expensive.Count]; // 3 crystals per group, 2 groups one for each side
+
+        var cheapCount = 0;
+        foreach (var crystal in level.cheap)
+        {
+            if (crystal[0] != crystal[1])
+            {
+                cheapCount++;
+            }
+            cheapCount++;
+        }
+
+        var expensiveCount = 0;
+        foreach (var crystal in level.expensive)
+        {
+            if (crystal[0] != crystal[1])
+            {
+                expensiveCount++;
+            }
+            expensiveCount++;
+        }
+
+
+        game.Board.CheapCrystals = new CheapCrystal[cheapCount]; // 3 crystals per group, 2 groups one for each side
+        game.Board.ExpensiveCrystals = new ExpensiveCrystal[expensiveCount]; // 3 crystals per group, 2 groups one for each side
 
         foreach (var crystal in level.cheap)
         {
             MakeCrystalCheap(crystal[0], crystal[1], count);
-            if (crystal[0] == crystal[1]) continue;
+            count++;
+            if (crystal[0] == crystal[1])
+            {
+                continue;
+            }
             MakeCrystalCheap(crystal[1], crystal[0], count);
             count++;
         }
@@ -68,6 +94,11 @@ public class ResourceGenerator : MonoBehaviour
         foreach (var crystal in level.expensive)
         {
             MakeCrystalExpensive(crystal[0], crystal[1], count);
+            count++;
+            if (crystal[0] == crystal[1])
+            {
+                continue;
+            }
             MakeCrystalExpensive(crystal[1], crystal[0], count);
             count++;
         }
