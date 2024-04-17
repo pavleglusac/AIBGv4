@@ -110,6 +110,7 @@ public class Game : MonoBehaviour
 
     public void ResetGame()
     {
+        StateCallback.entered = 0;
         DisplayMessage = "Good Luck!";
         IsPaused = false;
         FirstPlayerTurn = true;
