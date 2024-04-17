@@ -78,6 +78,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ce9e7b6881243455ba3b2ddfd89e65ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3988497538744595289}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ce9e7b6881243455ba3b2ddfd89e65ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4255102152338262761}
   m_SourcePrefab: {fileID: 100100000, guid: ce9e7b6881243455ba3b2ddfd89e65ac, type: 3}
 --- !u!1 &684024447624234787 stripped
 GameObject:
@@ -167,3 +170,24 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!65 &-4255102152338262761
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684024447624234787}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
