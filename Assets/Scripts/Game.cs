@@ -192,6 +192,9 @@ public class Game : MonoBehaviour
 
     public void InvokeScript(bool FirstPlayerTurn)
     {
+        if (Game.Instance.GameOver || Game.Instance.Board.Pillars == null) {
+            return;
+        }
         ScriptRunner targetRunner = FirstPlayerTurn ? player1ScriptRunner : player2ScriptRunner;
         Debug.Log($"Target runner jeeeee {targetRunner != null}");
         if (targetRunner == null)

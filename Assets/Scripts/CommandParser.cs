@@ -308,14 +308,17 @@ public class CommandParser : MonoBehaviour
         mainThreadActions.Enqueue(() => {
             Game.Instance.DisplayMessage = "Invalid command!";
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            if (Game.Instance.GetCurrentPlayer().Energy <= 0)
+            {
+                Game.Instance.GameOver = true;
+                Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player2.Name : Game.Instance.Player1.Name;
+                Game.Instance.DisplayMessage = Game.Instance.GetCurrentPlayer().Name + " has no energy left!";
+                Game.EndGame(Game.Instance.GetCurrentPlayer().Name + " has no energy left!");
+                return;
+            }
             Game.Instance.SwitchPlayersAndDecreaseStats();
         });
         
-    }
-
-    private void TimeoutHandling() 
-    { 
-
     }
 
 
