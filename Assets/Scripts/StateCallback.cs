@@ -12,6 +12,7 @@ public class StateCallback : StateMachineBehaviour
         if(entered % 3 == 0)
         {
             Game.Instance.InvokeScript(Game.Instance.FirstPlayerTurn);
+            Game.Instance.ArePlayersLanded = true;
         }
         
     }

@@ -65,6 +65,7 @@ public class CheapCrystal : Crystal
         {
             return;
         }
+        if (!Game.Instance.ArePlayersLanded) return;
 
         Actions.Mine(X, Z);
     }

@@ -17,6 +17,7 @@ public class Game : MonoBehaviour
     public int TurnCount { get; set; } = 0;
     public string Winner { get; set; } = "";
     public string DisplayMessage { get; set; } = "Good luck!";
+    public bool ArePlayersLanded { get; set; } = false;
 
     public Player Player1 { get; set; }
     public Player Player2 { get; set; }

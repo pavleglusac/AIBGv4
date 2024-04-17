@@ -234,7 +234,6 @@ public class PillarGridGenerator : MonoBehaviour
             //StartCoroutine(WaitForAnimation(animatorP2));
         }
 
-
     }
 
 

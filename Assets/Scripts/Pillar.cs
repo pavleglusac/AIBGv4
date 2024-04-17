@@ -26,6 +26,7 @@ public class Pillar : MonoBehaviour
         {
             return;
         }
+        if (!Game.Instance.ArePlayersLanded) return;
         if (Input.GetMouseButtonDown(1))
         {
             Actions.BuildHouse(this.X, this.Z);
@@ -40,11 +41,13 @@ public class Pillar : MonoBehaviour
             return;
         }
 
+        if (!Game.Instance.ArePlayersLanded) return;
         Actions.Move(this.X, this.Z);
     }
 
     void OnMouseEnter()
     {
+        if (!Game.Instance.ArePlayersLanded) return;
 
         // Added so that players can not click 3D objects trough UI
         if (EventSystem.current.IsPointerOverGameObject())

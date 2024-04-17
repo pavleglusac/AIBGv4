@@ -47,6 +47,7 @@ public class Base : MonoBehaviour
         {
             return;
         }
+        if (!Game.Instance.ArePlayersLanded) return;
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -62,6 +63,7 @@ public class Base : MonoBehaviour
         {
             return;
         }
+        if (!Game.Instance.ArePlayersLanded) return;
 
         Actions.Move(this.X, this.Z);
     }
