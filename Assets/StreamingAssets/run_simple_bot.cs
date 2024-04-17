@@ -1,0 +1,1 @@
+SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd) && exec dotnet script $SCRIPT_DIR/simple_bot.cs

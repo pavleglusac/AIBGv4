@@ -78,8 +78,8 @@ public class ScriptRunner : MonoBehaviour
         };
 
         process.Start();
-        // string err = process.StandardError.ReadToEnd();
-        // UnityEngine.Debug.Log($"{err}");
+        string err = process.StandardError.ReadToEnd();
+        UnityEngine.Debug.Log($"{err}");
         UnityEngine.Debug.Log($"Script status: {process.HasExited}");
         UnityEngine.Debug.Log("Pokrenuta skripta!!!");
     }
