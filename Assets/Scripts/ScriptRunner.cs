@@ -42,7 +42,7 @@ public class ScriptRunner : MonoBehaviour
         }
 
         wslPath = Regex.Replace(wslPath, "/+", "/");
-
+        wslPath = Regex.Replace(wslPath, @"([\s()])", @"\$1");
         return wslPath;
     }
 
@@ -55,6 +55,8 @@ public class ScriptRunner : MonoBehaviour
             fileName = "wsl";
             argumentsPrefix = "";
             scriptPath = ConvertWindowsPathToWsl(scriptPath);
+        
+            UnityEngine.Debug.Log(scriptPath);
         }
         else
         {
