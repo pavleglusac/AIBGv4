@@ -42,8 +42,6 @@ public class Base : MonoBehaviour
 
     void OnMouseOver()
     {
-        Debug.Log("AAAAAAAAAA");
-
         // Added so that players can not click 3D objects trough UI
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -51,7 +49,6 @@ public class Base : MonoBehaviour
         }
         if (!Game.Instance.ArePlayersLanded) return;
         // log to console
-        Debug.Log("Mouse is over " + this.X + " " + this.Z);
         if (Input.GetMouseButtonDown(1))
         {
             if (Game.Instance.GetCurrentPlayer().X != this.X || Game.Instance.GetCurrentPlayer().Z != this.Z) return;
