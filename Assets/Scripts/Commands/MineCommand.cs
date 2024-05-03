@@ -82,11 +82,11 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
         if (isCheapCrystal)
         {
             Player.Bag.AddCheapCrystal();
-            Game.Instance.DisplayMessage = "Mineral is mined";
+            Game.Instance.DisplayMessage = "Mineral has been mined";
         }
         else
         {
-            Game.Instance.DisplayMessage = "Diamond is mined";
+            Game.Instance.DisplayMessage = "Diamond has mined";
             Player.Bag.AddExpensiveCrystal();
         }
 

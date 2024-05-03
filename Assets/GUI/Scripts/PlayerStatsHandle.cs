@@ -30,6 +30,8 @@ public class PlayerStatsHandle : MonoBehaviour
     [SerializeField] public Text Player1MyTurn;
     [SerializeField] public Text Player2MyTurn;
 
+    [SerializeField] public GameObject turnCountBackgroundColor;
+
     private bool GameStarted = false;
 
 
@@ -55,12 +57,15 @@ public class PlayerStatsHandle : MonoBehaviour
         {
             Player1MyTurn.text = "My turn!";
             Player2MyTurn.text = "Stand By";
+            turnCountBackgroundColor.GetComponent<Image>().color = new Color(76f / 255f, 88f / 255f, 195f / 255f, 255f / 255f);
 
         }
         else
         {
             Player1MyTurn.text = "Stand By";
             Player2MyTurn.text = "My turn!";
+            turnCountBackgroundColor.GetComponent<Image>().color = new Color(195f / 255f, 76f / 255f, 76f / 255f, 255f / 255f);
+
         }
 
         if (GameStarted)

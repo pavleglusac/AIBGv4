@@ -13,7 +13,7 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
     public House House { get; set; }
     public int X, Z;
     public bool isDone { get; set; } = false;
-    
+
 
     public RefinementPutCommand Initialize(Player player, int putCheap, int putExpensive, int x, int z)
     {
@@ -28,10 +28,11 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
 
     public bool CanExecute()
     {
-        
+
         House = Game.Instance.Board.FindHouse(X, Z);
-        
-        if (House == null) {
+
+        if (House == null)
+        {
             Game.Instance.DisplayMessage = "Not a refinement facility!";
             return false;
         }
@@ -54,7 +55,7 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
         }
         if (!CanAct())
         {
-            Game.Instance.DisplayMessage = "You must be near your refinement to put crystals in it.";
+            Game.Instance.DisplayMessage = "You must be near your refinery to put the crystals inside";
             return false;
         }
         return true;
@@ -77,7 +78,7 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
         {
             House.ExpensiveCrystals.Add(new Tuple<ExpensiveCrystalItem, int>(Player.Bag.PopExpensiveCrystal(), Game.Instance.TurnCount));
         }
-        Game.Instance.DisplayMessage = "Put to refinement Successful!";
+        Game.Instance.DisplayMessage = "Crystals have successfully been put into the refinery";
 
         isDone = true;
     }
