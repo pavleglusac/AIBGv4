@@ -20,8 +20,8 @@ public class BotVsBotSettings : MonoBehaviour
 
     public void SetPlayer1Script()
     {
-        FileBrowser.SetDefaultFilter( ".sh" );
-        FileBrowser.SetFilters(true, new FileBrowser.Filter( "Shell Files", ".sh"));
+        FileBrowser.SetDefaultFilter(".sh");
+        FileBrowser.SetFilters(true, new FileBrowser.Filter("Shell Files", ".sh"));
         FileBrowser.ShowLoadDialog(
                     (paths) =>
                     {
@@ -43,7 +43,7 @@ public class BotVsBotSettings : MonoBehaviour
 
     public void SetPlayer2Script()
     {
-        FileBrowser.SetFilters(true, new FileBrowser.Filter( "Shell Files", ".sh"));
+        FileBrowser.SetFilters(true, new FileBrowser.Filter("Shell Files", ".sh"));
         FileBrowser.ShowLoadDialog(
                       (paths) =>
                       {
@@ -83,18 +83,20 @@ public class BotVsBotSettings : MonoBehaviour
             Debug.Log("cant start game becayse reasons");
             return;
         }
-        
+
 
         if (LoadGameBot)
         {
             PlayerPrefs.SetString("player2_name", "Topic Team");
-            string gameBotPath = Path.Combine(Application.streamingAssetsPath, "run.sh");
+            string gameBotPath = Path.Combine(Application.streamingAssetsPath, "python/run.sh");
             PlayerPrefs.SetString("player_2_script_path", gameBotPath);
-        } else {
+        }
+        else
+        {
             PlayerPrefs.SetString("player2_name", InputPlayer2.text);
         }
 
-        
+
         PlayerPrefs.SetString("player1_name", InputPlayer1.text);
         if (Game.Instance != null)
         {
