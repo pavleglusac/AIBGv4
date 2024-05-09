@@ -123,8 +123,15 @@ public class Game : MonoBehaviour
             Player2.SetupPlayer(PlayerPrefs.GetString("player2_name"));
             Player1.SetupPlayer(PlayerPrefs.GetString("player1_name"));
         }
-        player1ScriptRunner?.process?.Kill();
-        player2ScriptRunner?.process?.Kill();
+        try {
+            player1ScriptRunner?.process?.Kill();
+        } catch (Exception e) {
+        }
+
+        try {
+            player2ScriptRunner?.process?.Kill();
+        } catch (Exception e) {
+        }
 
         player1ScriptPath = PlayerPrefs.GetString("player_1_script_path");
         player2ScriptPath = PlayerPrefs.GetString("player_2_script_path");
@@ -204,14 +211,15 @@ public class Game : MonoBehaviour
         }
 
         string msg = GetGameState();
-        RunWriteToProcessAsync(msg, targetRunner);
+        string currentPlayerName = FirstPlayerTurn ? Player1.Name : Player2.Name;
+        RunWriteToProcessAsync(msg, targetRunner, currentPlayerName);
     }
 
-    public async void RunWriteToProcessAsync(string msg, ScriptRunner targetRunner)
+    public async void RunWriteToProcessAsync(string msg, ScriptRunner targetRunner, string currentPlayerName)
     {
         try
         {
-            await Task.Run(() => targetRunner.WriteToProcessAsync(msg));
+            await Task.Run(() => targetRunner.WriteToProcessAsync(msg, currentPlayerName));
             UnityEngine.Debug.Log("WriteToProcessAsync completed successfully.");
         }
         catch (Exception ex)

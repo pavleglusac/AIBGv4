@@ -112,4 +112,13 @@ public static class Actions
         commandInstance.Initialize(Game.Instance.GetCurrentPlayer());
         Game.Instance.CommandManager.AddCommand(commandInstance);
     }
+
+    public static void InvalidAction()
+    {
+        GameObject commandObject = new GameObject("InvalidActionCommand");
+        commandObject.transform.SetParent(GameObject.Find("Commands").transform ?? null, false);
+        InvalidActionCommand commandInstance = commandObject.AddComponent<InvalidActionCommand>();
+        commandInstance.Initialize(Game.Instance.GetCurrentPlayer());
+        Game.Instance.CommandManager.AddCommand(commandInstance);
+    }
 }

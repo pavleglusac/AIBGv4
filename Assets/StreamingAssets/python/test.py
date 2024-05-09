@@ -184,7 +184,6 @@ def act(line):
         else:
             print("rest", flush=True)
 
-
 while True:
     line = sys.stdin.readline().strip()
     if line:

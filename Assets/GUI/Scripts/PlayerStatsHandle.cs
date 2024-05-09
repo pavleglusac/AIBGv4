@@ -24,7 +24,7 @@ public class PlayerStatsHandle : MonoBehaviour
     [SerializeField] public GameObject displayMessageBackgorund;
     [SerializeField] public GameObject GameOverMenu;
     [SerializeField] public Text displayWinner;
-    [SerializeField] public Text displayGameOverReason;
+    [SerializeField] public GameObject displayGameOverReason;
 
 
     [SerializeField] public Text Player1MyTurn;
@@ -87,7 +87,16 @@ public class PlayerStatsHandle : MonoBehaviour
     public void GameOverScreen(string gameOverMessage)
     {
         displayWinner.text = "Winner: " + Game.Instance.Winner;
-        displayGameOverReason.text = gameOverMessage;
+        // get text mesh pro TextMeshProUGUI
+        var textMeshPro = displayGameOverReason.GetComponent<TMPro.TextMeshProUGUI>();
+        textMeshPro.text = gameOverMessage;
+        // list all components
+        var components = displayGameOverReason.GetComponents<Component>();
+        foreach (var component in components)
+        {
+            Debug.Log(component);
+        }
+        // displayGameOverReason.text = gameOverMessage;
         GameOverMenu.SetActive(true);
 
     }

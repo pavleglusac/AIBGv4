@@ -64,7 +64,6 @@ public class ScriptRunner : MonoBehaviour
             argumentsPrefix = "";
         }
 
-        
         process = new Process
         {
             StartInfo = new ProcessStartInfo
@@ -75,7 +74,7 @@ public class ScriptRunner : MonoBehaviour
                 RedirectStandardError = true,
                 RedirectStandardInput = true,
                 UseShellExecute = false,
-                CreateNoWindow = true
+                CreateNoWindow = true,
             }
         };
 
@@ -97,7 +96,7 @@ public class ScriptRunner : MonoBehaviour
     }
 
 
-    public async Task WriteToProcessAsync(string input)
+    public async Task WriteToProcessAsync(string input, string playerName)
     {
 
         UnityEngine.Debug.Log("Pisem u proces!!!");
@@ -107,9 +106,14 @@ public class ScriptRunner : MonoBehaviour
         if (process == null || process.HasExited)
         {
             UnityEngine.Debug.Log("Process is not started.");
-            // print error message from stderr
+            // print error message from stderr if there is something?
             string err = process?.StandardError.ReadToEnd();
             UnityEngine.Debug.Log($"{err}");
+            string output = process?.StandardOutput.ReadToEnd();
+            UnityEngine.Debug.Log($"{output}");
+            // combine err and output and send it to finish game method
+            string combined = $"Process died! \nStandard Error: {err}\nStandard Output: {output}";
+            CommandParser.FinishGame(combined);
             return;
         }
 
@@ -128,7 +132,7 @@ public class ScriptRunner : MonoBehaviour
             if (completedTask == readTask && !cancellationTokenSource.Token.IsCancellationRequested)
             {
                 string line = await readTask;
-                CommandParser.ParseCommand(line);
+                CommandParser.ParseCommand(line, playerName);
             }
             else
             {

@@ -43,9 +43,9 @@ public class CommandParser : MonoBehaviour
     }
     
 
-    public void ParseCommand(string command) 
+    public void ParseCommand(string command, string playerName) 
     {
-        UnityEngine.Debug.Log($"PARSING: {command}");
+        UnityEngine.Debug.Log($"Player {playerName} - PARSING: {command}");
         if (command == null)
         {
             return;
@@ -108,7 +108,7 @@ public class CommandParser : MonoBehaviour
         else
         {
             UnityEngine.Debug.Log("Invalid input, command not recognised!");
-            InvalidTurnHandling();
+            InvalidTurnHandling(command);
         }
 
     }
@@ -303,22 +303,24 @@ public class CommandParser : MonoBehaviour
         });
     }
 
-    private void InvalidTurnHandling() 
+    private void InvalidTurnHandling(string command) 
     {
         mainThreadActions.Enqueue(() => {
-            Game.Instance.DisplayMessage = "Invalid command!";
-            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-            if (Game.Instance.GetCurrentPlayer().Energy <= 0)
-            {
-                Game.Instance.GameOver = true;
-                Game.Instance.Winner = Game.Instance.FirstPlayerTurn ? Game.Instance.Player2.Name : Game.Instance.Player1.Name;
-                Game.Instance.DisplayMessage = Game.Instance.GetCurrentPlayer().Name + " has no energy left!";
-                Game.EndGame(Game.Instance.GetCurrentPlayer().Name + " has no energy left!");
-                return;
-            }
-            Game.Instance.SwitchPlayersAndDecreaseStats();
+            Game.Instance.DisplayMessage = $"Fail to parse: {command.Trim()}";
+            Actions.InvalidAction();
+        });   
+    }
+
+
+    public void FinishGame(string message) 
+    {
+        mainThreadActions.Enqueue(() => {
+            string winnerName = Game.Instance.FirstPlayerTurn ? Game.Instance.Player2.Name : Game.Instance.Player1.Name;
+            string loserName = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
+            Game.Instance.Winner = winnerName;
+            message = $"Turn for {loserName}\n{message}";
+            Game.EndGame(message);
         });
-        
     }
 
 
