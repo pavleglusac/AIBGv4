@@ -33,6 +33,7 @@
 ExportedObj/
 .consulo/
 *.csproj
+!/Assets/StreamingAssets/cs/Program.csproj
 *.unityproj
 *.sln
 *.suo
