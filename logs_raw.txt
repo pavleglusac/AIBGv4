@@ -4568,3 +4568,70 @@ EEEEEEEMMEED
 INFO:root:diamonds in bag
 INFO:root:[(3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (3, 8), (3, 9), (3, 10), (3, 11), (2, 11), (1, 11)]
 INFO:root:(3, 11)
+INFO:root:mrnjaaau
+INFO:root:mrnjaaau
+INFO:root:mrnjaaau
+INFO:root:mrnjaaau
+INFO:root:{"player1":{"name": "gas","energy": 265,"xp": 0,"coins": 300,"position": [11, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 250,"xp": 0,"coins": 300,"position": [0, 11],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "M", "M", "E", "E", "E", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "E", "E", "E", "E", "E", "E", "E"],["D", "E", "M", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["M", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["M", "M", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "M", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "M", "D", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "M", "E", "D", "E", "M"],["E", "E", "E", "E", "E", "E", "E", "M", "E", "E", "D", "E"],["1", "E", "E", "E", "E", "E", "E", "E", "E", "M", "E", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f5d8e3bdf60>
+INFO:root:<__main__.Player object at 0x7f5d8e3bd840>
+INFO:root:EDDMMEEEEEE2
+DEEEMEEEEEEE
+DEMEEEEEEEEE
+MEEEEEEEEEEE
+MMEEEEEEEEEE
+EEEEEEEEEEEE
+EEEEEEEEEEEE
+EEEEEEEEMMME
+EEEEEEEMDEEE
+EEEEEEEMEDEM
+EEEEEEEMEEDE
+1EEEEEEEEMEE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (1, 0), (2, 0), (8, 8), (9, 9), (10, 10)]
+INFO:root:path: [(0, 10), (0, 9), (0, 8), (0, 7), (0, 6), (0, 5), (1, 5), (2, 5), (2, 4), (2, 3), (1, 3), (1, 2), (1, 1)]
+INFO:root:[(0, 10), (0, 9), (0, 8), (0, 7), (0, 6), (0, 5), (1, 5), (2, 5), (2, 4), (2, 3), (1, 3), (1, 2), (1, 1)]
+INFO:root:(0, 5)
+INFO:root:{"player1":{"name": "gas","energy": 280,"xp": 0,"coins": 300,"position": [11, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 244,"xp": 0,"coins": 300,"position": [0, 5],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "M", "M", "2", "E", "E", "E", "E", "E", "B"],["D", "E", "E", "E", "M", "E", "E", "E", "E", "E", "E", "E"],["D", "E", "M", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["M", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["M", "M", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "M", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "M", "D", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "M", "E", "D", "E", "M"],["E", "E", "E", "E", "E", "E", "E", "M", "E", "E", "D", "E"],["1", "E", "E", "E", "E", "E", "E", "E", "E", "M", "E", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f5d8e3be0b0>
+INFO:root:<__main__.Player object at 0x7f5d8e3be020>
+INFO:root:EDDMM2EEEEEB
+DEEEMEEEEEEE
+DEMEEEEEEEEE
+MEEEEEEEEEEE
+MMEEEEEEEEEE
+EEEEEEEEEEEE
+EEEEEEEEEEEE
+EEEEEEEEMMME
+EEEEEEEMDEEE
+EEEEEEEMEDEM
+EEEEEEEMEEDE
+1EEEEEEEEMEE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (1, 0), (2, 0), (8, 8), (9, 9), (10, 10)]
+INFO:root:path: [(1, 5), (2, 5), (2, 4), (2, 3), (1, 3), (1, 2), (1, 1)]
+INFO:root:[(1, 5), (2, 5), (2, 4), (2, 3), (1, 3), (1, 2), (1, 1)]
+INFO:root:(2, 5)
+INFO:root:{"player1":{"name": "gas","energy": 295,"xp": 0,"coins": 300,"position": [11, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 242,"xp": 0,"coins": 300,"position": [2, 5],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "M", "M", "E", "E", "E", "E", "E", "E", "B"],["D", "E", "E", "E", "M", "E", "E", "E", "E", "E", "E", "E"],["D", "E", "M", "E", "E", "2", "E", "E", "E", "E", "E", "E"],["M", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["M", "M", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "M", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "M", "D", "E", "E", "E"],["E", "E", "E", "E", "E", "E", "E", "M", "E", "D", "E", "M"],["E", "E", "E", "E", "E", "E", "E", "M", "E", "E", "D", "E"],["1", "E", "E", "E", "E", "E", "E", "E", "E", "M", "E", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f5d8e3bdfc0>
+INFO:root:<__main__.Player object at 0x7f5d8e3bdf60>
+INFO:root:EDDMMEEEEEEB
+DEEEMEEEEEEE
+DEMEE2EEEEEE
+MEEEEEEEEEEE
+MMEEEEEEEEEE
+EEEEEEEEEEEE
+EEEEEEEEEEEE
+EEEEEEEEMMME
+EEEEEEEMDEEE
+EEEEEEEMEDEM
+EEEEEEEMEEDE
+1EEEEEEEEMEE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (1, 0), (2, 0), (8, 8), (9, 9), (10, 10)]
+INFO:root:path: [(2, 4), (2, 3), (1, 3), (1, 2), (1, 1)]
+INFO:root:[(2, 4), (2, 3), (1, 3), (1, 2), (1, 1)]
+INFO:root:(2, 3)

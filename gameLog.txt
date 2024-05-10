@@ -1,33 +1,24 @@
-[5/9/2024 10:45:27 PM] Log: Selected: C:\GitHub\AIBGv4\Assets\StreamingAssets\cpp\run_simple_bot_cpp.sh
-[5/9/2024 10:45:33 PM] Log: Target runner jeeeee True
-[5/9/2024 10:45:36 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:45:36 PM] Log: Switch Player! Current Player: 2
-[5/9/2024 10:45:36 PM] Log: Target runner jeeeee True
-[5/9/2024 10:45:36 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:45:37 PM] Log: Switch Player! Current Player: 1
-[5/9/2024 10:45:37 PM] Log: Target runner jeeeee True
-[5/9/2024 10:45:38 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:45:38 PM] Log: Switch Player! Current Player: 2
-[5/9/2024 10:45:38 PM] Log: Target runner jeeeee True
-[5/9/2024 10:45:38 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:45:38 PM] Warning: You are trying to create a MonoBehaviour using the 'new' keyword.  This is not allowed.  MonoBehaviours can only be added using AddComponent(). Alternatively, your script can inherit from ScriptableObject or no base class at all
-[5/9/2024 10:45:38 PM] Log: Switch Player! Current Player: 1
-[5/9/2024 10:45:38 PM] Log: Target runner jeeeee True
-[5/9/2024 10:45:40 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:45:40 PM] Log: Switch Player! Current Player: 2
-[5/9/2024 10:45:40 PM] Log: Target runner jeeeee True
-[5/9/2024 10:45:40 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:45:51 PM] Log: Selected: C:\GitHub\AIBGv4\Assets\StreamingAssets\java\run_simple_bot_java.sh
-[5/9/2024 10:45:56 PM] Log: Target runner jeeeee True
-[5/9/2024 10:45:56 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:45:57 PM] Log: Switch Player! Current Player: 2
-[5/9/2024 10:45:57 PM] Log: Target runner jeeeee True
-[5/9/2024 10:45:57 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:46:27 PM] Log: Selected: C:\GitHub\AIBGv4\Assets\StreamingAssets\cs\run_sc.sh
-[5/9/2024 10:46:33 PM] Log: Target runner jeeeee True
-[5/9/2024 10:46:34 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:46:34 PM] Log: Switch Player! Current Player: 2
-[5/9/2024 10:46:34 PM] Log: Target runner jeeeee True
-[5/9/2024 10:46:34 PM] Log: WriteToProcessAsync completed successfully.
-[5/9/2024 10:46:35 PM] Log: Switch Player! Current Player: 1
-[5/9/2024 10:46:35 PM] Log: Target runner jeeeee True
+[5/10/2024 10:17:13 AM] Log: Selected: C:\GitHub\AIBGv4\Assets\StreamingAssets\javascript\run_javascript.sh
+[5/10/2024 10:17:19 AM] Log: Target runner jeeeee True
+[5/10/2024 10:17:19 AM] Log: Content (UnityEngine.RectTransform)
+[5/10/2024 10:17:19 AM] Log: Content (UnityEngine.CanvasRenderer)
+[5/10/2024 10:17:19 AM] Log: Content (TMPro.TextMeshProUGUI)
+[5/10/2024 10:17:19 AM] Log: Content (UnityEngine.UI.ContentSizeFitter)
+[5/10/2024 10:17:19 AM] Log: WriteToProcessAsync completed successfully.
+[5/10/2024 10:18:46 AM] Log: Selected: C:\GitHub\AIBGv4\Assets\StreamingAssets\javascript\run_javascript.sh
+[5/10/2024 10:18:51 AM] Log: Target runner jeeeee True
+[5/10/2024 10:18:51 AM] Log: WriteToProcessAsync completed successfully.
+[5/10/2024 10:18:51 AM] Log: Switch Player! Current Player: 2
+[5/10/2024 10:18:51 AM] Log: Target runner jeeeee True
+[5/10/2024 10:18:51 AM] Log: WriteToProcessAsync completed successfully.
+[5/10/2024 10:18:52 AM] Log: Switch Player! Current Player: 1
+[5/10/2024 10:18:52 AM] Log: Target runner jeeeee True
+[5/10/2024 10:18:52 AM] Log: WriteToProcessAsync completed successfully.
+[5/10/2024 10:18:52 AM] Log: Switch Player! Current Player: 2
+[5/10/2024 10:18:52 AM] Log: Target runner jeeeee True
+[5/10/2024 10:18:53 AM] Log: WriteToProcessAsync completed successfully.
+[5/10/2024 10:18:53 AM] Log: Switch Player! Current Player: 1
+[5/10/2024 10:18:53 AM] Log: Target runner jeeeee True
+[5/10/2024 10:18:53 AM] Log: WriteToProcessAsync completed successfully.
+[5/10/2024 10:18:53 AM] Log: Switch Player! Current Player: 2
+[5/10/2024 10:18:53 AM] Log: Target runner jeeeee True
