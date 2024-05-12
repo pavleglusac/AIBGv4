@@ -29,8 +29,9 @@ public class BaseActionsMenuGUI : MonoBehaviour
     public Text XPTotal;
     public Text CoinsTotal;
 
+    public Text EnergyTotal;
 
-    public void UpdateText(int XPCheap, int XPExpensive, int CoinsCheap, int CoinsExpensive, int EnergyCheap, int EnergyExpensive, int XPTotal, int CoinsTotal)
+    public void UpdateText(int XPCheap, int XPExpensive, int CoinsCheap, int CoinsExpensive, int EnergyCheap, int EnergyExpensive, int XPTotal, int CoinsTotal, int EnergyTotal)
     {
         Player player = Game.Instance.GetCurrentPlayer();
         XPBagCheap.text = "Minerals: " + player.Bag.GetCheapCrystalCount().ToString();
@@ -46,6 +47,7 @@ public class BaseActionsMenuGUI : MonoBehaviour
         this.EnergyCheap.text = EnergyCheap.ToString();
         this.EnergyExpensive.text = EnergyExpensive.ToString();
         this.XPTotal.text = "  " + XPTotal.ToString() + " XP";
+        this.EnergyTotal.text = "  " + EnergyTotal.ToString() + " E";
         this.CoinsTotal.text = " " + CoinsTotal.ToString() + " Coins";
     }
 

@@ -43,7 +43,7 @@ public class BaseActionsMenu : MonoBehaviour
 
     public void UpdateText()
     {
-        BaseActionsMenuGUI.Instance.UpdateText(Instance.XPCheap, Instance.XPExpensive, Instance.CoinsCheap, Instance.CoinsExpensive, Instance.EnergyCheap, Instance.EnergyExpensive, Instance.XPTotal, Instance.CoinsTotal);
+        BaseActionsMenuGUI.Instance.UpdateText(Instance.XPCheap, Instance.XPExpensive, Instance.CoinsCheap, Instance.CoinsExpensive, Instance.EnergyCheap, Instance.EnergyExpensive, Instance.XPTotal, Instance.CoinsTotal, Instance.EnergyTotal);
     }
 
     void Start()
