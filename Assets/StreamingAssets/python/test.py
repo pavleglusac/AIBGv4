@@ -6,13 +6,13 @@ import json
 logging.basicConfig(filename='./logs_raw.txt', level=logging.DEBUG)
 logging.info("mrnjaaau")
 
-def handle_unhandled_exception(exc_type, exc_value, exc_traceback):
-    if issubclass(exc_type, KeyboardInterrupt):
-        sys.__excepthook__(exc_type, exc_value, exc_traceback)
-        return
-    logging.critical("Unhandled exception", exc_info=(exc_type, exc_value, exc_traceback))
+# def handle_unhandled_exception(exc_type, exc_value, exc_traceback):
+#     if issubclass(exc_type, KeyboardInterrupt):
+#         sys.__excepthook__(exc_type, exc_value, exc_traceback)
+#         return
+#     logging.critical("Unhandled exception", exc_info=(exc_type, exc_value, exc_traceback))
 
-sys.excepthook = handle_unhandled_exception
+# sys.excepthook = handle_unhandled_exception
 
 class Player:
     def __init__(self, name, energy, xp, coins, position, increased_backpack_duration, daze_turns, frozen_turns, backpack_capacity, raw_minerals, processed_minerals, raw_diamonds, processed_diamonds):
@@ -44,6 +44,7 @@ class GameState:
     def __init__(self, text):
         text = text.replace("^", "\n")
         dic = json.loads(text)
+        self.turns = int(dic['turn'])
         self.player1 = Player(**dic['player1'])
         self.player2 = Player(**dic['player2'])
         self.board = Board(dic['board'])
@@ -148,6 +149,11 @@ def act(line):
     # if i am next to a diamond, pick it up
     my_x, my_y = game_state.player2.position
 
+    if game_state.turns < 2:
+        print("build 0 8", flush=True)
+        return
+
+
     if not diamonds_in_bag(game_state.player2):
         logging.info("no diamonds in bag")
         next_to_diamonds_pos = next_to_type(game_state.board, game_state.player2)
@@ -166,7 +172,7 @@ def act(line):
         # go to base on 11, 0     
         logging.info("diamonds in bag")
         
-        if my_x == 0 and my_y == 11:
+        if my_x == 0 and my_y == 9:
             print(f"conv 0 diamond 0 mineral to coins, 0 diamond 0 mineral to energy, {game_state.player2.raw_diamonds} diamond {game_state.player2.raw_minerals} mineral to xp", flush=True)
             return
         
@@ -175,7 +181,7 @@ def act(line):
             print(f"move {next_to_base[0]} {next_to_base[1]}", flush=True)
             return
 
-        closest_base = find_path_for_target(game_state.board, game_state.player2, (0, 11))
+        closest_base = find_path_for_target(game_state.board, game_state.player2, (0, 9))
         logging.info(closest_base)
         next_move_to_base = next_move(closest_base, game_state.player2.position)
         logging.info(next_move_to_base)
@@ -184,13 +190,19 @@ def act(line):
         else:
             print("rest", flush=True)
 
+# intentionally take up 2GB of ram
+data = bytearray(int(1.5 * 1024 ** 3))
+
 while True:
+    # randomly access the data
+    for i in range(0, len(data), 4096):
+        data[i] = 0
     line = sys.stdin.readline().strip()
     if line:
         logging.info(line)
         act(line)
     
-    time.sleep(2)
+    # time.sleep(2)
 
 
 print("Python Echo Script Ended.")

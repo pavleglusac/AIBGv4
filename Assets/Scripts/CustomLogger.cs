@@ -40,7 +40,6 @@ public class CustomLogger : MonoBehaviour
 
     void HandleLog(string logString, string stackTrace, LogType type)
     {
-        Debug.Log("Radimo radimo logujemo");
         string logEntry = string.Format("[{0}] {1}: {2}\n", System.DateTime.Now, type, logString);
         
         File.AppendAllText(logFilePath, logEntry);

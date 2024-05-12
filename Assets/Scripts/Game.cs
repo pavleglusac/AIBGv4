@@ -245,6 +245,8 @@ public class Game : MonoBehaviour
     {
       
         string info = "{";
+        // add turn count into json
+        info += "\"turn\":" + TurnCount + ",";
         info += Player1.GetStats(true) + ",";
         info += Player2.GetStats(false) + ",";
         info += Board.DrawBoard();

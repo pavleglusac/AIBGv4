@@ -71,6 +71,11 @@ public class Board : MonoBehaviour
             for (int j = 0; j < cols; j++)
             {
                 string targetString = temp[Pillars[i, j].PillarState.ToString()];
+                if (targetString == "F") 
+                {
+                    House house = FindHouse(i, j);
+                    targetString = "F_" + (house.IsFirstPlayers ? "1" : "2") + "_" + house.Health;
+                }
                 sb.Append("\"" + targetString + "\"");
                 if (j < cols - 1)
                 {

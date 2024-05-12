@@ -48,11 +48,8 @@ public class CommandParser : MonoBehaviour
         UnityEngine.Debug.Log($"Player {playerName} - PARSING: {command}");
         if (command == null)
         {
-            return;
-        }
-        if (command.StartsWith("//")) 
-        {
-            // UnityEngine.Debug.Log($"{command}");
+            UnityEngine.Debug.Log("Invalid input, command not recognised!");
+            InvalidTurnHandling(command);
             return;
         }
 
@@ -305,6 +302,9 @@ public class CommandParser : MonoBehaviour
 
     private void InvalidTurnHandling(string command) 
     {
+        if(command == null) {
+            command = "No command.";
+        }
         mainThreadActions.Enqueue(() => {
             Game.Instance.DisplayMessage = $"Fail to parse: {command.Trim()}";
             Actions.InvalidAction();
