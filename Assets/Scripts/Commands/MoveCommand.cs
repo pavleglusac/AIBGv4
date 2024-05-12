@@ -18,7 +18,7 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
     private int EnergyCost;
     public bool isMoving { get; set; } = false;
     public bool isDone { get; set; } = false;
-    private float stepDuration = 0.2f;
+    private float stepDuration = 0.05f;
     private bool isCoroutineRunning = false;
 
     public MoveCommand Initialize(int x, int z)
