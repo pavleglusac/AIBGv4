@@ -101,12 +101,12 @@ public class ScriptRunner : MonoBehaviour
 
         if (process == null || process.HasExited)
         {
-            UnityEngine.Debug.Log("Process is not started.");
+            EnqueueOutput("Process is not started.");
 
             string err = process?.StandardError.ReadToEnd();
-            UnityEngine.Debug.Log($"Standard Error: {err}");
+            EnqueueOutput($"Standard Error: {err}");
             string output = process?.StandardOutput.ReadToEnd();
-            UnityEngine.Debug.Log($"Standard Output: {output}");
+            EnqueueOutput($"Standard Output: {output}");
 
             string combined = $"Process died! \nStandard Error: {err}\nStandard Output: {output}";
             CommandParser.FinishGame(combined);
@@ -134,7 +134,7 @@ public class ScriptRunner : MonoBehaviour
             {
                 streamToken.Cancel();
                 cancellationTokenSource.Cancel();
-                
+
                 UnityEngine.Debug.Log($"Response time exceeded {TIMEOUT} milliseconds.");
                 EnqueueOutput($"Response time exceeded {TIMEOUT} milliseconds.");
                 throw new Exception($"Response time exceeded {TIMEOUT} milliseconds.");

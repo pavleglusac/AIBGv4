@@ -4635,3 +4635,1205 @@ INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (1, 0), (2, 0), (
 INFO:root:path: [(2, 4), (2, 3), (1, 3), (1, 2), (1, 1)]
 INFO:root:[(2, 4), (2, 3), (1, 3), (1, 2), (1, 1)]
 INFO:root:(2, 3)
+INFO:root:mrnjaaau
+INFO:root:{"turn":1,"player1":{"name": "sdasdas","energy": 750,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 1000,"xp": 0,"coins": 100,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:EDDDEMEEE2
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:{"turn":3,"player1":{"name": "sdasdas","energy": 770,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 1000,"xp": 0,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 9)
+INFO:root:{"turn":5,"player1":{"name": "sdasdas","energy": 790,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 999,"xp": 0,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 6)
+INFO:root:{"turn":7,"player1":{"name": "sdasdas","energy": 810,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 996,"xp": 0,"coins": 50,"position": [1, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "2", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEM2EEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 6)
+INFO:root:{"turn":9,"player1":{"name": "sdasdas","energy": 830,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 994,"xp": 0,"coins": 50,"position": [3, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "2", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEE2EEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 1)
+INFO:root:{"turn":11,"player1":{"name": "sdasdas","energy": 850,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 989,"xp": 0,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":13,"player1":{"name": "sdasdas","energy": 870,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 983,"xp": 0,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (3, 8), (3, 9), (2, 9), (1, 9)]
+INFO:root:(3, 9)
+INFO:root:{"turn":15,"player1":{"name": "sdasdas","energy": 890,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 935,"xp": 0,"coins": 50,"position": [3, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "2"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEE2
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(2, 9), (1, 9)]
+INFO:root:(1, 9)
+INFO:root:{"turn":17,"player1":{"name": "sdasdas","energy": 910,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 923,"xp": 0,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":19,"player1":{"name": "sdasdas","energy": 930,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 917,"xp": 0,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":21,"player1":{"name": "sdasdas","energy": 950,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 917,"xp": 25,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 9)
+INFO:root:{"turn":23,"player1":{"name": "sdasdas","energy": 970,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 916,"xp": 25,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 6)
+INFO:root:{"turn":25,"player1":{"name": "sdasdas","energy": 990,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 913,"xp": 25,"coins": 50,"position": [1, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "2", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEM2EEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 6)
+INFO:root:{"turn":27,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 911,"xp": 25,"coins": 50,"position": [3, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "2", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEE2EEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 1)
+INFO:root:{"turn":29,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 906,"xp": 25,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":31,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 900,"xp": 25,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (3, 8), (3, 9), (2, 9), (1, 9)]
+INFO:root:(3, 9)
+INFO:root:{"turn":33,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 852,"xp": 25,"coins": 50,"position": [3, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "2"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEE2
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(2, 9), (1, 9)]
+INFO:root:(1, 9)
+INFO:root:{"turn":35,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 840,"xp": 25,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":37,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 834,"xp": 25,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":39,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 834,"xp": 50,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 9)
+INFO:root:{"turn":41,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 833,"xp": 50,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 6)
+INFO:root:{"turn":43,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 830,"xp": 50,"coins": 50,"position": [1, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "2", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEM2EEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 6)
+INFO:root:{"turn":45,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 828,"xp": 50,"coins": 50,"position": [3, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "2", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEE2EEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 1)
+INFO:root:{"turn":47,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 823,"xp": 50,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":49,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 817,"xp": 50,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (3, 8), (3, 9), (2, 9), (1, 9)]
+INFO:root:(3, 9)
+INFO:root:{"turn":51,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 769,"xp": 50,"coins": 50,"position": [3, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "2"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEE2
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(2, 9), (1, 9)]
+INFO:root:(1, 9)
+INFO:root:{"turn":53,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 757,"xp": 50,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":55,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 751,"xp": 50,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":57,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 751,"xp": 75,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 9)
+INFO:root:{"turn":59,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 750,"xp": 75,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 6)
+INFO:root:{"turn":61,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 747,"xp": 75,"coins": 50,"position": [1, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "2", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEM2EEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 6)
+INFO:root:{"turn":63,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 745,"xp": 75,"coins": 50,"position": [3, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "2", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEE2EEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 1)
+INFO:root:{"turn":65,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 740,"xp": 75,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":67,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 490,"xp": 75,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b5ff0>
+INFO:root:<__main__.Player object at 0x7f16818b6050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":69,"player1":{"name": "sdasdas","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 240,"xp": 75,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7f16818b58a0>
+INFO:root:<__main__.Player object at 0x7f16818b60e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:mrnjaaau
+INFO:root:{"turn":1,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 1000,"xp": 0,"coins": 100,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:EDDDEMEEE2
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:{"turn":3,"player1":{"name": "sadsa","energy": 750,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 1000,"xp": 0,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 9)
+INFO:root:{"turn":5,"player1":{"name": "sadsa","energy": 770,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 999,"xp": 0,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 6)
+INFO:root:{"turn":7,"player1":{"name": "sadsa","energy": 790,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 996,"xp": 0,"coins": 50,"position": [1, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "2", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEM2EEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 6)
+INFO:root:{"turn":9,"player1":{"name": "sadsa","energy": 810,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 994,"xp": 0,"coins": 50,"position": [3, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "2", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEE2EEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 1)
+INFO:root:{"turn":11,"player1":{"name": "sadsa","energy": 830,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 989,"xp": 0,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":13,"player1":{"name": "sadsa","energy": 850,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 983,"xp": 0,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (3, 8), (3, 9), (2, 9), (1, 9)]
+INFO:root:(3, 9)
+INFO:root:{"turn":15,"player1":{"name": "sadsa","energy": 870,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 935,"xp": 0,"coins": 50,"position": [3, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "2"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEE2
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(2, 9), (1, 9)]
+INFO:root:(1, 9)
+INFO:root:{"turn":17,"player1":{"name": "sadsa","energy": 890,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 923,"xp": 0,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":19,"player1":{"name": "sadsa","energy": 910,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 917,"xp": 0,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":21,"player1":{"name": "sadsa","energy": 930,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 917,"xp": 25,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 9)
+INFO:root:{"turn":23,"player1":{"name": "sadsa","energy": 950,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 916,"xp": 25,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 6)
+INFO:root:{"turn":25,"player1":{"name": "sadsa","energy": 970,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 913,"xp": 25,"coins": 50,"position": [1, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "2", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEM2EEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 6)
+INFO:root:{"turn":27,"player1":{"name": "sadsa","energy": 990,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 911,"xp": 25,"coins": 50,"position": [3, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "2", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEE2EEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 1)
+INFO:root:{"turn":29,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 906,"xp": 25,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":31,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 900,"xp": 25,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (3, 8), (3, 9), (2, 9), (1, 9)]
+INFO:root:(3, 9)
+INFO:root:{"turn":33,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 852,"xp": 25,"coins": 50,"position": [3, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "2"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEE2
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(2, 9), (1, 9)]
+INFO:root:(1, 9)
+INFO:root:{"turn":35,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 840,"xp": 25,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":37,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 834,"xp": 25,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":39,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 834,"xp": 50,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 9)
+INFO:root:{"turn":41,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 833,"xp": 50,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 6)
+INFO:root:{"turn":43,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 830,"xp": 50,"coins": 50,"position": [1, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "2", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEM2EEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 6)
+INFO:root:{"turn":45,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 828,"xp": 50,"coins": 50,"position": [3, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "2", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEE2EEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 1)
+INFO:root:{"turn":47,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 823,"xp": 50,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":49,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 817,"xp": 50,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (3, 8), (3, 9), (2, 9), (1, 9)]
+INFO:root:(3, 9)
+INFO:root:{"turn":51,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 769,"xp": 50,"coins": 50,"position": [3, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "2"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEE2
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:[(2, 9), (1, 9)]
+INFO:root:(1, 9)
+INFO:root:{"turn":53,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 757,"xp": 50,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":55,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 751,"xp": 50,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 1,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:diamonds in bag
+INFO:root:{"turn":57,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 751,"xp": 75,"coins": 50,"position": [0, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "2"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:EDDDEMEEF_2_32
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 9), (1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 9)
+INFO:root:{"turn":59,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 750,"xp": 75,"coins": 50,"position": [1, 9],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "2"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEE2
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(1, 8), (1, 7), (1, 6), (2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(1, 6)
+INFO:root:{"turn":61,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 747,"xp": 75,"coins": 50,"position": [1, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "2", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEM2EEE
+DEEEMMEEEE
+DEEEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(2, 6), (3, 6), (3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 6)
+INFO:root:{"turn":63,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 745,"xp": 75,"coins": 50,"position": [3, 6],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "E", "E", "2", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+DEEEEE2EEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:trying to find path for target_pos: [(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0), (5, 9), (8, 9), (9, 5), (9, 8)]
+INFO:root:path: [(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:[(3, 5), (3, 4), (3, 3), (3, 2), (3, 1), (2, 1), (1, 1)]
+INFO:root:(3, 1)
+INFO:root:{"turn":65,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 740,"xp": 75,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":67,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 490,"xp": 75,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca875ff0>
+INFO:root:<__main__.Player object at 0x7fa0ca876050>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag
+INFO:root:{"turn":69,"player1":{"name": "sadsa","energy": 1000,"xp": 0,"coins": 100,"position": [9, 0],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"player2":{"name": "Topic Team","energy": 240,"xp": 75,"coins": 50,"position": [3, 1],"increased_backpack_duration": 0,"daze_turns": 0,"frozen_turns": 0,"backpack_capacity": 0,"raw_minerals": 0,"processed_minerals": 0,"raw_diamonds": 0,"processed_diamonds": 0},"board":[["E", "D", "D", "D", "E", "M", "E", "E", "F_2_3", "B"],["D", "E", "E", "E", "E", "M", "E", "E", "E", "E"],["D", "E", "E", "E", "M", "M", "E", "E", "E", "E"],["D", "2", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "M", "E", "E", "E", "E", "E", "E", "M"],["M", "M", "M", "E", "E", "E", "E", "E", "M", "D"],["E", "E", "E", "E", "E", "E", "E", "E", "M", "E"],["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],["E", "E", "E", "E", "E", "M", "M", "E", "E", "D"],["1", "E", "E", "E", "M", "D", "E", "E", "D", "E"]]}
+INFO:root:----------------------------------------------------------------------------------------------------
+INFO:root:<__main__.Player object at 0x7fa0ca8758a0>
+INFO:root:<__main__.Player object at 0x7fa0ca8760e0>
+INFO:root:EDDDEMEEF_2_3B
+DEEEEMEEEE
+DEEEMMEEEE
+D2EEEEEEEE
+EEMEEEEEEM
+MMMEEEEEMD
+EEEEEEEEME
+EEEEEEEEEE
+EEEEEMMEED
+1EEEMDEEDE
+INFO:root:no diamonds in bag

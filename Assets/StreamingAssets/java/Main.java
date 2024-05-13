@@ -111,7 +111,7 @@ public class Main {
             // act();
             System.out.println("rest");
             // }
-            Thread.sleep(2000);
+            Thread.sleep(10);
         }
     }
 
