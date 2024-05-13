@@ -14,10 +14,8 @@ def act(line):
 while True:
     line = sys.stdin.readline().strip()
     if line:
-        logging.info(line)
-        act(line)
+        print("rest", flush=True)
 
-    time.sleep(2)
 
 
 print("Python Echo Script Ended.")

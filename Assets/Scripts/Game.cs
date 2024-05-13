@@ -166,7 +166,7 @@ public class Game : MonoBehaviour
     public static void EndGame(string gameOverMessage)
     {
         UnityEngine.Debug.Log($"Game Over! {gameOverMessage}");
-        UnityEngine.Debug.Log($"Game State: {Instance.GetGameState()}");
+        UnityEngine.Debug.Log($"Game State: {Instance.GetGameState().Replace("\n", "").Replace("\t", "")}");
         PauseGame();
         PlayerStatsHandle.Instance.GameOverScreen(gameOverMessage);
     }

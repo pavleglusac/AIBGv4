@@ -1,5 +1,13 @@
 import java.util.*;
 import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 // class Player {
 //     String name;
@@ -103,15 +111,29 @@ public class Main {
     // static GameState gameState;
 
     public static void main(String[] args) throws Exception {
-        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
         while (true) {
-            // String line = br.readLine().trim();
-            // if (!line.isEmpty()) {
-            // gameState = new GameState(line);
-            // act();
-            System.out.println("rest");
-            // }
-            Thread.sleep(10);
+            Callable<String> task = () -> br.readLine().trim();
+            Future<String> future = executor.submit(task);
+
+            try {
+                String line = future.get(20, TimeUnit.SECONDS);
+                System.out.println("rest");
+                // if (!line.isEmpty()) {
+                //     gameState = new GameState(line);
+                //     act();
+                // }
+            } catch (TimeoutException e) {
+                future.cancel(true);
+                System.out.println("Timeout: no input received in 20 seconds.");
+                System.exit(0);
+            } catch (Exception e) {
+                future.cancel(true);
+                e.printStackTrace();
+                System.exit(0);
+            }
         }
     }
 

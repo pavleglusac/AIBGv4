@@ -190,17 +190,14 @@ def act(line):
         else:
             print("rest", flush=True)
 
-# intentionally take up 2GB of ram
-data = bytearray(int(1.5 * 1024 ** 3))
-
+start = time.time()
 while True:
-    # randomly access the data
-    for i in range(0, len(data), 4096):
-        data[i] = 0
     line = sys.stdin.readline().strip()
     if line:
         logging.info(line)
         act(line)
+    if time.time() - start > 20:
+        exit(0)
     
     # time.sleep(2)
 

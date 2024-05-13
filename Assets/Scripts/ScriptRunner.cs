@@ -25,7 +25,7 @@ public class ScriptRunner : MonoBehaviour
             {
                 while (outputQueue.Count > 0)
                 {
-                    UnityEngine.Debug.Log("foq: " + outputQueue.Dequeue());
+                    UnityEngine.Debug.Log(outputQueue.Dequeue());
                 }
             }
         }
@@ -184,8 +184,4 @@ public class ScriptRunner : MonoBehaviour
 
         return stringBuilder.ToString();
     }
-
-
-
-
 }
