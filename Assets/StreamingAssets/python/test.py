@@ -195,6 +195,7 @@ while True:
     line = sys.stdin.readline().strip()
     if line:
         logging.info(line)
+        # raise Exception("mrnjaaau")
         act(line)
     if time.time() - start > 20:
         exit(0)
