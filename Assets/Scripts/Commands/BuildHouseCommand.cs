@@ -42,10 +42,13 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
         houseObject.GetComponent<House>().IsFirstPlayers = Player.FirstPlayer;
         //set first child of house to be invisible
         houseObject.transform.GetChild(0).gameObject.SetActive(false);
-        //if its not player first player set color to material of that child to red
+
+
+        houseObject.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f, 0f, 0.5f));
+
         if (!Player.FirstPlayer)
         {
-            houseObject.transform.GetChild(0).GetComponent<Renderer>().material.color = new Color(195f / 255f, 1f / 255f, 76f / 255f, 50 / 255f);
+            houseObject.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.5f, 0f, 0f));
         }
 
         Game.Instance.Board.Houses.Add(houseObject.GetComponent<House>());
