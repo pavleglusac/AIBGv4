@@ -120,13 +120,13 @@ public class CommandParser : MonoBehaviour
             int z = int.Parse(match.Groups[2].Value);
 
             mainThreadActions.Enqueue(() => {
+                UnityEngine.Debug.Log($"ACTION: MOVE {x} {z}");
                 GameObject commandObject = new GameObject("MoveCommandObject");
                 MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
                 moveCommandInstance.Initialize(x, z);
                 Game.Instance.CommandManager.AddCommand(moveCommandInstance);
             });
             
-            UnityEngine.Debug.Log($"MOVE {x} {z}");
         }
         else
         {
@@ -143,10 +143,10 @@ public class CommandParser : MonoBehaviour
             int z = int.Parse(match.Groups[2].Value);
 
             mainThreadActions.Enqueue(() => {
+                UnityEngine.Debug.Log($"ACTION: MINE {x} {z}");
                 Actions.Mine(x, z);
             });
             
-            UnityEngine.Debug.Log($"MINE {x} {z}");
         }
         else
         {
@@ -163,10 +163,10 @@ public class CommandParser : MonoBehaviour
             int z = int.Parse(match.Groups[2].Value);
 
             mainThreadActions.Enqueue(() => {
+                UnityEngine.Debug.Log($"ACTION: BUILD {x} {z}");
                 Actions.BuildHouse(x, z);
             });
             
-            UnityEngine.Debug.Log($"BUILD {x} {z}");
         }
         else
         {
@@ -183,10 +183,10 @@ public class CommandParser : MonoBehaviour
             int z = int.Parse(match.Groups[2].Value);
 
             mainThreadActions.Enqueue(() => {
+                UnityEngine.Debug.Log($"ACTION: ATTACK {x} {z}");
                 Actions.AttackHouse(x, z);
             });
 
-            UnityEngine.Debug.Log($"ATTACK {x} {z}");
         }
         else
         {
@@ -204,10 +204,10 @@ public class CommandParser : MonoBehaviour
             int cheap = int.Parse(match.Groups[3].Value);
             int expensive = int.Parse(match.Groups[4].Value);
             mainThreadActions.Enqueue(() => {
+                UnityEngine.Debug.Log($"ACTION: PUT REFINEMENT {x} {z} {cheap} {expensive}");
                 Actions.PutRefinement(x, z, cheap, expensive);
             });
             
-            UnityEngine.Debug.Log($"PUT REFINEMENT {x} {z} {cheap} {expensive}");
         }
         else
         {
@@ -225,10 +225,10 @@ public class CommandParser : MonoBehaviour
             int cheap = int.Parse(match.Groups[3].Value);
             int expensive = int.Parse(match.Groups[4].Value);
             mainThreadActions.Enqueue(() => {
+                UnityEngine.Debug.Log($"ACTION: TAKE REFINEMENT {x} {z} {cheap} {expensive}");
                 Actions.TakeRefinement(x, z, cheap, expensive);
             });
 
-            UnityEngine.Debug.Log($"TAKE REFINEMENT {x} {z} {cheap} {expensive}");
         }
         else
         {
@@ -250,10 +250,10 @@ public class CommandParser : MonoBehaviour
             int expXP = int.Parse(match.Groups[5].Value);
             int cheapXP = int.Parse(match.Groups[6].Value);
             mainThreadActions.Enqueue(() => {
+                UnityEngine.Debug.Log($"ACTION: BASE CONVERSIONS {cheapCoins} {expCoins} {cheapEnergy} {expEnergy} {cheapXP} {expXP}");
                 Actions.BaseConversions(cheapXP, expXP, cheapCoins, expCoins, cheapEnergy, expEnergy);
             });
 
-            UnityEngine.Debug.Log($"BASE CONVERSIONS {cheapCoins} {expCoins} {cheapEnergy} {expEnergy} {cheapXP} {expXP}");
         }
         else
         {
@@ -268,10 +268,10 @@ public class CommandParser : MonoBehaviour
         {
 
             mainThreadActions.Enqueue(() => {
+                UnityEngine.Debug.Log($"ACTION: REST");
                 Actions.Rest();
             });
             
-            UnityEngine.Debug.Log($"REST");
         }
         else
         {
@@ -282,6 +282,7 @@ public class CommandParser : MonoBehaviour
     private void HandleFreeze() 
     {
         mainThreadActions.Enqueue(() => {
+            UnityEngine.Debug.Log($"ACTION: FREEZE");
             Actions.Freeze();
         });
     }
@@ -289,6 +290,7 @@ public class CommandParser : MonoBehaviour
     private void HandleBackpack() 
     { 
         mainThreadActions.Enqueue(() => {
+            UnityEngine.Debug.Log($"ACTION: BACKPACK");
             Actions.IncreaseBacpackStorage();
         });
     }
@@ -296,6 +298,7 @@ public class CommandParser : MonoBehaviour
     private void HandleDaze() 
     { 
         mainThreadActions.Enqueue(() => {
+            UnityEngine.Debug.Log($"ACTION: DAZE");
             Actions.Daze();
         });
     }
@@ -306,8 +309,8 @@ public class CommandParser : MonoBehaviour
             command = "No command.";
         }
         mainThreadActions.Enqueue(() => {
-            Game.Instance.DisplayMessage = $"Fail to parse: {command.Trim()}";
             Actions.InvalidAction();
+            Game.Instance.DisplayMessage = $"Fail to parse: {command.Trim()}";
         });   
     }
 

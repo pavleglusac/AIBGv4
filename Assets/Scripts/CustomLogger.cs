@@ -15,12 +15,9 @@ public class CustomLogger : MonoBehaviour
 
     void Awake()
     {
-        // Set the log file path to the same directory as the game executable
         var directory = Path.Combine(Application.dataPath, "../");
         logFilePath = Path.Combine(directory, "gameLog.txt");
-        Debug.Log("Log file path: " + logFilePath);
 
-        // if current scene is the main menu, clear the log file
         if (!created && SceneManager.GetActiveScene().name == "Main menu")
         {
             ClearFile();

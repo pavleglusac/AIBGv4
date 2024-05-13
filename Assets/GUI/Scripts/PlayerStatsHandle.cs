@@ -87,18 +87,9 @@ public class PlayerStatsHandle : MonoBehaviour
     public void GameOverScreen(string gameOverMessage)
     {
         displayWinner.text = "Winner: " + Game.Instance.Winner;
-        // get text mesh pro TextMeshProUGUI
         var textMeshPro = displayGameOverReason.GetComponent<TMPro.TextMeshProUGUI>();
         textMeshPro.text = gameOverMessage;
-        // list all components
-        var components = displayGameOverReason.GetComponents<Component>();
-        foreach (var component in components)
-        {
-            Debug.Log(component);
-        }
-        // displayGameOverReason.text = gameOverMessage;
         GameOverMenu.SetActive(true);
-
     }
 
     void Update()

@@ -42,8 +42,6 @@ public class ResourceGenerator : MonoBehaviour
         numberOfExpensiveCrystalsInGroup = game.numberOfExpensiveCrystalsInGroup;
         baseAreaLength = rows / 3;
 
-        //Debug.Log("numberOfCheapCrystalGroups: " + numberOfCheapCrystalGroups + " numberOfExpensiveCrystalGroups: " + numberOfExpensiveCrystalGroups + " numberOfCheapCrystalsInGroup: " + numberOfCheapCrystalsInGroup + " numberOfExpensiveCrystalsInGroup: " + numberOfExpensiveCrystalsInGroup);
-
         //game.Board.CheapCrystals = new CheapCrystal[(numberOfCheapCrystalGroups * numberOfCheapCrystalsInGroup * 2)]; // 3 crystals per group, 2 groups one for each side
         //game.Board.ExpensiveCrystals = new ExpensiveCrystal[(numberOfExpensiveCrystalGroups * numberOfExpensiveCrystalsInGroup * 2)]; // 3 crystals per group, 2 groups one for each side
 

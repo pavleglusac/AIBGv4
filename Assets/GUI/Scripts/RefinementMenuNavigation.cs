@@ -96,7 +96,6 @@ public class RefinementMenuNavigation : MonoBehaviour
     public void IncreaseTakeCheapCrystal()
     {
         Player player = Game.Instance.GetCurrentPlayer();
-        Debug.Log(Instance.selectedHouse);
         if (Instance.TakeCheap == Instance.selectedHouse.GetProcessedCheapCrystalCount()) return;
         int processedCheapCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_cheap_crystal_weight"));
         int processedExpensiveCrystalWeight = int.Parse(PlayerPrefs.GetString("processed_expensive_crystal_weight"));
@@ -142,7 +141,6 @@ public class RefinementMenuNavigation : MonoBehaviour
 
     void Start()
     {
-        // Debug.Log("Usao");
         if (Instance == null) Instance = this;
     }
 }

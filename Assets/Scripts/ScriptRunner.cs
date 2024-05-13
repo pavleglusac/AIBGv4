@@ -11,6 +11,8 @@ using System.Text;
 
 public class ScriptRunner : MonoBehaviour
 {
+    public const int TIMEOUT = 3000;
+
     public string scriptPath;
     public Process process;
     public CommandParser CommandParser { get; set; }
@@ -23,7 +25,7 @@ public class ScriptRunner : MonoBehaviour
             {
                 while (outputQueue.Count > 0)
                 {
-                    UnityEngine.Debug.Log(outputQueue.Dequeue());
+                    UnityEngine.Debug.Log("foq: " + outputQueue.Dequeue());
                 }
             }
         }
@@ -48,15 +50,14 @@ public class ScriptRunner : MonoBehaviour
 
     public void StartProcess(string scriptPath)
     {
-        UnityEngine.Debug.Log(scriptPath);
+        UnityEngine.Debug.Log("Starting process for script: " + scriptPath);
         string fileName, argumentsPrefix;
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             fileName = "wsl";
             argumentsPrefix = "";
             scriptPath = ConvertWindowsPathToWsl(scriptPath);
-        
-            UnityEngine.Debug.Log(scriptPath);
+            UnityEngine.Debug.Log($"Converted path: {scriptPath}");
         }
         else
         {
@@ -79,39 +80,34 @@ public class ScriptRunner : MonoBehaviour
         };
 
         process.Start();
-        // string err = process.StandardError.ReadToEnd();
-        // UnityEngine.Debug.Log($"{err}");
-        UnityEngine.Debug.Log($"Script status: {process.HasExited}");
-        UnityEngine.Debug.Log("Pokrenuta skripta!!!");
+        UnityEngine.Debug.Log("Process started.");
+        UnityEngine.Debug.Log($"Script is alive: {process.HasExited == false}");
     }
 
-    private Queue<string> outputQueue = new Queue<string>();
+    private readonly Queue<string> outputQueue = new Queue<string>();
 
     private void EnqueueOutput(string output)
     {
-        lock (outputQueue)
-        {
-            outputQueue.Enqueue(output);
-        }
+        outputQueue.Enqueue(output);
     }
 
 
     public async Task WriteToProcessAsync(string input, string playerName)
     {
 
-        UnityEngine.Debug.Log("Pisem u proces!!!");
-        UnityEngine.Debug.Log(input);
         input = input.Replace("\n", "");
+        UnityEngine.Debug.Log($"Writing to process: {input}");
+        EnqueueOutput($"Writing to process: {input}");
 
         if (process == null || process.HasExited)
         {
             UnityEngine.Debug.Log("Process is not started.");
-            // print error message from stderr if there is something?
+
             string err = process?.StandardError.ReadToEnd();
-            UnityEngine.Debug.Log($"{err}");
+            UnityEngine.Debug.Log($"Standard Error: {err}");
             string output = process?.StandardOutput.ReadToEnd();
-            UnityEngine.Debug.Log($"{output}");
-            // combine err and output and send it to finish game method
+            UnityEngine.Debug.Log($"Standard Output: {output}");
+
             string combined = $"Process died! \nStandard Error: {err}\nStandard Output: {output}";
             CommandParser.FinishGame(combined);
             return;
@@ -124,7 +120,7 @@ public class ScriptRunner : MonoBehaviour
         var streamToken = new CancellationTokenSource();
         try
         {
-            var delayTask = Task.Delay(5000, cancellationTokenSource.Token);
+            var delayTask = Task.Delay(TIMEOUT, cancellationTokenSource.Token);
             var readTask = Task.Run(() => CustomReadLineAsync(process.StandardOutput, streamToken.Token));
 
             var completedTask = await Task.WhenAny(readTask, delayTask);
@@ -139,9 +135,9 @@ public class ScriptRunner : MonoBehaviour
                 streamToken.Cancel();
                 cancellationTokenSource.Cancel();
                 
-                UnityEngine.Debug.Log("Response time exceeded 5 seconds.");
-                EnqueueOutput("Response time exceeded 5 seconds.");
-                throw new Exception("Response time exceeded 5 seconds.");
+                UnityEngine.Debug.Log($"Response time exceeded {TIMEOUT} milliseconds.");
+                EnqueueOutput($"Response time exceeded {TIMEOUT} milliseconds.");
+                throw new Exception($"Response time exceeded {TIMEOUT} milliseconds.");
             }
         }
         catch (TaskCanceledException)

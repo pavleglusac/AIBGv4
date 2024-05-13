@@ -86,19 +86,14 @@ public class House : MonoBehaviour
 
     void OnMouseDown()
     {
-        // Added so that players can not click 3D objects trough UI
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
 
-
         if (Game.Instance.GetCurrentPlayer().FirstPlayer != this.IsFirstPlayers)
         {
-            // TODO: Attack
             Game.Instance.selectedHouse = this;
-            Debug.Log("Attack");
-            Debug.Log(this.Health);
             Actions.AttackHouse(X, Z);
         }
         else

@@ -62,6 +62,7 @@ public class CommandManager : MonoBehaviour
         {
             _currentCommand.isDone = true;
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
+            UnityEngine.Debug.Log($"Can't execute ACTION. Reason: {Game.Instance.DisplayMessage}");
         }
         string gameOverMessage = "";
 

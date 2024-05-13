@@ -48,7 +48,6 @@ public class BaseActionsMenu : MonoBehaviour
 
     void Start()
     {
-        // Debug.Log("Usao");
         // CloseActionsMenu();
         if (Instance == null) Instance = this;
     }
@@ -62,7 +61,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.XPCheap++;
             CalculateTotal();
         }
-        Debug.Log(Instance.XPCheap);
         UpdateText();
     }
 
@@ -74,7 +72,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.XPCheap--;
             CalculateTotal();
         }
-        Debug.Log(Instance.XPCheap);
         UpdateText();
     }
 
@@ -87,7 +84,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.XPExpensive++;
             CalculateTotal();
         }
-        Debug.Log(Instance.XPExpensive);
         UpdateText();
     }
 
@@ -99,7 +95,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.XPExpensive--;
             CalculateTotal();
         }
-        Debug.Log(Instance.XPExpensive);
         UpdateText();
     }
 
@@ -113,7 +108,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.CoinsCheap++;
             CalculateTotal();
         }
-        Debug.Log(Instance.CoinsCheap);
         UpdateText();
     }
 
@@ -125,7 +119,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.CoinsCheap--;
             CalculateTotal();
         }
-        Debug.Log(Instance.CoinsCheap);
         UpdateText();
     }
 
@@ -138,7 +131,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.CoinsExpensive++;
             CalculateTotal();
         }
-        Debug.Log(Instance.CoinsExpensive);
         UpdateText();
     }
 
@@ -150,7 +142,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.CoinsExpensive--;
             CalculateTotal();
         }
-        Debug.Log(Instance.XPExpensive);
         UpdateText();
     }
 
@@ -164,7 +155,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.EnergyCheap++;
             CalculateTotal();
         }
-        Debug.Log(Instance.EnergyCheap);
         UpdateText();
     }
 
@@ -176,7 +166,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.EnergyCheap--;
             CalculateTotal();
         }
-        Debug.Log(Instance.EnergyCheap);
         UpdateText();
     }
 
@@ -189,7 +178,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.EnergyExpensive++;
             CalculateTotal();
         }
-        Debug.Log(Instance.EnergyExpensive);
         UpdateText();
     }
 
@@ -201,7 +189,6 @@ public class BaseActionsMenu : MonoBehaviour
             Instance.EnergyExpensive--;
             CalculateTotal();
         }
-        Debug.Log(Instance.EnergyExpensive);
         UpdateText();
     }
 

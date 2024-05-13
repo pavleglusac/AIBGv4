@@ -86,7 +86,10 @@ public class Game : MonoBehaviour
         CommandParser.Game = Instance;
         //DontDestroyOnLoad(gameObject);
 
-        Debug.Log(player2ScriptPath);
+        Debug.Log("Game setup complete");
+        Debug.Log($"Player 1 script path: {player1ScriptPath}");
+        Debug.Log($"Player 2 script path: {player2ScriptPath}");
+
         if (!string.IsNullOrEmpty(player1ScriptPath))
         {
             GameObject player1ScriptRunnerObject = new GameObject("ScriptRunnerObject");
@@ -162,6 +165,8 @@ public class Game : MonoBehaviour
 
     public static void EndGame(string gameOverMessage)
     {
+        UnityEngine.Debug.Log($"Game Over! {gameOverMessage}");
+        UnityEngine.Debug.Log($"Game State: {Instance.GetGameState()}");
         PauseGame();
         PlayerStatsHandle.Instance.GameOverScreen(gameOverMessage);
     }
@@ -193,7 +198,7 @@ public class Game : MonoBehaviour
             Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
         DecreasePlayerStatuses();
         UpdateAllPlayerStats(previousTurnFirstPlayer);
-        Debug.Log($"Switch Player! Current Player: {(FirstPlayerTurn ? 1 : 2)}");
+        Debug.Log($"Switching Player! Current Player: {(FirstPlayerTurn ? 1 : 2)}");
         InvokeScript(FirstPlayerTurn);
     }
 
@@ -204,7 +209,7 @@ public class Game : MonoBehaviour
         }
 
         ScriptRunner targetRunner = FirstPlayerTurn ? player1ScriptRunner : player2ScriptRunner;
-        Debug.Log($"Target runner jeeeee {targetRunner != null}");
+        Debug.Log($"Invoking script for player {(FirstPlayerTurn ? 1 : 2)}. Target Runner is not null: {targetRunner != null}");
         if (targetRunner == null)
         {
             return;
@@ -220,11 +225,11 @@ public class Game : MonoBehaviour
         try
         {
             await Task.Run(() => targetRunner.WriteToProcessAsync(msg, currentPlayerName));
-            UnityEngine.Debug.Log("WriteToProcessAsync completed successfully.");
+            UnityEngine.Debug.Log("Script task finished!");
         }
         catch (Exception ex)
         {
-            UnityEngine.Debug.LogError("Task failed!");
+            UnityEngine.Debug.LogError("Script task failed!");
             UnityEngine.Debug.LogError(ex.ToString());
             Game.Instance.DisplayMessage = ex.Message;
             Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();

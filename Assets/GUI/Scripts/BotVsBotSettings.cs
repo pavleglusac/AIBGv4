@@ -28,9 +28,9 @@ public class BotVsBotSettings : MonoBehaviour
                         PlayerPrefs.SetString("player_1_script_path", paths[0]);
                         string fileName = System.IO.Path.GetFileName(paths[0]);
                         ButtonTextPlayer1.text = fileName;
-                        Debug.Log("Selected: " + paths[0]);
+                        Debug.Log("Player 1 script path: " + paths[0]);
                     },
-                    () => { Debug.Log("Canceled"); },
+                    () => { },
                     FileBrowser.PickMode.Files,
                     false,
                     null,
@@ -50,9 +50,9 @@ public class BotVsBotSettings : MonoBehaviour
                           PlayerPrefs.SetString("player_2_script_path", paths[0]);
                           string fileName = System.IO.Path.GetFileName(paths[0]);
                           ButtonTextPlayer2.text = fileName;
-                          Debug.Log("Selected: " + paths[0]);
+                          Debug.Log("Player 2 script path: " + paths[0]);
                       },
-                      () => { Debug.Log("Canceled"); },
+                      () => {  },
                       FileBrowser.PickMode.Files,
                       false,
                       null,
@@ -80,7 +80,7 @@ public class BotVsBotSettings : MonoBehaviour
     {
         if (!CheckIfCanBeginGame())
         {
-            Debug.Log("cant start game becayse reasons");
+            Debug.Log("Can't start game because names or scripts are missing.");
             return;
         }
 

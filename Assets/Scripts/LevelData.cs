@@ -31,13 +31,13 @@ public class LevelData : MonoBehaviour
         if (textAsset != null)
         {
             Item root = JsonConvert.DeserializeObject<Item>(textAsset.text);
-            Debug.Log("Data loaded successfully");
+            Debug.Log("Level data loaded successfully.");
 
             Levels = new List<ItemData>(root.levels);
         }
         else
         {
-            Debug.LogError("Failed to load the JSON file from Resources");
+            Debug.LogError("Failed to load the level data JSON file from resources.");
         }
     }
 
