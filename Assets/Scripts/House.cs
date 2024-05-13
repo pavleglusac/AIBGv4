@@ -56,6 +56,24 @@ public class House : MonoBehaviour
         }
         HouseParentObject.transform.position = position;
 
+        Player player = null;
+        if (IsFirstPlayers)
+        {
+            player = Game.Instance.Player1;
+        }
+        else
+        {
+            player = Game.Instance.Player2;
+        }
+        if ((Mathf.Abs(player.X - this.X) <= 1 && Mathf.Abs(player.Z - this.Z) <= 1))
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+
 
     }
 

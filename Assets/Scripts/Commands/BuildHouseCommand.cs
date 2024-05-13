@@ -40,7 +40,16 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
         houseObject.GetComponent<House>().Z = Pillar.Z;
         houseObject.GetComponent<House>().Health = int.Parse(PlayerPrefs.GetString("house_health"));
         houseObject.GetComponent<House>().IsFirstPlayers = Player.FirstPlayer;
+        //set first child of house to be invisible
+        houseObject.transform.GetChild(0).gameObject.SetActive(false);
+        //if its not player first player set color to material of that child to red
+        if (!Player.FirstPlayer)
+        {
+            houseObject.transform.GetChild(0).GetComponent<Renderer>().material.color = new Color(195f / 255f, 1f / 255f, 76f / 255f, 50 / 255f);
+        }
+
         Game.Instance.Board.Houses.Add(houseObject.GetComponent<House>());
+
 
         Player.TakeCoins(GetCoinCost());
 
