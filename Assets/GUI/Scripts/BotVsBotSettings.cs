@@ -52,7 +52,7 @@ public class BotVsBotSettings : MonoBehaviour
                           ButtonTextPlayer2.text = fileName;
                           Debug.Log("Player 2 script path: " + paths[0]);
                       },
-                      () => {  },
+                      () => { },
                       FileBrowser.PickMode.Files,
                       false,
                       null,
@@ -88,7 +88,7 @@ public class BotVsBotSettings : MonoBehaviour
         if (LoadGameBot)
         {
             PlayerPrefs.SetString("player2_name", "Topic Team");
-            string gameBotPath = Path.Combine(Application.streamingAssetsPath, "python/run.sh");
+            string gameBotPath = Path.Combine(Application.streamingAssetsPath, "python", "run.sh");
             PlayerPrefs.SetString("player_2_script_path", gameBotPath);
         }
         else
