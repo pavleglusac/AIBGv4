@@ -12,10 +12,15 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
     public Pillar Pillar { get; set; }
     public bool isDone { get; set; } = false;
 
+    private int sentX;
+    private int sentZ;
+
     public BuildHouseCommand Initialize(int x, int z)
     {
         Player = Game.Instance.GetCurrentPlayer();
-        Pillar = Game.Instance.Board.Pillars[x, z];
+        sentX = x;
+        sentZ = z;
+        
         return this;
     }
 
@@ -67,6 +72,14 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
 
     public bool CanExecute()
     {
+        if (sentX < 0 || sentX >= Game.Instance.Board.Width || sentZ < 0 || sentZ >= Game.Instance.Board.Height)
+        {
+            Game.Instance.DisplayMessage = "Build out of bounds";
+            return false;
+        }
+
+        Pillar = Game.Instance.Board.Pillars[sentX, sentZ];
+        
         if (Pillar.PillarState != PillarState.Empty)
         {
             Game.Instance.DisplayMessage = "Pillar is not empty";
@@ -82,6 +95,8 @@ public class BuildHouseCommand : MonoBehaviour, ICoinSpendingCommand
             Game.Instance.DisplayMessage = "Not enough coins";
             return false;
         }
+
+
         return true;
     }
 

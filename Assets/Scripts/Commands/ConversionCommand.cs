@@ -84,6 +84,11 @@ public class ConversionCommand : MonoBehaviour, ICommand
             Game.Instance.DisplayMessage = "You can't put more diamonds than you have in your backpack";
             return false;
         }
+        if (CheapTotal == 0 && ExpensiveTotal == 0)
+        {
+            Game.Instance.DisplayMessage = "You need to convert at least one mineral or diamond";
+            return false;
+        }
         return true;
     }
 }

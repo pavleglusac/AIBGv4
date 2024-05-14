@@ -29,6 +29,18 @@ public class RefinementPutCommand : MonoBehaviour, ICommand
     public bool CanExecute()
     {
 
+        if (X < 0 || X >= Game.Instance.Board.Width || Z < 0 || Z >= Game.Instance.Board.Height)
+        {
+            Game.Instance.DisplayMessage = "Invalid coordinates for attack!";
+            return false;
+        }
+
+        if (PutCheap == 0 && PutExpensive == 0)
+        {
+            Game.Instance.DisplayMessage = "You must put in at least one item!";
+            return false;
+        }
+
         House = Game.Instance.Board.FindHouse(X, Z);
 
         if (House == null)

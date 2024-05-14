@@ -28,9 +28,7 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
     public MineCommand Initialize(Player player, int x, int z)
     {
         this.Player = player;
-        Pillar pillar = Game.Instance.Board.Pillars[x, z];
-        this.Pillar = pillar;
-        this.isCheapCrystal = pillar.PillarState == PillarState.CheapCrystal;
+        
         this.x = x;
         this.z = z;
         return this;
@@ -100,11 +98,23 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
 
     public bool CanExecute()
     {
+        // check if out of bounds
+        if (x < 0 || x >= Game.Instance.Board.Width || z < 0 || z >= Game.Instance.Board.Height)
+        {
+            Game.Instance.DisplayMessage = "Mining out of bounds";
+            return false;
+        }
+
+        this.Pillar = Game.Instance.Board.Pillars[x, z];
+        this.isCheapCrystal = this.Pillar.PillarState == PillarState.CheapCrystal;
+
+
         if (!CanAct())
         {
             Game.Instance.DisplayMessage = "You are not close enough to mine";
             return false;
         }
+
 
         CheapCrystal cheapCrystal = Game.Instance.Board.CheapCrystals.Where(c => c != null).FirstOrDefault(c => c.X == x && c.Z == z);
         if (cheapCrystal != null)

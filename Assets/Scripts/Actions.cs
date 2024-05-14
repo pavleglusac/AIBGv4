@@ -27,7 +27,6 @@ public static class Actions
 
     public static void BuildHouse(int x, int z)
     {
-        if ((x == Game.Instance.Board.Bases[0].X && z == Game.Instance.Board.Bases[0].Z) || (x == Game.Instance.Board.Bases[1].X && z == Game.Instance.Board.Bases[1].Z)) return;
         GameObject commandObject = new GameObject("BuildHouseObject");
         commandObject.transform.SetParent(GameObject.Find("Commands").transform ?? null, false);
         BuildHouseCommand buildHouseCommandInstance = commandObject.AddComponent<BuildHouseCommand>();

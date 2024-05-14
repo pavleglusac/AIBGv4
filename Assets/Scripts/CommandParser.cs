@@ -10,17 +10,17 @@ public class CommandParser : MonoBehaviour
     public CommandManager CommandManager {get; set;}
     public Game Game {get; set;}
     string movePattern = @"^move (-?\d+) (-?\d+)$";
-    string minePattern = @"^mine (-?\d+) (-?\d+)$";
-    string buildPattern = @"^build (-?\d+) (-?\d+)$";
+    string minePattern = @"^mine (\d+) (\d+)$";
+    string buildPattern = @"^build (\d+) (\d+)$";
     string conversionsPattern = @"^conv (\d+) diamond (\d+) mineral to coins, (\d+) diamond (\d+) mineral to energy, (\d+) diamond (\d+) mineral to xp$";
     string restPattern = @"^rest";
     string shopPattern = @"^shop (freeze|backpack|daze)$";
 
-    string attackPattern = @"attack (-?\d+) (-?\d+)$";
+    string attackPattern = @"attack (\d+) (\d+)$";
 
-    string putRefinement = @"refinement-put (-?\d+) (-?\d+) mineral (-?\d+) diamond (-?\d+)";
+    string putRefinement = @"refinement-put (\d+) (\d+) mineral (\d+) diamond (\d+)";
 
-    string takeRefinement = @"refinement-take (-?\d+) (-?\d+) mineral (-?\d+) diamond (-?\d+)";
+    string takeRefinement = @"refinement-take (\d+) (\d+) mineral (\d+) diamond (\d+)";
 
     private readonly Queue<Action> mainThreadActions = new Queue<Action>();
 

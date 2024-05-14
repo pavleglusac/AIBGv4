@@ -43,6 +43,12 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
     }
     public bool CanExecute()
     {
+        if (X < 0 || X >= Game.Instance.Board.Width || Z < 0 || Z >= Game.Instance.Board.Height)
+        {
+            Game.Instance.DisplayMessage = "Invalid coordinates for attack!";
+            return false;
+        }
+
         House = Game.Instance.Board.FindHouse(X, Z);
 
         if (House == null)
@@ -75,7 +81,6 @@ public class HouseAttackCommand : MonoBehaviour, ICommand
             Game.Instance.DisplayMessage = "Opponent is next to the refinement facility!";
             return false;
         }
-
 
         return true;
     }

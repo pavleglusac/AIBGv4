@@ -30,6 +30,18 @@ public class RefinementTakeCommand : MonoBehaviour, ICommand
 
     public bool CanExecute()
     {
+        if (X < 0 || X >= Game.Instance.Board.Width || Z < 0 || Z >= Game.Instance.Board.Height)
+        {
+            Game.Instance.DisplayMessage = "Invalid coordinates for attack!";
+            return false;
+        }
+
+        if (TakeCheap == 0 && TakeExpensive == 0)
+        {
+            Game.Instance.DisplayMessage = "You must take at least one item!";
+            return false;
+        }
+
         House = Game.Instance.Board.FindHouse(X, Z);
         
         if (House == null) {

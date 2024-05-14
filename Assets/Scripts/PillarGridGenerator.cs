@@ -50,6 +50,8 @@ public class PillarGridGenerator : MonoBehaviour
         totalExpensiveCrystalCount = columns / 5;
         baseAreaLength = rows / 3;
         game.Board.Pillars = new Pillar[rows, columns];
+        game.Board.Width = rows;
+        game.Board.Height = columns;
         game.Board.Bases = new Base[2];
         game.Board.Houses = new List<House>();
         GenerateGrid();

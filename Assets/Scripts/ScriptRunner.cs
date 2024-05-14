@@ -57,13 +57,14 @@ public class ScriptRunner : MonoBehaviour
             fileName = "wsl";
             argumentsPrefix = "";
             scriptPath = ConvertWindowsPathToWsl(scriptPath);
-            UnityEngine.Debug.Log($"Converted path: {scriptPath}");
         }
         else
         {
             fileName = "/bin/bash";
             argumentsPrefix = "";
+            scriptPath = $"\"{scriptPath}\"";;
         }
+        UnityEngine.Debug.Log($"Converted path: {scriptPath}");
 
         process = new Process
         {

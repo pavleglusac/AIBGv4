@@ -12,6 +12,9 @@ public class Board : MonoBehaviour
     public Base[] Bases { get; set; }
     public List<House> Houses { get; set; }
 
+    public int Width { get; set; }
+    public int Height { get; set; }
+
     // Get houses by firstplayerturn
     public int CountPlayersHouses(bool IsFirstPlayers)
     {
