@@ -14,7 +14,7 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
     public int Count { get; set; }
     public Player Player { get; set; }
     Pillar TargetPillar { get; set; }
-    List<Pillar>  Path { get; set; }
+    List<Pillar> Path { get; set; }
     private int EnergyCost;
     public bool isMoving { get; set; } = false;
     public bool isDone { get; set; } = false;
@@ -25,7 +25,7 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
     {
         Player = Game.Instance.GetCurrentPlayer();
         TargetPillar = Game.Instance.Board.Pillars[x, z];
-        
+
         EnergyCost = int.Parse(PlayerPrefs.GetString("movement_cost"));
         return this;
     }
@@ -154,7 +154,8 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
     {
         if (Player.IsDazed())
         {
-            if (OutOfBounds(TargetPillar, Player)) {
+            if (OutOfBounds(TargetPillar, Player))
+            {
                 Game.Instance.DisplayMessage = "Move out of bounds!";
                 return false;
             }
@@ -190,7 +191,7 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
 
     public int GetEnergyCost()
     {
-        return (Player.Bag.GetWeight() + EnergyCost) * Count;
+        return (Math.Min(Player.Bag.GetWeight(), int.Parse(PlayerPrefs.GetString("backpack_default_storage_capacity"))) + EnergyCost) * Count;
     }
 
 }
