@@ -47,12 +47,18 @@ public class ScriptRunner : MonoBehaviour
         wslPath = Regex.Replace(wslPath, @"([\s()])", @"\$1");
         return wslPath;
     }
+    bool IsRunningOnWine()
+    {
+        string wineVar = Environment.GetEnvironmentVariable("WINELOADERNOEXEC");
+        string winePath = Environment.GetEnvironmentVariable("WINEPREFIX");
+        return !string.IsNullOrEmpty(wineVar) || !string.IsNullOrEmpty(winePath);
+    }
 
     public void StartProcess(string scriptPath)
     {
         UnityEngine.Debug.Log("Starting process for script: " + scriptPath);
         string fileName, argumentsPrefix;
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && !IsRunningOnWine())
         {
             fileName = "wsl";
             argumentsPrefix = "";
