@@ -20,7 +20,7 @@ public class Base : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.up, Time.deltaTime * 50f);
+        transform.Rotate(Vector3.up, Time.deltaTime * 25f);
 
     }
 
