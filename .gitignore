@@ -79,3 +79,5 @@ Assets/.DS_Store
 gameLog*
 **/logs_raw.txt
 **/pid.log
+Assets/StreamingAssets/python/pid.log
+logs_raw.txt
