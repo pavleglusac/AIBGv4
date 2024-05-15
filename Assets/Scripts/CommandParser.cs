@@ -7,8 +7,8 @@ using System.Text.RegularExpressions;
 
 public class CommandParser : MonoBehaviour
 {
-    public CommandManager CommandManager {get; set;}
-    public Game Game {get; set;}
+    public CommandManager CommandManager { get; set; }
+    public Game Game { get; set; }
     string movePattern = @"^move (-?\d+) (-?\d+)$";
     string minePattern = @"^mine (\d+) (\d+)$";
     string buildPattern = @"^build (\d+) (\d+)$";
@@ -41,9 +41,9 @@ public class CommandParser : MonoBehaviour
             action?.Invoke();
         }
     }
-    
 
-    public void ParseCommand(string command, string playerName) 
+
+    public void ParseCommand(string command, string playerName)
     {
         UnityEngine.Debug.Log($"Player {playerName} - PARSING: {command}");
         if (command == null)
@@ -52,8 +52,12 @@ public class CommandParser : MonoBehaviour
             InvalidTurnHandling(command);
             return;
         }
-
-        if (Regex.IsMatch(command, movePattern))
+        if (command.Equals("script_timeout"))
+        {
+            InvalidTurnHandling("Exceeded time to get a response from script.");
+            return;
+        }
+        else if (Regex.IsMatch(command, movePattern))
         {
             HandleMovement(command);
         }
@@ -111,7 +115,7 @@ public class CommandParser : MonoBehaviour
     }
 
 
-    private void HandleMovement(string command) 
+    private void HandleMovement(string command)
     {
         var match = Regex.Match(command, movePattern);
         if (match.Success)
@@ -119,14 +123,15 @@ public class CommandParser : MonoBehaviour
             int x = int.Parse(match.Groups[1].Value);
             int z = int.Parse(match.Groups[2].Value);
 
-            mainThreadActions.Enqueue(() => {
+            mainThreadActions.Enqueue(() =>
+            {
                 UnityEngine.Debug.Log($"ACTION: MOVE {x} {z}");
                 GameObject commandObject = new GameObject("MoveCommandObject");
                 MoveCommand moveCommandInstance = commandObject.AddComponent<MoveCommand>();
                 moveCommandInstance.Initialize(x, z);
                 Game.Instance.CommandManager.AddCommand(moveCommandInstance);
             });
-            
+
         }
         else
         {
@@ -134,7 +139,7 @@ public class CommandParser : MonoBehaviour
         }
     }
 
-    private void HandleMine(string command) 
+    private void HandleMine(string command)
     {
         var match = Regex.Match(command, minePattern);
         if (match.Success)
@@ -142,11 +147,12 @@ public class CommandParser : MonoBehaviour
             int x = int.Parse(match.Groups[1].Value);
             int z = int.Parse(match.Groups[2].Value);
 
-            mainThreadActions.Enqueue(() => {
+            mainThreadActions.Enqueue(() =>
+            {
                 UnityEngine.Debug.Log($"ACTION: MINE {x} {z}");
                 Actions.Mine(x, z);
             });
-            
+
         }
         else
         {
@@ -154,7 +160,7 @@ public class CommandParser : MonoBehaviour
         }
     }
 
-    private void HandleBuild(string command) 
+    private void HandleBuild(string command)
     {
         var match = Regex.Match(command, buildPattern);
         if (match.Success)
@@ -162,11 +168,12 @@ public class CommandParser : MonoBehaviour
             int x = int.Parse(match.Groups[1].Value);
             int z = int.Parse(match.Groups[2].Value);
 
-            mainThreadActions.Enqueue(() => {
+            mainThreadActions.Enqueue(() =>
+            {
                 UnityEngine.Debug.Log($"ACTION: BUILD {x} {z}");
                 Actions.BuildHouse(x, z);
             });
-            
+
         }
         else
         {
@@ -182,7 +189,8 @@ public class CommandParser : MonoBehaviour
             int x = int.Parse(match.Groups[1].Value);
             int z = int.Parse(match.Groups[2].Value);
 
-            mainThreadActions.Enqueue(() => {
+            mainThreadActions.Enqueue(() =>
+            {
                 UnityEngine.Debug.Log($"ACTION: ATTACK {x} {z}");
                 Actions.AttackHouse(x, z);
             });
@@ -203,11 +211,12 @@ public class CommandParser : MonoBehaviour
             int z = int.Parse(match.Groups[2].Value);
             int cheap = int.Parse(match.Groups[3].Value);
             int expensive = int.Parse(match.Groups[4].Value);
-            mainThreadActions.Enqueue(() => {
+            mainThreadActions.Enqueue(() =>
+            {
                 UnityEngine.Debug.Log($"ACTION: PUT REFINEMENT {x} {z} {cheap} {expensive}");
                 Actions.PutRefinement(x, z, cheap, expensive);
             });
-            
+
         }
         else
         {
@@ -224,7 +233,8 @@ public class CommandParser : MonoBehaviour
             int z = int.Parse(match.Groups[2].Value);
             int cheap = int.Parse(match.Groups[3].Value);
             int expensive = int.Parse(match.Groups[4].Value);
-            mainThreadActions.Enqueue(() => {
+            mainThreadActions.Enqueue(() =>
+            {
                 UnityEngine.Debug.Log($"ACTION: TAKE REFINEMENT {x} {z} {cheap} {expensive}");
                 Actions.TakeRefinement(x, z, cheap, expensive);
             });
@@ -238,7 +248,7 @@ public class CommandParser : MonoBehaviour
 
     //string conversionsPattern = @"^conv (\d+) diamond (\d+) mineral to coins, (\d+) diamond (\d+) mineral to energy, (\d+) diamond (\d+) mineral to xp$";
 
-    private void HandleConversionsAtBase(string command) 
+    private void HandleConversionsAtBase(string command)
     {
         var match = Regex.Match(command, conversionsPattern);
         if (match.Success)
@@ -249,7 +259,8 @@ public class CommandParser : MonoBehaviour
             int expEnergy = int.Parse(match.Groups[3].Value);
             int expXP = int.Parse(match.Groups[5].Value);
             int cheapXP = int.Parse(match.Groups[6].Value);
-            mainThreadActions.Enqueue(() => {
+            mainThreadActions.Enqueue(() =>
+            {
                 UnityEngine.Debug.Log($"ACTION: BASE CONVERSIONS {cheapCoins} {expCoins} {cheapEnergy} {expEnergy} {cheapXP} {expXP}");
                 Actions.BaseConversions(cheapXP, expXP, cheapCoins, expCoins, cheapEnergy, expEnergy);
             });
@@ -261,17 +272,18 @@ public class CommandParser : MonoBehaviour
         }
     }
 
-    private void HandleResting(string command) 
+    private void HandleResting(string command)
     {
         var match = Regex.Match(command, restPattern);
         if (match.Success)
         {
 
-            mainThreadActions.Enqueue(() => {
+            mainThreadActions.Enqueue(() =>
+            {
                 UnityEngine.Debug.Log($"ACTION: REST");
                 Actions.Rest();
             });
-            
+
         }
         else
         {
@@ -279,45 +291,51 @@ public class CommandParser : MonoBehaviour
         }
     }
 
-    private void HandleFreeze() 
+    private void HandleFreeze()
     {
-        mainThreadActions.Enqueue(() => {
+        mainThreadActions.Enqueue(() =>
+        {
             UnityEngine.Debug.Log($"ACTION: FREEZE");
             Actions.Freeze();
         });
     }
 
-    private void HandleBackpack() 
-    { 
-        mainThreadActions.Enqueue(() => {
+    private void HandleBackpack()
+    {
+        mainThreadActions.Enqueue(() =>
+        {
             UnityEngine.Debug.Log($"ACTION: BACKPACK");
             Actions.IncreaseBacpackStorage();
         });
     }
 
-    private void HandleDaze() 
-    { 
-        mainThreadActions.Enqueue(() => {
+    private void HandleDaze()
+    {
+        mainThreadActions.Enqueue(() =>
+        {
             UnityEngine.Debug.Log($"ACTION: DAZE");
             Actions.Daze();
         });
     }
 
-    private void InvalidTurnHandling(string command) 
+    private void InvalidTurnHandling(string command)
     {
-        if(command == null) {
+        if (command == null)
+        {
             command = "No command.";
         }
-        mainThreadActions.Enqueue(() => {
+        mainThreadActions.Enqueue(() =>
+        {
             Actions.InvalidAction();
             Game.Instance.DisplayMessage = $"Fail to parse: {command.Trim()}";
-        });   
+        });
     }
 
 
-    public void FinishGame(string message) 
+    public void FinishGame(string message)
     {
-        mainThreadActions.Enqueue(() => {
+        mainThreadActions.Enqueue(() =>
+        {
             string winnerName = Game.Instance.FirstPlayerTurn ? Game.Instance.Player2.Name : Game.Instance.Player1.Name;
             string loserName = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1.Name : Game.Instance.Player2.Name;
             Game.Instance.Winner = winnerName;

@@ -126,14 +126,20 @@ public class Game : MonoBehaviour
             Player2.SetupPlayer(PlayerPrefs.GetString("player2_name"));
             Player1.SetupPlayer(PlayerPrefs.GetString("player1_name"));
         }
-        try {
+        try
+        {
             player1ScriptRunner?.process?.Kill();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
         }
 
-        try {
+        try
+        {
             player2ScriptRunner?.process?.Kill();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
         }
 
         player1ScriptPath = PlayerPrefs.GetString("player_1_script_path");
@@ -204,7 +210,8 @@ public class Game : MonoBehaviour
 
     public void InvokeScript(bool FirstPlayerTurn)
     {
-        if (Game.Instance.GameOver || Game.Instance.Board.Pillars == null) {
+        if (Game.Instance.GameOver || Game.Instance.Board.Pillars == null)
+        {
             return;
         }
 
@@ -231,9 +238,6 @@ public class Game : MonoBehaviour
         {
             UnityEngine.Debug.LogError("Script task failed!");
             UnityEngine.Debug.LogError(ex.ToString());
-            Game.Instance.DisplayMessage = ex.Message;
-            Game.Instance.GetCurrentPlayer().InvalidMoveTakeEnergy();
-            Game.Instance.SwitchPlayersAndDecreaseStats();
         }
     }
 
@@ -248,7 +252,7 @@ public class Game : MonoBehaviour
 
     public string GetGameState()
     {
-      
+
         string info = "{";
         // add turn count into json
         info += "\"turn\":" + TurnCount + ",";

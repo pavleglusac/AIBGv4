@@ -68,7 +68,7 @@ public class ScriptRunner : MonoBehaviour
         {
             fileName = "/bin/bash";
             argumentsPrefix = "";
-            scriptPath = $"\"{scriptPath}\"";;
+            scriptPath = $"\"{scriptPath}\""; ;
         }
         UnityEngine.Debug.Log($"Converted path: {scriptPath}");
 
@@ -141,6 +141,7 @@ public class ScriptRunner : MonoBehaviour
             {
                 streamToken.Cancel();
                 cancellationTokenSource.Cancel();
+                CommandParser.ParseCommand("script_timeout", playerName);
 
                 UnityEngine.Debug.Log($"Response time exceeded {TIMEOUT} milliseconds.");
                 EnqueueOutput($"Response time exceeded {TIMEOUT} milliseconds.");
@@ -149,6 +150,8 @@ public class ScriptRunner : MonoBehaviour
         }
         catch (TaskCanceledException)
         {
+            CommandParser.ParseCommand(null, playerName);
+
             UnityEngine.Debug.Log("Operation was canceled.");
             EnqueueOutput("Operation was canceled.");
             throw new Exception("Operation was canceled.");
