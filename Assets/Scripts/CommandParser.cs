@@ -13,14 +13,14 @@ public class CommandParser : MonoBehaviour
     string minePattern = @"^mine (\d+) (\d+)$";
     string buildPattern = @"^build (\d+) (\d+)$";
     string conversionsPattern = @"^conv (\d+) diamond (\d+) mineral to coins, (\d+) diamond (\d+) mineral to energy, (\d+) diamond (\d+) mineral to xp$";
-    string restPattern = @"^rest";
+    string restPattern = @"^rest$";
     string shopPattern = @"^shop (freeze|backpack|daze)$";
 
-    string attackPattern = @"attack (\d+) (\d+)$";
+    string attackPattern = @"^attack (\d+) (\d+)$";
 
-    string putRefinement = @"refinement-put (\d+) (\d+) mineral (\d+) diamond (\d+)";
+    string putRefinement = @"^refinement-put (\d+) (\d+) mineral (\d+) diamond (\d+)$";
 
-    string takeRefinement = @"refinement-take (\d+) (\d+) mineral (\d+) diamond (\d+)";
+    string takeRefinement = @"^refinement-take (\d+) (\d+) mineral (\d+) diamond (\d+)$";
 
     private readonly Queue<Action> mainThreadActions = new Queue<Action>();
 
@@ -183,7 +183,7 @@ public class CommandParser : MonoBehaviour
 
     private void HandleAttack(string command)
     {
-        var match = Regex.Match(command, buildPattern);
+        var match = Regex.Match(command, attackPattern);
         if (match.Success)
         {
             int x = int.Parse(match.Groups[1].Value);
@@ -198,7 +198,7 @@ public class CommandParser : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.Log("Invalid move command.");
+            UnityEngine.Debug.Log("Invalid attack command.");
         }
     }
 

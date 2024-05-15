@@ -32,7 +32,7 @@ public class RefinementTakeCommand : MonoBehaviour, ICommand
     {
         if (X < 0 || X >= Game.Instance.Board.Width || Z < 0 || Z >= Game.Instance.Board.Height)
         {
-            Game.Instance.DisplayMessage = "Invalid coordinates for attack!";
+            Game.Instance.DisplayMessage = "Invalid coordinates for refinement!";
             return false;
         }
 

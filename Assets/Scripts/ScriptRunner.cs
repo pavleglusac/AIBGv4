@@ -103,8 +103,8 @@ public class ScriptRunner : MonoBehaviour
     {
 
         input = input.Replace("\n", "");
-        UnityEngine.Debug.Log($"Writing to process: {input}");
         EnqueueOutput($"Writing to process: {input}");
+        bool invalidTurn = false;
 
         if (process == null || process.HasExited)
         {
@@ -142,17 +142,19 @@ public class ScriptRunner : MonoBehaviour
                 streamToken.Cancel();
                 cancellationTokenSource.Cancel();
                 CommandParser.ParseCommand("script_timeout", playerName);
+                invalidTurn = true;
 
-                UnityEngine.Debug.Log($"Response time exceeded {TIMEOUT} milliseconds.");
                 EnqueueOutput($"Response time exceeded {TIMEOUT} milliseconds.");
                 throw new Exception($"Response time exceeded {TIMEOUT} milliseconds.");
             }
         }
         catch (TaskCanceledException)
         {
-            CommandParser.ParseCommand(null, playerName);
-
-            UnityEngine.Debug.Log("Operation was canceled.");
+            if(!invalidTurn)
+            {
+                CommandParser.ParseCommand(null, playerName);
+            }
+            
             EnqueueOutput("Operation was canceled.");
             throw new Exception("Operation was canceled.");
         }

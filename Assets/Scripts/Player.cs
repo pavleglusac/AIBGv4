@@ -45,11 +45,12 @@ public class Player : MonoBehaviour
 ""increased_backpack_duration"": {IncreasedBackpackTurns},
 ""daze_turns"": {DazeTurns},
 ""frozen_turns"": {FrozenTurns},
-""backpack_capacity"": {Bag.GetWeight() / Bag.Capacity},
+""backpack_capacity"": {Bag.GetWeight()},
 ""raw_minerals"": {Bag.GetCountCheapRaw()},
 ""processed_minerals"": {Bag.GetCountCheapProcessed()},
 ""raw_diamonds"": {Bag.GetCountExpensiveRaw()},
 ""processed_diamonds"": {Bag.GetCountExpensiveProcessed()}}}";
+        stats = stats.Replace("\n", "").Replace("\r", "");
         return stats;
     }
 

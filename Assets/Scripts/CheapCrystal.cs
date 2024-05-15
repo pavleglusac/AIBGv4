@@ -30,6 +30,7 @@ public class CheapCrystal : Crystal
 
     }
 
+
     // Update is called once per frame
     void Update()
     {

@@ -21,12 +21,14 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
     private float stepDuration = 0.05f;
     private bool isCoroutineRunning = false;
 
+    private int X, Z;
+
     public MoveCommand Initialize(int x, int z)
     {
         Player = Game.Instance.GetCurrentPlayer();
-        TargetPillar = Game.Instance.Board.Pillars[x, z];
-
         EnergyCost = int.Parse(PlayerPrefs.GetString("movement_cost"));
+        X = x;
+        Z = z;
         return this;
     }
 
@@ -152,6 +154,14 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
 
     public bool CanExecute()
     {
+        // check out of bounds
+        if (X < 0 || X >= Game.Instance.Board.Width || Z < 0 || Z >= Game.Instance.Board.Height)
+        {
+            Game.Instance.DisplayMessage = "Invalid coordinates for movement!";
+            return false;
+        }
+        TargetPillar = Game.Instance.Board.Pillars[X, Z];
+
         if (Player.IsDazed())
         {
             if (OutOfBounds(TargetPillar, Player))

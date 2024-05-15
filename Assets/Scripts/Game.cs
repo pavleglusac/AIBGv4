@@ -107,7 +107,8 @@ public class Game : MonoBehaviour
             player2ScriptRunner.CommandParser = CommandParser;
             player2ScriptRunner.StartProcess(player2ScriptRunner.scriptPath);
         }
-
+        var timestamp = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+        UnityEngine.Debug.Log("Setting up game! Timestamp: " + timestamp);
     }
 
 
@@ -256,10 +257,12 @@ public class Game : MonoBehaviour
         string info = "{";
         // add turn count into json
         info += "\"turn\":" + TurnCount + ",";
+        info += "\"firstPlayerTurn\":" + FirstPlayerTurn.ToString().ToLower() + ",";
         info += Player1.GetStats(true) + ",";
         info += Player2.GetStats(false) + ",";
         info += Board.DrawBoard();
         info += "}";
+        info.Replace("\n", "").Replace("\t", "");
         return info;
 
     }

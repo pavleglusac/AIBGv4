@@ -27,4 +27,16 @@ public class Crystal : MonoBehaviour
             Actions.BuildHouse(this.X, this.Z);
         }
     }
+
+    public int CalculateReplenishTurn()
+    {
+        if (IsEmpty)
+        {
+            return ReplenishTurns - (Game.Instance.TurnCount - TurnInWhichCrystalBecameEmpty);
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

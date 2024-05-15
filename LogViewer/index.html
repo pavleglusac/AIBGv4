@@ -1,0 +1,411 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Viewer</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            background-color: black; 
+            background-image: url("https://www.ukri.org/wp-content/uploads/2021/10/STFC-041021-EuropeFromSpace-GettyImages-1284041267.jpg");
+            background-size: cover;    
+            color: white;
+        }
+        .button {
+            width: 53px;
+            height: 53px;
+            margin: 3px;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            font-style: italic;
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .command {
+            width: 150px;
+            height: 50px;
+            background-color: #16003E;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            margin: 20px;
+        }
+        .move {
+            width: 150px;
+            height: 75px;
+            background-color: #4C5157;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            margin: 5px;
+        }
+        .control {
+            width: 100px;
+            height: 50px;
+            background-color: #7a9dc7;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            margin: 5px;
+        }
+        .base {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        button:hover {
+            cursor: pointer;
+            transform: scale(1.1); 
+        }
+        .empty {
+            background-color:#4C5157;
+        }
+        .mineral_6 {
+            background-color: violet;
+            color: black;
+        }
+        .mineral_5 {
+            
+            background-color: rgb(188, 102, 188);
+            color: black;
+        }
+        .mineral_4 {
+            background-color: rgb(173, 93, 173);
+            color: black;
+        }
+        .mineral_3 {
+            background-color: rgb(133, 71, 133);
+            color: black;
+        }
+        .mineral_2 {
+            background-color: rgb(108, 58, 108);
+            color: black;
+        }
+        .mineral_1 {
+            background-color: rgb(68, 36, 68);
+            color: black;
+        }
+        .mineral_0 {
+            background-color: rgb(40, 21, 40);
+            color: black;
+        }
+
+        .diamond_3 {
+            background-color: rgb(80, 118, 190);
+            color: black;
+        }
+        .diamond_2 {
+            background-color: rgb(40, 59, 95);
+            color: black;
+        }
+
+        .diamond_1 {
+            background-color: rgb(20, 30, 47);
+            color: black;
+        }
+        .diamond_0 {
+            background-color: rgb(10, 15, 24);
+            color: black;
+        }
+
+        .facility_1 {
+            background-color: rgb(0, 166, 255);
+            color: black;
+        }
+        .facility_2 {
+            background-color: rgb(241, 84, 27);
+            color: black;
+        }
+
+        .player_1 {
+            background-color: rgb(0, 42, 255);
+            color: black;
+        }
+        .player_2 {
+            background-color: rgb(255, 47, 0);
+            color: black;
+        }
+
+        .base_1 {
+            background-color: rgb(0, 255, 238);
+            color: black;
+        }
+        .base_2 {
+            background-color: rgb(246, 255, 0);
+            color: black;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+        .file-button {
+            border: 2px solid white;
+            font-size: 13px;
+            padding: 15px 30px;
+            cursor: pointer;
+        }
+        td {
+            padding: 5px;
+            border: 1px solid white;
+        }
+
+        #moveButtons {
+            visibility: hidden;
+        }
+
+    </style>
+     
+    </head>
+    <body>
+        <h1>Log Viewer</h1>
+
+        <div style="width: 100vw; height: 100vh; display: flex;" class="flex-row-container">
+            <div style="min-width: 30vw;">
+                <div id="moveList" style="display: flex; flex-direction: column; align-items: center; overflow: scroll; height: 70%;"></div>
+                <div id="moveButtons" style="display: flex; justify-content: space-evenly; margin-top: 5px;">
+                    <button class="control" onclick="moveStart()">Start</button>
+                    <button class="control" onclick="movePrev()">Prev</button>
+                    <button class="control" onclick="moveNext()">Next</button>
+                    <button class="control" onclick="moveEnd()">End</button>
+                </div>
+            </div>
+            <div style="width: 40vw">
+                <div id="matrix"></div>
+                <input type="file" id="file-input" accept=".txt" onchange="importFile(event)">
+                <label for="file-input" class="file-button command">Import File</label>
+                <span id="file-name" class="file-name"></span>
+                <button class="command" onclick="resetMap()">Reset</button>
+            </div>
+            <div style="width: 30vw;">
+                <div id="stats"></div>
+            </div>
+        </div>
+        
+        <script>
+            const rows = 10;
+            const cols = 10;
+            const moves = [];
+            let currentMove = 0;
+
+            
+            const pillars = Array.from({ length: rows }, () =>
+                Array.from({ length: cols }, () => 'empty')
+            );
+    
+            const matrixContainer = document.getElementById('matrix');
+    
+            for (let i = 0; i < rows; i++) {
+                const row = document.createElement('div');
+                row.classList.add('row');
+    
+                for (let j = 0; j < cols; j++) {
+                    const button = document.createElement('button');
+                    button.id = `button-${i}-${j}`;     
+    
+                    button.classList.add('button');
+                    button.classList.add('empty');
+    
+                    if ((i === 0 && j === 11) || (i === 11 && j === 0) ) {
+                        button.textContent = i === 0 ? 'P1' : 'P2';
+                        button.classList.add("base");
+                    } else {
+                        button.textContent = `${i},${j}`;
+    
+                        button.addEventListener('click', () => {
+                            updateButton(button, i, j);
+                            if (i !== j) {
+                                updateSymetricalButton(i, j);
+                            }
+                        });
+                    }
+    
+                    row.appendChild(button);
+                }
+                matrixContainer.appendChild(row);
+            }
+
+            function moveStart() {
+                currentMove = 0;
+                drawMove(moves[0]);
+            }
+
+            function movePrev() {
+                if (currentMove > 0) {
+                    currentMove--;
+                    drawMove(moves[currentMove]);
+                }
+            }
+
+            function moveNext() {
+                if (currentMove < moves.length - 1) {
+                    currentMove++;
+                    drawMove(moves[currentMove]);
+                }
+            }
+
+            function moveEnd() {
+                currentMove = moves.length - 1;
+                drawMove(moves[moves.length - 1]);
+            }
+    
+    
+            function updateButtonStatus(i, j) {
+                switch (pillars[i][j]) {
+                    case "empty":
+                        pillars[i][j] = "cheap";
+                        break;
+                    case "cheap":
+                        pillars[i][j] = "expensive";
+                        break;
+                    case "expensive":
+                        pillars[i][j] = "empty";
+                        break;
+                }
+            }
+    
+            function updateButtonClass(button, status) {
+                // remove all classes
+                button.classList.remove("empty", "facility_1", "facility_2", "diamond_3", "diamond_2", "diamond_1", "diamond_0", "mineral_6", "mineral_5", "mineral_4", "mineral_3", "mineral_2", "mineral_1", "mineral_0", "player_1", "player_2", "base_1", "base_2");
+                button.classList.add(status);
+            }
+
+            function getButtonClass(text) {
+                if(text == "E") {
+                    return "empty";
+                } else if(text.startsWith("F")) {
+                    let facility = text.split("_")[1];
+                    return "facility_" + facility;
+                } else if(text.startsWith("D")) {
+                    let health = text.split("_")[1];
+                    return "diamond_" + health;
+                } else if (text.startsWith("M")) {
+                    let health = text.split("_")[1];
+                    return "mineral_" + health;
+                } else if (text == "1") {
+                    return "player_1";
+                } else if (text == "2") {
+                    return "player_2";
+                } else if (text == "A") {
+                    return "base_1";
+                } else if (text == "B") {
+                    return "base_2";
+                }
+                
+            }
+
+            function drawMove(move) {
+                let board = move.board;
+                updateStats(move);
+                // color the moveList button to show it has been clicked
+                const moveList = document.getElementById('moveList');
+                for (let i = 0; i < moves.length; i++) {
+                    if (i == currentMove) {
+                        moveList.children[i].style.backgroundColor = "green";
+                    } else {
+                        moveList.children[i].style.backgroundColor = "#4C5157";
+                    }
+                }
+                
+                for (let i = 0; i < rows; i++) {
+                    for (let j = 0; j < cols; j++) {
+                        const button = document.getElementById(`button-${i}-${j}`);
+                        button.textContent = i + "," + j;
+                        updateButtonClass(button, getButtonClass(board[i][j]));
+                        // set button text to the value of the board if not E
+                        if (board[i][j] != "E") {
+                            button.textContent = board[i][j];
+                        }
+                    }
+                }
+            }
+
+            function updateStats(move) {
+                // move has player1 and player2 fields as json
+                // display them as table with two columns
+                const stats = document.getElementById('stats');
+                stats.innerHTML = '';
+                const table1 = document.createElement('table');
+                table1.style.margin = '10px';
+                table1.style.border = '1px solid white';
+                table1.style.borderCollapse = 'collapse';
+                table1.style.width = '75%';
+                table1.style.backgroundColor = '#4C5157';
+
+                const table2 = document.createElement('table');
+                table2.style.margin = '10px';
+                table2.style.border = '1px solid white';
+                table2.style.borderCollapse = 'collapse';
+                table2.style.width = '75%';
+                table2.style.backgroundColor = '#4C5157';
+
+                const player1 = move.player1;
+                const player2 = move.player2;
+                for (const key in player1) {
+                    const row = document.createElement('tr');
+                    const cell1 = document.createElement('td');
+                    const cell2 = document.createElement('td');
+                    cell1.textContent = key;
+                    cell2.textContent = player1[key];
+                    row.appendChild(cell1);
+                    row.appendChild(cell2);
+                    table1.appendChild(row);
+                }
+                for (const key in player2) {
+                    const row = document.createElement('tr');
+                    const cell1 = document.createElement('td');
+                    const cell2 = document.createElement('td');
+                    cell1.textContent = key;
+                    cell2.textContent = player2[key];
+                    row.appendChild(cell1);
+                    row.appendChild(cell2);
+                    table2.appendChild(row);
+                }
+                stats.appendChild(table1);
+                stats.appendChild(table2);
+                
+
+            }
+    
+            function importFile() {
+    
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // for each line check if it contains 'Log: Writing to process:'
+                    const lines = e.target.result.split('\n');
+                    for (let i = 0; i < lines.length; i++) {
+                        const line = lines[i];
+                        if (line.includes('Log: Writing to process:')) {
+                            const log = line.split('Log: Writing to process:')[1];
+                            // trim and convert to json
+                            const json = JSON.parse(log.trim());
+                            moves.push(json);
+                        }
+                        
+                    }
+                    console.log(moves);
+                    // add buttons to moveList for each move, and add event listener to draw the move
+                    const moveList = document.getElementById('moveList');
+                    for (let i = 0; i < moves.length; i++) {
+                        const move = moves[i];
+                        const button = document.createElement('button');
+                        button.textContent = `Turn ${i}`;
+                        button.classList.add('move');
+                        button.addEventListener('click', () => {
+                            // set currentMove to i
+                            currentMove = i;
+                            drawMove(move);
+                        });
+                        moveList.appendChild(button);
+                    }
+                    currentMove = 0;
+                    drawMove(moves[0]);
+                    document.getElementById('moveButtons').style.visibility = 'visible';
+                }
+                reader.readAsText(file);
+            }
+    
+    
+            </script>
+
+    </body>
+    </html>

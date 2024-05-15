@@ -16,7 +16,8 @@ public class CustomLogger : MonoBehaviour
     void Awake()
     {
         var directory = Path.Combine(Application.dataPath, "../");
-        logFilePath = Path.Combine(directory, "gameLog.txt");
+        var currentTimestamp = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        logFilePath = Path.Combine(directory, "gameLog_" + currentTimestamp + ".txt");
 
         if (!created && SceneManager.GetActiveScene().name == "Main menu")
         {

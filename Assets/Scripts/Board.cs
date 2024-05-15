@@ -44,6 +44,32 @@ public class Board : MonoBehaviour
     }
 
 
+    private string GetTargetString(int i, int j, Dictionary<string, string> temp)
+    {
+        string targetString = temp[Pillars[i, j].PillarState.ToString()];
+        if (targetString == "F") 
+        {
+            House house = FindHouse(i, j);
+            targetString = "F_" + (house.IsFirstPlayers ? "1" : "2") + "_" + house.Health;
+        }
+        else if (targetString == "D")
+        {
+            ExpensiveCrystal expensiveCrystal = ExpensiveCrystals.Where(crystal => crystal.X == i && crystal.Z == j).FirstOrDefault();
+            if (expensiveCrystal != null)
+            {
+                targetString = "D_" + expensiveCrystal.RemainingMineHits + "_" + expensiveCrystal.CalculateReplenishTurn();
+            }
+        }
+        else if (targetString == "M")
+        {
+            CheapCrystal cheapCrystal = CheapCrystals.Where(crystal => crystal.X == i && crystal.Z == j).FirstOrDefault();
+            if (cheapCrystal != null)
+            {
+                targetString = "M_" + cheapCrystal.RemainingMineHits + "_" + cheapCrystal.CalculateReplenishTurn();
+            }
+        }
+        return targetString;
+    }
 
 
     public string DrawBoard()
@@ -73,12 +99,7 @@ public class Board : MonoBehaviour
             sb.Append("[");
             for (int j = 0; j < cols; j++)
             {
-                string targetString = temp[Pillars[i, j].PillarState.ToString()];
-                if (targetString == "F") 
-                {
-                    House house = FindHouse(i, j);
-                    targetString = "F_" + (house.IsFirstPlayers ? "1" : "2") + "_" + house.Health;
-                }
+                string targetString = GetTargetString(i, j, temp);
                 sb.Append("\"" + targetString + "\"");
                 if (j < cols - 1)
                 {
