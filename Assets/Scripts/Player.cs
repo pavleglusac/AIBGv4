@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
     public void InvalidMoveTakeEnergy()
     {
         Energy -= int.Parse(PlayerPrefs.GetString("invalid_turn_energy_penalty"));
+        if (Energy < 0) Energy = 0;
     }
 
     public void TakeCoins(int c)
