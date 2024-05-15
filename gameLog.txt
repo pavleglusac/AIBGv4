@@ -1,20 +1,8 @@
-[5/14/2024 11:25:51 AM] Log: Invoking script for player 1. Target Runner is not null: False
-[5/14/2024 11:27:17 AM] Log: Invoking script for player 1. Target Runner is not null: False
-[5/14/2024 11:27:22 AM] Log: Switching Player! Current Player: 2
-[5/14/2024 11:27:22 AM] Log: Invoking script for player 2. Target Runner is not null: False
-[5/14/2024 11:27:24 AM] Log: Switching Player! Current Player: 1
-[5/14/2024 11:27:24 AM] Log: Invoking script for player 1. Target Runner is not null: False
-[5/14/2024 11:27:25 AM] Log: Switching Player! Current Player: 2
-[5/14/2024 11:27:25 AM] Log: Invoking script for player 2. Target Runner is not null: False
-[5/14/2024 11:27:29 AM] Log: Switching Player! Current Player: 1
-[5/14/2024 11:27:29 AM] Log: Invoking script for player 1. Target Runner is not null: False
-[5/14/2024 11:27:30 AM] Log: Can't execute ACTION. Reason: Pillar is not empty
-[5/14/2024 11:27:30 AM] Log: Switching Player! Current Player: 2
-[5/14/2024 11:27:30 AM] Log: Invoking script for player 2. Target Runner is not null: False
-[5/14/2024 11:27:33 AM] Log: Can't execute ACTION. Reason: Cannot stay on the same place!
-[5/14/2024 11:27:33 AM] Log: Switching Player! Current Player: 1
-[5/14/2024 11:27:33 AM] Log: Invoking script for player 1. Target Runner is not null: False
-[5/14/2024 11:27:39 AM] Log: Can't execute ACTION. Reason: You can only move horizontally and vertically!
-[5/14/2024 11:27:39 AM] Log: Switching Player! Current Player: 2
-[5/14/2024 11:27:39 AM] Log: Invoking script for player 2. Target Runner is not null: False
-[5/14/2024 11:28:09 AM] Log: Invoking script for player 1. Target Runner is not null: False
+[5/15/2024 8:01:13 PM] Log: High graphics settings applied.
+[5/15/2024 8:01:22 PM] Log: Invoking script for player 1. Target Runner is not null: False
+[5/15/2024 8:01:23 PM] Log: Switching Player! Current Player: 2
+[5/15/2024 8:01:23 PM] Log: Invoking script for player 2. Target Runner is not null: False
+[5/15/2024 8:01:26 PM] Log: Switching Player! Current Player: 1
+[5/15/2024 8:01:26 PM] Log: Invoking script for player 1. Target Runner is not null: False
+[5/15/2024 8:01:28 PM] Log: Switching Player! Current Player: 2
+[5/15/2024 8:01:28 PM] Log: Invoking script for player 2. Target Runner is not null: False

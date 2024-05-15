@@ -188,8 +188,12 @@ public class Player : MonoBehaviour
     }
     public void AddIncreasedBackpackStorageTurns()
     {
+        if (IncreasedBackpackTurns == 0)
+        {
+            Bag.IncreaseBagCapacity();
+        }
         IncreasedBackpackTurns += int.Parse(PlayerPrefs.GetString("number_of_bigger_backpack_turns"));
-        Bag.IncreaseBagCapacity();
+
     }
     public void DecreaseIncreasedBackpackStorageTurns()
     {
