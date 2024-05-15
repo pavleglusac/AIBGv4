@@ -26,6 +26,7 @@ public class ResourceGenerator : MonoBehaviour
     [HideInInspector] public int numberOfExpensiveCrystalsInGroup;
     public int baseAreaLength;
     public static System.Random random = new System.Random();
+    public static bool readPrefabLevel = false;
 
     // Start :called before the first frame update
     void Start()
@@ -49,7 +50,25 @@ public class ResourceGenerator : MonoBehaviour
         //GenerateCrystals(true);
 
         //StartCoroutine(StartAnimations());
-        int index = random.Next(LevelData.Levels.Count);
+        int index;
+        if (readPrefabLevel) 
+        {
+            var ind = PlayerPrefs.GetString("levelIndex");
+            try 
+            {
+                index = int.Parse(ind);
+            }
+            catch (Exception e)
+            {
+                index = random.Next(LevelData.Levels.Count);
+                PlayerPrefs.SetString("levelIndex", index.ToString());
+            }
+        }
+        else 
+        {
+            index = random.Next(LevelData.Levels.Count);
+            PlayerPrefs.SetString("levelIndex", index.ToString());
+        }
         LevelData.ItemData level = LevelData.Levels[index];
         var count = 0;
 

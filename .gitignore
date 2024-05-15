@@ -74,3 +74,8 @@ crashlytics-build.properties
 Assets/Scripts/logs_raw.txt
 .DS_Store
 Assets/.DS_Store
+
+# any file starting with gameLog
+gameLog*
+**/logs_raw.txt
+**/pid.log

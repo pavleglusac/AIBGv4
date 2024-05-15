@@ -13,6 +13,7 @@ public class BackgroundMovement : MonoBehaviour
     {
         SetHighGraphics();
         Application.targetFrameRate = 60;
+        ResourceGenerator.readPrefabLevel = false;
     }
 
 
