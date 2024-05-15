@@ -109,6 +109,8 @@ public class Player : MonoBehaviour
     public void AddCoins(int c)
     {
         Coins += c;
+        if (Coins > int.Parse(PlayerPrefs.GetString("max_coins")))
+            Coins = int.Parse(PlayerPrefs.GetString("max_coins"));
     }
 
     public void AddXP(int xp)
@@ -187,8 +189,12 @@ public class Player : MonoBehaviour
     }
     public void AddIncreasedBackpackStorageTurns()
     {
+        if (IncreasedBackpackTurns == 0)
+        {
+            Bag.IncreaseBagCapacity();
+        }
         IncreasedBackpackTurns += int.Parse(PlayerPrefs.GetString("number_of_bigger_backpack_turns"));
-        Bag.IncreaseBagCapacity();
+
     }
     public void DecreaseIncreasedBackpackStorageTurns()
     {
