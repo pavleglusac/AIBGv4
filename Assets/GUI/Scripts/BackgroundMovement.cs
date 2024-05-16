@@ -12,7 +12,6 @@ public class BackgroundMovement : MonoBehaviour
     void Start()
     {
         SetHighGraphics();
-        Application.targetFrameRate = 60;
         ResourceGenerator.readPrefabLevel = false;
     }
 
@@ -21,29 +20,35 @@ public class BackgroundMovement : MonoBehaviour
     {
         rawImage.uvRect = new Rect(rawImage.uvRect.position + new Vector2(x, y) * Time.deltaTime, rawImage.uvRect.size);
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            SetHighGraphics();
-            Application.targetFrameRate = 60;
-        }
 
-        // Check for low graphics setting key press (L)
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
-            SetLowGraphics();
-            Application.targetFrameRate = 30;
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                SetHighGraphics();
+                Application.targetFrameRate = 60;
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                SetLowGraphics();
+                Application.targetFrameRate = 30;
+            }
         }
     }
 
     void SetHighGraphics()
     {
         QualitySettings.SetQualityLevel(QualitySettings.names.Length - 1, true);
+        Application.targetFrameRate = 60;
         Debug.Log("High graphics settings applied.");
     }
 
     void SetLowGraphics()
     {
         QualitySettings.SetQualityLevel(0, true);
+        Application.targetFrameRate = 30;
         Debug.Log("Low graphics settings applied.");
     }
 
