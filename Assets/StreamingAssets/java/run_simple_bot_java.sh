@@ -1,5 +1,5 @@
 #!/bin/bash
-
+(sleep 900 && kill $$) & 
 # Determine the directory where this script is located
 SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
 

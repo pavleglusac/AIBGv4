@@ -23,6 +23,7 @@ public class PauseMenuNavigation : MonoBehaviour
     public void GoToMainMenu()
     {
         ResourceGenerator.readPrefabLevel = false;
+        Game.KillSubprocesses();
         Game.ResumeGame();
         SceneManager.LoadScene("Main menu");
 

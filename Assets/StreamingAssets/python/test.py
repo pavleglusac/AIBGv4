@@ -431,4 +431,4 @@ while True:
             act(line)
     except TimeoutError:
         print("Readline timed out after 20 seconds.")
-        break
+        exit(0)

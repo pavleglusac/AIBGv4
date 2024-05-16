@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 public class Game : MonoBehaviour
 {
@@ -47,8 +49,8 @@ public class Game : MonoBehaviour
     String player1ScriptPath;
     String player2ScriptPath;
 
-    ScriptRunner player1ScriptRunner = null;
-    ScriptRunner player2ScriptRunner = null;
+    static ScriptRunner player1ScriptRunner = null;
+    static ScriptRunner player2ScriptRunner = null;
 
     private void Awake()
     {
@@ -86,9 +88,9 @@ public class Game : MonoBehaviour
         CommandParser.Game = Instance;
         //DontDestroyOnLoad(gameObject);
 
-        Debug.Log("Game setup complete");
-        Debug.Log($"Player 1 script path: {player1ScriptPath}");
-        Debug.Log($"Player 2 script path: {player2ScriptPath}");
+        UnityEngine.Debug.Log("Game setup complete");
+        UnityEngine.Debug.Log($"Player 1 script path: {player1ScriptPath}");
+        UnityEngine.Debug.Log($"Player 2 script path: {player2ScriptPath}");
 
         if (!string.IsNullOrEmpty(player1ScriptPath))
         {
@@ -111,9 +113,63 @@ public class Game : MonoBehaviour
         UnityEngine.Debug.Log("Setting up game! Timestamp: " + timestamp);
     }
 
+    private void OnApplicationQuit()
+    {
+        KillSubprocesses();
+    }
+
+    public static void KillSubprocesses()
+    {
+        try
+        {
+            UnityEngine.Debug.LogError("Ubijam 1!");
+            // KillProcessGroup(Game.Instance.player1ScriptRunner.process.Id);
+            Game.player1ScriptRunner.process.Kill();
+            UnityEngine.Debug.LogError("Ubiven 1!");
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.LogError(e.ToString());
+            try
+            {
+                UnityEngine.Debug.LogError("Ubijam 1 A!");
+                // KillProcessGroup(player1ScriptRunner.process.Id);
+                player1ScriptRunner.process.Kill();
+                UnityEngine.Debug.LogError("Ubiven 1 A!");
+            }
+            catch (Exception e2)
+            {
+                UnityEngine.Debug.LogError("Failed to kill process 1");
+            }
+        }
+
+        try
+        {
+            UnityEngine.Debug.LogError("Ubijam 2!");
+            // KillProcessGroup(Game.Instance.player2ScriptRunner.process.Id);
+            Game.player2ScriptRunner.process.Kill();
+            UnityEngine.Debug.LogError("Ubiven 2!");
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.LogError(e.ToString());
+            try
+            {
+                UnityEngine.Debug.LogError("Ubijam 2 A!");
+                // KillProcessGroup(player2ScriptRunner.process.Id);
+                player2ScriptRunner.process.Kill();
+                UnityEngine.Debug.LogError("Ubiven 2 A!");
+            }
+            catch (Exception e2)
+            {
+                UnityEngine.Debug.LogError("Failed to kill process 2");
+            }
+        }
+    }
 
     public void ResetGame()
     {
+        KillSubprocesses();
         StateCallback.entered = 0;
         DisplayMessage = "Good Luck!";
         IsPaused = false;
@@ -127,21 +183,7 @@ public class Game : MonoBehaviour
             Player2.SetupPlayer(PlayerPrefs.GetString("player2_name"));
             Player1.SetupPlayer(PlayerPrefs.GetString("player1_name"));
         }
-        try
-        {
-            player1ScriptRunner?.process?.Kill();
-        }
-        catch (Exception e)
-        {
-        }
-
-        try
-        {
-            player2ScriptRunner?.process?.Kill();
-        }
-        catch (Exception e)
-        {
-        }
+        
 
         player1ScriptPath = PlayerPrefs.GetString("player_1_script_path");
         player2ScriptPath = PlayerPrefs.GetString("player_2_script_path");
@@ -205,7 +247,7 @@ public class Game : MonoBehaviour
         if (!GetAlternatePlayer().IsFrozen())
             Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
         UpdateAllPlayerStats(previousTurnFirstPlayer);
-        Debug.Log($"Switching Player! Current Player: {(FirstPlayerTurn ? 1 : 2)}");
+        UnityEngine.Debug.Log($"Switching Player! Current Player: {(FirstPlayerTurn ? 1 : 2)}");
         InvokeScript(FirstPlayerTurn);
     }
 
@@ -217,7 +259,7 @@ public class Game : MonoBehaviour
         }
 
         ScriptRunner targetRunner = FirstPlayerTurn ? player1ScriptRunner : player2ScriptRunner;
-        Debug.Log($"Invoking script for player {(FirstPlayerTurn ? 1 : 2)}. Target Runner is not null: {targetRunner != null}");
+        UnityEngine.Debug.Log($"Invoking script for player {(FirstPlayerTurn ? 1 : 2)}. Target Runner is not null: {targetRunner != null}");
         if (targetRunner == null)
         {
             return;

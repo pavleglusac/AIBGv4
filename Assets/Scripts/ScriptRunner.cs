@@ -98,6 +98,38 @@ public class ScriptRunner : MonoBehaviour
         outputQueue.Enqueue(output);
     }
 
+    async void ShowError()
+    {
+
+        var output = new List<string>();
+        output.Add("Standard Error: ");
+        // CustomReadLineAsync read the output of the process, so we can't use it here. Read for 500 ms
+        var readTask = process.StandardError.ReadToEndAsync();
+        if (await Task.WhenAny(readTask, Task.Delay(500)) == readTask)
+        {
+            output.Add(readTask.Result);
+        }
+        else
+        {
+            output.Add("No output from the process.");
+        }
+
+        var readTask2 = process.StandardOutput.ReadToEndAsync();
+        output.Add("Standard Output: ");
+        if (await Task.WhenAny(readTask2, Task.Delay(500)) == readTask2)
+        {
+            output.Add(readTask2.Result);
+        }
+        else
+        {
+            output.Add("No output from the process.");
+        }
+
+        string combined = string.Join("\n", output);
+        
+        CommandParser.FinishGame(combined);
+    }
+
 
     public async Task WriteToProcessAsync(string input, string playerName)
     {
@@ -109,14 +141,7 @@ public class ScriptRunner : MonoBehaviour
         if (process == null || process.HasExited)
         {
             EnqueueOutput("Process is not started.");
-
-            string err = process?.StandardError.ReadToEnd();
-            EnqueueOutput($"Standard Error: {err}");
-            string output = process?.StandardOutput.ReadToEnd();
-            EnqueueOutput($"Standard Output: {output}");
-
-            string combined = $"Process died! \nStandard Error: {err}\nStandard Output: {output}";
-            CommandParser.FinishGame(combined);
+            ShowError();
             return;
         }
 

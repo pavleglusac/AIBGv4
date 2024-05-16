@@ -1,5 +1,5 @@
 #!/bin/bash
-
+(sleep 900 && kill $$) & 
 # Get the directory of this script
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
