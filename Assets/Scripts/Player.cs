@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
     private void HandleDaze3D(bool active)
     {
 
-        Transform particles = PlayerObject.transform.GetChild(2);
+        Transform particles = PlayerObject.transform.GetChild(1);
         particles.gameObject.SetActive(active);
     }
 
@@ -164,7 +164,7 @@ public class Player : MonoBehaviour
             HandleFreeze3D(true);
 
         }
-        FrozenTurns += int.Parse(PlayerPrefs.GetString("number_of_frozen_turns"));
+        FrozenTurns += (int.Parse(PlayerPrefs.GetString("number_of_frozen_turns")) + 1);
     }
 
     private void HandleFreeze3D(bool active)
@@ -172,8 +172,7 @@ public class Player : MonoBehaviour
         Transform firstChildTransform = PlayerObject.transform.GetChild(0);
         var icecube = firstChildTransform.GetChild(1);
         icecube.gameObject.SetActive(active);
-        Transform particles = PlayerObject.transform.GetChild(1);
-        particles.gameObject.SetActive(active);
+
     }
 
     public void DecreaseFrozenTurns()

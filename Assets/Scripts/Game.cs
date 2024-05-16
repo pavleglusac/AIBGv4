@@ -200,10 +200,10 @@ public class Game : MonoBehaviour
     public void SwitchPlayersAndDecreaseStats()
     {
         Game.Instance.TurnCount++;
+        DecreasePlayerStatuses();
         bool previousTurnFirstPlayer = Game.Instance.FirstPlayerTurn;
         if (!GetAlternatePlayer().IsFrozen())
             Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-        DecreasePlayerStatuses();
         UpdateAllPlayerStats(previousTurnFirstPlayer);
         Debug.Log($"Switching Player! Current Player: {(FirstPlayerTurn ? 1 : 2)}");
         InvokeScript(FirstPlayerTurn);
