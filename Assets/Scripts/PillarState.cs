@@ -7,6 +7,11 @@ public enum PillarState
     Empty,
     Player1,
     Player2,
-    Wall
+    Wall, 
+    House,
+    CheapCrystal, 
+    ExpensiveCrystal,
+    BasePlayer1,
+    BasePlayer2
 }
 

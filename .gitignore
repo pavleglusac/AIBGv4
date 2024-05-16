@@ -33,6 +33,7 @@
 ExportedObj/
 .consulo/
 *.csproj
+!/Assets/StreamingAssets/cs/Program.csproj
 *.unityproj
 *.sln
 *.suo
@@ -70,3 +71,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Scripts/logs_raw.txt
+.DS_Store
+Assets/.DS_Store
+
+# any file starting with gameLog
+gameLog*
+**/logs_raw.txt
+**/pid.log
+Assets/StreamingAssets/python/pid.log
+logs_raw.txt

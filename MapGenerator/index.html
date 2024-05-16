@@ -1,0 +1,227 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Generator</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            background-color: black; 
+            background-image: url("https://www.ukri.org/wp-content/uploads/2021/10/STFC-041021-EuropeFromSpace-GettyImages-1284041267.jpg");
+            background-size: cover;    
+            color: white;
+        }
+        .button {
+            width: 53px;
+            height: 53px;
+            margin: 3px;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            font-style: italic;
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .command {
+            width: 150px;
+            height: 50px;
+            background-color: #16003E;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            margin: 20px;
+        }
+        .base {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        button:hover {
+            cursor: pointer;
+            transform: scale(1.1); 
+        }
+        .empty {
+            background-color:#4C5157;
+        }
+        .expensive {
+            background-color: violet;
+            color: black;
+        }
+        .cheap {
+            background-color: cornflowerblue;
+            color: black;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .file-button {
+            border: 2px solid white;
+            font-size: 13px;
+            padding: 15px 30px;
+            cursor: pointer;
+        }
+
+    </style>
+    </head>
+    <body>
+        <h1>MAP GENERATOR</h1>
+
+        <p><i>Click once for <b class="cheap">CHEAP</b> crystal, and twice for <b class="expensive">EXPENSIVE</b> crystal.</i></p> 
+        
+        <div id="matrix"></div>
+        <script>
+            const rows = 10;
+            const cols = 10;
+            
+            const pillars = Array.from({ length: rows }, () =>
+                Array.from({ length: cols }, () => 'empty')
+            );
+
+            const matrixContainer = document.getElementById('matrix');
+
+            for (let i = 0; i < rows; i++) {
+                const row = document.createElement('div');
+                row.classList.add('row');
+
+                for (let j = 0; j < cols; j++) {
+                    const button = document.createElement('button');
+                    button.id = `button-${i}-${j}`;     
+
+                    button.classList.add('button');
+                    button.classList.add('empty');
+
+                    if ((i === 0 && j === 11) || (i === 11 && j === 0) ) {
+                        button.textContent = i === 0 ? 'P1' : 'P2';
+                        button.classList.add("base");
+                    } else {
+                        button.textContent = `${i},${j}`;
+
+                        button.addEventListener('click', () => {
+                            updateButton(button, i, j);
+                            if (i !== j) {
+                                updateSymetricalButton(i, j);
+                            }
+                        });
+                    }
+
+                    row.appendChild(button);
+                }
+                matrixContainer.appendChild(row);
+            }
+
+            function updateButton(button, i, j) {
+                updateButtonStatus(i, j),
+                updateButtonClass(button, pillars[i][j]);
+                console.log(`Button ${i},${j} status: ${pillars[i][j]}`);
+            }
+
+            function updateSymetricalButton(i, j) {
+                symetrical_i= j;
+                symetrical_j = i;
+                const symmetricalButton = document.getElementById(`button-${symetrical_i}-${symetrical_j}`);
+                updateButton(symmetricalButton, symetrical_i, symetrical_j);
+            }
+
+            function updateButtonStatus(i, j) {
+                switch (pillars[i][j]) {
+                    case "empty":
+                        pillars[i][j] = "cheap";
+                        break;
+                    case "cheap":
+                        pillars[i][j] = "expensive";
+                        break;
+                    case "expensive":
+                        pillars[i][j] = "empty";
+                        break;
+                }
+            }
+
+            function updateButtonClass(button, status) {
+                button.classList.remove('empty', 'cheap', 'expensive');
+                button.classList.add(status);
+            }
+
+
+            function resetMap() {
+                for (let i = 0; i < rows; i++) {
+                    for (let j = 0; j < cols; j++) {
+                        pillars[i][j] = "empty";
+                        const button = document.getElementById(`button-${i}-${j}`);
+                        updateButtonClass(button, "empty");
+                    }
+                }
+            }
+
+            function generateJSON() {
+                const json = {
+                    "cheap": [],
+                    "expensive": []
+                };
+
+                for (let i = 0; i < pillars.length; i++) {
+                    for (let j = 0; j < pillars[i].length; j++) {
+                        if (pillars[i][j] === 'cheap') {
+                            json.cheap.push([i, j]);
+                        } else if (pillars[i][j] === 'expensive') {
+                            json.expensive.push([i, j]);
+                        }
+                    }
+                }
+                console.log(JSON.stringify(json, null, 4));
+                return json;
+            }
+
+            function readJSON(json) {
+                resetMap();   
+
+                json.cheap.forEach(([i, j]) => {
+                    pillars[i][j] = "cheap";
+                    const button = document.getElementById(`button-${i}-${j}`);
+                    updateButtonClass(button, "cheap");
+                });
+
+                json.expensive.forEach(([i, j]) => {
+                    pillars[i][j] = "expensive";
+                    const button = document.getElementById(`button-${i}-${j}`);
+                    updateButtonClass(button, "expensive");
+                });
+            }
+
+            function importJSON() {
+
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const json = JSON.parse(e.target.result);
+                    readJSON(json);
+                }
+                reader.readAsText(file);
+            }
+
+            function exportJSON() {
+                json = generateJSON();
+                name = "map_" + Date.now() + ".json"; 
+
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(new Blob([JSON.stringify(json, null, 2)], {
+                    type: "text/plain"
+                }));
+                a.setAttribute("download", name);
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+            }
+
+            </script>
+
+        <input type="file" id="file-input" accept=".json" onchange="importJSON(event)">
+        <label for="file-input" class="file-button command">Import JSON</label>
+        <span id="file-name" class="file-name"></span>
+
+
+        <button class="command" onclick="resetMap()">Reset</button>
+        <button class="command" onclick="exportJSON()">Export to JSON</button>
+
+    </body>
+    </html>

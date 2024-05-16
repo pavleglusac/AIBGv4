@@ -1,0 +1,1 @@
+exec python3 ./Assets/Scripts/test.py

@@ -1,151 +1,90 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Pillar : MonoBehaviour
 {
-
     public GameObject PillarObject { get; set; }
 
+    public GameObject housePrefab { get; set; }
+
     public PillarState PillarState { get; set; } = PillarState.Empty;
+    public PillarState LastState { get; set; } = PillarState.Empty;
 
     public int X { get; set; }
     public int Z { get; set; }
 
-    List<Pillar> path;
+    public List<Pillar> path;
     // keep track of original color
     List<Color> originalColors = new List<Color>();
 
+    void OnMouseOver()
+    {
+
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        if (!Game.Instance.ArePlayersLanded) return;
+        if (Input.GetMouseButtonDown(1))
+        {
+            Actions.BuildHouse(this.X, this.Z);
+        }
+    }
+
     void OnMouseDown()
     {
-        if (path == null || path.Count == 0)
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
 
-        Pillar prev = path[0];
-        int count = 1;
-        int direction = -1;
-        List<(int, int)> directions = new List<(int, int)>();
-
-        for (int i = 1; i < path.Count; i++)
-        {
-            Pillar pillar = path[i];
-            // print prev and pillar
-            Debug.Log(prev.X + " " + prev.Z + " ---- " + pillar.X + " " + pillar.Z);
-            Debug.Log(direction + " " + count);
-            if (prev.X == pillar.X)
-            {
-                if (prev.Z > pillar.Z)
-                {
-                    if (direction == 0)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        if (direction != -1)
-                        {
-                            directions.Add((direction, count));
-                        }
-                        count = 1;
-                        direction = 0;
-                    }
-                }
-                else if (prev.Z < pillar.Z)
-                {
-                    if (direction == 2)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        if (direction != -1)
-                        {
-                            directions.Add((direction, count));
-                        }
-                        count = 1;
-                        direction = 2;
-                    }
-                }
-            }
-            else if (prev.Z == pillar.Z)
-            {
-                if (prev.X > pillar.X)
-                {
-                    if (direction == 1)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        if (direction != -1)
-                        {
-                            directions.Add((direction, count));
-                        }
-                        count = 1;
-                        direction = 1;
-                    }
-                }
-                else if (prev.X < pillar.X)
-                {
-                    if (direction == 3)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        if (direction != -1)
-                        {
-                            directions.Add((direction, count));
-                        }
-                        count = 1;
-                        direction = 3;
-                    }
-                }
-            }
-            prev = pillar;
-        }
-
-        directions.Add((direction, count));
-
-        // attach movementmanager to player if it doesn't exist
-        Player player = Game.Instance.FirstPlayerTurn ? Game.Instance.Player1 : Game.Instance.Player2;
-        if (player.PlayerObject.GetComponent<MovementManager>() == null)
-        {
-            player.PlayerObject.AddComponent<MovementManager>();
-            player.PlayerObject.GetComponent<MovementManager>().player = player.PlayerObject;
-        }
-        for (int i = 0; i < directions.Count; i++)
-        {
-            (int, int) dir = directions[i];
-            player.PlayerObject.GetComponent<MovementManager>().AddMovement(dir.Item1, dir.Item2);
-        }
-
-        // swap player turn
-        Game.Instance.FirstPlayerTurn = !Game.Instance.FirstPlayerTurn;
-        player.X = X;
-        player.Z = Z;
+        if (!Game.Instance.ArePlayersLanded) return;
+        Actions.Move(this.X, this.Z);
     }
 
     void OnMouseEnter()
     {
+        if (!Game.Instance.ArePlayersLanded) return;
+
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        Player player = Game.Instance.GetCurrentPlayer();
+
+        if (!(CanStep() || CanAct(player)))
+        {
+            return;
+        }
+
+        if (Game.IsPaused)
+            return;
+
         Pillar to = this;
         Pillar from;
         Color color;
 
         if (Game.Instance.FirstPlayerTurn)
         {
-            from = Game.Instance.Board.Pillars[Game.Instance.Player1.X, Game.Instance.Player1.Z];
+            from = Game.Instance.Player1.Position;
             color = Color.blue;
         }
         else
         {
-            from = Game.Instance.Board.Pillars[Game.Instance.Player2.X, Game.Instance.Player2.Z];
-            color = Color.green;
+            from = Game.Instance.Player2.Position;
+            color = Color.red;
         }
 
-        path = Algorithms.findPath(Game.Instance.Board, from, to);
+        if (to.X != from.X && to.Z != from.Z)
+        {
+            return;
+        }
+
+        path = Algorithms.FindPath(Game.Instance.Board, from, to);
         foreach (Pillar pillar in path)
         {
             originalColors.Add(pillar.PillarObject.GetComponent<Renderer>().material.color);
@@ -155,7 +94,14 @@ public class Pillar : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (path == null)
+        // Added so that players can not click 3D objects trough UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        if (Game.IsPaused)
+            return;
+        if (path == null || path.Count == 0 || originalColors.Count == 0)
         {
             return;
         }
@@ -165,5 +111,39 @@ public class Pillar : MonoBehaviour
             pillar.PillarObject.GetComponent<Renderer>().material.color = originalColors[0];
             originalColors.RemoveAt(0);
         }
+    }
+
+    public bool CanStep()
+    {
+        if (PillarState == PillarState.Empty)
+        {
+            return true;
+        }
+        else if (Game.Instance.FirstPlayerTurn && PillarState == PillarState.BasePlayer1)
+        {
+            return true;
+        }
+        else if (!Game.Instance.FirstPlayerTurn && PillarState == PillarState.BasePlayer2)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool CanAct(Player player)
+    {
+        List<Pillar> neighbours = Game.Instance.Board.getNeighbours(this);
+        if (neighbours.Contains(player.Position))
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public string GetSymbol()
+    {
+        return PillarState.ToString();
     }
 }
