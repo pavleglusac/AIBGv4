@@ -178,7 +178,7 @@ public class Game : MonoBehaviour
             }
             catch (Exception e)
             {
-                UnityEngine.Debug.LogError("Failed to kill WSL (PENGVIN)");
+                UnityEngine.Debug.Log("Failed to kill WSL (PENGVIN)");
 
             }
 
@@ -194,47 +194,47 @@ public class Game : MonoBehaviour
         }
         try
         {
-            UnityEngine.Debug.LogError("Ubijam 1!");
+            UnityEngine.Debug.Log("Ubijam 1!");
             // KillProcessGroup(Game.Instance.player1ScriptRunner.process.Id);
             Game.player1ScriptRunner.process.Kill();
-            UnityEngine.Debug.LogError("Ubiven 1!");
+            UnityEngine.Debug.Log("Ubiven 1!");
         }
         catch (Exception e)
         {
-            UnityEngine.Debug.LogError(e.ToString());
+            UnityEngine.Debug.Log(e.ToString());
             try
             {
-                UnityEngine.Debug.LogError("Ubijam 1 A!");
+                UnityEngine.Debug.Log("Ubijam 1 A!");
                 // KillProcessGroup(player1ScriptRunner.process.Id);
                 player1ScriptRunner.process.Kill();
-                UnityEngine.Debug.LogError("Ubiven 1 A!");
+                UnityEngine.Debug.Log("Ubiven 1 A!");
             }
             catch (Exception e2)
             {
-                UnityEngine.Debug.LogError("Failed to kill process 1");
+                UnityEngine.Debug.Log("Failed to kill process 1");
             }
         }
 
         try
         {
-            UnityEngine.Debug.LogError("Ubijam 2!");
+            UnityEngine.Debug.Log("Ubijam 2!");
             // KillProcessGroup(Game.Instance.player2ScriptRunner.process.Id);
             Game.player2ScriptRunner.process.Kill();
-            UnityEngine.Debug.LogError("Ubiven 2!");
+            UnityEngine.Debug.Log("Ubiven 2!");
         }
         catch (Exception e)
         {
-            UnityEngine.Debug.LogError(e.ToString());
+            UnityEngine.Debug.Log(e.ToString());
             try
             {
-                UnityEngine.Debug.LogError("Ubijam 2 A!");
+                UnityEngine.Debug.Log("Ubijam 2 A!");
                 // KillProcessGroup(player2ScriptRunner.process.Id);
                 player2ScriptRunner.process.Kill();
-                UnityEngine.Debug.LogError("Ubiven 2 A!");
+                UnityEngine.Debug.Log("Ubiven 2 A!");
             }
             catch (Exception e2)
             {
-                UnityEngine.Debug.LogError("Failed to kill process 2");
+                UnityEngine.Debug.Log("Failed to kill process 2");
             }
         }
         KillWSLProcesses();
@@ -352,8 +352,8 @@ public class Game : MonoBehaviour
         }
         catch (Exception ex)
         {
-            UnityEngine.Debug.LogError("Script task failed!");
-            UnityEngine.Debug.LogError(ex.ToString());
+            UnityEngine.Debug.Log("Script task failed!");
+            UnityEngine.Debug.Log(ex.ToString());
         }
     }
 
