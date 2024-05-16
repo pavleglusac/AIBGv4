@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 public class Game : MonoBehaviour
 {
@@ -117,9 +118,80 @@ public class Game : MonoBehaviour
     {
         KillSubprocesses();
     }
+    private static void KillWSLProcesses()
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+
+            try
+            {
+                Process process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "wsl",
+                        Arguments = "pkill -9 bash",
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    }
+                };
+
+                process.Start();
+                process.WaitForExit();
+
+                bool allKilled = false;
+                int attempts = 0;
+
+                while (!allKilled && attempts < 5)
+                {
+                    Process checkProcess = new Process
+                    {
+                        StartInfo = new ProcessStartInfo
+                        {
+                            FileName = "wsl",
+                            Arguments = "pgrep bash",
+                            RedirectStandardOutput = true,
+                            RedirectStandardError = true,
+                            UseShellExecute = false,
+                            CreateNoWindow = true
+                        }
+                    };
+
+                    checkProcess.Start();
+                    string output = checkProcess.StandardOutput.ReadToEnd();
+                    checkProcess.WaitForExit();
+
+                    if (string.IsNullOrEmpty(output))
+                    {
+                        allKilled = true;
+                    }
+                    else
+                    {
+                        Thread.Sleep(250);
+                    }
+
+                    attempts++;
+                }
+
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError("Failed to kill WSL (PENGVIN)");
+
+            }
+
+        }
+    }
+
 
     public static void KillSubprocesses()
     {
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString("player_1_script_path")) && string.IsNullOrEmpty(PlayerPrefs.GetString("player_2_script_path")))
+        {
+            return;
+        }
         try
         {
             UnityEngine.Debug.LogError("Ubijam 1!");
@@ -165,6 +237,7 @@ public class Game : MonoBehaviour
                 UnityEngine.Debug.LogError("Failed to kill process 2");
             }
         }
+        KillWSLProcesses();
     }
 
     public void ResetGame()
@@ -183,7 +256,7 @@ public class Game : MonoBehaviour
             Player2.SetupPlayer(PlayerPrefs.GetString("player2_name"));
             Player1.SetupPlayer(PlayerPrefs.GetString("player1_name"));
         }
-        
+
 
         player1ScriptPath = PlayerPrefs.GetString("player_1_script_path");
         player2ScriptPath = PlayerPrefs.GetString("player_2_script_path");

@@ -47,7 +47,7 @@ public class PauseMenuNavigation : MonoBehaviour
         temp = PlayerPrefs.GetString("player1_name");
         PlayerPrefs.SetString("player1_name", PlayerPrefs.GetString("player2_name"));
         PlayerPrefs.SetString("player2_name", temp);
-        
+
         Game.ResumeGame();
         Game.Instance.SetupGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

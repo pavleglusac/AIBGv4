@@ -61,8 +61,9 @@ public class ScriptRunner : MonoBehaviour
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && !IsRunningOnWine())
         {
             fileName = "wsl";
-            argumentsPrefix = "";
+            argumentsPrefix = "-e ";
             scriptPath = ConvertWindowsPathToWsl(scriptPath);
+            argumentsPrefix = argumentsPrefix + $"bash -c \"{scriptPath} || exit\"" + " -or exit";
         }
         else
         {
@@ -126,7 +127,7 @@ public class ScriptRunner : MonoBehaviour
         }
 
         string combined = string.Join("\n", output);
-        
+
         CommandParser.FinishGame(combined);
     }
 
@@ -175,11 +176,11 @@ public class ScriptRunner : MonoBehaviour
         }
         catch (TaskCanceledException)
         {
-            if(!invalidTurn)
+            if (!invalidTurn)
             {
                 CommandParser.ParseCommand(null, playerName);
             }
-            
+
             EnqueueOutput("Operation was canceled.");
             throw new Exception("Operation was canceled.");
         }
