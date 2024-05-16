@@ -12,6 +12,7 @@
             background-image: url("https://www.ukri.org/wp-content/uploads/2021/10/STFC-041021-EuropeFromSpace-GettyImages-1284041267.jpg");
             background-size: cover;    
             color: white;
+            overflow: hidden;
         }
         .button {
             width: 53px;
@@ -174,6 +175,7 @@
                 <label for="file-input" class="file-button command">Import File</label>
                 <span id="file-name" class="file-name"></span>
                 <button class="command" onclick="resetMap()">Reset</button>
+                <div id="turnInfo" style="font-size: 2em; color: rgb(0, 0, 0); font-weight: 1000;"></div>
             </div>
             <div style="width: 30vw;">
                 <div id="stats"></div>
@@ -184,6 +186,7 @@
             const rows = 10;
             const cols = 10;
             const moves = [];
+            const turns = [];
             let currentMove = 0;
 
             
@@ -316,6 +319,9 @@
                         }
                     }
                 }
+
+                const turn = document.getElementById(`turnInfo`);
+                turn.textContent = turns[currentMove]
             }
 
             function updateStats(move) {
@@ -370,6 +376,7 @@
                 const file = event.target.files[0];
                 const reader = new FileReader();
                 reader.onload = function(e) {
+                    turns.push("")
                     // for each line check if it contains 'Log: Writing to process:'
                     const lines = e.target.result.split('\n');
                     for (let i = 0; i < lines.length; i++) {
@@ -380,26 +387,34 @@
                             const json = JSON.parse(log.trim());
                             moves.push(json);
                         }
-                        
+                        else if (line.includes('ACTION:')) {
+                            const log = line.split('ACTION:')[1];
+                            // trim and convert to json
+                            turns.push(log.trim());
+                        }
                     }
-                    console.log(moves);
-                    // add buttons to moveList for each move, and add event listener to draw the move
-                    const moveList = document.getElementById('moveList');
-                    for (let i = 0; i < moves.length; i++) {
-                        const move = moves[i];
-                        const button = document.createElement('button');
-                        button.textContent = `Turn ${i}`;
-                        button.classList.add('move');
-                        button.addEventListener('click', () => {
-                            // set currentMove to i
-                            currentMove = i;
-                            drawMove(move);
-                        });
-                        moveList.appendChild(button);
+                    if (moves.length == 0) {
+                        alert("Ne postoji partija u log fajlu")
+                    } else {
+                        console.log(moves);
+                        // add buttons to moveList for each move, and add event listener to draw the move
+                        const moveList = document.getElementById('moveList');
+                        for (let i = 0; i < moves.length; i++) {
+                            const move = moves[i];
+                            const button = document.createElement('button');
+                            button.textContent = `Turn ${i}`;
+                            button.classList.add('move');
+                            button.addEventListener('click', () => {
+                                // set currentMove to i
+                                currentMove = i;
+                                drawMove(move);
+                            });
+                            moveList.appendChild(button);
+                        }
+                        currentMove = 0;
+                        drawMove(moves[0]);
+                        document.getElementById('moveButtons').style.visibility = 'visible';
                     }
-                    currentMove = 0;
-                    drawMove(moves[0]);
-                    document.getElementById('moveButtons').style.visibility = 'visible';
                 }
                 reader.readAsText(file);
             }
