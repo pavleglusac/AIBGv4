@@ -148,15 +148,18 @@ public class PlayerStatsHandle : MonoBehaviour
             return;
         }
 
-        if (Game.Instance.Board.CountPlayersHouses(true) > Game.Instance.Board.CountPlayersHouses(false))
+        if (Game.Instance.TurnCount > 0)
         {
-            setBluePlayerToAdvantage();
-            return;
-        }
-        else if (Game.Instance.Board.CountPlayersHouses(true) < Game.Instance.Board.CountPlayersHouses(false))
-        {
-            setRedPlayerToAdvantage();
-            return;
+            if (Game.Instance.Board.CountPlayersHouses(true) > Game.Instance.Board.CountPlayersHouses(false))
+            {
+                setBluePlayerToAdvantage();
+                return;
+            }
+            else if (Game.Instance.Board.CountPlayersHouses(true) < Game.Instance.Board.CountPlayersHouses(false))
+            {
+                setRedPlayerToAdvantage();
+                return;
+            }
         }
         //set both to not visible
         BluePlayerStatsForAdvantage.GetComponent<Image>().enabled = false;

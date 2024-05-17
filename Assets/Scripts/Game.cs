@@ -315,6 +315,7 @@ public class Game : MonoBehaviour
     public void SwitchPlayersAndDecreaseStats()
     {
         Game.Instance.TurnCount++;
+        ReplenishCrystals();
         DecreasePlayerStatuses();
         bool previousTurnFirstPlayer = Game.Instance.FirstPlayerTurn;
         if (!GetAlternatePlayer().IsFrozen())
@@ -354,6 +355,38 @@ public class Game : MonoBehaviour
         {
             UnityEngine.Debug.Log("Script task failed!");
             UnityEngine.Debug.Log(ex.ToString());
+        }
+    }
+
+    public void ReplenishCrystals()
+    {
+        for (int i = 0; i < Board.CheapCrystals.Length; i++)
+        {
+            if (Board.CheapCrystals[i] != null)
+            {
+                ReplenishCrystal(Board.CheapCrystals[i]);
+            }
+        }
+
+        for (int i = 0; i < Board.ExpensiveCrystals.Length; i++)
+        {
+            if (Board.ExpensiveCrystals[i] != null)
+            {
+                ReplenishCrystal(Board.ExpensiveCrystals[i]);
+            }
+        }
+    }
+
+    public void ReplenishCrystal(Crystal crystal)
+    {
+        if (crystal.IsEmpty)
+        {
+            if (Game.Instance.TurnCount > crystal.TurnInWhichCrystalBecameEmpty + crystal.ReplenishTurns)
+            {
+                crystal.IsEmpty = false;
+                crystal.RemainingMineHits = crystal.MaxMineHits;
+                crystal.TurnInWhichCrystalBecameEmpty = -1;
+            }
         }
     }
 
