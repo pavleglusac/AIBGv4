@@ -34,6 +34,10 @@ public class PlayerStatsHandle : MonoBehaviour
 
     private bool GameStarted = false;
 
+    [SerializeField] public GameObject BluePlayerStatsForAdvantage;
+
+    [SerializeField] public GameObject RedPlayerStatsForAdvantage;
+
 
 
     public void UpdateGUI(Player Player1, Player Player2, int turnNumber, bool FirstPlayerTurn, string DisplayMessage, bool previousTurnFirstPlayer)
@@ -80,6 +84,83 @@ public class PlayerStatsHandle : MonoBehaviour
         {
             GameStarted = true;
         }
+
+        UpdatePlayerWithAdvantage();
+
+
+    }
+
+    public void setBluePlayerToAdvantage()
+    {
+        BluePlayerStatsForAdvantage.GetComponent<Image>().enabled = true;
+        RedPlayerStatsForAdvantage.GetComponent<Image>().enabled = false;
+    }
+
+    public void setRedPlayerToAdvantage()
+    {
+        BluePlayerStatsForAdvantage.GetComponent<Image>().enabled = false;
+        RedPlayerStatsForAdvantage.GetComponent<Image>().enabled = true;
+    }
+
+    public void UpdatePlayerWithAdvantage()
+    {
+        if (Game.Instance.Player1.XP > Game.Instance.Player2.XP)
+        {
+            setBluePlayerToAdvantage();
+            return;
+        }
+        else if (Game.Instance.Player1.XP < Game.Instance.Player2.XP)
+        {
+            setRedPlayerToAdvantage();
+            return;
+        }
+
+        if (Game.Instance.Player1.Coins > Game.Instance.Player2.Coins)
+        {
+            setBluePlayerToAdvantage();
+            return;
+        }
+        else if (Game.Instance.Player1.Coins < Game.Instance.Player2.Coins)
+        {
+            setRedPlayerToAdvantage();
+            return;
+        }
+
+        if (Game.Instance.Player1.Energy > Game.Instance.Player2.Energy)
+        {
+            setBluePlayerToAdvantage();
+            return;
+        }
+        else if (Game.Instance.Player1.Energy < Game.Instance.Player2.Energy)
+        {
+            setRedPlayerToAdvantage();
+            return;
+        }
+
+        if (Game.Instance.Player1.Bag.GetWeight() > Game.Instance.Player2.Bag.GetWeight())
+        {
+            setBluePlayerToAdvantage();
+            return;
+        }
+        else if (Game.Instance.Player1.Bag.GetWeight() < Game.Instance.Player2.Bag.GetWeight())
+        {
+            setRedPlayerToAdvantage();
+            return;
+        }
+
+        if (Game.Instance.Board.CountPlayersHouses(true) > Game.Instance.Board.CountPlayersHouses(false))
+        {
+            setBluePlayerToAdvantage();
+            return;
+        }
+        else if (Game.Instance.Board.CountPlayersHouses(true) < Game.Instance.Board.CountPlayersHouses(false))
+        {
+            setRedPlayerToAdvantage();
+            return;
+        }
+        //set both to not visible
+        BluePlayerStatsForAdvantage.GetComponent<Image>().enabled = false;
+        RedPlayerStatsForAdvantage.GetComponent<Image>().enabled = false;
 
 
     }
