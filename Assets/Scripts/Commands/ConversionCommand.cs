@@ -74,6 +74,23 @@ public class ConversionCommand : MonoBehaviour, ICommand
 
     public bool CanExecute()
     {
+        if (!Player.FirstPlayer)
+        {
+            if (Player.X != 0 || Player.Z != 9)
+            {
+                Game.Instance.DisplayMessage = "You need to be on the base to convert minerals and diamonds";
+                return false;
+            }
+        }
+        else
+        {
+            if (Player.X != 9 || Player.Z != 0)
+            {
+                Game.Instance.DisplayMessage = "You need to be on the base to convert minerals and diamonds";
+                return false;
+            }
+        }
+
         if (Player.Bag.GetCheapCrystalCount() < CheapTotal)
         {
             Game.Instance.DisplayMessage = "You can't put more minerals than you have in your backpack";

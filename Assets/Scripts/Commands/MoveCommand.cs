@@ -113,31 +113,31 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
         return -1;
     }
 
-    private static bool OutOfBounds(Pillar pillar, Player player)
+    private static bool OutOfBounds(int pillar_X, int pillar_Z, Player player)
     {
-        int stepX = Math.Abs(pillar.X - player.X);
-        int stepZ = Math.Abs(pillar.Z - player.Z);
+        int stepX = Math.Abs(pillar_X - player.X);
+        int stepZ = Math.Abs(pillar_Z - player.Z);
 
         int newX = player.X - stepX;
         int newZ = player.Z - stepZ;
 
-        newX = (pillar.X > player.X) ? newX : player.X + stepX;
-        newZ = (pillar.Z > player.Z) ? newZ : player.Z + stepZ;
+        newX = (pillar_X > player.X) ? newX : player.X + stepX;
+        newZ = (pillar_Z > player.Z) ? newZ : player.Z + stepZ;
         int boardSize = int.Parse(PlayerPrefs.GetString("board_size")) - 1;
 
         return newX < 0 || newX > boardSize || newZ < 0 || newZ > boardSize;
     }
 
-    private static Pillar ChangePillarsBasedOnDaze(Pillar pillar, Player player)
+    private static Pillar ChangePillarsBasedOnDaze(int X, int Z, Player player)
     {
-        int stepX = Math.Abs(pillar.X - player.X);
-        int stepZ = Math.Abs(pillar.Z - player.Z);
+        int stepX = Math.Abs(X - player.X);
+        int stepZ = Math.Abs(Z - player.Z);
 
         int newX = player.X - stepX;
         int newZ = player.Z - stepZ;
 
-        newX = (pillar.X > player.X) ? newX : player.X + stepX;
-        newZ = (pillar.Z > player.Z) ? newZ : player.Z + stepZ;
+        newX = (X > player.X) ? newX : player.X + stepX;
+        newZ = (Z > player.Z) ? newZ : player.Z + stepZ;
 
         return Game.Instance.Board.Pillars[newX, newZ];
     }
@@ -154,23 +154,24 @@ public class MoveCommand : MonoBehaviour, IEnergySpendingCommand
 
     public bool CanExecute()
     {
-        // check out of bounds
-        if (X < 0 || X >= Game.Instance.Board.Width || Z < 0 || Z >= Game.Instance.Board.Height)
-        {
-            Game.Instance.DisplayMessage = "Invalid coordinates for movement!";
-            return false;
-        }
-        TargetPillar = Game.Instance.Board.Pillars[X, Z];
-
         if (Player.IsDazed())
         {
-            if (OutOfBounds(TargetPillar, Player))
+            if (OutOfBounds(X, Z, Player))
             {
                 Game.Instance.DisplayMessage = "Move out of bounds!";
                 return false;
             }
-            TargetPillar = ChangePillarsBasedOnDaze(TargetPillar, Player);
+            TargetPillar = ChangePillarsBasedOnDaze(X, Z, Player);
+        } 
+        else if(X < 0 || X >= Game.Instance.Board.Width || Z < 0 || Z >= Game.Instance.Board.Height)
+        {
+            Game.Instance.DisplayMessage = "Invalid coordinates for movement!";
+            return false;
         }
+        else {
+            TargetPillar = Game.Instance.Board.Pillars[X, Z];
+        }
+        
 
         if (Player.Position.X == TargetPillar.X && Player.Position.Z == TargetPillar.Z)
         {

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.IO;
 
 public class LevelData : MonoBehaviour
 {
@@ -22,17 +23,17 @@ public class LevelData : MonoBehaviour
     
     void Awake()
     {
-        LoadJsonFromFile("levels");
+        LoadJsonFromFile();
     }
 
-    void LoadJsonFromFile(string resourceName)
+    void LoadJsonFromFile()
     {
-        TextAsset textAsset = Resources.Load<TextAsset>(resourceName);
-        if (textAsset != null)
+        string levelsJsonPath = Path.Combine(Application.streamingAssetsPath, "levels.json");
+        if ( File.Exists(levelsJsonPath) )
         {
-            Item root = JsonConvert.DeserializeObject<Item>(textAsset.text);
+            string json = File.ReadAllText(levelsJsonPath);
+            Item root = JsonConvert.DeserializeObject<Item>(json);
             Debug.Log("Level data loaded successfully.");
-
             Levels = new List<ItemData>(root.levels);
         }
         else

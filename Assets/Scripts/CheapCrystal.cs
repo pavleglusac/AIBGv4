@@ -34,10 +34,6 @@ public class CheapCrystal : Crystal
     // Update is called once per frame
     void Update()
     {
-        if ((Game.Instance.TurnCount > TurnInWhichCrystalBecameEmpty + ReplenishTurns) && RemainingMineHits == 0 && TurnInWhichCrystalBecameEmpty != -1)
-        {
-            IsEmpty = false;
-        }
         foreach (Transform child in transform)
         {
             if (child.name == "Rock004") continue;

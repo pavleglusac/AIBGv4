@@ -315,6 +315,7 @@ public class Game : MonoBehaviour
     public void SwitchPlayersAndDecreaseStats()
     {
         Game.Instance.TurnCount++;
+        ReplenishCrystals();
         DecreasePlayerStatuses();
         bool previousTurnFirstPlayer = Game.Instance.FirstPlayerTurn;
         if (!GetAlternatePlayer().IsFrozen())
@@ -357,6 +358,42 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void ReplenishCrystals()
+    {
+        if (Game.Instance.Board.CheapCrystals == null || Game.Instance.Board.ExpensiveCrystals == null)
+        {
+            return;
+        }
+        for (int i = 0; i < Instance.Board.CheapCrystals.Length; i++)
+        {
+            if (Instance.Board.CheapCrystals[i] != null)
+            {
+                ReplenishCrystal(Instance.Board.CheapCrystals[i]);
+            }
+        }
+
+        for (int i = 0; i < Instance.Board.ExpensiveCrystals.Length; i++)
+        {
+            if (Instance.Board.ExpensiveCrystals[i] != null)
+            {
+                ReplenishCrystal(Instance.Board.ExpensiveCrystals[i]);
+            }
+        }
+    }
+
+    public void ReplenishCrystal(Crystal crystal)
+    {
+        if (crystal.IsEmpty)
+        {
+            if (Game.Instance.TurnCount > crystal.TurnInWhichCrystalBecameEmpty + crystal.ReplenishTurns)
+            {
+                crystal.IsEmpty = false;
+                crystal.RemainingMineHits = crystal.MaxMineHits;
+                crystal.TurnInWhichCrystalBecameEmpty = -1;
+            }
+        }
+    }
+
 
     public void DecreasePlayerStatuses()
     {
@@ -375,7 +412,7 @@ public class Game : MonoBehaviour
         info += "\"firstPlayerTurn\":" + FirstPlayerTurn.ToString().ToLower() + ",";
         info += Player1.GetStats(true) + ",";
         info += Player2.GetStats(false) + ",";
-        info += Board.DrawBoard();
+        info += Instance.Board.DrawBoard();
         info += "}";
         info.Replace("\n", "").Replace("\t", "");
         return info;

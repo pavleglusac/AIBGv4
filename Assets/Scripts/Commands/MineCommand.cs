@@ -136,19 +136,10 @@ public class MineCommand : MonoBehaviour, IEnergySpendingCommand
                 return false;
             }
         }
-
         if (Crystal.RemainingMineHits == 0 && Crystal.TurnInWhichCrystalBecameEmpty == -1)
         {
             Game.Instance.DisplayMessage = "Crystal is not replenished";
-            Crystal.TurnInWhichCrystalBecameEmpty = Game.Instance.TurnCount;
-            Crystal.IsEmpty = true;
             return false;
-        }
-        if ((Game.Instance.TurnCount > Crystal.TurnInWhichCrystalBecameEmpty + Crystal.ReplenishTurns) && Crystal.RemainingMineHits == 0)
-        {
-            Crystal.RemainingMineHits = Crystal.MaxMineHits;
-            Crystal.TurnInWhichCrystalBecameEmpty = -1;
-            Crystal.IsEmpty = false;
         }
         if (Crystal.RemainingMineHits == 0)
         {

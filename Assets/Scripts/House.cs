@@ -122,25 +122,25 @@ public class House : MonoBehaviour
     public int GetProcessedCheapCrystalCount()
     {
         int cheapCrystalProcessingTurns = int.Parse(PlayerPrefs.GetString("cheap_crystal_processing_turns"));
-        return CheapCrystals.Count(crystal => Game.Instance.TurnCount - crystal.Item2 >= cheapCrystalProcessingTurns);
+        return CheapCrystals.Count(crystal => Game.Instance.TurnCount - crystal.Item2 > cheapCrystalProcessingTurns);
     }
 
     public int GetUnprocessedCheapCrystalCount()
     {
         int cheapCrystalProcessingTurns = int.Parse(PlayerPrefs.GetString("cheap_crystal_processing_turns"));
-        return CheapCrystals.Count(crystal => Game.Instance.TurnCount - crystal.Item2 < cheapCrystalProcessingTurns);
+        return CheapCrystals.Count(crystal => Game.Instance.TurnCount - crystal.Item2 <= cheapCrystalProcessingTurns);
     }
 
     public int GetProcessedExpensiveCrystalCount()
     {
         int expensiveCrystalProcessingTurns = int.Parse(PlayerPrefs.GetString("expensive_crystal_processing_turns"));
-        return ExpensiveCrystals.Count(crystal => Game.Instance.TurnCount - crystal.Item2 >= expensiveCrystalProcessingTurns);
+        return ExpensiveCrystals.Count(crystal => Game.Instance.TurnCount - crystal.Item2 > expensiveCrystalProcessingTurns);
     }
 
     public int GetUnprocessedExpensiveCrystalCount()
     {
         int expensiveCrystalProcessingTurns = int.Parse(PlayerPrefs.GetString("expensive_crystal_processing_turns"));
-        return ExpensiveCrystals.Count(crystal => Game.Instance.TurnCount - crystal.Item2 < expensiveCrystalProcessingTurns);
+        return ExpensiveCrystals.Count(crystal => Game.Instance.TurnCount - crystal.Item2 <= expensiveCrystalProcessingTurns);
     }
 
     public CheapCrystalItem PopProcessedCheapCrystal()
