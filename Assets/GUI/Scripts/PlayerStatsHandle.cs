@@ -148,7 +148,7 @@ public class PlayerStatsHandle : MonoBehaviour
             return;
         }
 
-        if (Game.Instance.TurnCount > 0)
+        if (Game.Instance.TurnCount > 0 && Game.Instance.Board.Houses != null)
         {
             if (Game.Instance.Board.CountPlayersHouses(true) > Game.Instance.Board.CountPlayersHouses(false))
             {

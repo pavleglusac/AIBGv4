@@ -360,19 +360,23 @@ public class Game : MonoBehaviour
 
     public void ReplenishCrystals()
     {
-        for (int i = 0; i < Board.CheapCrystals.Length; i++)
+        if (Game.Instance.Board.CheapCrystals == null || Game.Instance.Board.ExpensiveCrystals == null)
         {
-            if (Board.CheapCrystals[i] != null)
+            return;
+        }
+        for (int i = 0; i < Instance.Board.CheapCrystals.Length; i++)
+        {
+            if (Instance.Board.CheapCrystals[i] != null)
             {
-                ReplenishCrystal(Board.CheapCrystals[i]);
+                ReplenishCrystal(Instance.Board.CheapCrystals[i]);
             }
         }
 
-        for (int i = 0; i < Board.ExpensiveCrystals.Length; i++)
+        for (int i = 0; i < Instance.Board.ExpensiveCrystals.Length; i++)
         {
-            if (Board.ExpensiveCrystals[i] != null)
+            if (Instance.Board.ExpensiveCrystals[i] != null)
             {
-                ReplenishCrystal(Board.ExpensiveCrystals[i]);
+                ReplenishCrystal(Instance.Board.ExpensiveCrystals[i]);
             }
         }
     }
@@ -408,7 +412,7 @@ public class Game : MonoBehaviour
         info += "\"firstPlayerTurn\":" + FirstPlayerTurn.ToString().ToLower() + ",";
         info += Player1.GetStats(true) + ",";
         info += Player2.GetStats(false) + ",";
-        info += Board.DrawBoard();
+        info += Instance.Board.DrawBoard();
         info += "}";
         info.Replace("\n", "").Replace("\t", "");
         return info;
