@@ -955,7 +955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 105.1, y: -49}
+  m_AnchoredPosition: {x: 105.1001, y: -49}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &475158990
@@ -1561,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_Text
-      value: Plyaer 2
+      value: Player 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: b5790287cae64de46a4f0136090067a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2483,7 +2483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -94.8, y: 39.7}
+  m_AnchoredPosition: {x: -94.80005, y: 39.69995}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114222531
@@ -3230,7 +3230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 83.14, y: 41.4}
+  m_AnchoredPosition: {x: 83.13989, y: 41.400024}
   m_SizeDelta: {x: 2044, y: 1488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1409381528
