@@ -1,8 +1,0 @@
-[5/15/2024 8:01:13 PM] Log: High graphics settings applied.
-[5/15/2024 8:01:22 PM] Log: Invoking script for player 1. Target Runner is not null: False
-[5/15/2024 8:01:23 PM] Log: Switching Player! Current Player: 2
-[5/15/2024 8:01:23 PM] Log: Invoking script for player 2. Target Runner is not null: False
-[5/15/2024 8:01:26 PM] Log: Switching Player! Current Player: 1
-[5/15/2024 8:01:26 PM] Log: Invoking script for player 1. Target Runner is not null: False
-[5/15/2024 8:01:28 PM] Log: Switching Player! Current Player: 2
-[5/15/2024 8:01:28 PM] Log: Invoking script for player 2. Target Runner is not null: False
